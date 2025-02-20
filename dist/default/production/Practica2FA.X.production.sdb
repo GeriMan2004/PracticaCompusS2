@@ -1,0 +1,251 @@
+[p GLOBOPT AUTOSTATIC IEEE_FLT IEEE_DBL LFSROK EMI_WORD ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 18F4321 ]
+[d frameptr 4065 ]
+"4 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\fleq.c
+[v ___fleq __fleq `(b  1 e 0 0 ]
+"62 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\float.c
+[v ___ftpack __ftpack `(f  1 e 4 0 ]
+"86 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftadd.c
+[v ___ftadd __ftadd `(f  1 e 4 0 ]
+"54 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftdiv.c
+[v ___ftdiv __ftdiv `(f  1 e 4 0 ]
+"62 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftmul.c
+[v ___ftmul __ftmul `(f  1 e 4 0 ]
+"19 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftsub.c
+[v ___ftsub __ftsub `(f  1 e 4 0 ]
+"10 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"245
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"11 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"91 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\Umul64.c
+[v ___omul __omul `(uo  1 e 8 0 ]
+"27 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+[v _HighRSI HighRSI `IIH(v  1 e 1 0 ]
+"31
+[v _LowRSI LowRSI `IIL(v  1 e 1 0 ]
+"38
+[v _main main `(v  1 e 1 0 ]
+"53
+[v _InitPorts InitPorts `(v  1 e 1 0 ]
+"72
+[v _ProcessKey ProcessKey `(v  1 e 1 0 ]
+"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+[v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
+"14
+[v _initTeclado initTeclado `(v  1 e 1 0 ]
+"27
+[v _motorTeclado motorTeclado `(v  1 e 1 0 ]
+"86
+[v _GetTecla GetTecla `(uc  1 s 1 GetTecla ]
+"116
+[v _StopRequest StopRequest `(v  1 s 1 StopRequest ]
+"25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+[v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
+"32
+[v _TI_Init TI_Init `(v  1 e 1 0 ]
+"43
+[v _TI_NewTimer TI_NewTimer `(uc  1 e 1 0 ]
+"53
+[v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
+"61
+[v _TI_GetTics TI_GetTics `(ul  1 e 4 0 ]
+"50 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[v _PORTA PORTA `VEuc  1 e 1 @3968 ]
+"1098
+[v _LATB LATB `VEuc  1 e 1 @3978 ]
+"1210
+[v _LATC LATC `VEuc  1 e 1 @3979 ]
+"1322
+[v _LATD LATD `VEuc  1 e 1 @3980 ]
+"1486
+[v _TRISA TRISA `VEuc  1 e 1 @3986 ]
+"1708
+[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
+"2152
+[v _TRISD TRISD `VEuc  1 e 1 @3989 ]
+"4714
+[v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
+"6181
+[v _T0CON T0CON `VEuc  1 e 1 @4053 ]
+"6258
+[v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
+[s S156 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 NOT_RBPU 1 0 :1:7 
+]
+"6654
+[s S159 . 1 `uc 1 RBIP 1 0 :1:0 
+`uc 1 . 1 0 :1:1 
+`uc 1 TMR0IP 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INTEDG2 1 0 :1:4 
+`uc 1 INTEDG1 1 0 :1:5 
+`uc 1 INTEDG0 1 0 :1:6 
+`uc 1 nRBPU 1 0 :1:7 
+]
+[s S168 . 1 `uc 1 . 1 0 :7:0 
+`uc 1 RBPU 1 0 :1:7 
+]
+[u S171 . 1 `S156 1 . 1 0 `S159 1 . 1 0 `S168 1 . 1 0 ]
+[v _INTCON2bits INTCON2bits `VES171  1 e 1 @4081 ]
+[s S30 . 1 `uc 1 RBIF 1 0 :1:0 
+`uc 1 INT0IF 1 0 :1:1 
+`uc 1 TMR0IF 1 0 :1:2 
+`uc 1 RBIE 1 0 :1:3 
+`uc 1 INT0IE 1 0 :1:4 
+`uc 1 TMR0IE 1 0 :1:5 
+`uc 1 PEIE_GIEL 1 0 :1:6 
+`uc 1 GIE_GIEH 1 0 :1:7 
+]
+"6731
+[s S39 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 INT0F 1 0 :1:1 
+`uc 1 T0IF 1 0 :1:2 
+`uc 1 . 1 0 :1:3 
+`uc 1 INT0E 1 0 :1:4 
+`uc 1 T0IE 1 0 :1:5 
+`uc 1 PEIE 1 0 :1:6 
+`uc 1 GIE 1 0 :1:7 
+]
+[s S48 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 GIEL 1 0 :1:6 
+`uc 1 GIEH 1 0 :1:7 
+]
+[u S52 . 1 `S30 1 . 1 0 `S39 1 . 1 0 `S48 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES52  1 e 1 @4082 ]
+"8680
+[v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
+"5 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+[v _Filas Filas `uc  1 s 1 Filas ]
+[v _Columnas Columnas `uc  1 s 1 Columnas ]
+[v _timer timer `uc  1 s 1 timer ]
+[v _state state `uc  1 s 1 state ]
+"6
+[v _HiHaTecla HiHaTecla `uc  1 s 1 HiHaTecla ]
+"7
+[v _tecla tecla `uc  1 s 1 tecla ]
+[s S24 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
+"21 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+[v _Timers Timers `[4]S24  1 s 20 Timers ]
+"23
+[v _Tics Tics `VEul  1 s 4 Tics ]
+"38 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+[v _main main `(v  1 e 1 0 ]
+{
+"50
+} 0
+"27 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+[v _motorTeclado motorTeclado `(v  1 e 1 0 ]
+{
+"84
+} 0
+"53 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+[v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
+{
+[v TI_ResetTics@TimerHandle TimerHandle `uc  1 p 1 wreg ]
+[v TI_ResetTics@TimerHandle TimerHandle `uc  1 p 1 wreg ]
+"57
+[v TI_ResetTics@TimerHandle TimerHandle `uc  1 p 1 1 ]
+"58
+} 0
+"61
+[v _TI_GetTics TI_GetTics `(ul  1 e 4 0 ]
+{
+[v TI_GetTics@TimerHandle TimerHandle `uc  1 p 1 wreg ]
+"62
+[v TI_GetTics@CopiaTicsActual CopiaTicsActual `ul  1 a 4 9 ]
+"61
+[v TI_GetTics@TimerHandle TimerHandle `uc  1 p 1 wreg ]
+[v TI_GetTics@TimerHandle TimerHandle `uc  1 p 1 13 ]
+"64
+} 0
+"116 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+[v _StopRequest StopRequest `(v  1 s 1 StopRequest ]
+{
+[v StopRequest@key key `uc  1 p 1 wreg ]
+[v StopRequest@key key `uc  1 p 1 wreg ]
+"118
+[v StopRequest@key key `uc  1 p 1 3 ]
+"122
+} 0
+"72 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+[v _ProcessKey ProcessKey `(v  1 e 1 0 ]
+{
+[v ProcessKey@key key `uc  1 p 1 wreg ]
+[v ProcessKey@key key `uc  1 p 1 wreg ]
+"75
+[v ProcessKey@key key `uc  1 p 1 1 ]
+"76
+} 0
+"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+[v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
+{
+"12
+} 0
+"86
+[v _GetTecla GetTecla `(uc  1 s 1 GetTecla ]
+{
+[v GetTecla@filas filas `uc  1 p 1 wreg ]
+"106
+[v GetTecla@keymap keymap `C[4][3]uc  1 a 12 4 ]
+"87
+[v GetTecla@fila fila `uc  1 a 1 18 ]
+"88
+[v GetTecla@columna columna `uc  1 a 1 17 ]
+"86
+[v GetTecla@filas filas `uc  1 p 1 wreg ]
+[v GetTecla@columnas columnas `uc  1 p 1 1 ]
+"104
+[v GetTecla@F2725 F2725 `C[4][3]uc  1 s 12 F2725 ]
+"88
+[v GetTecla@filas filas `uc  1 p 1 16 ]
+"114
+} 0
+"14
+[v _initTeclado initTeclado `(v  1 e 1 0 ]
+{
+"21
+} 0
+"43 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+[v _TI_NewTimer TI_NewTimer `(uc  1 e 1 0 ]
+{
+"44
+[v TI_NewTimer@Comptador Comptador `uc  1 a 1 3 ]
+"43
+[v TI_NewTimer@TimerHandle TimerHandle `*.30uc  1 p 1 1 ]
+"51
+} 0
+"32
+[v _TI_Init TI_Init `(v  1 e 1 0 ]
+{
+"33
+[v TI_Init@counter counter `uc  1 a 1 1 ]
+"41
+} 0
+"53 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+[v _InitPorts InitPorts `(v  1 e 1 0 ]
+{
+"69
+} 0
+"31
+[v _LowRSI LowRSI `IIL(v  1 e 1 0 ]
+{
+"33
+} 0
+"27
+[v _HighRSI HighRSI `IIH(v  1 e 1 0 ]
+{
+"30
+} 0
+"25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+[v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
+{
+"30
+} 0
