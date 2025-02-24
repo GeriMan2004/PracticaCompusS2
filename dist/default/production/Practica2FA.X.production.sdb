@@ -35,17 +35,15 @@
 [v _main main `(v  1 e 1 0 ]
 "53
 [v _InitPorts InitPorts `(v  1 e 1 0 ]
-"72
-[v _ProcessKey ProcessKey `(v  1 e 1 0 ]
-"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"9 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
-"14
+"13
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
-"27
+"26
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
-"86
+"85
 [v _GetTecla GetTecla `(uc  1 s 1 GetTecla ]
-"116
+"115
 [v _StopRequest StopRequest `(v  1 s 1 StopRequest ]
 "25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
@@ -77,11 +75,11 @@
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
 "6258
 [v _TMR0 TMR0 `VEus  1 e 2 @4054 ]
-[s S156 . 1 `uc 1 . 1 0 :7:0 
+[s S95 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 NOT_RBPU 1 0 :1:7 
 ]
 "6654
-[s S159 . 1 `uc 1 RBIP 1 0 :1:0 
+[s S98 . 1 `uc 1 RBIP 1 0 :1:0 
 `uc 1 . 1 0 :1:1 
 `uc 1 TMR0IP 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -90,12 +88,12 @@
 `uc 1 INTEDG0 1 0 :1:6 
 `uc 1 nRBPU 1 0 :1:7 
 ]
-[s S168 . 1 `uc 1 . 1 0 :7:0 
+[s S107 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 RBPU 1 0 :1:7 
 ]
-[u S171 . 1 `S156 1 . 1 0 `S159 1 . 1 0 `S168 1 . 1 0 ]
-[v _INTCON2bits INTCON2bits `VES171  1 e 1 @4081 ]
-[s S30 . 1 `uc 1 RBIF 1 0 :1:0 
+[u S110 . 1 `S95 1 . 1 0 `S98 1 . 1 0 `S107 1 . 1 0 ]
+[v _INTCON2bits INTCON2bits `VES110  1 e 1 @4081 ]
+[s S24 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -105,7 +103,7 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "6731
-[s S39 . 1 `uc 1 . 1 0 :1:0 
+[s S33 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 INT0F 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :1:3 
@@ -114,26 +112,26 @@
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
-[s S48 . 1 `uc 1 . 1 0 :6:0 
+[s S42 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
-[u S52 . 1 `S30 1 . 1 0 `S39 1 . 1 0 `S48 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES52  1 e 1 @4082 ]
+[u S46 . 1 `S24 1 . 1 0 `S33 1 . 1 0 `S42 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES46  1 e 1 @4082 ]
 "8680
 [v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
-"5 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"4 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _Filas Filas `uc  1 s 1 Filas ]
 [v _Columnas Columnas `uc  1 s 1 Columnas ]
 [v _timer timer `uc  1 s 1 timer ]
 [v _state state `uc  1 s 1 state ]
-"6
+"5
 [v _HiHaTecla HiHaTecla `uc  1 s 1 HiHaTecla ]
-"7
+"6
 [v _tecla tecla `uc  1 s 1 tecla ]
-[s S24 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
+[s S172 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
 "21 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-[v _Timers Timers `[4]S24  1 s 20 Timers ]
+[v _Timers Timers `[4]S172  1 s 20 Timers ]
 "23
 [v _Tics Tics `VEul  1 s 4 Tics ]
 "38 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
@@ -141,10 +139,10 @@
 {
 "50
 } 0
-"27 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"26 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
 {
-"84
+"83
 } 0
 "53 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
@@ -166,52 +164,43 @@
 [v TI_GetTics@TimerHandle TimerHandle `uc  1 p 1 13 ]
 "64
 } 0
-"116 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"115 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _StopRequest StopRequest `(v  1 s 1 StopRequest ]
 {
 [v StopRequest@key key `uc  1 p 1 wreg ]
 [v StopRequest@key key `uc  1 p 1 wreg ]
+"117
+[v StopRequest@key key `uc  1 p 1 2 ]
 "118
-[v StopRequest@key key `uc  1 p 1 3 ]
-"122
 } 0
-"72 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-[v _ProcessKey ProcessKey `(v  1 e 1 0 ]
-{
-[v ProcessKey@key key `uc  1 p 1 wreg ]
-[v ProcessKey@key key `uc  1 p 1 wreg ]
-"75
-[v ProcessKey@key key `uc  1 p 1 1 ]
-"76
-} 0
-"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"9
 [v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
 {
-"12
+"11
 } 0
-"86
+"85
 [v _GetTecla GetTecla `(uc  1 s 1 GetTecla ]
 {
 [v GetTecla@filas filas `uc  1 p 1 wreg ]
-"106
+"105
 [v GetTecla@keymap keymap `C[4][3]uc  1 a 12 4 ]
-"87
-[v GetTecla@fila fila `uc  1 a 1 18 ]
-"88
-[v GetTecla@columna columna `uc  1 a 1 17 ]
 "86
+[v GetTecla@fila fila `uc  1 a 1 18 ]
+"87
+[v GetTecla@columna columna `uc  1 a 1 17 ]
+"85
 [v GetTecla@filas filas `uc  1 p 1 wreg ]
 [v GetTecla@columnas columnas `uc  1 p 1 1 ]
-"104
+"103
 [v GetTecla@F2725 F2725 `C[4][3]uc  1 s 12 F2725 ]
-"88
+"87
 [v GetTecla@filas filas `uc  1 p 1 16 ]
-"114
+"113
 } 0
-"14
+"13
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
 {
-"21
+"20
 } 0
 "43 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_NewTimer TI_NewTimer `(uc  1 e 1 0 ]

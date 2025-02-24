@@ -4824,7 +4824,6 @@ static void StopRequest(unsigned char key);
 void ProcessKey(unsigned char key);
 # 3 "TAD_TECLADO.c" 2
 
-
 static unsigned char Filas, Columnas, timer, state = 0;
 static unsigned char HiHaTecla = 0;
 static unsigned char tecla = 0;
@@ -4939,7 +4938,4 @@ static unsigned char GetTecla(unsigned char filas, unsigned char columnas) {
 static void StopRequest(unsigned char key) {
 
     LATD = (LATD & 0xF0) | (key & 0x0F);
-
-
-    ProcessKey(key);
 }
