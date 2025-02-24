@@ -18,8 +18,8 @@
 // Still observing the same alteration with Busy, except with the timeout.
 
 #include <xc.h>
-#include "TiTTimer.h"
-#include "LcTLCD.h"
+#include "TAD_TIMER.h"
+#include "TAD_DISPLAY.h"
 
 
 //
