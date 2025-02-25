@@ -4,7 +4,9 @@
 #include "TAD_TIMER.h"  
 
 // Function prototypes
-void initTerminal(void);
+void initTerminal(void);ç
+
 void motorTerminal(void);
+
 
 #endif
