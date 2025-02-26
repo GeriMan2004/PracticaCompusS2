@@ -43,7 +43,7 @@
 //
 static unsigned char Rows, Columns;
 static unsigned char RowAct, ColumnAct;
-static int Timer;
+static unsigned char Timer;
 //
 //---------------------------End--VARIABLES---AREA-----------
 //
@@ -72,7 +72,7 @@ void LcInit(char rows, char columns) {
 // Post: This routine can last until 100ms
 // Post: The display remains cleared, the cursor is turned OFF and at the position (0, 0).
 	int i;
-	Timer = TiGetTimer(); 
+	TI_NewTimer(&Timer); 
 	Rows = rows; Columns = columns;
 	RowAct = ColumnAct = 0;
 	SetControlsSortida();
@@ -107,7 +107,7 @@ void LcInit(char rows, char columns) {
 
 void LcEnd(void) {
 // The destructor
-	TiCloseTimer (Timer); // It is not needed anymore
+	//TI_CloseTimer(Timer); // Fixed function name
 }
 
 void LcClear(void) {
@@ -152,7 +152,7 @@ void LcGotoXY(char Column, char Row) {
 	}
 	// applying the command
 	WaitForBusy();
-	CantaIR(SET_DDRAM | Fisics);
+	CantaIR((char)(SET_DDRAM | Fisics));
 	// Finally, I refresh the local images.
 	RowAct    = Row;
 	ColumnAct = Column;
@@ -208,8 +208,8 @@ void LcPutString(char *s) {
 //
 
 void Espera(int Timer, int ms) {
-	TiResetTics(Timer);
-	while(TiGetTics(Timer) < ms);
+	TI_ResetTics((unsigned char)Timer); // Added explicit cast
+	while(TI_GetTics((unsigned char)Timer) < ms); // Added explicit cast
 }
 
 void CantaPartAlta(char c) {
@@ -258,11 +258,12 @@ void CantaData(char Data) {
 	SetD4_D7Entrada();
 }
 
-void WaitForBusy(void) { char Busy;
+void WaitForBusy(void) { 
+	char Busy;
 	SetD4_D7Entrada();
 	RSDown();
 	RWUp();
-	TiResetTics(Timer);
+	TI_ResetTics((unsigned char)Timer); // Fixed function name and added cast
 	do {
 		EnableUp();EnableUp(); //Making sure the 500ns of the pulse time
 		Busy = GetBusyFlag();
@@ -272,7 +273,7 @@ void WaitForBusy(void) { char Busy;
 		// The lower part of the address counter, it is not interesting for us. 
 		EnableDown();
 		EnableDown();
-		if (TiGetTics(Timer)) break; // More than one ms means that the LCD has gone mad.
+		if (TI_GetTics((unsigned char)Timer)) break; // Fixed function name and added cast
 	} while(Busy);
 }
 

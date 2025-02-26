@@ -1,5 +1,6 @@
 #include <xc.h>
 #include "TAD_TERMINAL.h"
+#include "TAD_DATOS.h"
 
 char hashtag_pressed = 0;
 
@@ -20,7 +21,7 @@ int Terminal_TXAvailable(void) {
 
 // Verificar si hay datos disponibles para recibir
 char Terminal_RXAvailable(void) {
-	return (PIR1bits.RCIF == 1) ? "1" : "0";
+	return (PIR1bits.RCIF == 1) ? 1 : 0;
 }
 
 // Enviar un caracter
@@ -52,7 +53,7 @@ void showMenu(void) {
 	Terminal_SendString("Opció: ");
 }
 
-void hashtag_pressed(void){
+void hashtag_pressed3s(void){
 	hashtag_pressed = 1;
 }
 
@@ -74,15 +75,15 @@ void motorTerminal(void) {
 		case 1:
 			if(Terminal_RXAvailable() == 1){
 				if (Terminal_ReceiveChar() == 1) {
-					getUser();
-					state = 0;
+					getActualUID();
+					state = 0;  
 				}
 				else if (Terminal_ReceiveChar() == 2) {
 					getUserConfiguration();
 					state = 0;
 				}
 				else if (Terminal_ReceiveChar() == 3) {
-					modifyHour();
+					//modifyHour();
 					state = 0;
 				}
 				else {
