@@ -9,6 +9,7 @@
 
 #include <xc.h>
 #include "TAD_RFID.h"
+#include "TAD_TERMINAL.h"
 
 //-------------- Private functions: --------------
 void InitPortDirections () {
@@ -224,10 +225,10 @@ void MFRC522_CRC (char *dataIn, char length, char *dataOut) {
     dataOut[1] = MFRC522_Rd(CRCRESULTREGM);       
 }
 
-char MFRC522_SelectTag (char *serNum) {
+unsigned MFRC522_SelectTag (char *serNum) {
     char i;
     char _status;
-    char size;
+    unsigned size;
     char buffer[9];
     
     buffer[0] = PICC_SElECTTAG;
@@ -270,10 +271,12 @@ char MFRC522_AntiColl (unsigned char *serNum) {
     serNum[0] = PICC_ANTICOLL;
     serNum[1] = 0x20;
     MFRC522_Clear_Bit(STATUS2REG, 0x08);
-    _status = MFRC522_ToCard(PCD_TRANSCEIVE, serNum, 2, serNum, &unLen);
+    _status = MFRC522_ToCard(PCD_TRANSCEIVE, (char *)serNum, 2, (char *)serNum, &unLen);
     if (_status == MI_OK) {
-        for (i = 0; i < 4; i++) serNumCheck ^= serNum[(int)i];  
-        if (serNumCheck != serNum[4]) _status = MI_ERR;
+        for (i = 0; i < 4; i++)
+            serNumCheck ^= serNum[(int)i];  
+        if (serNumCheck != serNum[4]) 
+            _status = MI_ERR;
     }
     return _status;
 }
@@ -295,7 +298,7 @@ void initRFID() {
 }
 
 void ReadRFID_NoCooperatiu() {
-    char UID[6];    // 5 bytes para UID + 1 para null terminator
+    unsigned char UID[6];    // 5 bytes para UID + 1 para null terminator
     char TagType;   // Variable para el tipo de tarjeta
 
     if (MFRC522_isCard (&TagType)) {      
@@ -303,6 +306,7 @@ void ReadRFID_NoCooperatiu() {
         //Read ID
         if (MFRC522_ReadCardSerial (UID)) {
             //At this point, UID contains the value of the card.
+            displayUID(UID);
         }                                      
         MFRC522_Halt ();
     }   

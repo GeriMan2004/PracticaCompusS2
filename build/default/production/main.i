@@ -4807,13 +4807,54 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 
 void TI_End (void);
 # 3 "main.c" 2
+# 1 "./TAD_TERMINAL.h" 1
+
+
+
+
+
+void displayUID(unsigned char *uid);
+void Terminal_Init(void);
+int Terminal_TXAvailable(void);
+char Terminal_RXAvailable(void);
+void Terminal_SendChar(char c);
+char Terminal_ReceiveChar(void);
+void Terminal_SendString(const char *str);
+void showMenu(void);
+void hashtag_pressed3s(void);
+void motorTerminal(void);
+# 4 "main.c" 2
+# 1 "./TAD_RFID.h" 1
+# 137 "./TAD_RFID.h"
+unsigned char MFRC522_Rd(unsigned char Address);
+void MFRC522_Wr(unsigned char Address, unsigned char value);
+void MFRC522_Clear_Bit(char addr, char mask);
+void MFRC522_Set_Bit(char addr, char mask);
+void MFRC522_Reset();
+void MFRC522_AntennaOn();
+void MFRC522_AntennaOff();
+void MFRC522_Init();
+char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
+char MFRC522_Request(char reqMode, char *TagType);
+void MFRC522_CRC(char *dataIn, char length, char *dataOut);
+unsigned MFRC522_SelectTag(char *serNum);
+void MFRC522_Halt();
+char MFRC522_AntiColl(unsigned char *serNum);
+char MFRC522_isCard(char *TagType);
+char MFRC522_ReadCardSerial(unsigned char *str);
+
+
+void initRFID(void);
+
+void ReadRFID_NoCooperatiu(void);
+# 5 "main.c" 2
 # 1 "./TAD_TECLADO.h" 1
 # 10 "./TAD_TECLADO.h"
 void initTeclado(void);
 void motorTeclado(void);
 unsigned char GetTecla(void);
 void showTecla(void);
-# 4 "main.c" 2
+# 6 "main.c" 2
 
 #pragma config OSC = HS
 #pragma config PBADEN = DIG
@@ -4844,12 +4885,12 @@ extern void __attribute__((picinterrupt(("low_priority")))) LowRSI (void){
 }
 
 
-
-
 void main(void){
  InitPorts();
  TI_Init();
  initTeclado();
+ initRFID();
+ Terminal_Init();
 
 
  INTCONbits.GIE = 1;
@@ -4857,6 +4898,7 @@ void main(void){
 
  while(1){
   motorTeclado();
+  ReadRFID_NoCooperatiu();
  }
 }
 
@@ -4867,8 +4909,6 @@ void InitPorts(void) {
 
 
  TRISA |= 0x0F;
- TRISAbits.TRISA4 = 0;
- LATAbits.LATA4 = 1;
 
  INTCON2bits.RBPU = 0;
 

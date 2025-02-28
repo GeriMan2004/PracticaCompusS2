@@ -1,4 +1,4 @@
-# 1 "TAD_RFID.c"
+# 1 "TAD_DISPLAY.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 285 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "TAD_RFID.c" 2
-# 10 "TAD_RFID.c"
+# 1 "TAD_DISPLAY.c" 2
+# 20 "TAD_DISPLAY.c"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4784,34 +4784,7 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
-# 11 "TAD_RFID.c" 2
-# 1 "./TAD_RFID.h" 1
-# 137 "./TAD_RFID.h"
-unsigned char MFRC522_Rd(unsigned char Address);
-void MFRC522_Wr(unsigned char Address, unsigned char value);
-void MFRC522_Clear_Bit(char addr, char mask);
-void MFRC522_Set_Bit(char addr, char mask);
-void MFRC522_Reset();
-void MFRC522_AntennaOn();
-void MFRC522_AntennaOff();
-void MFRC522_Init();
-char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
-char MFRC522_Request(char reqMode, char *TagType);
-void MFRC522_CRC(char *dataIn, char length, char *dataOut);
-unsigned MFRC522_SelectTag(char *serNum);
-void MFRC522_Halt();
-char MFRC522_AntiColl(unsigned char *serNum);
-char MFRC522_isCard(char *TagType);
-char MFRC522_ReadCardSerial(unsigned char *str);
-
-
-void initRFID(void);
-
-void ReadRFID_NoCooperatiu(void);
-# 12 "TAD_RFID.c" 2
-# 1 "./TAD_TERMINAL.h" 1
-
-
+# 21 "TAD_DISPLAY.c" 2
 # 1 "./TAD_TIMER.h" 1
 # 16 "./TAD_TIMER.h"
 void RSI_Timer0(void);
@@ -4834,318 +4807,260 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 
 
 void TI_End (void);
-# 4 "./TAD_TERMINAL.h" 2
+# 22 "TAD_DISPLAY.c" 2
+# 1 "./TAD_DISPLAY.h" 1
+# 65 "./TAD_DISPLAY.h"
+void LcInit(char rows, char columns);
 
 
-void displayUID(unsigned char *uid);
-void Terminal_Init(void);
-int Terminal_TXAvailable(void);
-char Terminal_RXAvailable(void);
-void Terminal_SendChar(char c);
-char Terminal_ReceiveChar(void);
-void Terminal_SendString(const char *str);
-void showMenu(void);
-void hashtag_pressed3s(void);
-void motorTerminal(void);
-# 13 "TAD_RFID.c" 2
 
 
-void InitPortDirections () {
-    TRISCbits.TRISC0 = 1;
-    TRISCbits.TRISC1 = 0;
-    TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
+
+
+void LcEnd(void);
+
+
+void LcClear(void);
+
+
+
+void LcCursorOn(void);
+
+
+
+void LcCursorOff(void);
+
+
+
+void LcGotoXY(char Column, char Row);
+
+
+
+
+void LcPutChar(char c);
+# 103 "./TAD_DISPLAY.h"
+void LcPutString(char *s);
+# 23 "TAD_DISPLAY.c" 2
+# 44 "TAD_DISPLAY.c"
+static unsigned char Rows, Columns;
+static unsigned char RowAct, ColumnAct;
+static unsigned char Timer;
+
+
+
+
+
+
+
+void Espera(int Timer, int ms);
+void CantaIR(char IR);
+void CantaData(char Data);
+void WaitForBusy(void);
+void EscriuPrimeraOrdre(char);
+# 68 "TAD_DISPLAY.c"
+void LcInit(char rows, char columns) {
+
+
+
+
+
+ int i;
+ TI_NewTimer(&Timer);
+ Rows = rows; Columns = columns;
+ RowAct = ColumnAct = 0;
+ (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0);
+ for (i = 0; i < 2; i++) {
+  Espera(Timer, 100);
+
+
+  EscriuPrimeraOrdre(0x02 | 0x01);
+  Espera(Timer, 5);
+  EscriuPrimeraOrdre(0x02 | 0x01);
+  Espera(Timer, 1);
+  EscriuPrimeraOrdre(0x02 | 0x01);
+  Espera(Timer, 1);
+
+
+  EscriuPrimeraOrdre(0x02);
+  Espera(Timer, 1);
+  CantaIR(0x20 | 0x08);
+
+
+  WaitForBusy(); CantaIR(0x08);
+  WaitForBusy(); CantaIR(0x01);
+  Espera(Timer,3);
+  WaitForBusy(); CantaIR(0x04 | 0x02);
+  WaitForBusy(); CantaIR(0x08 | 0x04 | 0x02 | 0x01);
+ }
+
+
+
+
 }
 
-void delay_us (char howMany) {
+void LcEnd(void) {
 
-    char x;
-    for (x = 0; x < howMany * 3; x++) __nop();
+
 }
 
-unsigned char MFRC522_Rd (unsigned char Address) {
-    unsigned char i, ucAddr = ((Address<<1) & 0x7E) | 0x80;
-    unsigned char ucResult = 0;
+void LcClear(void) {
 
-    LATCbits.LATC2 = 0;
-    LATCbits.LATC3 = 0;
 
-    for (i = 8; i > 0; i--) {
-        LATCbits.LATC1 = ((ucAddr & 0x80) == 0x80);
-        LATCbits.LATC2 = 1;
-
-        ucAddr <<= 1;
-        LATCbits.LATC2 = 0;
-
-    }
-
-    for (i = 8; i > 0; i--) {
-        LATCbits.LATC2 = 1;
-
-        ucResult <<= 1;
-        ucResult|= PORTCbits.RC0;
-        LATCbits.LATC2 = 0;
-
-    }
-
-    LATCbits.LATC3 = 1;
-    LATCbits.LATC2 = 1;
-    return ucResult;
+ WaitForBusy(); CantaIR(0x01);
+ Espera(Timer, 3);
 }
 
+void LcCursorOn(void) {
 
-void MFRC522_Wr (unsigned char Address, unsigned char value) {
-    unsigned char i, ucAddr = ((Address << 1) & 0x7E);
-    LATCbits.LATC2 = 0;
-    LATCbits.LATC3 = 0;
-    for (i = 8; i > 0; i--) {
-        LATCbits.LATC1 = ((ucAddr & 0x80) == 0x80);
-        LATCbits.LATC2 = 1;
-        ucAddr <<= 1;
-        delay_us(5);
-        LATCbits.LATC2 = 0;
-        delay_us(5);
-    }
 
-    for (i = 8; i > 0; i--) {
-        LATCbits.LATC1 = ((value & 0x80) == 0x80);
-        LATCbits.LATC2 = 1;
-        value <<= 1;
-        delay_us(5);
-        LATCbits.LATC2 = 0;
-        delay_us(5);
-    }
-
-    LATCbits.LATC3 = 1;
-    LATCbits.LATC2 = 1;
+ WaitForBusy();
+ CantaIR(0x08 | 0x04 | 0x02);
 }
 
+void LcCursorOff(void) {
 
 
-void MFRC522_Clear_Bit(char addr, char mask) {
-    MFRC522_Wr(addr, MFRC522_Rd(addr) & ~mask);
+ WaitForBusy();
+ CantaIR(0x08 | 0x04);
 }
 
-void MFRC522_Set_Bit(char addr, char mask) {
-    MFRC522_Wr(addr, MFRC522_Rd(addr) | mask);
+void LcGotoXY(char Column, char Row) {
+
+
+
+ int Fisics;
+
+ switch (Rows) {
+  case 2:
+   Fisics = Column + (!Row ? 0 : 0x40); break;
+  case 4:
+   Fisics = Column;
+   if (Row == 1) Fisics += 0x40; else
+   if (Row == 2) Fisics += Columns; else
+   if (Row == 3) Fisics += 0x40+Columns;
+   break;
+  case 1:
+  default:
+   Fisics = Column; break;
+ }
+
+ WaitForBusy();
+ CantaIR((char)(0x80 | Fisics));
+
+ RowAct = Row;
+ ColumnAct = Column;
 }
 
-void MFRC522_Reset () {
-    LATCbits.LATC4 = 1;
-    delay_us (1);
-    LATCbits.LATC4 = 0;
-    delay_us (1);
-    LATCbits.LATC4 = 1;
-    delay_us (1);
-    MFRC522_Wr(0x01, 0x0F);
-    delay_us (1);
-}
+void LcPutChar(char c) {
+# 171 "TAD_DISPLAY.c"
+ WaitForBusy(); CantaData(c);
 
-void MFRC522_AntennaOn () {
-    MFRC522_Set_Bit(0x14, 0x03);
-}
-
-void MFRC522_AntennaOff () {
-    MFRC522_Clear_Bit(0x14, 0x03);
-}
-
-void MFRC522_Init() {
-    LATCbits.LATC3 = 1;
-    LATCbits.LATC4 = 1;
-
-    MFRC522_Reset();
-    MFRC522_Wr(0x2A, 0x8D);
-    MFRC522_Wr(0x2B, 0x3E);
-    MFRC522_Wr(0x2D, 30);
-    MFRC522_Wr(0x2C, 0);
-    MFRC522_Wr(0x15, 0x40);
-    MFRC522_Wr(0x11, 0x3D);
-
-    MFRC522_AntennaOff();
-    MFRC522_AntennaOn();
-}
-
-char MFRC522_ToCard (char command, char *sendData, char sendLen, char *backData, unsigned *backLen) {
-    char _status = 2;
-    char irqEn = 0x00;
-    char waitIRq = 0x00;
-    char lastBits;
-    char n;
-    unsigned char i;
-
-    switch (command) {
-        case 0x0E:
-            irqEn = 0x12;
-            waitIRq = 0x10;
-            break;
-
-        case 0x0C:
-            irqEn = 0x77;
-            waitIRq = 0x30;
-            break;
-    }
-    MFRC522_Wr(0x02, irqEn | 0x80);
-    MFRC522_Clear_Bit(0x04, 0x80);
-    MFRC522_Set_Bit(0x0A, 0x80);
-    MFRC522_Wr(0x01, 0x00);
-
-    for (i = 0; i < sendLen; i++) MFRC522_Wr(0x09, sendData[i]);
-
-    MFRC522_Wr(0x01, command);
-    if (command == 0x0C) MFRC522_Set_Bit(0x0D, 0x80);
-    i = 0xFF;
-    do {
-        n = MFRC522_Rd(0x04);
-        i--;
-    } while (i && !(n & 0x01) && !(n & waitIRq));
-    MFRC522_Clear_Bit(0x0D, 0x80);
-    if (i != 0) {
-        if(!(MFRC522_Rd(0x06) & 0x1B)){
-            _status = 0;
-            if (n & irqEn & 0x01) _status = 1;
-            if (command == 0x0C) {
-                n = MFRC522_Rd(0x0A);
-                lastBits = MFRC522_Rd(0x0C) & 0x07;
-                if (lastBits) {
-                    *backLen = (n - 1) * 8 + lastBits;
-                } else {
-                    *backLen = n * 8;
-                }
-                if (n == 0) {
-                    n = 1;
-                } else if (n > 16) {
-                    n = 16;
-                }
-                for (i = 0; i < n; i++) {
-                    backData[i] = MFRC522_Rd(0x09);
-                }
-                backData[i] = 0;
-            }
-        }
-        else _status = 2;
-    }
-    return _status;
+ ++ColumnAct;
+ if (Rows == 3) {
+  if (ColumnAct >= 20) {
+   ColumnAct = 0;
+   if (++RowAct >= 4) RowAct = 0;
+   LcGotoXY(ColumnAct, RowAct);
+  }
+ } else
+ if (Rows == 2) {
+  if (ColumnAct >= 40) {
+   ColumnAct = 0;
+   if (++RowAct >= 2) RowAct = 0;
+   LcGotoXY(ColumnAct, RowAct);
+  }
+ } else
+ if (RowAct == 1) {
+  if (ColumnAct >= 40) ColumnAct = 0;
+  LcGotoXY(ColumnAct, RowAct);
+ }
 }
 
 
-char MFRC522_Request (char reqMode, char *TagType) {
-    char _status;
-    unsigned backBits;
-    MFRC522_Wr(0x0D, 0x07);
-    TagType[0] = reqMode;
-    _status = MFRC522_ToCard(0x0C, TagType, 1, TagType, &backBits);
-    if ((_status != 0) || (backBits != 0x10)) {
-        _status = 2;
-    }
-    return _status;
+void LcPutString(char *s) {
+
+
+
+ while(*s) LcPutChar(*s++);
+}
+# 210 "TAD_DISPLAY.c"
+void Espera(int Timer, int ms) {
+ TI_ResetTics((unsigned char)Timer);
+ while(TI_GetTics((unsigned char)Timer) < ms);
 }
 
-void MFRC522_CRC (char *dataIn, char length, char *dataOut) {
-    unsigned char i, n;
-    MFRC522_Clear_Bit(0x05, 0x04);
-    MFRC522_Set_Bit(0x0A, 0x80);
-
-    for (i = 0; i < length; i++) {
-        MFRC522_Wr(0x09, *dataIn++);
-    }
-
-    MFRC522_Wr(0x01, 0x03);
-
-
-    i = 255;
-    do {
-        n = MFRC522_Rd(0x05);
-        i--;
-    } while (i && !(n & 0x04));
-
-    dataOut[0] = MFRC522_Rd(0x22);
-    dataOut[1] = MFRC522_Rd(0x21);
+void CantaPartAlta(char c) {
+  (LATBbits.LATB7 = (c & 0x80 ? 1 : 0));
+  (LATBbits.LATB6 = (c & 0x40 ? 1 : 0));
+  (LATBbits.LATB5 = (c & 0x20 ? 1 : 0));
+  (LATBbits.LATB4 = (c & 0x10 ? 1 : 0));
 }
 
-unsigned MFRC522_SelectTag (char *serNum) {
-    char i;
-    char _status;
-    unsigned size;
-    char buffer[9];
-
-    buffer[0] = 0x93;
-    buffer[1] = 0x70;
-
-    for (i = 0; i < 5; i++) {
-        buffer[i + 2] = *serNum++;
-    }
-
-    MFRC522_CRC(buffer, 7, &buffer[7]);
-    _status = MFRC522_ToCard(0x0C, buffer, 9, buffer, &size);
-
-    if ((_status == 0) && (size == 0x18)) {
-        size = buffer[0];
-    } else {
-        size = 0;
-    }
-    return size;
+void CantaPartBaixa(char c) {
+  (LATBbits.LATB7 = (c & 0x08 ? 1 : 0));
+  (LATBbits.LATB6 = (c & 0x04 ? 1 : 0));
+  (LATBbits.LATB5 = (c & 0x02 ? 1 : 0));
+  (LATBbits.LATB4 = (c & 0x01 ? 1 : 0));
 }
 
-
-void MFRC522_Halt () {
-    unsigned unLen;
-    char buff[4];
-
-    buff[0] = 0x50;
-    buff[1] = 0;
-    MFRC522_CRC(buff, 2, &buff[2]);
-    MFRC522_Clear_Bit(0x08, 0x80);
-    MFRC522_ToCard(0x0C, buff, 4, buff, &unLen);
-    MFRC522_Clear_Bit(0x08, 0x08);
+void CantaIR(char IR) {
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0);
+ (LATBbits.LATB2 = 0);
+ (LATBbits.LATB2 = 0);
+ (LATBbits.LATB5 = 1);
+ CantaPartAlta(IR);
+ (LATBbits.LATB5 = 1);
+ (LATBbits.LATB5 = 0);
+ (LATBbits.LATB5 = 0);
+ (LATBbits.LATB5 = 1);
+ CantaPartBaixa(IR);
+ (LATBbits.LATB5 = 1);
+ (LATBbits.LATB5 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1);
 }
 
-char MFRC522_AntiColl (unsigned char *serNum) {
-    char _status;
-    char i;
-    char serNumCheck = 0;
-    unsigned unLen;
-    MFRC522_Wr(0x0D, 0x00);
-    serNum[0] = 0x93;
-    serNum[1] = 0x20;
-    MFRC522_Clear_Bit(0x08, 0x08);
-    _status = MFRC522_ToCard(0x0C, (char *)serNum, 2, (char *)serNum, &unLen);
-    if (_status == 0) {
-        for (i = 0; i < 4; i++)
-            serNumCheck ^= serNum[(int)i];
-        if (serNumCheck != serNum[4])
-            _status = 2;
-    }
-    return _status;
+void CantaData(char Data) {
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0);
+ (LATBbits.LATB3 = 1);
+ (LATBbits.LATB2 = 0);
+ (LATBbits.LATB5 = 1);
+ CantaPartAlta(Data);
+ (LATBbits.LATB5 = 1);
+ (LATBbits.LATB5 = 0);
+ (LATBbits.LATB5 = 0);
+ (LATBbits.LATB5 = 1);
+ CantaPartBaixa(Data);
+ (LATBbits.LATB5 = 1);
+ (LATBbits.LATB5 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1);
 }
 
-char MFRC522_isCard (char *TagType) {
-    return (MFRC522_Request(0x26, TagType) == 0);
+void WaitForBusy(void) {
+ char Busy;
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1);
+ (LATBbits.LATB2 = 0);
+ (LATBbits.LATB2 = 1);
+ TI_ResetTics((unsigned char)Timer);
+ do {
+  (LATBbits.LATB5 = 1);(LATBbits.LATB5 = 1);
+  Busy = (PORTBbits.RB7);
+  (LATBbits.LATB5 = 0);
+  (LATBbits.LATB5 = 0);
+  (LATBbits.LATB5 = 1);(LATBbits.LATB5 = 1);
+
+  (LATBbits.LATB5 = 0);
+  (LATBbits.LATB5 = 0);
+  if (TI_GetTics((unsigned char)Timer)) break;
+ } while(Busy);
 }
 
-char MFRC522_ReadCardSerial (unsigned char *str) {
-    char _status = MFRC522_AntiColl(str);
-    str[5] = 0;
-    return (_status == 0);
-}
+void EscriuPrimeraOrdre(char ordre) {
 
-
-void initRFID() {
-    InitPortDirections();
-    MFRC522_Init();
-}
-
-void ReadRFID_NoCooperatiu() {
-    unsigned char UID[6];
-    char TagType;
-
-    if (MFRC522_isCard (&TagType)) {
-
-
-        if (MFRC522_ReadCardSerial (UID)) {
-
-            displayUID(UID);
-        }
-        MFRC522_Halt ();
-    }
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0); (LATBbits.LATB2 = 0); (LATBbits.LATB2 = 0);
+ (LATBbits.LATB5 = 1); (LATBbits.LATB5 = 1);
+  (LATBbits.LATB7 = (ordre & 0x08 ? 1 : 0));
+  (LATBbits.LATB6 = (ordre & 0x04 ? 1 : 0));
+  (LATBbits.LATB5 = (ordre & 0x02 ? 1 : 0));
+  (LATBbits.LATB4 = (ordre & 0x01 ? 1 : 0));
+ (LATBbits.LATB5 = 0);
 }

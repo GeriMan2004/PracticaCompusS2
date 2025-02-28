@@ -145,7 +145,7 @@ void MFRC522_Init();
 char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
 char MFRC522_Request(char reqMode, char *TagType);
 void MFRC522_CRC(char *dataIn, char length, char *dataOut);
-char MFRC522_SelectTag(char *serNum);
+unsigned MFRC522_SelectTag(char *serNum);
 void MFRC522_Halt();
 char MFRC522_AntiColl(unsigned char *serNum);
 char MFRC522_isCard(char *TagType);

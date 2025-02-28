@@ -11,33 +11,57 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+$C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
 idloc IDLOC 5 200000 200000 8 1 1
 init CODE 0 26 26 4 1 2
 reset_vec CODE 0 0 0 4 1 2
 config CONFIG 4 300000 300000 E 1 1
 $dist/default/production\Practica2FA.X.production.o
 intcodelo CODE 0 18 18 E 1 2
-cinit CODE 0 610 610 1A 1 2
+cinit CODE 0 EC2 EC2 1A 1 2
 idloc IDLOC 5 200000 200000 8 1 1
-intcode_body CODE 0 65C 65C 16 1 2
-text0 CODE 0 5F4 5F4 1C 1 2
-text1 CODE 0 20E 20E 228 1 2
-text2 CODE 0 682 682 6 1 2
-text3 CODE 0 5D0 5D0 24 1 2
-text4 CODE 0 550 550 4C 1 2
-text5 CODE 0 688 688 6 1 2
-text6 CODE 0 436 436 C4 1 2
-text7 CODE 0 672 672 10 1 2
-text8 CODE 0 4FA 4FA 56 1 2
-text9 CODE 0 59C 59C 34 1 2
-text10 CODE 0 62A 62A 1A 1 2
-text13 CODE 0 644 644 18 1 2
-cstackCOMRAM COMRAM 1 1E 1E 12 1 1
-temp COMRAM 1 30 30 1 1 1
+intcode_body CODE 0 F24 F24 16 1 2
+text0 CODE 0 E3A E3A 28 1 2
+text1 CODE 0 4F6 4F6 228 1 2
+text2 CODE 0 FA6 FA6 6 1 2
+text3 CODE 0 E62 E62 24 1 2
+text4 CODE 0 CAE CAE 4C 1 2
+text5 CODE 0 FAC FAC 6 1 2
+text6 CODE 0 816 816 C4 1 2
+text7 CODE 0 F60 F60 10 1 2
+text8 CODE 0 C0A C0A 56 1 2
+text9 CODE 0 F94 F94 A 1 2
+text10 CODE 0 C60 C60 4E 1 2
+text11 CODE 0 E10 E10 2A 1 2
+text12 CODE 0 F70 F70 C 1 2
+text13 CODE 0 F7C F7C C 1 2
+text14 CODE 0 F88 F88 C 1 2
+text15 CODE 0 F4E F4E 12 1 2
+text16 CODE 0 DB0 DB0 34 1 2
+text17 CODE 0 D3C D3C 3E 1 2
+text18 CODE 0 71E 71E F8 1 2
+text19 CODE 0 B3C B3C 74 1 2
+text20 CODE 0 EA6 EA6 1C 1 2
+text21 CODE 0 F9E F9E 8 1 2
+text22 CODE 0 E86 E86 20 1 2
+text23 CODE 0 BB0 BB0 5A 1 2
+text24 CODE 0 DE4 DE4 2C 1 2
+text25 CODE 0 982 982 9A 1 2
+text26 CODE 0 CFA CFA 42 1 2
+text27 CODE 0 2C2 2C2 234 1 2
+text28 CODE 0 A1C A1C 96 1 2
+text29 CODE 0 F3A F3A 14 1 2
+text30 CODE 0 EDC EDC 1A 1 2
+text31 CODE 0 8DA 8DA A8 1 2
+text32 CODE 0 D7A D7A 36 1 2
+text33 CODE 0 AB2 AB2 8A 1 2
+text34 CODE 0 F0E F0E 16 1 2
+text37 CODE 0 EF6 EF6 18 1 2
+cstackCOMRAM COMRAM 1 1 1 2D 1 1
+temp COMRAM 1 52 52 1 1 1
 intcode CODE 0 8 8 6 1 2
-smallconst SMALLCONST 0 200 200 E 1 2
-bssCOMRAM COMRAM 1 1 1 1D 1 1
+smallconst SMALLCONST 0 200 200 C2 1 2
+bssCOMRAM COMRAM 1 2E 2E 24 1 1
 config CONFIG 4 300000 300000 E 1 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -52,17 +76,17 @@ BANK1 100-1FF 1
 CONST 4-7 1
 CONST E-17 1
 CONST 2A-1FF 1
-CONST 68E-1FFF 1
-SMALLCONST 68E-1FFF 1
+CONST FB2-1FFF 1
+SMALLCONST FB2-1FFF 1
 CODE 4-7 1
 CODE E-17 1
 CODE 2A-1FF 1
-CODE 68E-1FFF 1
-BIGRAM 31-1FF 1
+CODE FB2-1FFF 1
+BIGRAM 53-1FF 1
 BIGSFR F80-FFF 1
-COMRAM 31-7F 1
+COMRAM 53-7F 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 68E-1FFF 1
+MEDIUMCONST FB2-1FFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -77,163 +101,397 @@ MEDIUMCONST 68E-1FFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\Practica2FA.X.production.o
-18 intcodelo CODE >3027:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-18 intcodelo CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-1E intcodelo CODE >31:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-8 intcode CODE >3082:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-8 intcode CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-644 text13 CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-644 text13 CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-64C text13 CODE >28:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-64E text13 CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-65A text13 CODE >30:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-65C intcode_body CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-65C intcode_body CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-66E intcode_body CODE >28:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-62A text10 CODE >51:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-62A text10 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-62E text10 CODE >56:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-632 text10 CODE >57:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-634 text10 CODE >58:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-636 text10 CODE >60:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-638 text10 CODE >63:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-63C text10 CODE >64:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-63E text10 CODE >67:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-640 text10 CODE >68:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-642 text10 CODE >69:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-59C text9 CODE >32:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-59C text9 CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-59E text9 CODE >34:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5AC text9 CODE >35:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5BE text9 CODE >36:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5C2 text9 CODE >37:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5CA text9 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5CC text9 CODE >39:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5CE text9 CODE >41:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-4FA text8 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-4FA text8 CODE >44:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-4FC text8 CODE >45:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-500 text8 CODE >46:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-518 text8 CODE >45:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-534 text8 CODE >48:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-544 text8 CODE >49:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-54E text8 CODE >51:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-672 text7 CODE >11:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-672 text7 CODE >12:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-674 text7 CODE >13:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-676 text7 CODE >14:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-678 text7 CODE >15:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-680 text7 CODE >16:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-436 text6 CODE >96:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-436 text6 CODE >97:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-436 text6 CODE >98:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-438 text6 CODE >100:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-43C text6 CODE >101:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-442 text6 CODE >102:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-44A text6 CODE >103:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-452 text6 CODE >104:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-45A text6 CODE >105:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-460 text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-464 text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-46C text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-474 text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-47C text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-486 text6 CODE >110:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-48C text6 CODE >111:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-494 text6 CODE >112:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-49C text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4A8 text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4B6 text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4BE text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4C6 text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4D0 text6 CODE >116:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4E8 text6 CODE >123:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-4F8 text6 CODE >124:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-688 text5 CODE >7:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-688 text5 CODE >8:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-68C text5 CODE >9:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-550 text4 CODE >61:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-552 text4 CODE >62:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-566 text4 CODE >63:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-59A text4 CODE >64:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5D0 text3 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5D2 text3 CODE >57:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-5F2 text3 CODE >58:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-682 text2 CODE >126:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-682 text2 CODE >128:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-686 text2 CODE >129:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-20E text1 CODE >22:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-20E text1 CODE >24:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-214 text1 CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-218 text1 CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-228 text1 CODE >28:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-22C text1 CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-230 text1 CODE >30:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-234 text1 CODE >31:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-238 text1 CODE >32:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-248 text1 CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-24E text1 CODE >34:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-256 text1 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-266 text1 CODE >39:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-26A text1 CODE >40:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-26E text1 CODE >41:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-272 text1 CODE >42:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-276 text1 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-286 text1 CODE >44:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-290 text1 CODE >49:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2A0 text1 CODE >50:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2AA text1 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2BA text1 CODE >54:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2BE text1 CODE >55:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2C2 text1 CODE >56:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2C8 text1 CODE >60:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2CE text1 CODE >61:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-2E2 text1 CODE >66:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-324 text1 CODE >67:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-328 text1 CODE >68:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-32C text1 CODE >69:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-330 text1 CODE >70:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-334 text1 CODE >71:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-376 text1 CODE >72:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-37C text1 CODE >73:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-384 text1 CODE >77:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-398 text1 CODE >80:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3CE text1 CODE >86:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3DE text1 CODE >87:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3E0 text1 CODE >88:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3E4 text1 CODE >89:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3EC text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3F0 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-3F8 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-400 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-408 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-410 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-418 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-422 text1 CODE >93:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-434 text1 CODE >94:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
-5F4 text0 CODE >36:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-5F4 text0 CODE >37:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-5F8 text0 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-5FC text0 CODE >39:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-600 text0 CODE >42:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-602 text0 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-604 text0 CODE >46:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
-610 cinit CODE >1318:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-610 cinit CODE >1320:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-610 cinit CODE >1323:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-610 cinit CODE >1346:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-614 cinit CODE >1347:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-616 cinit CODE >1348:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-616 cinit CODE >1349:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-618 cinit CODE >1350:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-61A cinit CODE >1351:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-61C cinit CODE >1357:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-61C cinit CODE >1359:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-61E cinit CODE >1360:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-620 cinit CODE >1362:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-622 cinit CODE >1363:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-624 cinit CODE >1364:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
-626 cinit CODE >1365:C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_1.s
+18 intcodelo CODE >7306:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+18 intcodelo CODE >31:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+1E intcodelo CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+8 intcode CODE >7361:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+8 intcode CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+EF6 text37 CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+EF6 text37 CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+EFE text37 CODE >28:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+F00 text37 CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+F0C text37 CODE >30:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+F24 intcode_body CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F24 intcode_body CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F36 intcode_body CODE >30:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F0E text34 CODE >54:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F0E text34 CODE >56:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F12 text34 CODE >59:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F16 text34 CODE >61:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F18 text34 CODE >64:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F1C text34 CODE >65:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F1E text34 CODE >68:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F20 text34 CODE >69:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+F22 text34 CODE >70:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+AB2 text33 CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AB4 text33 CODE >30:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+ABE text33 CODE >31:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AC0 text33 CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AC2 text33 CODE >34:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AC4 text33 CODE >36:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AC8 text33 CODE >37:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AE8 text33 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AEA text33 CODE >40:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AEE text33 CODE >41:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AF0 text33 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B02 text33 CODE >45:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B06 text33 CODE >46:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B08 text33 CODE >48:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B0C text33 CODE >49:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B20 text33 CODE >50:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B22 text33 CODE >52:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B34 text33 CODE >54:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B36 text33 CODE >55:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B38 text33 CODE >56:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+B3A text33 CODE >57:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D7A text32 CODE >23:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D7C text32 CODE >26:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+DAE text32 CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+8DA text31 CODE >60:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+8DC text31 CODE >61:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+8E4 text31 CODE >62:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+8E6 text31 CODE >63:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+8E8 text31 CODE >64:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+8EC text31 CODE >65:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+90C text31 CODE >66:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+90E text31 CODE >67:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+912 text31 CODE >68:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+918 text31 CODE >69:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+91A text31 CODE >70:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+920 text31 CODE >71:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+932 text31 CODE >73:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+936 text31 CODE >74:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+956 text31 CODE >75:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+958 text31 CODE >76:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+95C text31 CODE >77:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+962 text31 CODE >78:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+964 text31 CODE >79:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+96A text31 CODE >80:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+97C text31 CODE >82:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+97E text31 CODE >83:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+980 text31 CODE >84:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+EDC text30 CODE >88:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+EDE text30 CODE >89:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+EF4 text30 CODE >90:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F3A text29 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F3C text29 CODE >93:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F4C text29 CODE >94:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A1C text28 CODE >206:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A1C text28 CODE >208:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A26 text28 CODE >209:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A30 text28 CODE >211:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A36 text28 CODE >212:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A48 text28 CODE >213:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A5C text28 CODE >215:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A66 text28 CODE >218:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A68 text28 CODE >220:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A70 text28 CODE >221:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A72 text28 CODE >222:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A90 text28 CODE >224:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A9E text28 CODE >225:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+AB0 text28 CODE >226:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2C2 text27 CODE >131:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2C4 text27 CODE >132:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2C8 text27 CODE >133:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2CA text27 CODE >134:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2CC text27 CODE >139:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2D0 text27 CODE >141:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2D4 text27 CODE >142:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2D8 text27 CODE >143:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2DC text27 CODE >146:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2E0 text27 CODE >147:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2E4 text27 CODE >148:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2E8 text27 CODE >149:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2EC text27 CODE >149:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2F4 text27 CODE >149:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+2FE text27 CODE >150:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+30A text27 CODE >151:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+314 text27 CODE >152:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+31E text27 CODE >153:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+328 text27 CODE >155:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+354 text27 CODE >157:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+35E text27 CODE >158:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+37A text27 CODE >159:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+37C text27 CODE >161:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+384 text27 CODE >162:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+386 text27 CODE >163:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+3B8 text27 CODE >164:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+3C2 text27 CODE >165:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+3D2 text27 CODE >166:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+3EC text27 CODE >167:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+3EE text27 CODE >168:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+406 text27 CODE >169:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+418 text27 CODE >170:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+420 text27 CODE >171:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+42A text27 CODE >172:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+43A text27 CODE >173:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+474 text27 CODE >174:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+478 text27 CODE >175:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+48A text27 CODE >177:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+49A text27 CODE >178:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+49E text27 CODE >179:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4B2 text27 CODE >180:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4B6 text27 CODE >182:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4BC text27 CODE >183:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4CC text27 CODE >184:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4E0 text27 CODE >185:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4EE text27 CODE >188:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4F2 text27 CODE >189:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4F2 text27 CODE >190:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+4F4 text27 CODE >191:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+CFA text26 CODE >253:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+CFA text26 CODE >257:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+CFE text26 CODE >258:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D00 text26 CODE >259:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D10 text26 CODE >260:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D1A text26 CODE >261:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D30 text26 CODE >262:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D3A text26 CODE >263:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+982 text25 CODE >265:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+982 text25 CODE >268:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+984 text25 CODE >270:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+98E text25 CODE >271:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+998 text25 CODE >272:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+9A6 text25 CODE >273:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+9B0 text25 CODE >274:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+9C8 text25 CODE >275:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+9D8 text25 CODE >276:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+9DA text25 CODE >277:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+9F8 text25 CODE >278:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A14 text25 CODE >279:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A18 text25 CODE >280:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A18 text25 CODE >281:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+A1A text25 CODE >282:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+DE4 text24 CODE >288:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+DE4 text24 CODE >289:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+DEE text24 CODE >290:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+DFA text24 CODE >291:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E0E text24 CODE >292:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+BB0 text23 CODE >194:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+BB2 text23 CODE >197:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+BBC text23 CODE >198:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+BC6 text23 CODE >199:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+BDE text23 CODE >200:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C02 text23 CODE >201:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C06 text23 CODE >202:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C06 text23 CODE >203:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C08 text23 CODE >204:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E86 text22 CODE >284:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E86 text22 CODE >285:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+EA4 text22 CODE >286:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F9E text21 CODE >42:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+FA0 text21 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+FA4 text21 CODE >44:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+EA6 text20 CODE >32:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+EA6 text20 CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+EC0 text20 CODE >34:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+B3C text19 CODE >52:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+B3C text19 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+B40 text19 CODE >54:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+B56 text19 CODE >55:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+B7E text19 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+BAE text19 CODE >57:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+71E text18 CODE >7:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+71E text18 CODE >9:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+726 text18 CODE >10:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+73A text18 CODE >11:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+776 text18 CODE >12:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+784 text18 CODE >13:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+7C8 text18 CODE >14:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+7E8 text18 CODE >15:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+7EA text18 CODE >17:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+7FA text18 CODE >18:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+804 text18 CODE >19:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+814 text18 CODE >20:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+D3C text17 CODE >300:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D3C text17 CODE >304:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D54 text17 CODE >307:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D6C text17 CODE >309:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D74 text17 CODE >311:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+D78 text17 CODE >313:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+DB0 text16 CODE >32:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DB0 text16 CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DB2 text16 CODE >34:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DC0 text16 CODE >35:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DD2 text16 CODE >36:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DD6 text16 CODE >37:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DDE text16 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DE0 text16 CODE >39:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+DE2 text16 CODE >41:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+F4E text15 CODE >23:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F4E text15 CODE >24:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F52 text15 CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F56 text15 CODE >26:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F5A text15 CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F5C text15 CODE >28:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F5E text15 CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+F88 text14 CODE >15:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F88 text14 CODE >16:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F8A text14 CODE >17:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F8C text14 CODE >18:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F8E text14 CODE >19:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F90 text14 CODE >20:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F92 text14 CODE >21:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F7C text13 CODE >111:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F7C text13 CODE >112:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F86 text13 CODE >113:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F70 text12 CODE >107:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F70 text12 CODE >108:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F7A text12 CODE >109:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E10 text11 CODE >96:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E10 text11 CODE >97:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E12 text11 CODE >98:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E18 text11 CODE >99:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E1A text11 CODE >100:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E20 text11 CODE >101:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E22 text11 CODE >102:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E28 text11 CODE >103:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E32 text11 CODE >104:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+E38 text11 CODE >105:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C60 text10 CODE >115:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C60 text10 CODE >116:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C62 text10 CODE >117:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C64 text10 CODE >119:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C68 text10 CODE >120:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C72 text10 CODE >121:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C7C text10 CODE >122:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C86 text10 CODE >123:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C90 text10 CODE >124:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C9A text10 CODE >125:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+CA4 text10 CODE >127:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+CA8 text10 CODE >128:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+CAC text10 CODE >129:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F94 text9 CODE >295:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F94 text9 CODE >296:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F98 text9 CODE >297:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+F9C text9 CODE >298:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+C0A text8 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C0A text8 CODE >44:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C0C text8 CODE >45:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C10 text8 CODE >46:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C28 text8 CODE >45:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C44 text8 CODE >48:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C54 text8 CODE >49:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+C5E text8 CODE >51:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+F60 text7 CODE >11:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+F60 text7 CODE >12:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+F62 text7 CODE >13:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+F64 text7 CODE >14:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+F66 text7 CODE >15:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+F6E text7 CODE >16:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+816 text6 CODE >96:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+816 text6 CODE >97:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+816 text6 CODE >98:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+818 text6 CODE >100:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+81C text6 CODE >101:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+822 text6 CODE >102:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+82A text6 CODE >103:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+832 text6 CODE >104:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+83A text6 CODE >105:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+840 text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+844 text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+84C text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+854 text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+85C text6 CODE >106:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+866 text6 CODE >110:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+86C text6 CODE >111:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+874 text6 CODE >112:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+87C text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+888 text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+896 text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+89E text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+8A6 text6 CODE >114:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+8B0 text6 CODE >116:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+8C8 text6 CODE >123:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+8D8 text6 CODE >124:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+FAC text5 CODE >7:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+FAC text5 CODE >8:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+FB0 text5 CODE >9:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+CAE text4 CODE >61:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+CB0 text4 CODE >62:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+CC4 text4 CODE >63:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+CF8 text4 CODE >64:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+E62 text3 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+E64 text3 CODE >57:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+E84 text3 CODE >58:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+FA6 text2 CODE >126:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+FA6 text2 CODE >128:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+FAA text2 CODE >129:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+4F6 text1 CODE >22:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+4F6 text1 CODE >24:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+4FC text1 CODE >25:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+500 text1 CODE >27:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+510 text1 CODE >28:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+514 text1 CODE >29:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+518 text1 CODE >30:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+51C text1 CODE >31:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+520 text1 CODE >32:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+530 text1 CODE >33:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+536 text1 CODE >34:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+53E text1 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+54E text1 CODE >39:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+552 text1 CODE >40:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+556 text1 CODE >41:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+55A text1 CODE >42:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+55E text1 CODE >43:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+56E text1 CODE >44:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+578 text1 CODE >49:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+588 text1 CODE >50:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+592 text1 CODE >53:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+5A2 text1 CODE >54:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+5A6 text1 CODE >55:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+5AA text1 CODE >56:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+5B0 text1 CODE >60:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+5B6 text1 CODE >61:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+5CA text1 CODE >66:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+60C text1 CODE >67:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+610 text1 CODE >68:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+614 text1 CODE >69:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+618 text1 CODE >70:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+61C text1 CODE >71:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+65E text1 CODE >72:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+664 text1 CODE >73:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+66C text1 CODE >77:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+680 text1 CODE >80:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6B6 text1 CODE >86:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6C6 text1 CODE >87:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6C8 text1 CODE >88:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6CC text1 CODE >89:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6D4 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6D8 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6E0 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6E8 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6F0 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+6F8 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+700 text1 CODE >92:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+70A text1 CODE >93:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+71C text1 CODE >94:C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+E3A text0 CODE >36:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E3A text0 CODE >37:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E3E text0 CODE >38:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E42 text0 CODE >39:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E46 text0 CODE >40:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E4A text0 CODE >41:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E4E text0 CODE >44:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E50 text0 CODE >45:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E52 text0 CODE >48:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+E56 text0 CODE >49:C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
+EC2 cinit CODE >2136:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+EC2 cinit CODE >2138:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+EC2 cinit CODE >2141:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+EC2 cinit CODE >2179:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+EC6 cinit CODE >2180:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+EC8 cinit CODE >2181:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+EC8 cinit CODE >2182:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ECA cinit CODE >2183:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ECC cinit CODE >2184:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ECE cinit CODE >2190:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ECE cinit CODE >2192:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ED0 cinit CODE >2193:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ED2 cinit CODE >2195:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ED4 cinit CODE >2196:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ED6 cinit CODE >2197:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
+ED8 cinit CODE >2198:C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_1.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -247,86 +505,124 @@ $dist/default/production\Practica2FA.X.production.o
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\Practica2FA.X.production.o
-__Hspace_0 68E 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-__Hspace_1 31 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+__Hspace_0 FB2 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+__Hspace_1 53 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Hspace_4 60000E 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+MFRC522_Clear_Bit@addr E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Clear_Bit@mask C 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Request@TagType 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_MFRC522_Clear_Bit EDC 0 CODE 0 text30 dist/default/production\Practica2FA.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\Practica2FA.X.production.o
 __mediumconst 200 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\Practica2FA.X.production.o
-__end_of_InitPorts 644 0 CODE 0 text10 dist/default/production\Practica2FA.X.production.o
-GetTecla@columna 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_InitPorts F24 0 CODE 0 text34 dist/default/production\Practica2FA.X.production.o
+MFRC522_Halt@unLen 22 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+GetTecla@columna 10 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __L__absolute__ 0 0 ABS 0 __absolute__ dist/default/production\Practica2FA.X.production.o
 __end_of_LowRSI 26 0 CODE 0 intcodelo dist/default/production\Practica2FA.X.production.o
 __Lsmallconst 200 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
 _LATB F8A 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _LATC F8B 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _LATD F8C 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_Rows 4B 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
 _TMR0 FD6 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-_Tics 15 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-_main 5F4 0 CODE 0 text0 dist/default/production\Practica2FA.X.production.o
-btemp 30 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
-___stack_hi 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-___stack_lo 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-__end_of_TI_GetTics 59C 0 CODE 0 text4 dist/default/production\Practica2FA.X.production.o
-start 26 0 CODE 0 init C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+_Tics 42 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+_main E3A 0 CODE 0 text0 dist/default/production\Practica2FA.X.production.o
+MFRC522_CRC@length 10 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+btemp 52 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+___stack_hi 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+___stack_lo 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+__end_of_TI_GetTics CFA 0 CODE 0 text4 dist/default/production\Practica2FA.X.production.o
+start 26 0 CODE 0 init C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Request@reqMode 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@lastBits 19 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __end_ofGetTecla@F2717 20D 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
-_InitPorts 62A 0 CODE 0 text10 dist/default/production\Practica2FA.X.production.o
-TI_Init@counter 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-TI_NewTimer@Comptador 21 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_InitPorts F0E 0 CODE 0 text34 dist/default/production\Practica2FA.X.production.o
+TI_Init@counter 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+TI_NewTimer@Comptador 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production\Practica2FA.X.production.o
-_TI_Init 59C 0 CODE 0 text9 dist/default/production\Practica2FA.X.production.o
-_TI_NewTimer 4FA 0 CODE 0 text8 dist/default/production\Practica2FA.X.production.o
-ttemp5 31 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
-ttemp6 34 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
-ttemp7 38 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
-__accesstop 80 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-intlevel0 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-intlevel1 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-intlevel2 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-intlevel3 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+_TI_Init DB0 0 CODE 0 text16 dist/default/production\Practica2FA.X.production.o
+_TI_NewTimer C0A 0 CODE 0 text8 dist/default/production\Practica2FA.X.production.o
+ttemp5 53 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+ttemp6 56 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+ttemp7 5A 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+__accesstop 80 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+intlevel0 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+intlevel1 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+intlevel2 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+intlevel3 0 0 CODE 0 text C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+__end_of_MFRC522_Request C0A 0 CODE 0 text23 dist/default/production\Practica2FA.X.production.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_initRFID F94 0 CODE 0 text9 dist/default/production\Practica2FA.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\Practica2FA.X.production.o
-wtemp8 31 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
-_GetTecla 436 0 CODE 0 text6 dist/default/production\Practica2FA.X.production.o
+wtemp8 53 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+_GetTecla 816 0 CODE 0 text6 dist/default/production\Practica2FA.X.production.o
+MFRC522_Halt@buff 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\Practica2FA.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\Practica2FA.X.production.o
-TI_NewTimer@TimerHandle 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-__end_of_GetTecla 4FA 0 CODE 0 text6 dist/default/production\Practica2FA.X.production.o
-TI_GetTics@CopiaTicsActual 27 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-motorTeclado@state 19 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_initRFID F9E 0 CODE 0 text9 dist/default/production\Practica2FA.X.production.o
+TI_NewTimer@TimerHandle 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_GetTecla 8DA 0 CODE 0 text6 dist/default/production\Practica2FA.X.production.o
+TI_GetTics@CopiaTicsActual A 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+delay_us@howMany 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+motorTeclado@state 4C 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
 _ADCON1 FC1 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-_RSI_Timer0 644 0 CODE 0 text13 dist/default/production\Practica2FA.X.production.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-GetTecla@fila 2E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Wr@value 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+_RSI_Timer0 EF6 0 CODE 0 text37 dist/default/production\Practica2FA.X.production.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+GetTecla@fila 11 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_ColumnAct 48 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\Practica2FA.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\Practica2FA.X.production.o
+MFRC522_AntiColl@serNum 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+ReadRFID_NoCooperatiu@TagType 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\Practica2FA.X.production.o
 __Hintcodelo 26 0 CODE 0 intcodelo dist/default/production\Practica2FA.X.production.o
-__end_of_ReadFilas 68E 0 CODE 0 text5 dist/default/production\Practica2FA.X.production.o
-TI_ResetTics@TimerHandle 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-_motorTeclado 20E 0 CODE 0 text1 dist/default/production\Practica2FA.X.production.o
-TI_GetTics@TimerHandle 2B 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_Terminal_Init F60 0 CODE 0 text15 dist/default/production\Practica2FA.X.production.o
+_Terminal_SendString B3C 0 CODE 0 text19 dist/default/production\Practica2FA.X.production.o
+_MFRC522_Request BB0 0 CODE 0 text23 dist/default/production\Practica2FA.X.production.o
+__end_of_InitPortDirections F94 0 CODE 0 text14 dist/default/production\Practica2FA.X.production.o
+_MFRC522_Reset E10 0 CODE 0 text11 dist/default/production\Practica2FA.X.production.o
+MFRC522_Rd@ucAddr 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_ReadCardSerial E10 0 CODE 0 text24 dist/default/production\Practica2FA.X.production.o
+__end_of_ReadFilas FB2 0 CODE 0 text5 dist/default/production\Practica2FA.X.production.o
+_MFRC522_Halt CFA 0 CODE 0 text26 dist/default/production\Practica2FA.X.production.o
+_MFRC522_Init C60 0 CODE 0 text10 dist/default/production\Practica2FA.X.production.o
+_MFRC522_CRC A1C 0 CODE 0 text28 dist/default/production\Practica2FA.X.production.o
+TI_ResetTics@TimerHandle 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_motorTeclado 4F6 0 CODE 0 text1 dist/default/production\Practica2FA.X.production.o
+TI_GetTics@TimerHandle E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 _LowRSI 18 0 CODE 0 intcodelo dist/default/production\Practica2FA.X.production.o
 _INTCON2bits FF1 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+displayUID@hexString 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lintcodelo 18 0 CODE 0 intcodelo dist/default/production\Practica2FA.X.production.o
-start_initialization 610 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+start_initialization EC2 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_AntennaOn F7C 0 CODE 0 text12 dist/default/production\Practica2FA.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\Practica2FA.X.production.o
-_ReadFilas 688 0 CODE 0 text5 dist/default/production\Practica2FA.X.production.o
-_TRISAbits F92 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_ReadFilas FAC 0 CODE 0 text5 dist/default/production\Practica2FA.X.production.o
+_TRISBbits F93 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _TRISCbits F94 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-__end_of_RSI_Timer0 65C 0 CODE 0 text13 dist/default/production\Practica2FA.X.production.o
+__end_of_RSI_Timer0 F0E 0 CODE 0 text37 dist/default/production\Practica2FA.X.production.o
+_InitPortDirections F88 0 CODE 0 text14 dist/default/production\Practica2FA.X.production.o
+MFRC522_ReadCardSerial@str 25 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_Columns 4A 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_RowAct 49 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
 _TMR0IF 7F92 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-GetTecla@keymap 21 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-_Timers 1 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
-isa$xinst 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-__end_of_initTeclado 682 0 CODE 0 text7 dist/default/production\Practica2FA.X.production.o
-_Columnas 1B 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
-?_TI_GetTics 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+GetTecla@keymap 4 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_Timers 2E 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_MFRC522_AntiColl 982 0 CODE 0 text25 dist/default/production\Practica2FA.X.production.o
+__end_of_Terminal_TXAvailable EC2 0 CODE 0 text20 dist/default/production\Practica2FA.X.production.o
+isa$xinst 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+__end_of_initTeclado F70 0 CODE 0 text7 dist/default/production\Practica2FA.X.production.o
+_MFRC522_ToCard 2C2 0 CODE 0 text27 dist/default/production\Practica2FA.X.production.o
+MFRC522_Wr@Address 9 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_Columnas 4E 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+?_TI_GetTics 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production\Practica2FA.X.production.o
 __Hbank1 0 0 ABS 0 bank1 dist/default/production\Practica2FA.X.production.o
 __Hcinit 0 0 ABS 0 cinit dist/default/production\Practica2FA.X.production.o
@@ -351,16 +647,20 @@ __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\Practica2FA.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\Practica2FA.X.production.o
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production\Practica2FA.X.production.o
 __smallconst 200 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
-__end_of_HighRSI 672 0 CODE 0 intcode_body dist/default/production\Practica2FA.X.production.o
+MFRC522_isCard@TagType 23 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_HighRSI F3A 0 CODE 0 intcode_body dist/default/production\Practica2FA.X.production.o
 __Hcomram 0 0 ABS 0 comram dist/default/production\Practica2FA.X.production.o
 __Hconfig 30000E 0 CONFIG 4 config dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_Set_Bit F4E 0 CODE 0 text29 dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_Halt D3C 0 CODE 0 text26 dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_Init CAE 0 CODE 0 text10 dist/default/production\Practica2FA.X.production.o
 __Lbank0 0 0 ABS 0 bank0 dist/default/production\Practica2FA.X.production.o
 __Lbank1 0 0 ABS 0 bank1 dist/default/production\Practica2FA.X.production.o
 __Lcinit 0 0 ABS 0 cinit dist/default/production\Practica2FA.X.production.o
 __Lconst 0 0 CONST 0 const dist/default/production\Practica2FA.X.production.o
 __Lidata 0 0 CODE 0 idata dist/default/production\Practica2FA.X.production.o
 __Lidloc 0 0 IDLOC 5 idloc dist/default/production\Practica2FA.X.production.o
-__end_of_showTecla 688 0 CODE 0 text2 dist/default/production\Practica2FA.X.production.o
+__end_of_showTecla FAC 0 CODE 0 text2 dist/default/production\Practica2FA.X.production.o
 __Lnvbit 0 0 COMRAM 1 nvbit dist/default/production\Practica2FA.X.production.o
 __Lparam 0 0 COMRAM 1 rparam dist/default/production\Practica2FA.X.production.o
 __Lrdata 0 0 COMRAM 1 rdata dist/default/production\Practica2FA.X.production.o
@@ -375,10 +675,13 @@ __Ltext6 0 0 ABS 0 text6 dist/default/production\Practica2FA.X.production.o
 __Ltext7 0 0 ABS 0 text7 dist/default/production\Practica2FA.X.production.o
 __Ltext8 0 0 ABS 0 text8 dist/default/production\Practica2FA.X.production.o
 __Ltext9 0 0 ABS 0 text9 dist/default/production\Practica2FA.X.production.o
+__end_of_Terminal_SendString BB0 0 CODE 0 text19 dist/default/production\Practica2FA.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production\Practica2FA.X.production.o
+MFRC522_Wr@ucAddr A 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\Practica2FA.X.production.o
+_PORTBbits F81 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _PORTCbits F82 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-__end_of_motorTeclado 436 0 CODE 0 text1 dist/default/production\Practica2FA.X.production.o
+__end_of_motorTeclado 71E 0 CODE 0 text1 dist/default/production\Practica2FA.X.production.o
 _INTCONbits FF2 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Habs1 0 0 ABS 0 abs1 dist/default/production\Practica2FA.X.production.o
 __Hdata 0 0 ABS 0 data dist/default/production\Practica2FA.X.production.o
@@ -386,7 +689,7 @@ __Hheap 0 0 HEAP 7 heap dist/default/production\Practica2FA.X.production.o
 __Hinit 2A 0 CODE 0 init dist/default/production\Practica2FA.X.production.o
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production\Practica2FA.X.production.o
 __Hrbss 0 0 COMRAM 1 rbss dist/default/production\Practica2FA.X.production.o
-__Htemp 31 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+__Htemp 53 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
 __Htext 0 0 ABS 0 text dist/default/production\Practica2FA.X.production.o
 __Labs1 0 0 ABS 0 abs1 dist/default/production\Practica2FA.X.production.o
 __Ldata 0 0 ABS 0 data dist/default/production\Practica2FA.X.production.o
@@ -394,106 +697,235 @@ __Lheap 0 0 HEAP 7 heap dist/default/production\Practica2FA.X.production.o
 __Linit 26 0 CODE 0 init dist/default/production\Practica2FA.X.production.o
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production\Practica2FA.X.production.o
 __Lrbss 0 0 COMRAM 1 rbss dist/default/production\Practica2FA.X.production.o
-__Ltemp 30 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+__Ltemp 52 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
 __Ltext 0 0 ABS 0 text dist/default/production\Practica2FA.X.production.o
-int$flags 30 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
+int$flags 52 0 COMRAM 1 temp dist/default/production\Practica2FA.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hintret 0 0 ABS 0 intret dist/default/production\Practica2FA.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production\Practica2FA.X.production.o
-__S0 68E 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-__S1 31 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+__S0 FB2 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+__S1 53 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __S4 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __S5 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-_showTecla 682 0 CODE 0 text2 dist/default/production\Practica2FA.X.production.o
-__end_of_TI_NewTimer 550 0 CODE 0 text8 dist/default/production\Practica2FA.X.production.o
-_TI_ResetTics 5D0 0 CODE 0 text3 dist/default/production\Practica2FA.X.production.o
+MFRC522_Request@_status 20 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_showTecla FA6 0 CODE 0 text2 dist/default/production\Practica2FA.X.production.o
+_MFRC522_AntennaOn F70 0 CODE 0 text12 dist/default/production\Practica2FA.X.production.o
+MFRC522_CRC@dataOut 11 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_ToCard 4F6 0 CODE 0 text27 dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_AntennaOff F88 0 CODE 0 text13 dist/default/production\Practica2FA.X.production.o
+__end_of_TI_NewTimer C60 0 CODE 0 text8 dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@irqEn 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_TI_ResetTics E62 0 CODE 0 text3 dist/default/production\Practica2FA.X.production.o
+__end_of_Terminal_SendChar FA6 0 CODE 0 text21 dist/default/production\Practica2FA.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_Reset E3A 0 CODE 0 text11 dist/default/production\Practica2FA.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\Practica2FA.X.production.o
-int_func 65C 0 CODE 0 intcode_body dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@backLen 12 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+int_func F24 0 CODE 0 intcode_body dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@i 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@n 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_MFRC522_Set_Bit F3A 0 CODE 0 text29 dist/default/production\Practica2FA.X.production.o
 __Lintentry 0 0 ABS 0 intentry dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_AntiColl A1C 0 CODE 0 text25 dist/default/production\Practica2FA.X.production.o
+MFRC522_Request@backBits 21 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hramtop 200 0 RAM 0 ramtop dist/default/production\Practica2FA.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production\Practica2FA.X.production.o
 __activetblptr 2 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production\Practica2FA.X.production.o
 __Htext10 0 0 ABS 0 text10 dist/default/production\Practica2FA.X.production.o
+__Htext11 0 0 ABS 0 text11 dist/default/production\Practica2FA.X.production.o
+__Htext12 0 0 ABS 0 text12 dist/default/production\Practica2FA.X.production.o
 __Htext13 0 0 ABS 0 text13 dist/default/production\Practica2FA.X.production.o
-__ptext10 62A 0 CODE 0 text10 dist/default/production\Practica2FA.X.production.o
-__ptext13 644 0 CODE 0 text13 dist/default/production\Practica2FA.X.production.o
-__pintcode_body 65C 0 CODE 0 intcode_body dist/default/production\Practica2FA.X.production.o
+__Htext14 0 0 ABS 0 text14 dist/default/production\Practica2FA.X.production.o
+__Htext15 0 0 ABS 0 text15 dist/default/production\Practica2FA.X.production.o
+__Htext16 0 0 ABS 0 text16 dist/default/production\Practica2FA.X.production.o
+__Htext17 0 0 ABS 0 text17 dist/default/production\Practica2FA.X.production.o
+__Htext18 0 0 ABS 0 text18 dist/default/production\Practica2FA.X.production.o
+__Htext19 0 0 ABS 0 text19 dist/default/production\Practica2FA.X.production.o
+__Htext20 0 0 ABS 0 text20 dist/default/production\Practica2FA.X.production.o
+__Htext21 0 0 ABS 0 text21 dist/default/production\Practica2FA.X.production.o
+__Htext22 0 0 ABS 0 text22 dist/default/production\Practica2FA.X.production.o
+__Htext23 0 0 ABS 0 text23 dist/default/production\Practica2FA.X.production.o
+__Htext24 0 0 ABS 0 text24 dist/default/production\Practica2FA.X.production.o
+__Htext25 0 0 ABS 0 text25 dist/default/production\Practica2FA.X.production.o
+__Htext26 0 0 ABS 0 text26 dist/default/production\Practica2FA.X.production.o
+__Htext27 0 0 ABS 0 text27 dist/default/production\Practica2FA.X.production.o
+__Htext28 0 0 ABS 0 text28 dist/default/production\Practica2FA.X.production.o
+__Htext29 0 0 ABS 0 text29 dist/default/production\Practica2FA.X.production.o
+__Htext30 0 0 ABS 0 text30 dist/default/production\Practica2FA.X.production.o
+__Htext31 0 0 ABS 0 text31 dist/default/production\Practica2FA.X.production.o
+__Htext32 0 0 ABS 0 text32 dist/default/production\Practica2FA.X.production.o
+__Htext33 0 0 ABS 0 text33 dist/default/production\Practica2FA.X.production.o
+__Htext34 0 0 ABS 0 text34 dist/default/production\Practica2FA.X.production.o
+__Htext37 0 0 ABS 0 text37 dist/default/production\Practica2FA.X.production.o
+_MFRC522_isCard E86 0 CODE 0 text22 dist/default/production\Practica2FA.X.production.o
+_displayUID 71E 0 CODE 0 text18 dist/default/production\Practica2FA.X.production.o
+_MFRC522_AntennaOff F7C 0 CODE 0 text13 dist/default/production\Practica2FA.X.production.o
+__ptext10 C60 0 CODE 0 text10 dist/default/production\Practica2FA.X.production.o
+__ptext11 E10 0 CODE 0 text11 dist/default/production\Practica2FA.X.production.o
+__ptext12 F70 0 CODE 0 text12 dist/default/production\Practica2FA.X.production.o
+__ptext13 F7C 0 CODE 0 text13 dist/default/production\Practica2FA.X.production.o
+__ptext14 F88 0 CODE 0 text14 dist/default/production\Practica2FA.X.production.o
+__ptext15 F4E 0 CODE 0 text15 dist/default/production\Practica2FA.X.production.o
+__ptext16 DB0 0 CODE 0 text16 dist/default/production\Practica2FA.X.production.o
+__ptext17 D3C 0 CODE 0 text17 dist/default/production\Practica2FA.X.production.o
+__ptext18 71E 0 CODE 0 text18 dist/default/production\Practica2FA.X.production.o
+__ptext19 B3C 0 CODE 0 text19 dist/default/production\Practica2FA.X.production.o
+__ptext20 EA6 0 CODE 0 text20 dist/default/production\Practica2FA.X.production.o
+__ptext21 F9E 0 CODE 0 text21 dist/default/production\Practica2FA.X.production.o
+__ptext22 E86 0 CODE 0 text22 dist/default/production\Practica2FA.X.production.o
+__ptext23 BB0 0 CODE 0 text23 dist/default/production\Practica2FA.X.production.o
+__ptext24 DE4 0 CODE 0 text24 dist/default/production\Practica2FA.X.production.o
+__ptext25 982 0 CODE 0 text25 dist/default/production\Practica2FA.X.production.o
+__ptext26 CFA 0 CODE 0 text26 dist/default/production\Practica2FA.X.production.o
+__ptext27 2C2 0 CODE 0 text27 dist/default/production\Practica2FA.X.production.o
+__ptext28 A1C 0 CODE 0 text28 dist/default/production\Practica2FA.X.production.o
+__ptext29 F3A 0 CODE 0 text29 dist/default/production\Practica2FA.X.production.o
+__ptext30 EDC 0 CODE 0 text30 dist/default/production\Practica2FA.X.production.o
+__ptext31 8DA 0 CODE 0 text31 dist/default/production\Practica2FA.X.production.o
+__ptext32 D7A 0 CODE 0 text32 dist/default/production\Practica2FA.X.production.o
+__ptext33 AB2 0 CODE 0 text33 dist/default/production\Practica2FA.X.production.o
+__ptext34 F0E 0 CODE 0 text34 dist/default/production\Practica2FA.X.production.o
+__ptext37 EF6 0 CODE 0 text37 dist/default/production\Practica2FA.X.production.o
+_BAUDCON FB8 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+__pintcode_body F24 0 CODE 0 intcode_body dist/default/production\Practica2FA.X.production.o
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production\Practica2FA.X.production.o
 __Lbigram 0 0 ABS 0 bigram dist/default/production\Practica2FA.X.production.o
 __Lbigsfr 0 0 ABS 0 bigsfr dist/default/production\Practica2FA.X.production.o
+MFRC522_ReadCardSerial@_status 26 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production\Practica2FA.X.production.o
 __Lconfig 0 0 CONFIG 4 config dist/default/production\Practica2FA.X.production.o
-_LATAbits F89 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+MFRC522_CRC@i 13 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_CRC@n 12 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_LATBbits F8A 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _LATCbits F8B 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Lsivt_hi 0 0 CODE 0 sivt_hi dist/default/production\Practica2FA.X.production.o
 __Lsivt_lo 26 0 CODE 0 sivt_lo dist/default/production\Practica2FA.X.production.o
+MFRC522_Set_Bit@addr D 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Set_Bit@mask C 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\Practica2FA.X.production.o
-___inthi_stack_hi 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-___inthi_stack_lo 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+___inthi_stack_hi 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+___inthi_stack_lo 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\Practica2FA.X.production.o
-isa$std 1 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-stackhi 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-stacklo 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+isa$std 1 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+stackhi 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+stacklo 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+__end_of_MFRC522_CRC AB2 0 CODE 0 text28 dist/default/production\Practica2FA.X.production.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production\Practica2FA.X.production.o
-__end_of_TI_ResetTics 5F4 0 CODE 0 text3 dist/default/production\Practica2FA.X.production.o
+__end_of_TI_ResetTics E86 0 CODE 0 text3 dist/default/production\Practica2FA.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@sendLen 10 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@sendData F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_isCard EA6 0 CODE 0 text22 dist/default/production\Practica2FA.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Lspace_4 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-__pbssCOMRAM 1 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@backData 11 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__pbssCOMRAM 2E 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_Terminal_SendChar F9E 0 CODE 0 text21 dist/default/production\Practica2FA.X.production.o
+MFRC522_Rd@ucResult 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+delay_us@x 6 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_PIR1bits F9E 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+__end_of_displayUID 816 0 CODE 0 text18 dist/default/production\Practica2FA.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-end_of_initialization 61C 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+end_of_initialization ECE 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\Practica2FA.X.production.o
 __Hintentry 0 0 ABS 0 intentry dist/default/production\Practica2FA.X.production.o
-__end_of_TI_Init 5D0 0 CODE 0 text9 dist/default/production\Practica2FA.X.production.o
+__end_of_TI_Init DE4 0 CODE 0 text16 dist/default/production\Practica2FA.X.production.o
+MFRC522_Rd@i 6 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Wr@i B 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production\Practica2FA.X.production.o
+displayUID@nibble 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lramtop 200 0 RAM 0 ramtop dist/default/production\Practica2FA.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\Practica2FA.X.production.o
-__pcinit 610 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
-__ptext0 5F4 0 CODE 0 text0 dist/default/production\Practica2FA.X.production.o
-__ptext1 20E 0 CODE 0 text1 dist/default/production\Practica2FA.X.production.o
-__ptext2 682 0 CODE 0 text2 dist/default/production\Practica2FA.X.production.o
-__ptext3 5D0 0 CODE 0 text3 dist/default/production\Practica2FA.X.production.o
-__ptext4 550 0 CODE 0 text4 dist/default/production\Practica2FA.X.production.o
-__ptext5 688 0 CODE 0 text5 dist/default/production\Practica2FA.X.production.o
-__ptext6 436 0 CODE 0 text6 dist/default/production\Practica2FA.X.production.o
-__ptext7 672 0 CODE 0 text7 dist/default/production\Practica2FA.X.production.o
-__ptext8 4FA 0 CODE 0 text8 dist/default/production\Practica2FA.X.production.o
-__ptext9 59C 0 CODE 0 text9 dist/default/production\Practica2FA.X.production.o
+__pcinit EC2 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+__ptext0 E3A 0 CODE 0 text0 dist/default/production\Practica2FA.X.production.o
+__ptext1 4F6 0 CODE 0 text1 dist/default/production\Practica2FA.X.production.o
+__ptext2 FA6 0 CODE 0 text2 dist/default/production\Practica2FA.X.production.o
+__ptext3 E62 0 CODE 0 text3 dist/default/production\Practica2FA.X.production.o
+__ptext4 CAE 0 CODE 0 text4 dist/default/production\Practica2FA.X.production.o
+__ptext5 FAC 0 CODE 0 text5 dist/default/production\Practica2FA.X.production.o
+__ptext6 816 0 CODE 0 text6 dist/default/production\Practica2FA.X.production.o
+__ptext7 F60 0 CODE 0 text7 dist/default/production\Practica2FA.X.production.o
+__ptext8 C0A 0 CODE 0 text8 dist/default/production\Practica2FA.X.production.o
+__ptext9 F94 0 CODE 0 text9 dist/default/production\Practica2FA.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\Practica2FA.X.production.o
 __Ltext10 0 0 ABS 0 text10 dist/default/production\Practica2FA.X.production.o
+__Ltext11 0 0 ABS 0 text11 dist/default/production\Practica2FA.X.production.o
+__Ltext12 0 0 ABS 0 text12 dist/default/production\Practica2FA.X.production.o
 __Ltext13 0 0 ABS 0 text13 dist/default/production\Practica2FA.X.production.o
-__ramtop 200 0 RAM 0 ramtop C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+__Ltext14 0 0 ABS 0 text14 dist/default/production\Practica2FA.X.production.o
+__Ltext15 0 0 ABS 0 text15 dist/default/production\Practica2FA.X.production.o
+__Ltext16 0 0 ABS 0 text16 dist/default/production\Practica2FA.X.production.o
+__Ltext17 0 0 ABS 0 text17 dist/default/production\Practica2FA.X.production.o
+__Ltext18 0 0 ABS 0 text18 dist/default/production\Practica2FA.X.production.o
+__Ltext19 0 0 ABS 0 text19 dist/default/production\Practica2FA.X.production.o
+__Ltext20 0 0 ABS 0 text20 dist/default/production\Practica2FA.X.production.o
+__Ltext21 0 0 ABS 0 text21 dist/default/production\Practica2FA.X.production.o
+__Ltext22 0 0 ABS 0 text22 dist/default/production\Practica2FA.X.production.o
+__Ltext23 0 0 ABS 0 text23 dist/default/production\Practica2FA.X.production.o
+__Ltext24 0 0 ABS 0 text24 dist/default/production\Practica2FA.X.production.o
+__Ltext25 0 0 ABS 0 text25 dist/default/production\Practica2FA.X.production.o
+__Ltext26 0 0 ABS 0 text26 dist/default/production\Practica2FA.X.production.o
+__Ltext27 0 0 ABS 0 text27 dist/default/production\Practica2FA.X.production.o
+__Ltext28 0 0 ABS 0 text28 dist/default/production\Practica2FA.X.production.o
+__Ltext29 0 0 ABS 0 text29 dist/default/production\Practica2FA.X.production.o
+__Ltext30 0 0 ABS 0 text30 dist/default/production\Practica2FA.X.production.o
+__Ltext31 0 0 ABS 0 text31 dist/default/production\Practica2FA.X.production.o
+__Ltext32 0 0 ABS 0 text32 dist/default/production\Practica2FA.X.production.o
+__Ltext33 0 0 ABS 0 text33 dist/default/production\Practica2FA.X.production.o
+__Ltext34 0 0 ABS 0 text34 dist/default/production\Practica2FA.X.production.o
+__Ltext37 0 0 ABS 0 text37 dist/default/production\Practica2FA.X.production.o
+__ramtop 200 0 RAM 0 ramtop C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
 _HighRSI 8 0 CODE 0 intcode dist/default/production\Practica2FA.X.production.o
+_MFRC522_Rd AB2 0 CODE 0 text33 dist/default/production\Practica2FA.X.production.o
+_MFRC522_Wr 8DA 0 CODE 0 text31 dist/default/production\Practica2FA.X.production.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production\Practica2FA.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@_status 18 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __H__absolute__ 0 0 ABS 0 __absolute__ dist/default/production\Practica2FA.X.production.o
+_Terminal_TXAvailable EA6 0 CODE 0 text20 dist/default/production\Practica2FA.X.production.o
 __psmallconst 200 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\Practica2FA.X.production.o
 GetTecla@F2717 201 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
-___heap_hi 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-___heap_lo 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+___heap_hi 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+___heap_lo 0 0 ABS 0 - C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+__end_of_ReadRFID_NoCooperatiu D7A 0 CODE 0 text17 dist/default/production\Practica2FA.X.production.o
 ___param_bank 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
-___intlo_stack_hi 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
-___intlo_stack_lo 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAskmk.\driver_tmp_9.o
+___intlo_stack_hi 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+___intlo_stack_lo 0 0 STACK 2 stack C:\Users\gerar\AppData\Local\Temp\xcAsgo4.\driver_tmp_9.o
+__end_of_MFRC522_Clear_Bit EF6 0 CODE 0 text30 dist/default/production\Practica2FA.X.production.o
+displayUID@uid 7 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production\Practica2FA.X.production.o
-__end_of__initialization 61C 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+__end_of__initialization ECE 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+MFRC522_AntiColl@serNumCheck 20 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_hashtag_pressed 47 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_delay_us D7A 0 CODE 0 text32 dist/default/production\Practica2FA.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@waitIRq 17 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production\Practica2FA.X.production.o
+__end_of_delay_us DB0 0 CODE 0 text32 dist/default/production\Practica2FA.X.production.o
 __pintcodelo 18 0 CODE 0 intcodelo dist/default/production\Practica2FA.X.production.o
-__pcstackCOMRAM 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
-__end_of_main 610 0 CODE 0 text0 dist/default/production\Practica2FA.X.production.o
+__pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_ReadRFID_NoCooperatiu D3C 0 CODE 0 text17 dist/default/production\Practica2FA.X.production.o
+Terminal_SendChar@c 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_main E62 0 CODE 0 text0 dist/default/production\Practica2FA.X.production.o
 __pintcode 8 0 CODE 0 intcode dist/default/production\Practica2FA.X.production.o
-_Filas 1C 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+displayUID@i 18 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_Filas 4F 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
 _PORTA F80 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_RCREG FAE 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_RCSTA FAB 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_SPBRG FAF 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _T0CON FD5 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _TRISA F92 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _TRISB F93 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 _TRISD F95 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_TXREG FAD 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_TXSTA FAC 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
+_Timer 50 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production\Practica2FA.X.production.o
 __Hram 0 0 ABS 0 ram dist/default/production\Practica2FA.X.production.o
@@ -502,18 +934,34 @@ __LRAM 1 0 ABS 0 - dist/default/production\Practica2FA.X.production.o
 __Lbss 0 0 RAM 1 bss dist/default/production\Practica2FA.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production\Practica2FA.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production\Practica2FA.X.production.o
-_TI_GetTics 550 0 CODE 0 text4 dist/default/production\Practica2FA.X.production.o
-_tecla 1A 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
-_timer 1D 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_TI_GetTics CAE 0 CODE 0 text4 dist/default/production\Practica2FA.X.production.o
+Terminal_SendString@str 5 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_tecla 4D 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+_timer 51 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_Rd B3C 0 CODE 0 text33 dist/default/production\Practica2FA.X.production.o
+__end_of_MFRC522_Wr 982 0 CODE 0 text31 dist/default/production\Practica2FA.X.production.o
+motorTerminal@state 46 0 COMRAM 1 bssCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_AntiColl@_status 23 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_Rd@Address 3 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_AntiColl@i 24 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+MFRC522_AntiColl@unLen 21 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hsivt_hi 0 0 CODE 0 sivt_hi dist/default/production\Practica2FA.X.production.o
 __Hsivt_lo 26 0 CODE 0 sivt_lo dist/default/production\Practica2FA.X.production.o
-__initialization 610 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+__initialization EC2 0 CODE 0 cinit dist/default/production\Practica2FA.X.production.o
+?_Terminal_TXAvailable 2 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_MFRC522_ReadCardSerial DE4 0 CODE 0 text24 dist/default/production\Practica2FA.X.production.o
+MFRC522_ToCard@command 1B 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production\Practica2FA.X.production.o
-__Hsmallconst 20E 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
+__Hsmallconst 2C2 0 SMALLCONST 0 smallconst dist/default/production\Practica2FA.X.production.o
+_Terminal_Init F4E 0 CODE 0 text15 dist/default/production\Practica2FA.X.production.o
+_displayUID$841 14 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_displayUID$842 16 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production\Practica2FA.X.production.o
-_initTeclado 672 0 CODE 0 text7 dist/default/production\Practica2FA.X.production.o
+MFRC522_CRC@dataIn F 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
+_initTeclado F60 0 CODE 0 text7 dist/default/production\Practica2FA.X.production.o
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\Practica2FA.X.production.o
 __Hintcode E 0 CODE 0 intcode dist/default/production\Practica2FA.X.production.o
+ReadRFID_NoCooperatiu@UID 27 0 COMRAM 1 cstackCOMRAM dist/default/production\Practica2FA.X.production.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -539,11 +987,11 @@ __Hintcode E 0 CODE 0 intcode dist/default/production\Practica2FA.X.production.o
 # All other numeric quantities are in decimal.
 %SEGMENTS
 intcodelo 0 18 18 12 1
-text1 0 20E 20E 480 1
+text27 0 2C2 2C2 CF0 1
+cstackCOMRAM 1 1 1 52 1
 reset_vec 0 0 0 4 1
 intcode 0 8 8 6 1
-smallconst 0 200 200 E 1
-bssCOMRAM 1 1 1 30 1
+smallconst 0 200 200 C2 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
 # is indicated by %NOTES. The first line indicates the name and decimal

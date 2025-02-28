@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "tad_teclado.h": "c"
+        "tad_teclado.h": "c",
+        "tad_datos.h": "c",
+        "tad_rfid.h": "c",
+        "tad_terminal.h": "c"
     }
 }

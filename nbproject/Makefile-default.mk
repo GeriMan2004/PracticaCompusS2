@@ -56,17 +56,16 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 # Distribution Directory
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
-# Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c TAD_TIMER.c TAD_TECLADO.c TAD_RFID.c
-
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/TAD_TIMER.p1 ${OBJECTDIR}/TAD_TECLADO.p1 ${OBJECTDIR}/TAD_RFID.p1
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/TAD_TIMER.p1 ${OBJECTDIR}/TAD_TECLADO.p1 ${OBJECTDIR}/TAD_RFID.p1 ${OBJECTDIR}/TAD_DISPLAY.p1 ${OBJECTDIR}/TAD_TERMINAL.p1
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/TAD_TIMER.p1 ${OBJECTDIR}/TAD_TECLADO.p1 ${OBJECTDIR}/TAD_RFID.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/TAD_TIMER.p1 ${OBJECTDIR}/TAD_TECLADO.p1 ${OBJECTDIR}/TAD_RFID.p1 ${OBJECTDIR}/TAD_DISPLAY.p1 ${OBJECTDIR}/TAD_TERMINAL.p1
+
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/TAD_TIMER.p1.d ${OBJECTDIR}/TAD_TECLADO.p1.d ${OBJECTDIR}/TAD_RFID.p1.d ${OBJECTDIR}/TAD_DISPLAY.p1.d ${OBJECTDIR}/TAD_TERMINAL.p1.d
 
 # Source Files
-SOURCEFILES=main.c TAD_TIMER.c TAD_TECLADO.c TAD_RFID.c
+SOURCEFILES=main.c TAD_TIMER.c TAD_TIMER.h TAD_TECLADO.c TAD_TECLADO.h TAD_RFID.c TAD_RFID.h TAD_DISPLAY.c TAD_DISPLAY.h TAD_TERMINAL.c TAD_TERMINAL.h
 
 
 
@@ -125,6 +124,22 @@ ${OBJECTDIR}/TAD_RFID.p1: TAD_RFID.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/TAD_RFID.d ${OBJECTDIR}/TAD_RFID.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/TAD_RFID.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/TAD_DISPLAY.p1: TAD_DISPLAY.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TAD_DISPLAY.p1.d 
+	@${RM} ${OBJECTDIR}/TAD_DISPLAY.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/TAD_DISPLAY.p1 TAD_DISPLAY.c 
+	@-${MV} ${OBJECTDIR}/TAD_DISPLAY.d ${OBJECTDIR}/TAD_DISPLAY.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/TAD_DISPLAY.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/TAD_TERMINAL.p1: TAD_TERMINAL.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TAD_TERMINAL.p1.d 
+	@${RM} ${OBJECTDIR}/TAD_TERMINAL.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/TAD_TERMINAL.p1 TAD_TERMINAL.c 
+	@-${MV} ${OBJECTDIR}/TAD_TERMINAL.d ${OBJECTDIR}/TAD_TERMINAL.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/TAD_TERMINAL.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -157,6 +172,22 @@ ${OBJECTDIR}/TAD_RFID.p1: TAD_RFID.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/TAD_RFID.p1 TAD_RFID.c 
 	@-${MV} ${OBJECTDIR}/TAD_RFID.d ${OBJECTDIR}/TAD_RFID.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/TAD_RFID.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/TAD_DISPLAY.p1: TAD_DISPLAY.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TAD_DISPLAY.p1.d 
+	@${RM} ${OBJECTDIR}/TAD_DISPLAY.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/TAD_DISPLAY.p1 TAD_DISPLAY.c 
+	@-${MV} ${OBJECTDIR}/TAD_DISPLAY.d ${OBJECTDIR}/TAD_DISPLAY.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/TAD_DISPLAY.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/TAD_TERMINAL.p1: TAD_TERMINAL.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/TAD_TERMINAL.p1.d 
+	@${RM} ${OBJECTDIR}/TAD_TERMINAL.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/TAD_TERMINAL.p1 TAD_TERMINAL.c 
+	@-${MV} ${OBJECTDIR}/TAD_TERMINAL.d ${OBJECTDIR}/TAD_TERMINAL.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/TAD_TERMINAL.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

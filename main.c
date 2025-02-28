@@ -1,5 +1,7 @@
 #include <xc.h>
 #include "TAD_TIMER.h"
+#include "TAD_TERMINAL.h"
+#include "TAD_RFID.h"
 #include "TAD_TECLADO.h"
 
 #pragma config OSC = HS
@@ -31,19 +33,20 @@ extern void __interrupt (low_priority) LowRSI (void){
 }
 
 
-
-
 void main(void){
 	InitPorts();
 	TI_Init();      // Initialize Timer system
 	initTeclado();  // Initialize Keyboard
-	
+	initRFID();     // Initialize RFID
+	Terminal_Init();  // Initialize Terminal
+
 	// Enable interrupts
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
 	INTCONbits.PEIE = 1;   // Peripheral Interrupt Enable
 	
 	while(1){
 		motorTeclado();  // Run keyboard state machine
+		ReadRFID_NoCooperatiu();  // Run RFID read public function
 	}				
 }
 

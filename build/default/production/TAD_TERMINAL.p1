@@ -1,91 +1,46 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[t ~ __interrupt . k ]
-[t T41 __interrupt high_priority ]
-"6705 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6705:     struct {
-[s S274 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S274 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"6715
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6715:     struct {
-[s S275 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S275 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"6725
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6725:     struct {
-[s S276 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S276 . . GIEL GIEH ]
-"6704
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6704: typedef union {
-[u S273 `S274 1 `S275 1 `S276 1 ]
-[n S273 . . . . ]
-"6731
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6731: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
-[v _INTCONbits `VS273 ~T0 @X0 0 e@4082 ]
-"16 ./TAD_TIMER.h
-[; ;./TAD_TIMER.h: 16: void RSI_Timer0(void);
-[v _RSI_Timer0 `(v ~T0 @X0 0 ef ]
-[t T42 __interrupt low_priority ]
-[p mainexit ]
-"22 main.c
-[; ;main.c: 22: 
-[v _InitPorts `(v ~T0 @X0 0 ef ]
-"20 ./TAD_TIMER.h
-[; ;./TAD_TIMER.h: 20: void TI_Init (void);
-[v _TI_Init `(v ~T0 @X0 0 ef ]
-"10 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 10: void initTeclado(void);
-[v _initTeclado `(v ~T0 @X0 0 ef ]
-"155 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 155: void initRFID(void);
-[v _initRFID `(v ~T0 @X0 0 ef ]
-"7 ./TAD_TERMINAL.h
-[; ;./TAD_TERMINAL.h: 7: void Terminal_Init(void);
-[v _Terminal_Init `(v ~T0 @X0 0 ef ]
-"11 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 11: void motorTeclado(void);
-[v _motorTeclado `(v ~T0 @X0 0 ef ]
-"157 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 157: void ReadRFID_NoCooperatiu(void);
-[v _ReadRFID_NoCooperatiu `(v ~T0 @X0 0 ef ]
-"4714 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4714: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
-[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
-"1486
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1486: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"6635
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6635:     struct {
-[s S270 :7 `uc 1 :1 `uc 1 ]
-[n S270 . . NOT_RBPU ]
-"6639
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6639:     struct {
-[s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S271 . RBIP . TMR0IP . INTEDG2 INTEDG1 INTEDG0 nRBPU ]
-"6649
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6649:     struct {
-[s S272 :7 `uc 1 :1 `uc 1 ]
-[n S272 . . RBPU ]
-"6634
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6634: typedef union {
-[u S269 `S270 1 `S271 1 `S272 1 ]
-[n S269 . . . . ]
-"6654
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6654: extern volatile INTCON2bits_t INTCON2bits __attribute__((address(0xFF1)));
-[v _INTCON2bits `VS269 ~T0 @X0 0 e@4081 ]
-"1708
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1708: extern volatile unsigned char TRISB __attribute__((address(0xF93)));
-[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
-"1098
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1098: extern volatile unsigned char LATB __attribute__((address(0xF8A)));
-[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
-"2152
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2152: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"1322
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1322: extern volatile unsigned char LATD __attribute__((address(0xF8C)));
-[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"1210
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1210: extern volatile unsigned char LATC __attribute__((address(0xF8B)));
-[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
+"12 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 12: void Terminal_SendString(const char *str);
+[v _Terminal_SendString `(v ~T0 @X0 0 ef1`*Cuc ]
+"3329 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3329: extern volatile unsigned char TXSTA __attribute__((address(0xFAC)));
+[v _TXSTA `Vuc ~T0 @X0 0 e@4012 ]
+"3119
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3119: extern volatile unsigned char RCSTA __attribute__((address(0xFAB)));
+[v _RCSTA `Vuc ~T0 @X0 0 e@4011 ]
+"3609
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3609: extern volatile unsigned char SPBRG __attribute__((address(0xFAF)));
+[v _SPBRG `Vuc ~T0 @X0 0 e@4015 ]
+"4150
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4150: extern volatile unsigned char BAUDCON __attribute__((address(0xFB8)));
+[v _BAUDCON `Vuc ~T0 @X0 0 e@4024 ]
+"2686
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2686:     struct {
+[s S94 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S94 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF PSPIF ]
+"2696
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2696:     struct {
+[s S95 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S95 . . TX1IF RC1IF ]
+"2685
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2685: typedef union {
+[u S93 `S94 1 `S95 1 ]
+[n S93 . . . ]
+"2702
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2702: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
+[v _PIR1bits `VS93 ~T0 @X0 0 e@3998 ]
+"3585
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3585: extern volatile unsigned char TXREG __attribute__((address(0xFAD)));
+[v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
+"3597
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3597: extern volatile unsigned char RCREG __attribute__((address(0xFAE)));
+[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
+"14 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 14: unsigned char getActualUID(void);
+[v _getActualUID `(uc ~T0 @X0 0 ef ]
+"15
+[; ;./TAD_DATOS.h: 15: unsigned char getUserConfiguration(void);
+[v _getUserConfiguration `(uc ~T0 @X0 0 ef ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -500,149 +455,371 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7008
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"7 main.c
-[; ;main.c: 7: 
-[p x OSC  =  HS ]
-"8
-[; ;main.c: 8:     if (INTCONbits.TMR0IF==1) RSI_Timer0();
-[p x PBADEN  =  DIG ]
-"9
-[; ;main.c: 9: }
-[p x MCLRE  =  OFF ]
-"10
-[; ;main.c: 10: extern void __attribute__((picinterrupt(("low_priority")))) LowRSI (void){
-[p x DEBUG  =  OFF ]
-"11
-[; ;main.c: 11: 
-[p x PWRT  =  OFF ]
-"12
-[; ;main.c: 12: }
-[p x BOR  =  OFF ]
-"13
-[; ;main.c: 13: 
-[p x WDT  =  OFF ]
-"14
-[; ;main.c: 14: 
-[p x LVP  =  OFF ]
-"16
-[; ;main.c: 16:  InitPorts();
-[p x PWRT  =  OFF ]
-"17
-[; ;main.c: 17:  TI_Init();
-[p x BOR  =  OFF ]
-"18
-[; ;main.c: 18:  initTeclado();
-[p x WDT  =  OFF ]
-"19
-[; ;main.c: 19:  initRFID();
-[p x LVP  =  OFF ]
-[v $root$_HighRSI `(v ~T0 @X0 0 e ]
-"27
-[; ;main.c: 27:   motorTeclado();
-[v _HighRSI `(v ~T41 @X0 1 ef ]
+"5 TAD_TERMINAL.c
+[; ;TAD_TERMINAL.c: 5: char hashtag_pressed = 0;
+[v _hashtag_pressed `uc ~T0 @X0 1 e ]
+[i _hashtag_pressed
+-> -> 0 `i `uc
+]
+"7
+[; ;TAD_TERMINAL.c: 7: void displayUID(unsigned char *uid) {
+[v _displayUID `(v ~T0 @X0 1 ef1`*uc ]
 {
-[e :U _HighRSI ]
+[e :U _displayUID ]
+[v _uid `*uc ~T0 @X0 1 r1 ]
 [f ]
-"29
-[; ;main.c: 29:  }
-[e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 303  ]
-[e ( _RSI_Timer0 ..  ]
+"8
+[; ;TAD_TERMINAL.c: 8:     char hexString[11];
+[v _hexString `uc ~T0 @X0 -> 11 `i a ]
+"9
+[; ;TAD_TERMINAL.c: 9:     for (int i = 0; i < 5; i++) {
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 5 `i 303  ]
+[e $U 304  ]
 [e :U 303 ]
-"30
-[; ;main.c: 30: }
+{
+"10
+[; ;TAD_TERMINAL.c: 10:         unsigned char nibble = (uid[i] >> 4) & 0x0F;
+[v _nibble `uc ~T0 @X0 1 a ]
+[e = _nibble -> & >> -> *U + _uid * -> _i `x -> -> # *U _uid `i `x `i -> 4 `i -> 15 `i `uc ]
+"11
+[; ;TAD_TERMINAL.c: 11:         hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
+[e = *U + &U _hexString * -> -> * _i -> 2 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> ? < -> _nibble `i -> 10 `i : + -> _nibble `ui -> 48 `ui + -> - -> _nibble `i -> 10 `i `ui -> 65 `ui `uc ]
+"12
+[; ;TAD_TERMINAL.c: 12:         nibble = uid[i] & 0x0F;
+[e = _nibble -> & -> *U + _uid * -> _i `x -> -> # *U _uid `i `x `i -> 15 `i `uc ]
+"13
+[; ;TAD_TERMINAL.c: 13:         hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
+[e = *U + &U _hexString * -> -> + * _i -> 2 `i -> 1 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> ? < -> _nibble `i -> 10 `i : + -> _nibble `ui -> 48 `ui + -> - -> _nibble `i -> 10 `i `ui -> 65 `ui `uc ]
+"14
+[; ;TAD_TERMINAL.c: 14:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 5 `i 303  ]
+[e :U 304 ]
+}
+"15
+[; ;TAD_TERMINAL.c: 15:     hexString[10] = '\0';
+[e = *U + &U _hexString * -> -> -> 10 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> -> 0 `ui `uc ]
+"17
+[; ;TAD_TERMINAL.c: 17:     Terminal_SendString("UID: ");
+[e ( _Terminal_SendString (1 :s 1C ]
+"18
+[; ;TAD_TERMINAL.c: 18:     Terminal_SendString(hexString);
+[e ( _Terminal_SendString (1 -> &U _hexString `*Cuc ]
+"19
+[; ;TAD_TERMINAL.c: 19:     Terminal_SendString("\n");
+[e ( _Terminal_SendString (1 :s 2C ]
+"20
+[; ;TAD_TERMINAL.c: 20: }
 [e :UE 302 ]
 }
-[v $root$_LowRSI `(v ~T0 @X0 0 e ]
-"31
-[; ;main.c: 31: 
-[v _LowRSI `(v ~T42 @X0 1 ef ]
+"23
+[; ;TAD_TERMINAL.c: 23: void Terminal_Init(void){
+[v _Terminal_Init `(v ~T0 @X0 1 ef ]
 {
-[e :U _LowRSI ]
+[e :U _Terminal_Init ]
+[f ]
+"24
+[; ;TAD_TERMINAL.c: 24:  TXSTA = 0x24;
+[e = _TXSTA -> -> 36 `i `uc ]
+"25
+[; ;TAD_TERMINAL.c: 25:  RCSTA = 0x90;
+[e = _RCSTA -> -> 144 `i `uc ]
+"26
+[; ;TAD_TERMINAL.c: 26:  SPBRG = 64;
+[e = _SPBRG -> -> 64 `i `uc ]
+"27
+[; ;TAD_TERMINAL.c: 27:  BAUDCON = 0x00;
+[e = _BAUDCON -> -> 0 `i `uc ]
+"28
+[; ;TAD_TERMINAL.c: 28:  hashtag_pressed = 0;
+[e = _hashtag_pressed -> -> 0 `i `uc ]
+"29
+[; ;TAD_TERMINAL.c: 29: }
+[e :UE 306 ]
+}
+"32
+[; ;TAD_TERMINAL.c: 32: int Terminal_TXAvailable(void) {
+[v _Terminal_TXAvailable `(i ~T0 @X0 1 ef ]
+{
+[e :U _Terminal_TXAvailable ]
 [f ]
 "33
-[; ;main.c: 33: void InitPorts(void) {
-[e :UE 304 ]
+[; ;TAD_TERMINAL.c: 33:  return (PIR1bits.TXIF == 1) ? 1 : 0;
+[e ) ? == -> . . _PIR1bits 0 4 `i -> 1 `i : -> 1 `i -> 0 `i ]
+[e $UE 307  ]
+"34
+[; ;TAD_TERMINAL.c: 34: }
+[e :UE 307 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"36
-[; ;main.c: 36: 
-[v _main `(v ~T0 @X0 1 ef ]
-{
-[e :U _main ]
-[f ]
 "37
-[; ;main.c: 37: 
-[e ( _InitPorts ..  ]
-"38
-[; ;main.c: 38:  TRISA |= 0x0F;
-[e ( _TI_Init ..  ]
-"39
-[; ;main.c: 39: 
-[e ( _initTeclado ..  ]
-"40
-[; ;main.c: 40:  INTCON2bits.RBPU = 0;
-[e ( _initRFID ..  ]
-"41
-[; ;main.c: 41: 
-[e ( _Terminal_Init ..  ]
-"44
-[; ;main.c: 44:  LATB |= 0x00;
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45: 
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"47
-[; ;main.c: 47:  TRISD = 0x00;
-[e :U 307 ]
+[; ;TAD_TERMINAL.c: 37: char Terminal_RXAvailable(void) {
+[v _Terminal_RXAvailable `(uc ~T0 @X0 1 ef ]
 {
-"48
-[; ;main.c: 48:  LATD = 0x00;
-[e ( _motorTeclado ..  ]
-"49
-[; ;main.c: 49: }
-[e ( _ReadRFID_NoCooperatiu ..  ]
-"50
-[; ;main.c: 50: 
-}
-[e :U 306 ]
-[e $U 307  ]
-[e :U 308 ]
-"51
-[; ;main.c: 51: 
-[e :UE 305 ]
-}
-"54
-[; ;main.c: 54: 
-[v _InitPorts `(v ~T0 @X0 1 ef ]
-{
-[e :U _InitPorts ]
+[e :U _Terminal_RXAvailable ]
 [f ]
-"56
-[; ;main.c: 56: }
-[e = _ADCON1 -> -> 15 `i `uc ]
-"59
-[e =| _TRISA -> -> 15 `i `Vuc ]
-"61
-[e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
-"64
-[e =& _TRISB -> -> 248 `i `Vuc ]
-"65
-[e =| _LATB -> -> 0 `i `Vuc ]
-"68
-[e = _TRISD -> -> 0 `i `uc ]
-"69
-[e = _LATD -> -> 0 `i `uc ]
-"70
+"38
+[; ;TAD_TERMINAL.c: 38:  return (PIR1bits.RCIF == 1) ? 1 : 0;
+[e ) -> ? == -> . . _PIR1bits 0 5 `i -> 1 `i : -> 1 `i -> 0 `i `uc ]
+[e $UE 308  ]
+"39
+[; ;TAD_TERMINAL.c: 39: }
+[e :UE 308 ]
+}
+"42
+[; ;TAD_TERMINAL.c: 42: void Terminal_SendChar(char c) {
+[v _Terminal_SendChar `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _Terminal_SendChar ]
+[v _c `uc ~T0 @X0 1 r1 ]
+[f ]
+"43
+[; ;TAD_TERMINAL.c: 43:  TXREG = c;
+[e = _TXREG -> _c `uc ]
+"44
+[; ;TAD_TERMINAL.c: 44: }
 [e :UE 309 ]
 }
-"73
-[v _ProcessKey `(v ~T0 @X0 1 ef1`uc ]
+"47
+[; ;TAD_TERMINAL.c: 47: char Terminal_ReceiveChar(void) {
+[v _Terminal_ReceiveChar `(uc ~T0 @X0 1 ef ]
 {
-[e :U _ProcessKey ]
-[v _key `uc ~T0 @X0 1 r1 ]
+[e :U _Terminal_ReceiveChar ]
 [f ]
-"76
-[e = _LATC _key ]
-"77
+"48
+[; ;TAD_TERMINAL.c: 48:  return RCREG;
+[e ) -> _RCREG `uc ]
+[e $UE 310  ]
+"49
+[; ;TAD_TERMINAL.c: 49: }
 [e :UE 310 ]
 }
+"52
+[; ;TAD_TERMINAL.c: 52: void Terminal_SendString(const char *str) {
+[v _Terminal_SendString `(v ~T0 @X0 1 ef1`*Cuc ]
+{
+[e :U _Terminal_SendString ]
+[v _str `*Cuc ~T0 @X0 1 r1 ]
+[f ]
+"53
+[; ;TAD_TERMINAL.c: 53:  while (*str) {
+[e $U 312  ]
+[e :U 313 ]
+{
+"54
+[; ;TAD_TERMINAL.c: 54:   while (Terminal_TXAvailable() == 0);
+[e $U 315  ]
+[e :U 316 ]
+[e :U 315 ]
+[e $ == ( _Terminal_TXAvailable ..  -> 0 `i 316  ]
+[e :U 317 ]
+"55
+[; ;TAD_TERMINAL.c: 55:   Terminal_SendChar(*str++);
+[e ( _Terminal_SendChar (1 *U ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"56
+[; ;TAD_TERMINAL.c: 56:  }
+}
+[e :U 312 ]
+"53
+[; ;TAD_TERMINAL.c: 53:  while (*str) {
+[e $ != -> *U _str `i -> 0 `i 313  ]
+[e :U 314 ]
+"57
+[; ;TAD_TERMINAL.c: 57: }
+[e :UE 311 ]
+}
+"59
+[; ;TAD_TERMINAL.c: 59: void showMenu(void) {
+[v _showMenu `(v ~T0 @X0 1 ef ]
+{
+[e :U _showMenu ]
+[f ]
+"60
+[; ;TAD_TERMINAL.c: 60:  Terminal_SendString("---------------");
+[e ( _Terminal_SendString (1 :s 3C ]
+"61
+[; ;TAD_TERMINAL.c: 61:  Terminal_SendString("Menú principal");
+[e ( _Terminal_SendString (1 :s 4C ]
+"62
+[; ;TAD_TERMINAL.c: 62:  Terminal_SendString("---------------");
+[e ( _Terminal_SendString (1 :s 5C ]
+"63
+[; ;TAD_TERMINAL.c: 63:  Terminal_SendString("Tria una opció:\n");
+[e ( _Terminal_SendString (1 :s 6C ]
+"64
+[; ;TAD_TERMINAL.c: 64:  Terminal_SendString("\t1. Qui hi ha a la sala?");
+[e ( _Terminal_SendString (1 :s 7C ]
+"65
+[; ;TAD_TERMINAL.c: 65:  Terminal_SendString("\t2. Mostrar configuracions");
+[e ( _Terminal_SendString (1 :s 8C ]
+"66
+[; ;TAD_TERMINAL.c: 66:  Terminal_SendString("\t3. Modificar hora del sistema\n");
+[e ( _Terminal_SendString (1 :s 9C ]
+"67
+[; ;TAD_TERMINAL.c: 67:  Terminal_SendString("Opció: ");
+[e ( _Terminal_SendString (1 :s 10C ]
+"68
+[; ;TAD_TERMINAL.c: 68: }
+[e :UE 318 ]
+}
+"70
+[; ;TAD_TERMINAL.c: 70: void hashtag_pressed3s(void){
+[v _hashtag_pressed3s `(v ~T0 @X0 1 ef ]
+{
+[e :U _hashtag_pressed3s ]
+[f ]
+"71
+[; ;TAD_TERMINAL.c: 71:  hashtag_pressed = 1;
+[e = _hashtag_pressed -> -> 1 `i `uc ]
+"72
+[; ;TAD_TERMINAL.c: 72: }
+[e :UE 319 ]
+}
+"75
+[; ;TAD_TERMINAL.c: 75: void motorTerminal(void) {
+[v _motorTerminal `(v ~T0 @X0 1 ef ]
+{
+[e :U _motorTerminal ]
+[f ]
+"76
+[; ;TAD_TERMINAL.c: 76:  static char state = 0;
+[v F2741 `uc ~T0 @X0 1 s state ]
+[i F2741
+-> -> 0 `i `uc
+]
+"78
+[; ;TAD_TERMINAL.c: 78:  switch(state) {
+[e $U 322  ]
+{
+"79
+[; ;TAD_TERMINAL.c: 79:   case 0:
+[e :U 323 ]
+"80
+[; ;TAD_TERMINAL.c: 80:    if (Terminal_ReceiveChar() == 0x1B) {
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i 324  ]
+{
+"81
+[; ;TAD_TERMINAL.c: 81:     showMenu();
+[e ( _showMenu ..  ]
+"82
+[; ;TAD_TERMINAL.c: 82:     state = 1;
+[e = F2741 -> -> 1 `i `uc ]
+"83
+[; ;TAD_TERMINAL.c: 83:    }
+}
+[e :U 324 ]
+"84
+[; ;TAD_TERMINAL.c: 84:    if (hashtag_pressed == 1){
+[e $ ! == -> _hashtag_pressed `i -> 1 `i 325  ]
+{
+"85
+[; ;TAD_TERMINAL.c: 85:     showMenu();
+[e ( _showMenu ..  ]
+"86
+[; ;TAD_TERMINAL.c: 86:     state = 1;
+[e = F2741 -> -> 1 `i `uc ]
+"87
+[; ;TAD_TERMINAL.c: 87:    }
+}
+[e :U 325 ]
+"88
+[; ;TAD_TERMINAL.c: 88:   break;
+[e $U 321  ]
+"89
+[; ;TAD_TERMINAL.c: 89:   case 1:
+[e :U 326 ]
+"90
+[; ;TAD_TERMINAL.c: 90:    if(Terminal_RXAvailable() == 1){
+[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 327  ]
+{
+"91
+[; ;TAD_TERMINAL.c: 91:     if (Terminal_ReceiveChar() == 1) {
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 1 `i 328  ]
+{
+"92
+[; ;TAD_TERMINAL.c: 92:      getActualUID();
+[e ( _getActualUID ..  ]
+"93
+[; ;TAD_TERMINAL.c: 93:      state = 0;
+[e = F2741 -> -> 0 `i `uc ]
+"94
+[; ;TAD_TERMINAL.c: 94:     }
+}
+[e $U 329  ]
+"95
+[; ;TAD_TERMINAL.c: 95:     else if (Terminal_ReceiveChar() == 2) {
+[e :U 328 ]
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 2 `i 330  ]
+{
+"96
+[; ;TAD_TERMINAL.c: 96:      getUserConfiguration();
+[e ( _getUserConfiguration ..  ]
+"97
+[; ;TAD_TERMINAL.c: 97:      state = 0;
+[e = F2741 -> -> 0 `i `uc ]
+"98
+[; ;TAD_TERMINAL.c: 98:     }
+}
+[e $U 331  ]
+"99
+[; ;TAD_TERMINAL.c: 99:     else if (Terminal_ReceiveChar() == 3) {
+[e :U 330 ]
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 3 `i 332  ]
+{
+"101
+[; ;TAD_TERMINAL.c: 101:      state = 0;
+[e = F2741 -> -> 0 `i `uc ]
+"102
+[; ;TAD_TERMINAL.c: 102:     }
+}
+[e $U 333  ]
+"103
+[; ;TAD_TERMINAL.c: 103:     else {
+[e :U 332 ]
+{
+"104
+[; ;TAD_TERMINAL.c: 104:      Terminal_SendString("ERROR. Valor introduit erroni.");
+[e ( _Terminal_SendString (1 :s 11C ]
+"105
+[; ;TAD_TERMINAL.c: 105:      state = 0;
+[e = F2741 -> -> 0 `i `uc ]
+"106
+[; ;TAD_TERMINAL.c: 106:     }
+}
+[e :U 333 ]
+[e :U 331 ]
+[e :U 329 ]
+"107
+[; ;TAD_TERMINAL.c: 107:    }
+}
+[e :U 327 ]
+"108
+[; ;TAD_TERMINAL.c: 108:   break;
+[e $U 321  ]
+"109
+[; ;TAD_TERMINAL.c: 109:  }
+}
+[e $U 321  ]
+[e :U 322 ]
+[e [\ F2741 , $ -> 0 `i 323
+ , $ -> 1 `i 326
+ 321 ]
+[e :U 321 ]
+"110
+[; ;TAD_TERMINAL.c: 110: }
+[e :UE 320 ]
+}
+[a 8C 9 50 46 32 77 111 115 116 114 97 114 32 99 111 110 102 105 103 117 114 97 99 105 111 110 115 0 ]
+[a 4C 77 101 110 18446744073709551555 18446744073709551546 32 112 114 105 110 99 105 112 97 108 0 ]
+[a 7C 9 49 46 32 81 117 105 32 104 105 32 104 97 32 97 32 108 97 32 115 97 108 97 63 0 ]
+[a 11C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 0 ]
+[a 3C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 0 ]
+[a 5C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 0 ]
+[a 1C 85 73 68 58 32 0 ]
+[a 10C 79 112 99 105 18446744073709551555 18446744073709551539 58 32 0 ]
+[a 9C 9 51 46 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 32 100 101 108 32 115 105 115 116 101 109 97 10 0 ]
+[a 6C 84 114 105 97 32 117 110 97 32 111 112 99 105 18446744073709551555 18446744073709551539 58 10 0 ]
+[a 2C 10 0 ]

@@ -4,6 +4,21 @@
 
 char hashtag_pressed = 0;
 
+void displayUID(unsigned char *uid) {
+    char hexString[11]; // 5 bytes * 2 caracteres = 10, +1 para el terminador nulo
+    for (int i = 0; i < 5; i++) {
+        unsigned char nibble = (uid[i] >> 4) & 0x0F;
+        hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
+        nibble = uid[i] & 0x0F;
+        hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
+    }
+    hexString[10] = '\0';
+    
+    Terminal_SendString("UID: ");
+    Terminal_SendString(hexString);
+    Terminal_SendString("\n");
+}
+
 // Inicializar para Serial 9615 baud rate
 void Terminal_Init(void){
 	TXSTA = 0x24;
@@ -11,7 +26,6 @@ void Terminal_Init(void){
 	SPBRG = 64;
 	BAUDCON = 0x00;
 	hashtag_pressed = 0;
-
 }
 
 // Verificar si hay datos disponibles para enviar
