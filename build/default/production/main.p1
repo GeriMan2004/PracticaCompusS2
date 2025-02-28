@@ -20,22 +20,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 "6731
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6731: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
 [v _INTCONbits `VS273 ~T0 @X0 0 e@4082 ]
-"19 ./TAD_TIMER.h
-[; ;./TAD_TIMER.h: 19: void RSI_Timer0(void);
+"16 ./TAD_TIMER.h
+[; ;./TAD_TIMER.h: 16: void RSI_Timer0(void);
 [v _RSI_Timer0 `(v ~T0 @X0 0 ef ]
 [t T42 __interrupt low_priority ]
 [p mainexit ]
 "20 main.c
-[; ;main.c: 20:  InitPorts();
+[; ;main.c: 20:  initTeclado();
 [v _InitPorts `(v ~T0 @X0 0 ef ]
-"23 ./TAD_TIMER.h
-[; ;./TAD_TIMER.h: 23: void TI_Init (void);
+"20 ./TAD_TIMER.h
+[; ;./TAD_TIMER.h: 20: void TI_Init (void);
 [v _TI_Init `(v ~T0 @X0 0 ef ]
-"9 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 9: void initTeclado(void);
+"10 ./TAD_TECLADO.h
+[; ;./TAD_TECLADO.h: 10: void initTeclado(void);
 [v _initTeclado `(v ~T0 @X0 0 ef ]
-"10
-[; ;./TAD_TECLADO.h: 10: void motorTeclado(void);
+"11
+[; ;./TAD_TECLADO.h: 11: void motorTeclado(void);
 [v _motorTeclado `(v ~T0 @X0 0 ef ]
 "4714 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4714: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
@@ -43,6 +43,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1486
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1486: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
 [v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"1497
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1497:     struct {
+[s S58 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S58 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"1507
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1507:     struct {
+[s S59 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S59 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"1496
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1496: typedef union {
+[u S57 `S58 1 `S59 1 ]
+[n S57 . . . ]
+"1518
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1518: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF92)));
+[v _TRISAbits `VS57 ~T0 @X0 0 e@3986 ]
+"992
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 992:     struct {
+[s S43 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S43 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"1002
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1002:     struct {
+[s S44 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S44 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"991
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 991: typedef union {
+[u S42 `S43 1 `S44 1 ]
+[n S42 . . . ]
+"1013
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1013: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
+[v _LATAbits `VS42 ~T0 @X0 0 e@3977 ]
 "6635
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6635:     struct {
 [s S270 :7 `uc 1 :1 `uc 1 ]
@@ -493,30 +523,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 0FFFh ;# ">
 "5 main.c
 [; ;main.c: 5: 
-[p x OSC  =  HSPLL ]
+[p x OSC  =  HS ]
 "6
-[; ;main.c: 6: 
+[; ;main.c: 6: extern void __attribute__((picinterrupt(("high_priority")))) HighRSI (void){
 [p x PBADEN  =  DIG ]
 "7
 [; ;main.c: 7: 
 [p x MCLRE  =  OFF ]
 "8
-[; ;main.c: 8: extern void __attribute__((picinterrupt(("high_priority")))) HighRSI (void){
+[; ;main.c: 8:     if (INTCONbits.TMR0IF==1) RSI_Timer0();
 [p x DEBUG  =  OFF ]
 "9
-[; ;main.c: 9: 
+[; ;main.c: 9: }
 [p x PWRT  =  OFF ]
 "10
-[; ;main.c: 10:     if (INTCONbits.TMR0IF==1) RSI_Timer0();
+[; ;main.c: 10: extern void __attribute__((picinterrupt(("low_priority")))) LowRSI (void){
 [p x BOR  =  OFF ]
 "11
-[; ;main.c: 11: }
+[; ;main.c: 11: 
 [p x WDT  =  OFF ]
 "12
-[; ;main.c: 12: extern void __attribute__((picinterrupt(("low_priority")))) LowRSI (void){
+[; ;main.c: 12: }
 [p x LVP  =  OFF ]
 "14
-[; ;main.c: 14: }
+[; ;main.c: 14: 
 [p x PWRT  =  OFF ]
 "15
 [; ;main.c: 15: 
@@ -525,88 +555,91 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 16: 
 [p x WDT  =  OFF ]
 "17
-[; ;main.c: 17: 
+[; ;main.c: 17: void main(void){
 [p x LVP  =  OFF ]
-"23
-[; ;main.c: 23: 
-[v _tick_count `i ~T0 @X0 1 e ]
 [v $root$_HighRSI `(v ~T0 @X0 0 e ]
-"27
-[; ;main.c: 27: 
+"25
+[; ;main.c: 25: 
 [v _HighRSI `(v ~T41 @X0 1 ef ]
 {
 [e :U _HighRSI ]
 [f ]
-"29
-[; ;main.c: 29:   motorTeclado();
+"27
+[; ;main.c: 27:   motorTeclado();
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 303  ]
 [e ( _RSI_Timer0 ..  ]
 [e :U 303 ]
-"30
-[; ;main.c: 30:  }
+"28
+[; ;main.c: 28:  }
 [e :UE 302 ]
 }
 [v $root$_LowRSI `(v ~T0 @X0 0 e ]
-"31
-[; ;main.c: 31: }
+"29
+[; ;main.c: 29: }
 [v _LowRSI `(v ~T42 @X0 1 ef ]
 {
 [e :U _LowRSI ]
 [f ]
-"33
-[; ;main.c: 33: 
+"31
+[; ;main.c: 31: 
 [e :UE 304 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"38
-[; ;main.c: 38: 
+"36
+[; ;main.c: 36: 
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"39
-[; ;main.c: 39:  TRISA |= 0x0F;
+"37
+[; ;main.c: 37:  TRISA |= 0x0F;
 [e ( _InitPorts ..  ]
-"40
-[; ;main.c: 40: 
+"38
+[; ;main.c: 38:  TRISAbits.TRISA4 = 0;
 [e ( _TI_Init ..  ]
-"41
-[; ;main.c: 41:  INTCON2bits.RBPU = 0;
+"39
+[; ;main.c: 39:  LATAbits.LATA4 = 1;
 [e ( _initTeclado ..  ]
-"44
-[; ;main.c: 44:  TRISB &= 0xF8;
+"42
+[; ;main.c: 42: 
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"43
+[; ;main.c: 43: 
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
 "45
 [; ;main.c: 45:  LATB |= 0x00;
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"47
-[; ;main.c: 47: 
 [e :U 307 ]
 {
-"48
-[; ;main.c: 48:  TRISD = 0x00;
+"46
+[; ;main.c: 46: 
 [e ( _motorTeclado ..  ]
-"49
-[; ;main.c: 49:  LATD = 0x00;
+"47
+[; ;main.c: 47: 
 }
 [e :U 306 ]
 [e $U 307  ]
 [e :U 308 ]
-"50
-[; ;main.c: 50: }
+"48
+[; ;main.c: 48:  TRISD = 0x00;
 [e :UE 305 ]
 }
-"53
-[; ;main.c: 53: void ProcessKey(unsigned char key) {
+"51
+[; ;main.c: 51: 
 [v _InitPorts `(v ~T0 @X0 1 ef ]
 {
 [e :U _InitPorts ]
 [f ]
-"55
-[; ;main.c: 55: 
+"53
+[; ;main.c: 53: void ProcessKey(unsigned char key) {
 [e = _ADCON1 -> -> 15 `i `uc ]
-"58
+"56
+[; ;main.c: 56:  LATC = key;
 [e =| _TRISA -> -> 15 `i `Vuc ]
+"57
+[; ;main.c: 57: }
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+"58
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 "60
 [e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
 "63

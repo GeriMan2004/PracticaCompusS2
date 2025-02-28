@@ -1,9 +1,7 @@
 #include <xc.h>
 #include "TAD_TECLADO.h"
 
-static unsigned char Filas, Columnas, timer, state = 0;
-static unsigned char HiHaTecla = 0;
-static unsigned char tecla = 0;
+static unsigned char Filas, Columnas, timer, tecla = 0;
 
 
 static unsigned char ReadFilas(void) {
@@ -13,8 +11,6 @@ static unsigned char ReadFilas(void) {
 void initTeclado(void) {
     Filas = 0x00;    // Initialize rows to all high (pulled up)
     Columnas = 0x00;  // Initialize columns to all high
-    state = 1;
-    HiHaTecla = 0;
     tecla = 0;
     TI_NewTimer(&timer);
 }
@@ -24,69 +20,84 @@ void initTeclado(void) {
  * manera se ahorran un estado
  */
 void motorTeclado(void) {
-    Filas = ReadFilas();
+	static char state = 0;
+	Filas = ReadFilas();
 	switch(state) {
 		case 0:
 			if (Filas == 0x0) {
 				Columnas = (0x01);
-                LATB = Columnas;
+				LATB = Columnas;
 				state = 1;
 			}
 			else if (Filas != 0x0) {
-                TI_ResetTics(timer);
-				state = 4;
+				TI_ResetTics(timer);
+				state = 3;
 			}
 		break;
 		case 1:
 			if (Filas == 0x0) {
 				Columnas = (0x02);
-                LATB = Columnas;
+				LATB = Columnas;
 				state = 2;
 			}
 			else if (Filas != 0x0) {
-                TI_ResetTics(timer);
-				state = 4;
+				TI_ResetTics(timer);
+				state = 3;
 			}
 		break;
 		case 2:
-			if (Filas == 0x0) {
-				Columnas = (0x04);
-                LATB = Columnas;
+			if (Filas != 0x0) {
+				TI_ResetTics(timer);
 				state = 3;
 			}
-			else if (Filas != 0x0) {
-                TI_ResetTics(timer);
-				state = 4;
+			else if (Filas == 0x0) {
+				Columnas = (0x04);
+				LATB = Columnas;
+				state = 0;
 			}
 		break;
 		case 3:
-			if (Filas != 0x0) {
-                TI_ResetTics(timer);
-				state = 4;
-			}
-			else if (Filas == 0x0) {
+			tecla = GetTecla ();
+			if (Filas == 0x0) {
+				Columnas = (0x04);
+				LATB = Columnas;
 				state = 0;
+			}
+			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla != 11) {
+				LATD = tecla;
+				showTecla();
+				state = 5;
+			}
+			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla == 11) {
+				TI_ResetTics(timer);
+				state = 4;
 			}
 		break;
 		case 4:
 			if (Filas == 0x0) {
 				state = 0;
 			}
-			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE) {
-				tecla = GetTecla(Filas, Columnas);
-                StopRequest(tecla);
+			else if (Filas != 0x0 && TI_GetTics(timer) > HASHTAG_TIME) {
+				// ResetData();
+				state = 5;
+			}
+		break;
+		case 5:
+			if (Filas == 0x0) {
 				state = 0;
+				Columnas = (0x04);
+				LATB = Columnas;
 			}
 		break;
 	}
-    LATD = (LATD & 0x0F) | (state << 4);
+	LATD = (LATD & 0x0F) | ((unsigned char)(state << 4));
 }
 
-static unsigned char GetTecla(unsigned char filas, unsigned char columnas) {
+unsigned char GetTecla(void) {
     unsigned char fila = 0;
     unsigned char columna = 0;
     
-    switch(filas) {
+    switch(Filas) {
         case 0x1: fila = 0; break;
         case 0x2: fila = 1; break;
         case 0x4: fila = 2; break;
@@ -95,7 +106,7 @@ static unsigned char GetTecla(unsigned char filas, unsigned char columnas) {
     }
     
     // Find which column is active
-    switch(columnas & 0x07) {
+    switch(Columnas & 0x07) {
         case 0x01: columna = 0; break;  // 110
         case 0x02: columna = 1; break;  // 101
         case 0x04: columna = 2; break;  // 011
@@ -112,7 +123,7 @@ static unsigned char GetTecla(unsigned char filas, unsigned char columnas) {
     return keymap[fila][columna];
 }
 
-static void StopRequest(unsigned char key) {    
+void showTecla(void) {    
     // In this test, i just want to print the key pressed
-    LATD = (LATD & 0xF0) | (key & 0x0F);
+    LATD = tecla;
 }

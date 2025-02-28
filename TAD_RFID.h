@@ -1,5 +1,5 @@
-#ifndef _TFID_H_
-#define	_TFID_H_
+#ifndef _TAD_RFID_H_
+#define	_TAD_RFID_H_
 
 #include <xc.h> 
 
@@ -136,20 +136,20 @@ RST: Reset
 //-------------- Private functions: --------------
 unsigned char MFRC522_Rd(unsigned char Address);
 void MFRC522_Wr(unsigned char Address, unsigned char value);
-void MFRC522_Clear_Bit( char addr, char mask );
-void MFRC522_Set_Bit( char addr, char mask );
+void MFRC522_Clear_Bit(char addr, char mask);
+void MFRC522_Set_Bit(char addr, char mask);
 void MFRC522_Reset();
 void MFRC522_AntennaOn();
 void MFRC522_AntennaOff();
 void MFRC522_Init();
-char MFRC522_ToCard( char command, char *sendData, char sendLen, char *backData, unsigned *backLen );
-char MFRC522_Request( char reqMode, char *TagType );
-void MFRC522_CRC( char *dataIn, char length, char *dataOut );
-char MFRC522_SelectTag( char *serNum );
+char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
+char MFRC522_Request(char reqMode, char *TagType);
+void MFRC522_CRC(char *dataIn, char length, char *dataOut);
+char MFRC522_SelectTag(char *serNum);
 void MFRC522_Halt();
-char MFRC522_AntiColl( char *serNum );
-char MFRC522_isCard(  char *TagType );
-char MFRC522_ReadCardSerial( unsigned char *str );
+char MFRC522_AntiColl(unsigned char *serNum);
+char MFRC522_isCard(char *TagType);
+char MFRC522_ReadCardSerial(unsigned char *str);
 
 //-------------- Public functions: --------------
 void initRFID(void);

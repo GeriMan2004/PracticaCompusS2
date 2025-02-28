@@ -2,7 +2,7 @@
 #include "TAD_TIMER.h"
 #include "TAD_TECLADO.h"
 
-#pragma config OSC = HSPLL
+#pragma config OSC = HS
 #pragma config PBADEN = DIG
 #pragma config MCLRE = OFF
 #pragma config DEBUG = OFF
@@ -19,8 +19,6 @@
 void main(void);
 void InitPorts(void);
 
-
-int tick_count;
 //Important: NO es poden cridar les funcions d'interrupcions des del codi
 //ja que les seves funcions de retorn en asm s?n diferents.
 //Definici? d'una interrupci? d'alta prioritat. 
@@ -55,8 +53,8 @@ void InitPorts(void) {
 	ADCON1 = 0x0F;
 	
 	// Configure rows (RA0-RA3) as inputs with pull-ups
-	TRISA |= 0x0F;
-
+	TRISA |= 0x0F;      // RA0-RA3 como entradas
+	
 	INTCON2bits.RBPU = 0;
 	
 	// Configure columns (RB0-RB2) as outputs

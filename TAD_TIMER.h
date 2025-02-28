@@ -5,15 +5,12 @@
 
 // TAD TIMER. Honor i gl?ria
 
-
-#ifndef T_TIMER_H
-#define T_TIMER_H
-
+#ifndef _TAD_TIMER_H_
+#define _TAD_TIMER_H_
 
 // CONSTANTS
 #define TI_FALS 0
 #define TI_CERT 1
-
 
 //La RSI
 void RSI_Timer0(void);
