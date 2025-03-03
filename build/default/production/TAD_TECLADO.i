@@ -4817,7 +4817,9 @@ void TI_End (void);
 
 
 void initTeclado(void);
+void initPortsTeclado(void);
 void motorTeclado(void);
+void writeColumnas(void);
 unsigned char GetTecla(void);
 void showTecla(void);
 # 3 "TAD_TECLADO.c" 2
@@ -4826,14 +4828,22 @@ static unsigned char Filas, Columnas, timer, tecla = 0;
 
 
 static unsigned char ReadFilas(void) {
-    return (PORTA & 0x0F);
+    return (PORTD & 0x0F);
 }
 
 void initTeclado(void) {
+ initPortsTeclado();
     Filas = 0x00;
     Columnas = 0x00;
     tecla = 0;
     TI_NewTimer(&timer);
+}
+
+void initPortsTeclado(void) {
+ TRISD = 0x0F;
+ LATD = 0x00;
+ TRISB = 0x00;
+ LATB = 0x00;
 }
 
 
@@ -4847,7 +4857,7 @@ void motorTeclado(void) {
   case 0:
    if (Filas == 0x0) {
     Columnas = (0x01);
-    LATB = Columnas;
+    writeColumnas();
     state = 1;
    }
    else if (Filas != 0x0) {
@@ -4858,7 +4868,7 @@ void motorTeclado(void) {
   case 1:
    if (Filas == 0x0) {
     Columnas = (0x02);
-    LATB = Columnas;
+    writeColumnas();
     state = 2;
    }
    else if (Filas != 0x0) {
@@ -4873,7 +4883,7 @@ void motorTeclado(void) {
    }
    else if (Filas == 0x0) {
     Columnas = (0x04);
-    LATB = Columnas;
+    writeColumnas();
     state = 0;
    }
   break;
@@ -4881,7 +4891,7 @@ void motorTeclado(void) {
    tecla = GetTecla ();
    if (Filas == 0x0) {
     Columnas = (0x04);
-    LATB = Columnas;
+    writeColumnas();
     state = 0;
    }
    else if (Filas != 0x0 && TI_GetTics(timer) > 8 && tecla != 11) {
@@ -4907,11 +4917,28 @@ void motorTeclado(void) {
    if (Filas == 0x0) {
     state = 0;
     Columnas = (0x04);
-    LATB = Columnas;
+    writeColumnas();
    }
   break;
  }
- LATD = (LATD & 0x0F) | ((unsigned char)(state << 4));
+ LATB = (LATB & 0x0F) | ((unsigned char)(state << 4));
+}
+
+
+
+
+
+void writeColumnas(void) {
+ unsigned char out = 0x00;
+    if (Columnas == 0x01)
+        out = 0x20;
+    else if (Columnas == 0x02)
+        out = 0x40;
+    else if (Columnas == 0x04)
+        out = 0x10;
+
+
+    LATD = (LATD & 0x8F) | (out & 0x70);
 }
 
 unsigned char GetTecla(void) {
@@ -4946,5 +4973,5 @@ unsigned char GetTecla(void) {
 
 void showTecla(void) {
 
-    LATD = tecla;
+    LATB = tecla;
 }

@@ -4851,7 +4851,9 @@ void ReadRFID_NoCooperatiu(void);
 # 1 "./TAD_TECLADO.h" 1
 # 10 "./TAD_TECLADO.h"
 void initTeclado(void);
+void initPortsTeclado(void);
 void motorTeclado(void);
+void writeColumnas(void);
 unsigned char GetTecla(void);
 void showTecla(void);
 # 6 "main.c" 2
@@ -4886,7 +4888,6 @@ extern void __attribute__((picinterrupt(("low_priority")))) LowRSI (void){
 
 
 void main(void){
- InitPorts();
  TI_Init();
  initTeclado();
  initRFID();
@@ -4898,28 +4899,10 @@ void main(void){
 
  while(1){
   motorTeclado();
-  ReadRFID_NoCooperatiu();
+
  }
 }
 
-
-void InitPorts(void) {
-
- ADCON1 = 0x0F;
-
-
- TRISA |= 0x0F;
-
- INTCON2bits.RBPU = 0;
-
-
- TRISB &= 0xF8;
- LATB |= 0x00;
-
-
- TRISD = 0x00;
- LATD = 0x00;
-}
 
 
 void ProcessKey(unsigned char key) {
