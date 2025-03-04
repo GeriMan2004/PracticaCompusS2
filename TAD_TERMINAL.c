@@ -1,5 +1,6 @@
 #include <xc.h>
 #include "TAD_TERMINAL.h"
+#include "TAD_TECLADO.h"
 #include "TAD_DATOS.h"
 #include <stdio.h>
 #include <string.h>
@@ -90,6 +91,7 @@ void motorTerminal(void) {
 		break;
 		case 1:
 			if(Terminal_RXAvailable() == 1){
+				initTeclado();
 				if (Terminal_ReceiveChar() == '1') {
 					Terminal_SendString("Has pulsado 1");
 					// getActualUID();

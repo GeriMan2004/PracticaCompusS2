@@ -4823,6 +4823,16 @@ void showMenu(void);
 void hashtag_pressed3s(void);
 void motorTerminal(void);
 # 3 "TAD_TERMINAL.c" 2
+# 1 "./TAD_TECLADO.h" 1
+# 10 "./TAD_TECLADO.h"
+static unsigned char ReadFilas(void);
+void initTeclado(void);
+void initPortsTeclado(void);
+void motorTeclado(void);
+void writeColumnas(void);
+unsigned char GetTecla(void);
+void showTecla(void);
+# 4 "TAD_TERMINAL.c" 2
 # 1 "./TAD_DATOS.h" 1
 # 10 "./TAD_DATOS.h"
 extern unsigned char userUIDs[3][5];
@@ -4832,7 +4842,7 @@ extern unsigned char configurations[3][6];
 unsigned char getActualUID(void);
 unsigned char getUserConfiguration(void);
 void setUserConfiguration(unsigned char led[6], unsigned char UID);
-# 4 "TAD_TERMINAL.c" 2
+# 5 "TAD_TERMINAL.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
@@ -4985,7 +4995,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 5 "TAD_TERMINAL.c" 2
+# 6 "TAD_TERMINAL.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 1 3
 # 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
@@ -5043,7 +5053,7 @@ size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
 
 
 void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 6 "TAD_TERMINAL.c" 2
+# 7 "TAD_TERMINAL.c" 2
 
 char hashtag_pressed = 0;
 
@@ -5131,6 +5141,7 @@ void motorTerminal(void) {
   break;
   case 1:
    if(Terminal_RXAvailable() == 1){
+    initTeclado();
     if (Terminal_ReceiveChar() == '1') {
      Terminal_SendString("Has pulsado 1");
 

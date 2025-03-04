@@ -113,29 +113,29 @@
 [v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
 "31
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
-"108
+"111
 [v _writeColumnas writeColumnas `(v  1 e 1 0 ]
-"121
+"124
 [v _GetTecla GetTecla `(uc  1 e 1 0 ]
-"151
+"154
 [v _showTecla showTecla `(v  1 e 1 0 ]
-"9 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _displayUID displayUID `(v  1 e 1 0 ]
-"25
+"26
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
-"34
+"35
 [v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
-"39
+"40
 [v _Terminal_RXAvailable Terminal_RXAvailable `(uc  1 e 1 0 ]
-"44
+"45
 [v _Terminal_SendChar Terminal_SendChar `(v  1 e 1 0 ]
-"49
+"50
 [v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
-"54
+"55
 [v _Terminal_SendString Terminal_SendString `(v  1 e 1 0 ]
-"61
+"62
 [v _showMenu showMenu `(v  1 e 1 0 ]
-"77
+"78
 [v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 "25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
@@ -147,7 +147,7 @@
 [v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
 "61
 [v _TI_GetTics TI_GetTics `(ul  1 e 4 0 ]
-[s S528 . 1 `uc 1 RB0 1 0 :1:0 
+[s S530 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -157,7 +157,7 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "326 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[s S635 . 1 `uc 1 INT0 1 0 :1:0 
+[s S637 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 CCP2 1 0 :1:3 
@@ -166,7 +166,7 @@
 `uc 1 KBI2 1 0 :1:6 
 `uc 1 KBI3 1 0 :1:7 
 ]
-[s S644 . 1 `uc 1 AN12 1 0 :1:0 
+[s S646 . 1 `uc 1 AN12 1 0 :1:0 
 `uc 1 AN10 1 0 :1:1 
 `uc 1 AN8 1 0 :1:2 
 `uc 1 AN9 1 0 :1:3 
@@ -175,14 +175,14 @@
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S653 . 1 `uc 1 FLT0 1 0 :1:0 
+[s S655 . 1 `uc 1 FLT0 1 0 :1:0 
 ]
-[s S655 . 1 `uc 1 . 1 0 :3:0 
+[s S657 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S658 . 1 `S528 1 . 1 0 `S635 1 . 1 0 `S644 1 . 1 0 `S653 1 . 1 0 `S655 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES658  1 e 1 @3969 ]
-[s S253 . 1 `uc 1 RC0 1 0 :1:0 
+[u S660 . 1 `S530 1 . 1 0 `S637 1 . 1 0 `S646 1 . 1 0 `S655 1 . 1 0 `S657 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES660  1 e 1 @3969 ]
+[s S255 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -192,7 +192,7 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "506
-[s S337 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S339 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 SCK 1 0 :1:3 
@@ -201,7 +201,7 @@
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S346 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S348 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 `uc 1 SCL 1 0 :1:3 
@@ -210,17 +210,17 @@
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S355 . 1 `uc 1 T1CKI 1 0 :1:0 
+[s S357 . 1 `uc 1 T1CKI 1 0 :1:0 
 ]
-[s S357 . 1 `uc 1 . 1 0 :1:0 
+[s S359 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[u S361 . 1 `S253 1 . 1 0 `S337 1 . 1 0 `S346 1 . 1 0 `S355 1 . 1 0 `S357 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES361  1 e 1 @3970 ]
+[u S363 . 1 `S255 1 . 1 0 `S339 1 . 1 0 `S348 1 . 1 0 `S357 1 . 1 0 `S359 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES363  1 e 1 @3970 ]
 "641
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
-[s S586 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S588 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -230,7 +230,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "1125
-[s S595 . 1 `uc 1 LB0 1 0 :1:0 
+[s S597 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -239,11 +239,11 @@
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S604 . 1 `S586 1 . 1 0 `S595 1 . 1 0 ]
-[v _LATBbits LATBbits `VES604  1 e 1 @3978 ]
+[u S606 . 1 `S588 1 . 1 0 `S597 1 . 1 0 ]
+[v _LATBbits LATBbits `VES606  1 e 1 @3978 ]
 "1210
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S288 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S290 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -253,7 +253,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1237
-[s S297 . 1 `uc 1 LC0 1 0 :1:0 
+[s S299 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -262,11 +262,11 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S306 . 1 `S288 1 . 1 0 `S297 1 . 1 0 ]
-[v _LATCbits LATCbits `VES306  1 e 1 @3979 ]
+[u S308 . 1 `S290 1 . 1 0 `S299 1 . 1 0 ]
+[v _LATCbits LATCbits `VES308  1 e 1 @3979 ]
 "1322
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-[s S519 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S521 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -276,9 +276,9 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1740
-[u S537 . 1 `S519 1 . 1 0 `S528 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES537  1 e 1 @3987 ]
-[s S244 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S539 . 1 `S521 1 . 1 0 `S530 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES539  1 e 1 @3987 ]
+[s S246 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -288,11 +288,11 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1962
-[u S262 . 1 `S244 1 . 1 0 `S253 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES262  1 e 1 @3988 ]
+[u S264 . 1 `S246 1 . 1 0 `S255 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES264  1 e 1 @3988 ]
 "2152
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
-[s S767 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S769 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -302,12 +302,12 @@
 `uc 1 PSPIF 1 0 :1:7 
 ]
 "2702
-[s S776 . 1 `uc 1 . 1 0 :4:0 
+[s S778 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 ]
-[u S780 . 1 `S767 1 . 1 0 `S776 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES780  1 e 1 @3998 ]
+[u S782 . 1 `S769 1 . 1 0 `S778 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES782  1 e 1 @3998 ]
 "3119
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
 "3329
@@ -371,7 +371,7 @@
 [v _Columnas Columnas `uc  1 s 1 Columnas ]
 [v _timer timer `uc  1 s 1 timer ]
 [v _tecla tecla `uc  1 s 1 tecla ]
-"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"8 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _hashtag_pressed hashtag_pressed `uc  1 e 1 0 ]
 [s S135 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
 "21 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
@@ -383,90 +383,111 @@
 {
 "51
 } 0
-"77 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"78 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 {
-"78
+"79
 [v motorTerminal@state state `uc  1 s 1 state ]
-"113
+"115
 } 0
-"61
+"62
 [v _showMenu showMenu `(v  1 e 1 0 ]
 {
-"70
+"71
 } 0
-"49
-[v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
+"14 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+[v _initTeclado initTeclado `(v  1 e 1 0 ]
 {
+"20
+} 0
+"22
+[v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
+{
+"25
+} 0
+"43 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
+[v _TI_NewTimer TI_NewTimer `(uc  1 e 1 0 ]
+{
+"44
+[v TI_NewTimer@Comptador Comptador `uc  1 a 1 3 ]
+"43
+[v TI_NewTimer@TimerHandle TimerHandle `*.30uc  1 p 1 1 ]
 "51
 } 0
-"39
+"50 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+[v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
+{
+"52
+} 0
+"40
 [v _Terminal_RXAvailable Terminal_RXAvailable `(uc  1 e 1 0 ]
 {
-"41
+"42
 } 0
 "31 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
 {
+"102
+[v motorTeclado@buffer buffer `[32]uc  1 a 32 0 ]
 "32
 [v motorTeclado@state state `uc  1 s 1 state ]
-"102
+"105
 } 0
-"108
+"111
 [v _writeColumnas writeColumnas `(v  1 e 1 0 ]
 {
-"109
+"112
 [v writeColumnas@out out `uc  1 a 1 2 ]
-"119
+"122
 } 0
-"151
+"154
 [v _showTecla showTecla `(v  1 e 1 0 ]
 {
-"153
-[v showTecla@buffer buffer `[32]uc  1 a 32 42 ]
 "156
+[v showTecla@buffer buffer `[32]uc  1 a 32 53 ]
+"159
 } 0
 "9 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[u S1281 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
+[u S1284 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
 "13
-[s S1284 _IO_FILE 11 `S1281 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v sprintf@f f `S1284  1 a 11 31 ]
+[s S1287 _IO_FILE 11 `S1284 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S1287  1 a 11 42 ]
 "12
-[v sprintf@ap ap `[1]*.30v  1 a 1 30 ]
+[v sprintf@ap ap `[1]*.30v  1 a 1 41 ]
 "9
-[v sprintf@s s `*.30uc  1 p 1 26 ]
-[v sprintf@fmt fmt `*.31Cuc  1 p 1 27 ]
+[v sprintf@s s `*.30uc  1 p 1 30 ]
+[v sprintf@fmt fmt `*.32Cuc  1 p 2 31 ]
 "23
 } 0
 "1817 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
 [v _vfprintf vfprintf `(i  1 e 2 0 ]
 {
 "1820
-[v vfprintf@cfmt cfmt `*.31uc  1 a 1 25 ]
-[s S1316 _IO_FILE 0 ]
+[v vfprintf@cfmt cfmt `*.32uc  1 a 2 28 ]
+[s S1319 _IO_FILE 0 ]
 "1817
-[v vfprintf@fp fp `*.30S1316  1 p 1 22 ]
-[v vfprintf@fmt fmt `*.31Cuc  1 p 1 23 ]
-[v vfprintf@ap ap `*.30*.30v  1 p 1 24 ]
+[v vfprintf@fp fp `*.30S1319  1 p 1 24 ]
+[v vfprintf@fmt fmt `*.32Cuc  1 p 2 25 ]
+[v vfprintf@ap ap `*.30*.30v  1 p 1 27 ]
 "1840
 } 0
 "1177
 [v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
 {
-[u S1329 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
+[u S1332 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
 "1188
-[v vfpfcnvrt@convarg convarg `S1329  1 a 4 17 ]
+[v vfpfcnvrt@convarg convarg `S1332  1 a 4 19 ]
 "1179
-[v vfpfcnvrt@c c `uc  1 a 1 21 ]
-[v vfpfcnvrt@cp cp `*.31uc  1 a 1 16 ]
+[v vfpfcnvrt@cp cp `*.32uc  1 a 2 17 ]
+[v vfpfcnvrt@c c `uc  1 a 1 23 ]
 "1180
-[v vfpfcnvrt@done done `a  1 a 1 15 ]
-[s S1316 _IO_FILE 0 ]
+[v vfpfcnvrt@done done `a  1 a 1 16 ]
+[s S1319 _IO_FILE 0 ]
 "1177
-[v vfpfcnvrt@fp fp `*.30S1316  1 p 1 11 ]
-[v vfpfcnvrt@fmt fmt `*.30*.31uc  1 p 1 12 ]
+[v vfpfcnvrt@fp fp `*.30S1319  1 p 1 11 ]
+[v vfpfcnvrt@fmt fmt `*.30*.32uc  1 p 1 12 ]
 [v vfpfcnvrt@ap ap `*.30*.30v  1 p 1 13 ]
 "1814
 } 0
@@ -474,9 +495,9 @@
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 1 ]
-[u S1281 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
-[s S1284 _IO_FILE 11 `S1281 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.30S1284  1 p 1 3 ]
+[u S1284 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
+[s S1287 _IO_FILE 11 `S1284 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.30S1287  1 p 1 3 ]
 "24
 } 0
 "7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\putch.c
@@ -514,24 +535,24 @@
 [v ___awdiv@divisor divisor `i  1 p 2 3 ]
 "41
 } 0
-"54 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"55 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _Terminal_SendString Terminal_SendString `(v  1 e 1 0 ]
 {
 [v Terminal_SendString@str str `*.35Cuc  1 p 2 4 ]
-"59
+"60
 } 0
-"34
+"35
 [v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
 {
-"36
+"37
 } 0
-"44
+"45
 [v _Terminal_SendChar Terminal_SendChar `(v  1 e 1 0 ]
 {
 [v Terminal_SendChar@c c `uc  1 p 1 wreg ]
 [v Terminal_SendChar@c c `uc  1 p 1 wreg ]
 [v Terminal_SendChar@c c `uc  1 p 1 1 ]
-"46
+"47
 } 0
 "53 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
@@ -558,37 +579,18 @@
 {
 "12
 } 0
-"121
+"124
 [v _GetTecla GetTecla `(uc  1 e 1 0 ]
 {
-"141
+"144
 [v GetTecla@keymap keymap `C[4][3]uc  1 a 12 3 ]
-"122
+"125
 [v GetTecla@fila fila `uc  1 a 1 16 ]
-"123
+"126
 [v GetTecla@columna columna `uc  1 a 1 15 ]
-"139
-[v GetTecla@F3224 F3224 `C[4][3]uc  1 s 12 F3224 ]
-"149
-} 0
-"14
-[v _initTeclado initTeclado `(v  1 e 1 0 ]
-{
-"20
-} 0
-"22
-[v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
-{
-"25
-} 0
-"43 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-[v _TI_NewTimer TI_NewTimer `(uc  1 e 1 0 ]
-{
-"44
-[v TI_NewTimer@Comptador Comptador `uc  1 a 1 3 ]
-"43
-[v TI_NewTimer@TimerHandle TimerHandle `*.30uc  1 p 1 1 ]
-"51
+"142
+[v GetTecla@F3225 F3225 `C[4][3]uc  1 s 12 F3225 ]
+"152
 } 0
 "294 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _initRFID initRFID `(v  1 e 1 0 ]
@@ -678,10 +680,10 @@
 {
 "21
 } 0
-"25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"26 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
 {
-"31
+"32
 } 0
 "32 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_Init TI_Init `(v  1 e 1 0 ]

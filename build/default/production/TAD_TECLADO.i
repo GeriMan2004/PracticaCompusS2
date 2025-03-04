@@ -5148,6 +5148,9 @@ void motorTeclado(void) {
    }
   break;
  }
+ char buffer[32];
+ sprintf(buffer, "State: %d\tFilas: %d\tColumnas: %d\tTecla: %d\r\n", state, Filas, Columnas, tecla);
+    Terminal_SendString(buffer);
 }
 
 
