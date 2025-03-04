@@ -683,8 +683,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "79
 [; ;TAD_TERMINAL.c: 79:  static char state = 0;
-[v F3236 `uc ~T0 @X0 1 s state ]
-[i F3236
+[v F3232 `uc ~T0 @X0 1 s state ]
+[i F3232
 -> -> 0 `i `uc
 ]
 "81
@@ -703,7 +703,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _showMenu ..  ]
 "85
 [; ;TAD_TERMINAL.c: 85:     state = 1;
-[e = F3236 -> -> 1 `i `uc ]
+[e = F3232 -> -> 1 `i `uc ]
 "86
 [; ;TAD_TERMINAL.c: 86:    }
 }
@@ -717,7 +717,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _showMenu ..  ]
 "89
 [; ;TAD_TERMINAL.c: 89:     state = 1;
-[e = F3236 -> -> 1 `i `uc ]
+[e = F3232 -> -> 1 `i `uc ]
 "90
 [; ;TAD_TERMINAL.c: 90:    }
 }
@@ -744,7 +744,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Terminal_SendString (1 :s 11C ]
 "98
 [; ;TAD_TERMINAL.c: 98:      state = 0;
-[e = F3236 -> -> 0 `i `uc ]
+[e = F3232 -> -> 0 `i `uc ]
 "99
 [; ;TAD_TERMINAL.c: 99:     }
 }
@@ -756,7 +756,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "102
 [; ;TAD_TERMINAL.c: 102:      state = 0;
-[e = F3236 -> -> 0 `i `uc ]
+[e = F3232 -> -> 0 `i `uc ]
 "103
 [; ;TAD_TERMINAL.c: 103:     }
 }
@@ -768,7 +768,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "106
 [; ;TAD_TERMINAL.c: 106:      state = 0;
-[e = F3236 -> -> 0 `i `uc ]
+[e = F3232 -> -> 0 `i `uc ]
 "107
 [; ;TAD_TERMINAL.c: 107:     }
 }
@@ -782,7 +782,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _Terminal_SendString (1 :s 12C ]
 "110
 [; ;TAD_TERMINAL.c: 110:      state = 0;
-[e = F3236 -> -> 0 `i `uc ]
+[e = F3232 -> -> 0 `i `uc ]
 "111
 [; ;TAD_TERMINAL.c: 111:     }
 }
@@ -801,7 +801,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 324  ]
 [e :U 325 ]
-[e [\ F3236 , $ -> 0 `i 326
+[e [\ F3232 , $ -> 0 `i 326
  , $ -> 1 `i 329
  324 ]
 [e :U 324 ]

@@ -4835,13 +4835,11 @@ void showTecla(void);
 # 4 "TAD_TERMINAL.c" 2
 # 1 "./TAD_DATOS.h" 1
 # 10 "./TAD_DATOS.h"
-extern unsigned char userUIDs[3][5];
-extern unsigned char configurations[3][6];
-
-
-unsigned char getActualUID(void);
-unsigned char getUserConfiguration(void);
-void setUserConfiguration(unsigned char led[6], unsigned char UID);
+unsigned char* getActualUID(void);
+unsigned char* getUsersConfigurations(void);
+void newUser(void);
+void newConfiguration(void);
+void motor_datos(void);
 # 5 "TAD_TERMINAL.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3

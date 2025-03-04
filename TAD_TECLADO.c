@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-static unsigned char Filas, Columnas, timer, tecla = 0;
+static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
 
 
 static unsigned char ReadFilas(void) {
@@ -16,11 +16,12 @@ void initTeclado(void) {
     Filas = 0x00;    // Initialize rows to all high (pulled up)
     Columnas = 0x00;  // Initialize columns to all high
     tecla = 0;
+	state = 0;
     TI_NewTimer(&timer);
 }
 
 void initPortsTeclado(void) {
-	TRISD = 0x0F; // Set the lower 3 bits as outputs (columns) and the upper 4 bits as inputs (rows)
+	TRISD = 0x0F; // Set the lower 4 bits as inputs, Filas, and the upper 3 bits (4, 5 y 6) as outpus, Columnas
 	LATD = 0x00;  // Initialize all columns to low
 }
 /**
@@ -29,8 +30,10 @@ void initPortsTeclado(void) {
  * manera se ahorran un estado
  */
 void motorTeclado(void) {
-	static char state = 0;
 	Filas = ReadFilas();
+	char buffer[32];
+	sprintf(buffer, "State: %d\tFilas: %d\tColumnas: %d\tTecla: %d\r\n", state, Filas, Columnas, tecla);
+    Terminal_SendString(buffer);
 	switch(state) {
 		case 0:
 			if (Filas == 0x0) {
@@ -73,8 +76,6 @@ void motorTeclado(void) {
 				state = 0;
 			}
 			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla != 11) {
-				LATD = tecla;
-				showTecla();
 				state = 5;
 			}
 			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla == 11) {
@@ -87,7 +88,8 @@ void motorTeclado(void) {
 				state = 0;
 			}
 			else if (Filas != 0x0 && TI_GetTics(timer) > HASHTAG_TIME) {
-				// ResetData();
+				hashtag_pressed3s();
+				// zzResetData();
 				state = 5;
 			}
 		break;
@@ -99,9 +101,6 @@ void motorTeclado(void) {
 			}
 		break;
 	}
-	char buffer[32];
-	sprintf(buffer, "State: %d\tFilas: %d\tColumnas: %d\tTecla: %d\r\n", state, Filas, Columnas, tecla);
-    Terminal_SendString(buffer);
 }
 /**
  * En esta función, printaremos la columna en el puerto D, pero teniendo en cuenta que utilizo los bits 4-6
@@ -109,16 +108,17 @@ void motorTeclado(void) {
  * sea el bit 5, columna 2 sea el bit 6 y columna 3 sea el bit 4, esto debido a que era mas facil de soldar
  */
 void writeColumnas(void) {
-	unsigned char out = 0x00;
-    if (Columnas == 0x01)
-        out = 0x20;  // Columna 1 -> Bit 5
-    else if (Columnas == 0x02)
-        out = 0x40;  // Columna 2 -> Bit 6
-    else if (Columnas == 0x04)
-        out = 0x10;  // Columna 3 -> Bit 4
-
-    // Se conservan los bits 7 y 3-0 de LATD y se reemplazan los bits 6-4 con 'out'
-    LATD = (LATD & 0x8F) | (out & 0x70);
+    LATD = (0x00);  
+    if (Columnas == 0x01) {
+        // Columna 1 -> Bit 5
+        LATD |= (1 << 5);  // Set bit 5
+    } else if (Columnas == 0x02) {
+        // Columna 2 -> Bit 6
+        LATD |= (1 << 6);  // Set bit 6
+    } else if (Columnas == 0x04) {
+        // Columna 3 -> Bit 4
+        LATD |= (1 << 4);  // Set bit 4
+    }
 }
 
 unsigned char GetTecla(void) {
@@ -149,11 +149,4 @@ unsigned char GetTecla(void) {
     };
     
     return keymap[fila][columna];
-}
-
-void showTecla(void) {    
-    // In this test, i just want to print the key pressed
-	char buffer[32];
-	sprintf(buffer, "Tecla: %d", tecla);
-    Terminal_SendString(buffer);
 }
