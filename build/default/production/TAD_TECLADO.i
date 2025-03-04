@@ -4816,24 +4816,261 @@ void TI_End (void);
 
 
 
+static unsigned char ReadFilas(void);
 void initTeclado(void);
+void initPortsTeclado(void);
 void motorTeclado(void);
+void writeColumnas(void);
 unsigned char GetTecla(void);
 void showTecla(void);
 # 3 "TAD_TECLADO.c" 2
+# 1 "./TAD_TERMINAL.h" 1
+
+
+
+
+
+void displayUID(unsigned char *uid);
+void Terminal_Init(void);
+int Terminal_TXAvailable(void);
+char Terminal_RXAvailable(void);
+void Terminal_SendChar(char c);
+char Terminal_ReceiveChar(void);
+void Terminal_SendString(const char *str);
+void showMenu(void);
+void hashtag_pressed3s(void);
+void motorTerminal(void);
+# 4 "TAD_TECLADO.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
+# 12 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 143 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef __int24 ssize_t;
+# 255 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 409 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+
+
+
+
+
+int ungetc(int, FILE *);
+int getch(void);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+
+
+
+
+void putch(char);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 5 "TAD_TECLADO.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 1 3
+# 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
+# 421 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef struct __locale_struct * locale_t;
+# 26 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 2 3
+
+void *memcpy (void *restrict, const void *restrict, size_t);
+void *memmove (void *, const void *, size_t);
+void *memset (void *, int, size_t);
+int memcmp (const void *, const void *, size_t);
+void *memchr (const void *, int, size_t);
+
+char *strcpy (char *restrict, const char *restrict);
+char *strncpy (char *restrict, const char *restrict, size_t);
+
+char *strcat (char *restrict, const char *restrict);
+char *strncat (char *restrict, const char *restrict, size_t);
+
+int strcmp (const char *, const char *);
+int strncmp (const char *, const char *, size_t);
+
+int strcoll (const char *, const char *);
+size_t strxfrm (char *restrict, const char *restrict, size_t);
+
+char *strchr (const char *, int);
+char *strrchr (const char *, int);
+
+size_t strcspn (const char *, const char *);
+size_t strspn (const char *, const char *);
+char *strpbrk (const char *, const char *);
+char *strstr (const char *, const char *);
+char *strtok (char *restrict, const char *restrict);
+
+size_t strlen (const char *);
+
+char *strerror (int);
+
+
+
+
+char *strtok_r (char *restrict, const char *restrict, char **restrict);
+int strerror_r (int, char *, size_t);
+char *stpcpy(char *restrict, const char *restrict);
+char *stpncpy(char *restrict, const char *restrict, size_t);
+size_t strnlen (const char *, size_t);
+char *strdup (const char *);
+char *strndup (const char *, size_t);
+char *strsignal(int);
+char *strerror_l (int, locale_t);
+int strcoll_l (const char *, const char *, locale_t);
+size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
+
+
+
+
+void *memccpy (void *restrict, const void *restrict, int, size_t);
+# 6 "TAD_TECLADO.c" 2
 
 static unsigned char Filas, Columnas, timer, tecla = 0;
 
 
 static unsigned char ReadFilas(void) {
-    return (PORTA & 0x0F);
+    return (PORTD & 0x0F);
 }
 
 void initTeclado(void) {
+ initPortsTeclado();
     Filas = 0x00;
     Columnas = 0x00;
     tecla = 0;
     TI_NewTimer(&timer);
+}
+
+void initPortsTeclado(void) {
+ TRISD = 0x0F;
+ LATD = 0x00;
 }
 
 
@@ -4847,7 +5084,7 @@ void motorTeclado(void) {
   case 0:
    if (Filas == 0x0) {
     Columnas = (0x01);
-    LATB = Columnas;
+    writeColumnas();
     state = 1;
    }
    else if (Filas != 0x0) {
@@ -4858,7 +5095,7 @@ void motorTeclado(void) {
   case 1:
    if (Filas == 0x0) {
     Columnas = (0x02);
-    LATB = Columnas;
+    writeColumnas();
     state = 2;
    }
    else if (Filas != 0x0) {
@@ -4873,7 +5110,7 @@ void motorTeclado(void) {
    }
    else if (Filas == 0x0) {
     Columnas = (0x04);
-    LATB = Columnas;
+    writeColumnas();
     state = 0;
    }
   break;
@@ -4881,7 +5118,7 @@ void motorTeclado(void) {
    tecla = GetTecla ();
    if (Filas == 0x0) {
     Columnas = (0x04);
-    LATB = Columnas;
+    writeColumnas();
     state = 0;
    }
    else if (Filas != 0x0 && TI_GetTics(timer) > 8 && tecla != 11) {
@@ -4907,11 +5144,30 @@ void motorTeclado(void) {
    if (Filas == 0x0) {
     state = 0;
     Columnas = (0x04);
-    LATB = Columnas;
+    writeColumnas();
    }
   break;
  }
- LATD = (LATD & 0x0F) | ((unsigned char)(state << 4));
+ char buffer[32];
+ sprintf(buffer, "State: %d\tFilas: %d\tColumnas: %d\tTecla: %d\r\n", state, Filas, Columnas, tecla);
+    Terminal_SendString(buffer);
+}
+
+
+
+
+
+void writeColumnas(void) {
+ unsigned char out = 0x00;
+    if (Columnas == 0x01)
+        out = 0x20;
+    else if (Columnas == 0x02)
+        out = 0x40;
+    else if (Columnas == 0x04)
+        out = 0x10;
+
+
+    LATD = (LATD & 0x8F) | (out & 0x70);
 }
 
 unsigned char GetTecla(void) {
@@ -4946,5 +5202,7 @@ unsigned char GetTecla(void) {
 
 void showTecla(void) {
 
-    LATD = tecla;
+ char buffer[32];
+ sprintf(buffer, "Tecla: %d", tecla);
+    Terminal_SendString(buffer);
 }

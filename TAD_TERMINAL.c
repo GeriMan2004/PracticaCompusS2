@@ -1,6 +1,9 @@
 #include <xc.h>
 #include "TAD_TERMINAL.h"
+#include "TAD_TECLADO.h"
 #include "TAD_DATOS.h"
+#include <stdio.h>
+#include <string.h>
 
 char hashtag_pressed = 0;
 
@@ -57,13 +60,13 @@ void Terminal_SendString(const char *str) {
 }
 
 void showMenu(void) {
-	Terminal_SendString("---------------");
-	Terminal_SendString("Menú principal");
-	Terminal_SendString("---------------");
-	Terminal_SendString("Tria una opció:\n");
-	Terminal_SendString("\t1. Qui hi ha a la sala?");
-	Terminal_SendString("\t2. Mostrar configuracions");
-	Terminal_SendString("\t3. Modificar hora del sistema\n");
+	Terminal_SendString("---------------\r\n");
+	Terminal_SendString("Menú principal\r\n");
+	Terminal_SendString("---------------\r\n");
+	Terminal_SendString("Tria una opció:\r\n");
+	Terminal_SendString("\t1. Qui hi ha a la sala?\r\n");
+	Terminal_SendString("\t2. Mostrar configuracions\r\n");
+	Terminal_SendString("\t3. Modificar hora del sistema\r\n");
 	Terminal_SendString("Opció: ");
 }
 
@@ -88,20 +91,22 @@ void motorTerminal(void) {
 		break;
 		case 1:
 			if(Terminal_RXAvailable() == 1){
-				if (Terminal_ReceiveChar() == 1) {
-					getActualUID();
+				initTeclado();
+				if (Terminal_ReceiveChar() == '1') {
+					Terminal_SendString("Has pulsado 1");
+					// getActualUID();
 					state = 0;  
 				}
-				else if (Terminal_ReceiveChar() == 2) {
-					getUserConfiguration();
+				else if (Terminal_ReceiveChar() == '2') {
+					// getUserConfiguration();
 					state = 0;
 				}
-				else if (Terminal_ReceiveChar() == 3) {
+				else if (Terminal_ReceiveChar() == '3') {
 					//modifyHour();
 					state = 0;
 				}
 				else {
-					Terminal_SendString("ERROR. Valor introduit erroni.");
+					Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
 					state = 0;
 				}
 			}

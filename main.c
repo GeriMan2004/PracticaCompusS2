@@ -34,7 +34,6 @@ extern void __interrupt (low_priority) LowRSI (void){
 
 
 void main(void){
-	InitPorts();
 	TI_Init();      // Initialize Timer system
 	initTeclado();  // Initialize Keyboard
 	initRFID();     // Initialize RFID
@@ -46,28 +45,11 @@ void main(void){
 	
 	while(1){
 		motorTeclado();  // Run keyboard state machine
-		ReadRFID_NoCooperatiu();  // Run RFID read public function
+        motorTerminal();
+		// ReadRFID_NoCooperatiu();  // Run RFID read public function
 	}				
 }
 
-
-void InitPorts(void) {
-	// Configure all analog capable pins as digital
-	ADCON1 = 0x0F;
-	
-	// Configure rows (RA0-RA3) as inputs with pull-ups
-	TRISA |= 0x0F;      // RA0-RA3 como entradas
-	
-	INTCON2bits.RBPU = 0;
-	
-	// Configure columns (RB0-RB2) as outputs
-	TRISB &= 0xF8;
-	LATB |= 0x00;    // Set columns high initially
-	
-	// Configure PORTD for output (display)
-	TRISD = 0x00;
-	LATD = 0x00;
-}
 
 // Implement the ProcessKey function that was referenced in TAD_TECLADO
 void ProcessKey(unsigned char key) {

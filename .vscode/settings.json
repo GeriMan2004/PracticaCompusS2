@@ -3,6 +3,7 @@
         "tad_teclado.h": "c",
         "tad_datos.h": "c",
         "tad_rfid.h": "c",
-        "tad_terminal.h": "c"
+        "tad_terminal.h": "c",
+        "string.h": "c"
     }
 }

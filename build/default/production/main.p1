@@ -25,14 +25,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _RSI_Timer0 `(v ~T0 @X0 0 ef ]
 [t T42 __interrupt low_priority ]
 [p mainexit ]
-"22 main.c
-[; ;main.c: 22: 
-[v _InitPorts `(v ~T0 @X0 0 ef ]
-"20 ./TAD_TIMER.h
+"20
 [; ;./TAD_TIMER.h: 20: void TI_Init (void);
 [v _TI_Init `(v ~T0 @X0 0 ef ]
-"10 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 10: void initTeclado(void);
+"11 ./TAD_TECLADO.h
+[; ;./TAD_TECLADO.h: 11: void initTeclado(void);
 [v _initTeclado `(v ~T0 @X0 0 ef ]
 "155 ./TAD_RFID.h
 [; ;./TAD_RFID.h: 155: void initRFID(void);
@@ -40,50 +37,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 7: void Terminal_Init(void);
 [v _Terminal_Init `(v ~T0 @X0 0 ef ]
-"11 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 11: void motorTeclado(void);
+"13 ./TAD_TECLADO.h
+[; ;./TAD_TECLADO.h: 13: void motorTeclado(void);
 [v _motorTeclado `(v ~T0 @X0 0 ef ]
-"157 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 157: void ReadRFID_NoCooperatiu(void);
-[v _ReadRFID_NoCooperatiu `(v ~T0 @X0 0 ef ]
-"4714 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4714: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
-[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
-"1486
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1486: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
-[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
-"6635
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6635:     struct {
-[s S270 :7 `uc 1 :1 `uc 1 ]
-[n S270 . . NOT_RBPU ]
-"6639
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6639:     struct {
-[s S271 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S271 . RBIP . TMR0IP . INTEDG2 INTEDG1 INTEDG0 nRBPU ]
-"6649
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6649:     struct {
-[s S272 :7 `uc 1 :1 `uc 1 ]
-[n S272 . . RBPU ]
-"6634
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6634: typedef union {
-[u S269 `S270 1 `S271 1 `S272 1 ]
-[n S269 . . . . ]
-"6654
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6654: extern volatile INTCON2bits_t INTCON2bits __attribute__((address(0xFF1)));
-[v _INTCON2bits `VS269 ~T0 @X0 0 e@4081 ]
-"1708
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1708: extern volatile unsigned char TRISB __attribute__((address(0xF93)));
-[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
-"1098
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1098: extern volatile unsigned char LATB __attribute__((address(0xF8A)));
-[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
-"2152
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2152: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"1322
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1322: extern volatile unsigned char LATD __attribute__((address(0xF8C)));
-[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"1210
+"15 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 15: void motorTerminal(void);
+[v _motorTerminal `(v ~T0 @X0 0 ef ]
+"1210 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1210: extern volatile unsigned char LATC __attribute__((address(0xF8B)));
 [v _LATC `Vuc ~T0 @X0 0 e@3979 ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
@@ -525,20 +485,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 14: 
 [p x LVP  =  OFF ]
 "16
-[; ;main.c: 16:  InitPorts();
+[; ;main.c: 16:  TI_Init();
 [p x PWRT  =  OFF ]
 "17
-[; ;main.c: 17:  TI_Init();
+[; ;main.c: 17:  initTeclado();
 [p x BOR  =  OFF ]
 "18
-[; ;main.c: 18:  initTeclado();
+[; ;main.c: 18:  initRFID();
 [p x WDT  =  OFF ]
 "19
-[; ;main.c: 19:  initRFID();
+[; ;main.c: 19:  Terminal_Init();
 [p x LVP  =  OFF ]
 [v $root$_HighRSI `(v ~T0 @X0 0 e ]
 "27
-[; ;main.c: 27:   motorTeclado();
+[; ;main.c: 27:         motorTerminal();
 [v _HighRSI `(v ~T41 @X0 1 ef ]
 {
 [e :U _HighRSI ]
@@ -560,7 +520,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _LowRSI ]
 [f ]
 "33
-[; ;main.c: 33: void InitPorts(void) {
+[; ;main.c: 33: 
 [e :UE 304 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
@@ -571,78 +531,42 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _main ]
 [f ]
 "37
-[; ;main.c: 37: 
-[e ( _InitPorts ..  ]
-"38
-[; ;main.c: 38:  TRISA |= 0x0F;
+[; ;main.c: 37:  LATC = key;
 [e ( _TI_Init ..  ]
-"39
-[; ;main.c: 39: 
+"38
+[; ;main.c: 38: }
 [e ( _initTeclado ..  ]
-"40
-[; ;main.c: 40:  INTCON2bits.RBPU = 0;
+"39
 [e ( _initRFID ..  ]
-"41
-[; ;main.c: 41: 
+"40
 [e ( _Terminal_Init ..  ]
-"44
-[; ;main.c: 44:  LATB |= 0x00;
+"43
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45: 
+"44
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"47
-[; ;main.c: 47:  TRISD = 0x00;
+"46
 [e :U 307 ]
 {
-"48
-[; ;main.c: 48:  LATD = 0x00;
+"47
 [e ( _motorTeclado ..  ]
-"49
-[; ;main.c: 49: }
-[e ( _ReadRFID_NoCooperatiu ..  ]
+"48
+[e ( _motorTerminal ..  ]
 "50
-[; ;main.c: 50: 
 }
 [e :U 306 ]
 [e $U 307  ]
 [e :U 308 ]
 "51
-[; ;main.c: 51: 
 [e :UE 305 ]
 }
-"54
-[; ;main.c: 54: 
-[v _InitPorts `(v ~T0 @X0 1 ef ]
-{
-[e :U _InitPorts ]
-[f ]
-"56
-[; ;main.c: 56: }
-[e = _ADCON1 -> -> 15 `i `uc ]
-"59
-[e =| _TRISA -> -> 15 `i `Vuc ]
-"61
-[e = . . _INTCON2bits 2 1 -> -> 0 `i `uc ]
-"64
-[e =& _TRISB -> -> 248 `i `Vuc ]
-"65
-[e =| _LATB -> -> 0 `i `Vuc ]
-"68
-[e = _TRISD -> -> 0 `i `uc ]
-"69
-[e = _LATD -> -> 0 `i `uc ]
-"70
-[e :UE 309 ]
-}
-"73
+"55
 [v _ProcessKey `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _ProcessKey ]
 [v _key `uc ~T0 @X0 1 r1 ]
 [f ]
-"76
+"58
 [e = _LATC _key ]
-"77
-[e :UE 310 ]
+"59
+[e :UE 309 ]
 }
