@@ -35,12 +35,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3597
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3597: extern volatile unsigned char RCREG __attribute__((address(0xFAE)));
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
-"14 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 14: unsigned char getActualUID(void);
-[v _getActualUID `(uc ~T0 @X0 0 ef ]
-"15
-[; ;./TAD_DATOS.h: 15: unsigned char getUserConfiguration(void);
-[v _getUserConfiguration `(uc ~T0 @X0 0 ef ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -455,371 +449,369 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7008
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"5 TAD_TERMINAL.c
-[; ;TAD_TERMINAL.c: 5: char hashtag_pressed = 0;
+"7 TAD_TERMINAL.c
+[; ;TAD_TERMINAL.c: 7: char hashtag_pressed = 0;
 [v _hashtag_pressed `uc ~T0 @X0 1 e ]
 [i _hashtag_pressed
 -> -> 0 `i `uc
 ]
-"7
-[; ;TAD_TERMINAL.c: 7: void displayUID(unsigned char *uid) {
+"9
+[; ;TAD_TERMINAL.c: 9: void displayUID(unsigned char *uid) {
 [v _displayUID `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _displayUID ]
 [v _uid `*uc ~T0 @X0 1 r1 ]
 [f ]
-"8
-[; ;TAD_TERMINAL.c: 8:     char hexString[11];
+"10
+[; ;TAD_TERMINAL.c: 10:     char hexString[11];
 [v _hexString `uc ~T0 @X0 -> 11 `i a ]
-"9
-[; ;TAD_TERMINAL.c: 9:     for (int i = 0; i < 5; i++) {
+"11
+[; ;TAD_TERMINAL.c: 11:     for (int i = 0; i < 5; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 303  ]
-[e $U 304  ]
-[e :U 303 ]
+[e $ < _i -> 5 `i 306  ]
+[e $U 307  ]
+[e :U 306 ]
 {
-"10
-[; ;TAD_TERMINAL.c: 10:         unsigned char nibble = (uid[i] >> 4) & 0x0F;
+"12
+[; ;TAD_TERMINAL.c: 12:         unsigned char nibble = (uid[i] >> 4) & 0x0F;
 [v _nibble `uc ~T0 @X0 1 a ]
 [e = _nibble -> & >> -> *U + _uid * -> _i `x -> -> # *U _uid `i `x `i -> 4 `i -> 15 `i `uc ]
-"11
-[; ;TAD_TERMINAL.c: 11:         hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-[e = *U + &U _hexString * -> -> * _i -> 2 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> ? < -> _nibble `i -> 10 `i : + -> _nibble `ui -> 48 `ui + -> - -> _nibble `i -> 10 `i `ui -> 65 `ui `uc ]
-"12
-[; ;TAD_TERMINAL.c: 12:         nibble = uid[i] & 0x0F;
-[e = _nibble -> & -> *U + _uid * -> _i `x -> -> # *U _uid `i `x `i -> 15 `i `uc ]
 "13
-[; ;TAD_TERMINAL.c: 13:         hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-[e = *U + &U _hexString * -> -> + * _i -> 2 `i -> 1 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> ? < -> _nibble `i -> 10 `i : + -> _nibble `ui -> 48 `ui + -> - -> _nibble `i -> 10 `i `ui -> 65 `ui `uc ]
+[; ;TAD_TERMINAL.c: 13:         hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
+[e = *U + &U _hexString * -> -> * _i -> 2 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> ? < -> _nibble `i -> 10 `i : + -> _nibble `ui -> 48 `ui + -> - -> _nibble `i -> 10 `i `ui -> 65 `ui `uc ]
 "14
-[; ;TAD_TERMINAL.c: 14:     }
+[; ;TAD_TERMINAL.c: 14:         nibble = uid[i] & 0x0F;
+[e = _nibble -> & -> *U + _uid * -> _i `x -> -> # *U _uid `i `x `i -> 15 `i `uc ]
+"15
+[; ;TAD_TERMINAL.c: 15:         hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
+[e = *U + &U _hexString * -> -> + * _i -> 2 `i -> 1 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> ? < -> _nibble `i -> 10 `i : + -> _nibble `ui -> 48 `ui + -> - -> _nibble `i -> 10 `i `ui -> 65 `ui `uc ]
+"16
+[; ;TAD_TERMINAL.c: 16:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5 `i 303  ]
-[e :U 304 ]
+[e $ < _i -> 5 `i 306  ]
+[e :U 307 ]
 }
-"15
-[; ;TAD_TERMINAL.c: 15:     hexString[10] = '\0';
-[e = *U + &U _hexString * -> -> -> 10 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> -> 0 `ui `uc ]
 "17
-[; ;TAD_TERMINAL.c: 17:     Terminal_SendString("UID: ");
-[e ( _Terminal_SendString (1 :s 1C ]
-"18
-[; ;TAD_TERMINAL.c: 18:     Terminal_SendString(hexString);
-[e ( _Terminal_SendString (1 -> &U _hexString `*Cuc ]
+[; ;TAD_TERMINAL.c: 17:     hexString[10] = '\0';
+[e = *U + &U _hexString * -> -> -> 10 `i `ui `ux -> -> # *U &U _hexString `ui `ux -> -> 0 `ui `uc ]
 "19
-[; ;TAD_TERMINAL.c: 19:     Terminal_SendString("\n");
-[e ( _Terminal_SendString (1 :s 2C ]
+[; ;TAD_TERMINAL.c: 19:     Terminal_SendString("UID: ");
+[e ( _Terminal_SendString (1 :s 1C ]
 "20
-[; ;TAD_TERMINAL.c: 20: }
-[e :UE 302 ]
+[; ;TAD_TERMINAL.c: 20:     Terminal_SendString(hexString);
+[e ( _Terminal_SendString (1 -> &U _hexString `*Cuc ]
+"21
+[; ;TAD_TERMINAL.c: 21:     Terminal_SendString("\n");
+[e ( _Terminal_SendString (1 :s 2C ]
+"22
+[; ;TAD_TERMINAL.c: 22: }
+[e :UE 305 ]
 }
-"23
-[; ;TAD_TERMINAL.c: 23: void Terminal_Init(void){
+"25
+[; ;TAD_TERMINAL.c: 25: void Terminal_Init(void){
 [v _Terminal_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_Init ]
 [f ]
-"24
-[; ;TAD_TERMINAL.c: 24:  TXSTA = 0x24;
-[e = _TXSTA -> -> 36 `i `uc ]
-"25
-[; ;TAD_TERMINAL.c: 25:  RCSTA = 0x90;
-[e = _RCSTA -> -> 144 `i `uc ]
 "26
-[; ;TAD_TERMINAL.c: 26:  SPBRG = 64;
-[e = _SPBRG -> -> 64 `i `uc ]
+[; ;TAD_TERMINAL.c: 26:  TXSTA = 0x24;
+[e = _TXSTA -> -> 36 `i `uc ]
 "27
-[; ;TAD_TERMINAL.c: 27:  BAUDCON = 0x00;
-[e = _BAUDCON -> -> 0 `i `uc ]
+[; ;TAD_TERMINAL.c: 27:  RCSTA = 0x90;
+[e = _RCSTA -> -> 144 `i `uc ]
 "28
-[; ;TAD_TERMINAL.c: 28:  hashtag_pressed = 0;
-[e = _hashtag_pressed -> -> 0 `i `uc ]
+[; ;TAD_TERMINAL.c: 28:  SPBRG = 64;
+[e = _SPBRG -> -> 64 `i `uc ]
 "29
-[; ;TAD_TERMINAL.c: 29: }
-[e :UE 306 ]
+[; ;TAD_TERMINAL.c: 29:  BAUDCON = 0x00;
+[e = _BAUDCON -> -> 0 `i `uc ]
+"30
+[; ;TAD_TERMINAL.c: 30:  hashtag_pressed = 0;
+[e = _hashtag_pressed -> -> 0 `i `uc ]
+"31
+[; ;TAD_TERMINAL.c: 31: }
+[e :UE 309 ]
 }
-"32
-[; ;TAD_TERMINAL.c: 32: int Terminal_TXAvailable(void) {
+"34
+[; ;TAD_TERMINAL.c: 34: int Terminal_TXAvailable(void) {
 [v _Terminal_TXAvailable `(i ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_TXAvailable ]
 [f ]
-"33
-[; ;TAD_TERMINAL.c: 33:  return (PIR1bits.TXIF == 1) ? 1 : 0;
+"35
+[; ;TAD_TERMINAL.c: 35:  return (PIR1bits.TXIF == 1) ? 1 : 0;
 [e ) ? == -> . . _PIR1bits 0 4 `i -> 1 `i : -> 1 `i -> 0 `i ]
-[e $UE 307  ]
-"34
-[; ;TAD_TERMINAL.c: 34: }
-[e :UE 307 ]
+[e $UE 310  ]
+"36
+[; ;TAD_TERMINAL.c: 36: }
+[e :UE 310 ]
 }
-"37
-[; ;TAD_TERMINAL.c: 37: char Terminal_RXAvailable(void) {
+"39
+[; ;TAD_TERMINAL.c: 39: char Terminal_RXAvailable(void) {
 [v _Terminal_RXAvailable `(uc ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_RXAvailable ]
 [f ]
-"38
-[; ;TAD_TERMINAL.c: 38:  return (PIR1bits.RCIF == 1) ? 1 : 0;
+"40
+[; ;TAD_TERMINAL.c: 40:  return (PIR1bits.RCIF == 1) ? 1 : 0;
 [e ) -> ? == -> . . _PIR1bits 0 5 `i -> 1 `i : -> 1 `i -> 0 `i `uc ]
-[e $UE 308  ]
-"39
-[; ;TAD_TERMINAL.c: 39: }
-[e :UE 308 ]
+[e $UE 311  ]
+"41
+[; ;TAD_TERMINAL.c: 41: }
+[e :UE 311 ]
 }
-"42
-[; ;TAD_TERMINAL.c: 42: void Terminal_SendChar(char c) {
+"44
+[; ;TAD_TERMINAL.c: 44: void Terminal_SendChar(char c) {
 [v _Terminal_SendChar `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Terminal_SendChar ]
 [v _c `uc ~T0 @X0 1 r1 ]
 [f ]
-"43
-[; ;TAD_TERMINAL.c: 43:  TXREG = c;
+"45
+[; ;TAD_TERMINAL.c: 45:  TXREG = c;
 [e = _TXREG -> _c `uc ]
-"44
-[; ;TAD_TERMINAL.c: 44: }
-[e :UE 309 ]
+"46
+[; ;TAD_TERMINAL.c: 46: }
+[e :UE 312 ]
 }
-"47
-[; ;TAD_TERMINAL.c: 47: char Terminal_ReceiveChar(void) {
+"49
+[; ;TAD_TERMINAL.c: 49: char Terminal_ReceiveChar(void) {
 [v _Terminal_ReceiveChar `(uc ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_ReceiveChar ]
 [f ]
-"48
-[; ;TAD_TERMINAL.c: 48:  return RCREG;
+"50
+[; ;TAD_TERMINAL.c: 50:  return RCREG;
 [e ) -> _RCREG `uc ]
-[e $UE 310  ]
-"49
-[; ;TAD_TERMINAL.c: 49: }
-[e :UE 310 ]
+[e $UE 313  ]
+"51
+[; ;TAD_TERMINAL.c: 51: }
+[e :UE 313 ]
 }
-"52
-[; ;TAD_TERMINAL.c: 52: void Terminal_SendString(const char *str) {
+"54
+[; ;TAD_TERMINAL.c: 54: void Terminal_SendString(const char *str) {
 [v _Terminal_SendString `(v ~T0 @X0 1 ef1`*Cuc ]
 {
 [e :U _Terminal_SendString ]
 [v _str `*Cuc ~T0 @X0 1 r1 ]
 [f ]
-"53
-[; ;TAD_TERMINAL.c: 53:  while (*str) {
-[e $U 312  ]
-[e :U 313 ]
-{
-"54
-[; ;TAD_TERMINAL.c: 54:   while (Terminal_TXAvailable() == 0);
+"55
+[; ;TAD_TERMINAL.c: 55:  while (*str) {
 [e $U 315  ]
 [e :U 316 ]
-[e :U 315 ]
-[e $ == ( _Terminal_TXAvailable ..  -> 0 `i 316  ]
-[e :U 317 ]
-"55
-[; ;TAD_TERMINAL.c: 55:   Terminal_SendChar(*str++);
-[e ( _Terminal_SendChar (1 *U ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+{
 "56
-[; ;TAD_TERMINAL.c: 56:  }
-}
-[e :U 312 ]
-"53
-[; ;TAD_TERMINAL.c: 53:  while (*str) {
-[e $ != -> *U _str `i -> 0 `i 313  ]
-[e :U 314 ]
+[; ;TAD_TERMINAL.c: 56:   while (Terminal_TXAvailable() == 0);
+[e $U 318  ]
+[e :U 319 ]
+[e :U 318 ]
+[e $ == ( _Terminal_TXAvailable ..  -> 0 `i 319  ]
+[e :U 320 ]
 "57
-[; ;TAD_TERMINAL.c: 57: }
-[e :UE 311 ]
+[; ;TAD_TERMINAL.c: 57:   Terminal_SendChar(*str++);
+[e ( _Terminal_SendChar (1 *U ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"58
+[; ;TAD_TERMINAL.c: 58:  }
 }
+[e :U 315 ]
+"55
+[; ;TAD_TERMINAL.c: 55:  while (*str) {
+[e $ != -> *U _str `i -> 0 `i 316  ]
+[e :U 317 ]
 "59
-[; ;TAD_TERMINAL.c: 59: void showMenu(void) {
+[; ;TAD_TERMINAL.c: 59: }
+[e :UE 314 ]
+}
+"61
+[; ;TAD_TERMINAL.c: 61: void showMenu(void) {
 [v _showMenu `(v ~T0 @X0 1 ef ]
 {
 [e :U _showMenu ]
 [f ]
-"60
-[; ;TAD_TERMINAL.c: 60:  Terminal_SendString("---------------");
-[e ( _Terminal_SendString (1 :s 3C ]
-"61
-[; ;TAD_TERMINAL.c: 61:  Terminal_SendString("Menú principal");
-[e ( _Terminal_SendString (1 :s 4C ]
 "62
-[; ;TAD_TERMINAL.c: 62:  Terminal_SendString("---------------");
-[e ( _Terminal_SendString (1 :s 5C ]
+[; ;TAD_TERMINAL.c: 62:  Terminal_SendString("---------------\r\n");
+[e ( _Terminal_SendString (1 :s 3C ]
 "63
-[; ;TAD_TERMINAL.c: 63:  Terminal_SendString("Tria una opció:\n");
-[e ( _Terminal_SendString (1 :s 6C ]
+[; ;TAD_TERMINAL.c: 63:  Terminal_SendString("Menú principal\r\n");
+[e ( _Terminal_SendString (1 :s 4C ]
 "64
-[; ;TAD_TERMINAL.c: 64:  Terminal_SendString("\t1. Qui hi ha a la sala?");
-[e ( _Terminal_SendString (1 :s 7C ]
+[; ;TAD_TERMINAL.c: 64:  Terminal_SendString("---------------\r\n");
+[e ( _Terminal_SendString (1 :s 5C ]
 "65
-[; ;TAD_TERMINAL.c: 65:  Terminal_SendString("\t2. Mostrar configuracions");
-[e ( _Terminal_SendString (1 :s 8C ]
+[; ;TAD_TERMINAL.c: 65:  Terminal_SendString("Tria una opció:\r\n");
+[e ( _Terminal_SendString (1 :s 6C ]
 "66
-[; ;TAD_TERMINAL.c: 66:  Terminal_SendString("\t3. Modificar hora del sistema\n");
-[e ( _Terminal_SendString (1 :s 9C ]
+[; ;TAD_TERMINAL.c: 66:  Terminal_SendString("\t1. Qui hi ha a la sala?\r\n");
+[e ( _Terminal_SendString (1 :s 7C ]
 "67
-[; ;TAD_TERMINAL.c: 67:  Terminal_SendString("Opció: ");
-[e ( _Terminal_SendString (1 :s 10C ]
+[; ;TAD_TERMINAL.c: 67:  Terminal_SendString("\t2. Mostrar configuracions\r\n");
+[e ( _Terminal_SendString (1 :s 8C ]
 "68
-[; ;TAD_TERMINAL.c: 68: }
-[e :UE 318 ]
-}
+[; ;TAD_TERMINAL.c: 68:  Terminal_SendString("\t3. Modificar hora del sistema\r\n");
+[e ( _Terminal_SendString (1 :s 9C ]
+"69
+[; ;TAD_TERMINAL.c: 69:  Terminal_SendString("Opció: ");
+[e ( _Terminal_SendString (1 :s 10C ]
 "70
-[; ;TAD_TERMINAL.c: 70: void hashtag_pressed3s(void){
+[; ;TAD_TERMINAL.c: 70: }
+[e :UE 321 ]
+}
+"72
+[; ;TAD_TERMINAL.c: 72: void hashtag_pressed3s(void){
 [v _hashtag_pressed3s `(v ~T0 @X0 1 ef ]
 {
 [e :U _hashtag_pressed3s ]
 [f ]
-"71
-[; ;TAD_TERMINAL.c: 71:  hashtag_pressed = 1;
+"73
+[; ;TAD_TERMINAL.c: 73:  hashtag_pressed = 1;
 [e = _hashtag_pressed -> -> 1 `i `uc ]
-"72
-[; ;TAD_TERMINAL.c: 72: }
-[e :UE 319 ]
+"74
+[; ;TAD_TERMINAL.c: 74: }
+[e :UE 322 ]
 }
-"75
-[; ;TAD_TERMINAL.c: 75: void motorTerminal(void) {
+"77
+[; ;TAD_TERMINAL.c: 77: void motorTerminal(void) {
 [v _motorTerminal `(v ~T0 @X0 1 ef ]
 {
 [e :U _motorTerminal ]
 [f ]
-"76
-[; ;TAD_TERMINAL.c: 76:  static char state = 0;
-[v F2741 `uc ~T0 @X0 1 s state ]
-[i F2741
+"78
+[; ;TAD_TERMINAL.c: 78:  static char state = 0;
+[v F3229 `uc ~T0 @X0 1 s state ]
+[i F3229
 -> -> 0 `i `uc
 ]
-"78
-[; ;TAD_TERMINAL.c: 78:  switch(state) {
-[e $U 322  ]
-{
-"79
-[; ;TAD_TERMINAL.c: 79:   case 0:
-[e :U 323 ]
 "80
-[; ;TAD_TERMINAL.c: 80:    if (Terminal_ReceiveChar() == 0x1B) {
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i 324  ]
+[; ;TAD_TERMINAL.c: 80:  switch(state) {
+[e $U 325  ]
 {
 "81
-[; ;TAD_TERMINAL.c: 81:     showMenu();
-[e ( _showMenu ..  ]
-"82
-[; ;TAD_TERMINAL.c: 82:     state = 1;
-[e = F2741 -> -> 1 `i `uc ]
-"83
-[; ;TAD_TERMINAL.c: 83:    }
-}
-[e :U 324 ]
-"84
-[; ;TAD_TERMINAL.c: 84:    if (hashtag_pressed == 1){
-[e $ ! == -> _hashtag_pressed `i -> 1 `i 325  ]
-{
-"85
-[; ;TAD_TERMINAL.c: 85:     showMenu();
-[e ( _showMenu ..  ]
-"86
-[; ;TAD_TERMINAL.c: 86:     state = 1;
-[e = F2741 -> -> 1 `i `uc ]
-"87
-[; ;TAD_TERMINAL.c: 87:    }
-}
-[e :U 325 ]
-"88
-[; ;TAD_TERMINAL.c: 88:   break;
-[e $U 321  ]
-"89
-[; ;TAD_TERMINAL.c: 89:   case 1:
+[; ;TAD_TERMINAL.c: 81:   case 0:
 [e :U 326 ]
-"90
-[; ;TAD_TERMINAL.c: 90:    if(Terminal_RXAvailable() == 1){
-[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 327  ]
+"82
+[; ;TAD_TERMINAL.c: 82:    if (Terminal_ReceiveChar() == 0x1B) {
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i 327  ]
 {
-"91
-[; ;TAD_TERMINAL.c: 91:     if (Terminal_ReceiveChar() == 1) {
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 1 `i 328  ]
-{
-"92
-[; ;TAD_TERMINAL.c: 92:      getActualUID();
-[e ( _getActualUID ..  ]
-"93
-[; ;TAD_TERMINAL.c: 93:      state = 0;
-[e = F2741 -> -> 0 `i `uc ]
-"94
-[; ;TAD_TERMINAL.c: 94:     }
-}
-[e $U 329  ]
-"95
-[; ;TAD_TERMINAL.c: 95:     else if (Terminal_ReceiveChar() == 2) {
-[e :U 328 ]
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 2 `i 330  ]
-{
-"96
-[; ;TAD_TERMINAL.c: 96:      getUserConfiguration();
-[e ( _getUserConfiguration ..  ]
-"97
-[; ;TAD_TERMINAL.c: 97:      state = 0;
-[e = F2741 -> -> 0 `i `uc ]
-"98
-[; ;TAD_TERMINAL.c: 98:     }
-}
-[e $U 331  ]
-"99
-[; ;TAD_TERMINAL.c: 99:     else if (Terminal_ReceiveChar() == 3) {
-[e :U 330 ]
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 3 `i 332  ]
-{
-"101
-[; ;TAD_TERMINAL.c: 101:      state = 0;
-[e = F2741 -> -> 0 `i `uc ]
-"102
-[; ;TAD_TERMINAL.c: 102:     }
-}
-[e $U 333  ]
-"103
-[; ;TAD_TERMINAL.c: 103:     else {
-[e :U 332 ]
-{
-"104
-[; ;TAD_TERMINAL.c: 104:      Terminal_SendString("ERROR. Valor introduit erroni.");
-[e ( _Terminal_SendString (1 :s 11C ]
-"105
-[; ;TAD_TERMINAL.c: 105:      state = 0;
-[e = F2741 -> -> 0 `i `uc ]
-"106
-[; ;TAD_TERMINAL.c: 106:     }
-}
-[e :U 333 ]
-[e :U 331 ]
-[e :U 329 ]
-"107
-[; ;TAD_TERMINAL.c: 107:    }
+"83
+[; ;TAD_TERMINAL.c: 83:     showMenu();
+[e ( _showMenu ..  ]
+"84
+[; ;TAD_TERMINAL.c: 84:     state = 1;
+[e = F3229 -> -> 1 `i `uc ]
+"85
+[; ;TAD_TERMINAL.c: 85:    }
 }
 [e :U 327 ]
+"86
+[; ;TAD_TERMINAL.c: 86:    if (hashtag_pressed == 1){
+[e $ ! == -> _hashtag_pressed `i -> 1 `i 328  ]
+{
+"87
+[; ;TAD_TERMINAL.c: 87:     showMenu();
+[e ( _showMenu ..  ]
+"88
+[; ;TAD_TERMINAL.c: 88:     state = 1;
+[e = F3229 -> -> 1 `i `uc ]
+"89
+[; ;TAD_TERMINAL.c: 89:    }
+}
+[e :U 328 ]
+"90
+[; ;TAD_TERMINAL.c: 90:   break;
+[e $U 324  ]
+"91
+[; ;TAD_TERMINAL.c: 91:   case 1:
+[e :U 329 ]
+"92
+[; ;TAD_TERMINAL.c: 92:    if(Terminal_RXAvailable() == 1){
+[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 330  ]
+{
+"93
+[; ;TAD_TERMINAL.c: 93:     if (Terminal_ReceiveChar() == '1') {
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 49 `ui 331  ]
+{
+"94
+[; ;TAD_TERMINAL.c: 94:      Terminal_SendString("Has pulsado 1");
+[e ( _Terminal_SendString (1 :s 11C ]
+"96
+[; ;TAD_TERMINAL.c: 96:      state = 0;
+[e = F3229 -> -> 0 `i `uc ]
+"97
+[; ;TAD_TERMINAL.c: 97:     }
+}
+[e $U 332  ]
+"98
+[; ;TAD_TERMINAL.c: 98:     else if (Terminal_ReceiveChar() == '2') {
+[e :U 331 ]
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 50 `ui 333  ]
+{
+"100
+[; ;TAD_TERMINAL.c: 100:      state = 0;
+[e = F3229 -> -> 0 `i `uc ]
+"101
+[; ;TAD_TERMINAL.c: 101:     }
+}
+[e $U 334  ]
+"102
+[; ;TAD_TERMINAL.c: 102:     else if (Terminal_ReceiveChar() == '3') {
+[e :U 333 ]
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 51 `ui 335  ]
+{
+"104
+[; ;TAD_TERMINAL.c: 104:      state = 0;
+[e = F3229 -> -> 0 `i `uc ]
+"105
+[; ;TAD_TERMINAL.c: 105:     }
+}
+[e $U 336  ]
+"106
+[; ;TAD_TERMINAL.c: 106:     else {
+[e :U 335 ]
+{
+"107
+[; ;TAD_TERMINAL.c: 107:      Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
+[e ( _Terminal_SendString (1 :s 12C ]
 "108
-[; ;TAD_TERMINAL.c: 108:   break;
-[e $U 321  ]
+[; ;TAD_TERMINAL.c: 108:      state = 0;
+[e = F3229 -> -> 0 `i `uc ]
 "109
-[; ;TAD_TERMINAL.c: 109:  }
+[; ;TAD_TERMINAL.c: 109:     }
 }
-[e $U 321  ]
-[e :U 322 ]
-[e [\ F2741 , $ -> 0 `i 323
- , $ -> 1 `i 326
- 321 ]
-[e :U 321 ]
+[e :U 336 ]
+[e :U 334 ]
+[e :U 332 ]
 "110
-[; ;TAD_TERMINAL.c: 110: }
-[e :UE 320 ]
+[; ;TAD_TERMINAL.c: 110:    }
 }
-[a 8C 9 50 46 32 77 111 115 116 114 97 114 32 99 111 110 102 105 103 117 114 97 99 105 111 110 115 0 ]
-[a 4C 77 101 110 18446744073709551555 18446744073709551546 32 112 114 105 110 99 105 112 97 108 0 ]
-[a 7C 9 49 46 32 81 117 105 32 104 105 32 104 97 32 97 32 108 97 32 115 97 108 97 63 0 ]
-[a 11C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 0 ]
-[a 3C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 0 ]
-[a 5C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 0 ]
+[e :U 330 ]
+"111
+[; ;TAD_TERMINAL.c: 111:   break;
+[e $U 324  ]
+"112
+[; ;TAD_TERMINAL.c: 112:  }
+}
+[e $U 324  ]
+[e :U 325 ]
+[e [\ F3229 , $ -> 0 `i 326
+ , $ -> 1 `i 329
+ 324 ]
+[e :U 324 ]
+"113
+[; ;TAD_TERMINAL.c: 113: }
+[e :UE 323 ]
+}
+[a 11C 72 97 115 32 112 117 108 115 97 100 111 32 49 0 ]
 [a 1C 85 73 68 58 32 0 ]
 [a 10C 79 112 99 105 18446744073709551555 18446744073709551539 58 32 0 ]
-[a 9C 9 51 46 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 32 100 101 108 32 115 105 115 116 101 109 97 10 0 ]
-[a 6C 84 114 105 97 32 117 110 97 32 111 112 99 105 18446744073709551555 18446744073709551539 58 10 0 ]
+[a 8C 9 50 46 32 77 111 115 116 114 97 114 32 99 111 110 102 105 103 117 114 97 99 105 111 110 115 13 10 0 ]
+[a 4C 77 101 110 18446744073709551555 18446744073709551546 32 112 114 105 110 99 105 112 97 108 13 10 0 ]
+[a 9C 9 51 46 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 32 100 101 108 32 115 105 115 116 101 109 97 13 10 0 ]
+[a 7C 9 49 46 32 81 117 105 32 104 105 32 104 97 32 97 32 108 97 32 115 97 108 97 63 13 10 0 ]
+[a 6C 84 114 105 97 32 117 110 97 32 111 112 99 105 18446744073709551555 18446744073709551539 58 13 10 0 ]
+[a 12C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 13 10 0 ]
+[a 3C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
+[a 5C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
 [a 2C 10 0 ]

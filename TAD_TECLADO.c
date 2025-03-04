@@ -1,5 +1,8 @@
 #include <xc.h>
 #include "TAD_TECLADO.h"
+#include "TAD_TERMINAL.h"
+#include <stdio.h>
+#include <string.h>
 
 static unsigned char Filas, Columnas, timer, tecla = 0;
 
@@ -19,8 +22,6 @@ void initTeclado(void) {
 void initPortsTeclado(void) {
 	TRISD = 0x0F; // Set the lower 3 bits as outputs (columns) and the upper 4 bits as inputs (rows)
 	LATD = 0x00;  // Initialize all columns to low
-	TRISB = 0x00; // Set all bits as outputs, this bits are just used temporally to debug
-	LATB = 0x00;  // Initialize all rows to low
 }
 /**
  * En esta funcin, seguiremos la logica del motor implementado desde el diseo de un examen (LSElevator)
@@ -98,7 +99,6 @@ void motorTeclado(void) {
 			}
 		break;
 	}
-	LATB = (LATB & 0x0F) | ((unsigned char)(state << 4));
 }
 /**
  * En esta función, printaremos la columna en el puerto D, pero teniendo en cuenta que utilizo los bits 4-6
@@ -150,5 +150,7 @@ unsigned char GetTecla(void) {
 
 void showTecla(void) {    
     // In this test, i just want to print the key pressed
-    LATB = tecla;
+	char buffer[32];
+	sprintf(buffer, "Tecla: %d", tecla);
+    Terminal_SendString(buffer);
 }

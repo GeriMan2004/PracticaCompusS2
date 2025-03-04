@@ -4850,6 +4850,7 @@ void ReadRFID_NoCooperatiu(void);
 # 5 "main.c" 2
 # 1 "./TAD_TECLADO.h" 1
 # 10 "./TAD_TECLADO.h"
+static unsigned char ReadFilas(void);
 void initTeclado(void);
 void initPortsTeclado(void);
 void motorTeclado(void);
@@ -4899,6 +4900,7 @@ void main(void){
 
  while(1){
   motorTeclado();
+        motorTerminal();
 
  }
 }

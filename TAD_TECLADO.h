@@ -7,8 +7,11 @@
 #define HASHTAG_TIME 1500 
 
 // Function prototypes
+static unsigned char ReadFilas(void);
 void initTeclado(void);
+void initPortsTeclado(void);
 void motorTeclado(void);
+void writeColumnas(void);
 unsigned char GetTecla(void);
 void showTecla(void);
 

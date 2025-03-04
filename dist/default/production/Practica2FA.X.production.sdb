@@ -3,6 +3,16 @@
 [d edition pro ]
 [d chip 18F4321 ]
 [d frameptr 4065 ]
+"1 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"1177 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+"1817
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
 "4 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "62 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\float.c
@@ -15,6 +25,14 @@
 [v ___ftmul __ftmul `(f  1 e 4 0 ]
 "19 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\ftsub.c
 [v ___ftsub __ftsub `(f  1 e 4 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_fputs.c
+[v _fputs fputs `(i  1 e 2 0 ]
+"9 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
 "10 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "245
@@ -75,25 +93,25 @@
 [v _MFRC522_ToCard MFRC522_ToCard `(uc  1 e 1 0 ]
 "194
 [v _MFRC522_Request MFRC522_Request `(uc  1 e 1 0 ]
-"206
+"205
 [v _MFRC522_CRC MFRC522_CRC `(v  1 e 1 0 ]
-"253
+"252
 [v _MFRC522_Halt MFRC522_Halt `(v  1 e 1 0 ]
-"265
+"264
 [v _MFRC522_AntiColl MFRC522_AntiColl `(uc  1 e 1 0 ]
-"284
+"283
 [v _MFRC522_isCard MFRC522_isCard `(uc  1 e 1 0 ]
-"288
+"287
 [v _MFRC522_ReadCardSerial MFRC522_ReadCardSerial `(uc  1 e 1 0 ]
-"295
+"294
 [v _initRFID initRFID `(v  1 e 1 0 ]
-"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
-"11
+"14
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
-"19
+"22
 [v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
-"30
+"31
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
 "108
 [v _writeColumnas writeColumnas `(v  1 e 1 0 ]
@@ -101,22 +119,24 @@
 [v _GetTecla GetTecla `(uc  1 e 1 0 ]
 "151
 [v _showTecla showTecla `(v  1 e 1 0 ]
-"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"9 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _displayUID displayUID `(v  1 e 1 0 ]
-"23
+"25
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
-"32
+"34
 [v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
-"37
+"39
 [v _Terminal_RXAvailable Terminal_RXAvailable `(uc  1 e 1 0 ]
-"42
+"44
 [v _Terminal_SendChar Terminal_SendChar `(v  1 e 1 0 ]
-"47
+"49
 [v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
-"52
+"54
 [v _Terminal_SendString Terminal_SendString `(v  1 e 1 0 ]
-"59
+"61
 [v _showMenu showMenu `(v  1 e 1 0 ]
+"77
+[v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 "25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
 "32
@@ -127,7 +147,7 @@
 [v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
 "61
 [v _TI_GetTics TI_GetTics `(ul  1 e 4 0 ]
-[s S513 . 1 `uc 1 RB0 1 0 :1:0 
+[s S528 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -137,7 +157,7 @@
 `uc 1 RB7 1 0 :1:7 
 ]
 "326 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[s S620 . 1 `uc 1 INT0 1 0 :1:0 
+[s S635 . 1 `uc 1 INT0 1 0 :1:0 
 `uc 1 INT1 1 0 :1:1 
 `uc 1 INT2 1 0 :1:2 
 `uc 1 CCP2 1 0 :1:3 
@@ -146,7 +166,7 @@
 `uc 1 KBI2 1 0 :1:6 
 `uc 1 KBI3 1 0 :1:7 
 ]
-[s S629 . 1 `uc 1 AN12 1 0 :1:0 
+[s S644 . 1 `uc 1 AN12 1 0 :1:0 
 `uc 1 AN10 1 0 :1:1 
 `uc 1 AN8 1 0 :1:2 
 `uc 1 AN9 1 0 :1:3 
@@ -155,14 +175,14 @@
 `uc 1 PGC 1 0 :1:6 
 `uc 1 PGD 1 0 :1:7 
 ]
-[s S638 . 1 `uc 1 FLT0 1 0 :1:0 
+[s S653 . 1 `uc 1 FLT0 1 0 :1:0 
 ]
-[s S640 . 1 `uc 1 . 1 0 :3:0 
+[s S655 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 CCP2_PA2 1 0 :1:3 
 ]
-[u S643 . 1 `S513 1 . 1 0 `S620 1 . 1 0 `S629 1 . 1 0 `S638 1 . 1 0 `S640 1 . 1 0 ]
-[v _PORTBbits PORTBbits `VES643  1 e 1 @3969 ]
-[s S238 . 1 `uc 1 RC0 1 0 :1:0 
+[u S658 . 1 `S528 1 . 1 0 `S635 1 . 1 0 `S644 1 . 1 0 `S653 1 . 1 0 `S655 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES658  1 e 1 @3969 ]
+[s S253 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -172,7 +192,7 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "506
-[s S322 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S337 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 SCK 1 0 :1:3 
@@ -181,7 +201,7 @@
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S331 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S346 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 `uc 1 SCL 1 0 :1:3 
@@ -190,19 +210,17 @@
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S340 . 1 `uc 1 T1CKI 1 0 :1:0 
+[s S355 . 1 `uc 1 T1CKI 1 0 :1:0 
 ]
-[s S342 . 1 `uc 1 . 1 0 :1:0 
+[s S357 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[u S346 . 1 `S238 1 . 1 0 `S322 1 . 1 0 `S331 1 . 1 0 `S340 1 . 1 0 `S342 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES346  1 e 1 @3970 ]
+[u S361 . 1 `S253 1 . 1 0 `S337 1 . 1 0 `S346 1 . 1 0 `S355 1 . 1 0 `S357 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES361  1 e 1 @3970 ]
 "641
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
-"1098
-[v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S571 . 1 `uc 1 LATB0 1 0 :1:0 
+[s S586 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -212,7 +230,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "1125
-[s S580 . 1 `uc 1 LB0 1 0 :1:0 
+[s S595 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -221,11 +239,11 @@
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S589 . 1 `S571 1 . 1 0 `S580 1 . 1 0 ]
-[v _LATBbits LATBbits `VES589  1 e 1 @3978 ]
+[u S604 . 1 `S586 1 . 1 0 `S595 1 . 1 0 ]
+[v _LATBbits LATBbits `VES604  1 e 1 @3978 ]
 "1210
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S273 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S288 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -235,7 +253,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1237
-[s S282 . 1 `uc 1 LC0 1 0 :1:0 
+[s S297 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -244,13 +262,11 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S291 . 1 `S273 1 . 1 0 `S282 1 . 1 0 ]
-[v _LATCbits LATCbits `VES291  1 e 1 @3979 ]
+[u S306 . 1 `S288 1 . 1 0 `S297 1 . 1 0 ]
+[v _LATCbits LATCbits `VES306  1 e 1 @3979 ]
 "1322
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
-"1708
-[v _TRISB TRISB `VEuc  1 e 1 @3987 ]
-[s S504 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S519 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -260,9 +276,9 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1740
-[u S522 . 1 `S504 1 . 1 0 `S513 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES522  1 e 1 @3987 ]
-[s S229 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S537 . 1 `S519 1 . 1 0 `S528 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES537  1 e 1 @3987 ]
+[s S244 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -272,11 +288,11 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1962
-[u S247 . 1 `S229 1 . 1 0 `S238 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES247  1 e 1 @3988 ]
+[u S262 . 1 `S244 1 . 1 0 `S253 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES262  1 e 1 @3988 ]
 "2152
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
-[s S756 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S767 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -286,12 +302,12 @@
 `uc 1 PSPIF 1 0 :1:7 
 ]
 "2702
-[s S765 . 1 `uc 1 . 1 0 :4:0 
+[s S776 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 ]
-[u S769 . 1 `S756 1 . 1 0 `S765 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES769  1 e 1 @3998 ]
+[u S780 . 1 `S767 1 . 1 0 `S776 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES780  1 e 1 @3998 ]
 "3119
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
 "3329
@@ -335,6 +351,13 @@
 [v _INTCONbits INTCONbits `VES46  1 e 1 @4082 ]
 "8680
 [v _TMR0IF TMR0IF `VEb  1 e 0 @32658 ]
+"153 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
+[v _prec prec `i  1 s 2 prec ]
+[v _width width `i  1 s 2 width ]
+"154
+[v _flags flags `uc  1 s 1 flags ]
+"185
+[v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
 "44 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_DISPLAY.c
 [v _Rows Rows `uc  1 s 1 Rows ]
 [v _Columns Columns `uc  1 s 1 Columns ]
@@ -343,27 +366,49 @@
 [v _ColumnAct ColumnAct `uc  1 s 1 ColumnAct ]
 "46
 [v _Timer Timer `uc  1 s 1 Timer ]
-"4 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _Filas Filas `uc  1 s 1 Filas ]
 [v _Columnas Columnas `uc  1 s 1 Columnas ]
 [v _timer timer `uc  1 s 1 timer ]
 [v _tecla tecla `uc  1 s 1 tecla ]
-"5 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _hashtag_pressed hashtag_pressed `uc  1 e 1 0 ]
-[s S131 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
+[s S135 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
 "21 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
-[v _Timers Timers `[4]S131  1 s 20 Timers ]
+[v _Timers Timers `[4]S135  1 s 20 Timers ]
 "23
 [v _Tics Tics `VEul  1 s 4 Tics ]
 "36 C:\Users\gerar\MPLABXProjects\Practica2FA.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"50
+"51
 } 0
-"30 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"77 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+[v _motorTerminal motorTerminal `(v  1 e 1 0 ]
+{
+"78
+[v motorTerminal@state state `uc  1 s 1 state ]
+"113
+} 0
+"61
+[v _showMenu showMenu `(v  1 e 1 0 ]
+{
+"70
+} 0
+"49
+[v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
+{
+"51
+} 0
+"39
+[v _Terminal_RXAvailable Terminal_RXAvailable `(uc  1 e 1 0 ]
+{
+"41
+} 0
+"31 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
 {
-"31
+"32
 [v motorTeclado@state state `uc  1 s 1 state ]
 "102
 } 0
@@ -377,7 +422,116 @@
 "151
 [v _showTecla showTecla `(v  1 e 1 0 ]
 {
-"154
+"153
+[v showTecla@buffer buffer `[32]uc  1 a 32 42 ]
+"156
+} 0
+"9 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_sprintf.c
+[v _sprintf sprintf `(i  1 e 2 0 ]
+{
+[u S1281 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
+"13
+[s S1284 _IO_FILE 11 `S1281 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S1284  1 a 11 31 ]
+"12
+[v sprintf@ap ap `[1]*.30v  1 a 1 30 ]
+"9
+[v sprintf@s s `*.30uc  1 p 1 26 ]
+[v sprintf@fmt fmt `*.31Cuc  1 p 1 27 ]
+"23
+} 0
+"1817 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\doprnt.c
+[v _vfprintf vfprintf `(i  1 e 2 0 ]
+{
+"1820
+[v vfprintf@cfmt cfmt `*.31uc  1 a 1 25 ]
+[s S1316 _IO_FILE 0 ]
+"1817
+[v vfprintf@fp fp `*.30S1316  1 p 1 22 ]
+[v vfprintf@fmt fmt `*.31Cuc  1 p 1 23 ]
+[v vfprintf@ap ap `*.30*.30v  1 p 1 24 ]
+"1840
+} 0
+"1177
+[v _vfpfcnvrt vfpfcnvrt `(v  1 s 1 vfpfcnvrt ]
+{
+[u S1329 . 4 `i 1 sint 2 0 `ui 1 uint 2 0 `d 1 f 4 0 ]
+"1188
+[v vfpfcnvrt@convarg convarg `S1329  1 a 4 17 ]
+"1179
+[v vfpfcnvrt@c c `uc  1 a 1 21 ]
+[v vfpfcnvrt@cp cp `*.31uc  1 a 1 16 ]
+"1180
+[v vfpfcnvrt@done done `a  1 a 1 15 ]
+[s S1316 _IO_FILE 0 ]
+"1177
+[v vfpfcnvrt@fp fp `*.30S1316  1 p 1 11 ]
+[v vfpfcnvrt@fmt fmt `*.30*.31uc  1 p 1 12 ]
+[v vfpfcnvrt@ap ap `*.30*.30v  1 p 1 13 ]
+"1814
+} 0
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\nf_fputc.c
+[v _fputc fputc `(i  1 e 2 0 ]
+{
+[v fputc@c c `i  1 p 2 1 ]
+[u S1281 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
+[s S1284 _IO_FILE 11 `S1281 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.30S1284  1 p 1 3 ]
+"24
+} 0
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\putch.c
+[v _putch putch `(v  1 e 1 0 ]
+{
+"9
+} 0
+"1 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\abs.c
+[v _abs abs `(i  1 e 2 0 ]
+{
+[v abs@a a `i  1 p 2 7 ]
+"4
+} 0
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+{
+"10
+[v ___awmod@sign sign `uc  1 a 1 6 ]
+[v ___awmod@counter counter `uc  1 a 1 5 ]
+"7
+[v ___awmod@dividend dividend `i  1 p 2 1 ]
+[v ___awmod@divisor divisor `i  1 p 2 3 ]
+"34
+} 0
+"7 C:\Program Files\Microchip\xc8\v3.00\pic\sources\c99\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 7 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 6 ]
+[v ___awdiv@counter counter `uc  1 a 1 5 ]
+"7
+[v ___awdiv@dividend dividend `i  1 p 2 1 ]
+[v ___awdiv@divisor divisor `i  1 p 2 3 ]
+"41
+} 0
+"54 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+[v _Terminal_SendString Terminal_SendString `(v  1 e 1 0 ]
+{
+[v Terminal_SendString@str str `*.35Cuc  1 p 2 4 ]
+"59
+} 0
+"34
+[v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
+{
+"36
+} 0
+"44
+[v _Terminal_SendChar Terminal_SendChar `(v  1 e 1 0 ]
+{
+[v Terminal_SendChar@c c `uc  1 p 1 wreg ]
+[v Terminal_SendChar@c c `uc  1 p 1 wreg ]
+[v Terminal_SendChar@c c `uc  1 p 1 1 ]
+"46
 } 0
 "53 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
@@ -399,10 +553,10 @@
 [v TI_GetTics@TimerHandle TimerHandle `uc  1 p 1 13 ]
 "64
 } 0
-"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"10 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
 {
-"9
+"12
 } 0
 "121
 [v _GetTecla GetTecla `(uc  1 e 1 0 ]
@@ -414,18 +568,18 @@
 "123
 [v GetTecla@columna columna `uc  1 a 1 15 ]
 "139
-[v GetTecla@F2722 F2722 `C[4][3]uc  1 s 12 F2722 ]
+[v GetTecla@F3224 F3224 `C[4][3]uc  1 s 12 F3224 ]
 "149
 } 0
-"11
+"14
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
 {
-"17
+"20
 } 0
-"19
+"22
 [v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
 {
-"24
+"25
 } 0
 "43 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_NewTimer TI_NewTimer `(uc  1 e 1 0 ]
@@ -436,10 +590,10 @@
 [v TI_NewTimer@TimerHandle TimerHandle `*.30uc  1 p 1 1 ]
 "51
 } 0
-"295 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+"294 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _initRFID initRFID `(v  1 e 1 0 ]
 {
-"298
+"297
 } 0
 "115
 [v _MFRC522_Init MFRC522_Init `(v  1 e 1 0 ]
@@ -524,10 +678,10 @@
 {
 "21
 } 0
-"23 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
 {
-"29
+"31
 } 0
 "32 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _TI_Init TI_Init `(v  1 e 1 0 ]

@@ -191,19 +191,18 @@ char MFRC522_ToCard (char command, char *sendData, char sendLen, char *backData,
 }
 
 
-char MFRC522_Request (char reqMode, char *TagType) {
+char MFRC522_Request(char reqMode, char *TagType) {
     char _status;
     unsigned backBits;
     MFRC522_Wr(BITFRAMINGREG, 0x07);
     TagType[0] = reqMode;
     _status = MFRC522_ToCard(PCD_TRANSCEIVE, TagType, 1, TagType, &backBits);
-    if ((_status != MI_OK) || (backBits != 0x10)) {
+    if ((_status != MI_OK) || (backBits != 0x10))
         _status = MI_ERR;
-    }
     return _status;
 }
 
-void MFRC522_CRC (char *dataIn, char length, char *dataOut) {
+void MFRC522_CRC(char *dataIn, char length, char *dataOut) {
     unsigned char i, n;
     MFRC522_Clear_Bit(DIVIRQREG, 0x04);
     MFRC522_Set_Bit(FIFOLEVELREG, 0x80);   
@@ -225,7 +224,7 @@ void MFRC522_CRC (char *dataIn, char length, char *dataOut) {
     dataOut[1] = MFRC522_Rd(CRCRESULTREGM);       
 }
 
-unsigned MFRC522_SelectTag (char *serNum) {
+unsigned MFRC522_SelectTag(char *serNum) {
     char i;
     char _status;
     unsigned size;
@@ -250,7 +249,7 @@ unsigned MFRC522_SelectTag (char *serNum) {
 }
 
 //hibernation
-void MFRC522_Halt () {
+void MFRC522_Halt() {
     unsigned unLen;
     char buff[4];
     
@@ -262,7 +261,7 @@ void MFRC522_Halt () {
     MFRC522_Clear_Bit(STATUS2REG, 0x08);
 }
 
-char MFRC522_AntiColl (unsigned char *serNum) {
+char MFRC522_AntiColl(unsigned char *serNum) {
     char _status;
     char i;
     char serNumCheck = 0;
