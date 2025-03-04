@@ -2,17 +2,15 @@
 #define TAD_DATOS_H
 
 // Definición de constantes
-#define UID_SIZE 5
+#define UID_SIZE 16
 #define MAX_USERS 3
 #define LEDS 6
 
-// Declaración de variables externas
-extern unsigned char userUIDs[MAX_USERS][UID_SIZE];
-extern unsigned char configurations[MAX_USERS][LEDS];
 
-// Prototipos de funciones
-unsigned char getActualUID(void);
-unsigned char getUserConfiguration(void);
-void setUserConfiguration(unsigned char led[6], unsigned char UID);
+unsigned char* getActualUID(void);
+unsigned char* getUsersConfigurations(void);
+void newUser(void);
+void newConfiguration(void);
+void motor_datos(void);
 
 #endif /* TAD_DATOS_H */
