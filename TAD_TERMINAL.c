@@ -19,7 +19,7 @@ void displayUID(unsigned char *uid) {
     
     Terminal_SendString("UID: ");
     Terminal_SendString(hexString);
-    Terminal_SendString("\n");
+    Terminal_SendString("\r\n");
 }
 
 // Inicializar para Serial 9615 baud rate

@@ -4875,7 +4875,7 @@ void showTecla(void);
 #pragma config LVP = OFF
 
 void main(void);
-void InitPorts(void);
+void initPorts(void);
 
 
 
@@ -4894,16 +4894,25 @@ void main(void){
  initTeclado();
  initRFID();
  Terminal_Init();
+ initPorts();
 
 
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 1;
 
  while(1){
-  motorTeclado();
-        motorTerminal();
+  LATA = 0x00;
+
+
   motor_RFID();
+
+  LATA = 0xFF;
  }
+}
+
+void initPorts(void){
+ ADCON1 = 0xFF;
+ TRISA = 0x00;
 }
 
 

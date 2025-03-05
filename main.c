@@ -19,7 +19,7 @@
 #pragma config LVP = OFF
 
 void main(void);
-void InitPorts(void);
+void initPorts(void);
 
 //Important: NO es poden cridar les funcions d'interrupcions des del codi
 //ja que les seves funcions de retorn en asm s?n diferents.
@@ -38,16 +38,25 @@ void main(void){
 	initTeclado();  // Initialize Keyboard
 	initRFID();     // Initialize RFID
 	Terminal_Init();  // Initialize Terminal
+	initPorts();    // Initialize Ports
 
 	// Enable interrupts
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
 	INTCONbits.PEIE = 1;   // Peripheral Interrupt Enable
 	
 	while(1){
-		motorTeclado();  // Run keyboard state machine
-        motorTerminal();
+		LATA = 0x00;  // Clear PORTA
+		// motorTeclado();  // Run keyboard state machine
+    	// motorTerminal();
 		motor_RFID();  // Run RFID read public function
+		// ReadRFID_NoCooperatiu();
+		LATA = 0xFF; 
 	}				
+}
+
+void initPorts(void){
+	ADCON1 = 0xFF;  // Set all pins as digital
+	TRISA = 0x00;   // Set all pins as output
 }
 
 

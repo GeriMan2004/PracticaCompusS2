@@ -5363,50 +5363,105 @@ void ReadRFID_NoCooperatiu() {
 void motor_RFID(void) {
     static char state = 0;
     static char substate = 0;
-    static char function_state = 0;
-    static char irqEn, waitIRq, lastBits, n;
+    static char irqEn, waitIRq, n;
     static unsigned char i;
     static char _status;
-    static unsigned backBits, unLen;
+    static unsigned unLen;
     static char TagType;
     static unsigned char UID[6];
     static char buffer[100];
     char *p = buffer;
-    p += sprintf(p, "state: %d\r\n", state);
+    p += sprintf(p, "state: %d, substate: %d\r\n", state, substate);
+
     switch(state) {
+
         case 0:
             switch(substate) {
                 case 0:
+
                     MFRC522_Wr(0x0D, 0x07);
                     TagType = 0x26;
                     substate = 1;
                     break;
-
                 case 1:
+
                     irqEn = 0x77;
                     waitIRq = 0x30;
                     MFRC522_Wr(0x02, irqEn | 0x80);
-                    MFRC522_Clear_Bit(0x04, 0x80);
-                    MFRC522_Set_Bit(0x0A, 0x80);
-                    MFRC522_Wr(0x01, 0x00);
-                    MFRC522_Wr(0x09, TagType);
-                    MFRC522_Wr(0x01, 0x0C);
-                    MFRC522_Set_Bit(0x0D, 0x80);
-                    i = 0xFF;
                     substate = 2;
                     break;
-
                 case 2:
+
+                    MFRC522_Clear_Bit(0x04, 0x80);
+                    substate = 3;
+                    break;
+                case 3:
+
+                    MFRC522_Set_Bit(0x0A, 0x80);
+                    substate = 4;
+                    break;
+                case 4:
+
+                    MFRC522_Wr(0x01, 0x00);
+                    substate = 5;
+                    break;
+                case 5:
+
+                    MFRC522_Wr(0x09, TagType);
+                    substate = 6;
+                    break;
+                case 6:
+
+                    MFRC522_Wr(0x01, 0x0C);
+                    substate = 7;
+                    break;
+                case 7:
+
+                    MFRC522_Set_Bit(0x0D, 0x80);
+                    i = 0xFF;
+                    substate = 8;
+                    break;
+                case 8:
+
                     n = MFRC522_Rd(0x04);
                     if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        MFRC522_Clear_Bit(0x0D, 0x80);
-                        if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
-                            if (!(n & irqEn & 0x01)) {
-                                state = 1;
-                            }
-                        }
-                        substate = 0;
+                        substate = 9;
                     }
+                    break;
+                case 9:
+
+                    MFRC522_Clear_Bit(0x0D, 0x80);
+                    substate = 10;
+                    break;
+                case 10:
+
+                    if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
+                        unsigned char fifoLevel = MFRC522_Rd(0x0A);
+                        unsigned char lastBitsVal = MFRC522_Rd(0x0C) & 0x07;
+                        unsigned backBitsCalc;
+                        if (lastBitsVal)
+                            backBitsCalc = (fifoLevel - 1) * 8 + lastBitsVal;
+                        else
+                            backBitsCalc = fifoLevel * 8;
+
+                        if (backBitsCalc == 0x10) {
+                            substate = 11;
+                        } else {
+                            substate = 12;
+                        }
+                    } else {
+                        substate = 12;
+                    }
+                    break;
+                case 11:
+
+                    state = 1;
+                    substate = 0;
+                    break;
+                case 12:
+
+                    state = 0;
+                    substate = 0;
                     break;
             }
             break;
@@ -5414,51 +5469,100 @@ void motor_RFID(void) {
         case 1:
             switch(substate) {
                 case 0:
+
                     MFRC522_Wr(0x0D, 0x00);
                     UID[0] = 0x93;
                     UID[1] = 0x20;
-                    MFRC522_Clear_Bit(0x08, 0x08);
                     substate = 1;
                     break;
-
                 case 1:
+
+                    MFRC522_Clear_Bit(0x08, 0x08);
+                    substate = 2;
+                    break;
+                case 2:
+
                     irqEn = 0x77;
                     waitIRq = 0x30;
                     MFRC522_Wr(0x02, irqEn | 0x80);
+                    substate = 3;
+                    break;
+                case 3:
+
                     MFRC522_Clear_Bit(0x04, 0x80);
+                    substate = 4;
+                    break;
+                case 4:
+
                     MFRC522_Set_Bit(0x0A, 0x80);
+                    substate = 5;
+                    break;
+                case 5:
+
                     MFRC522_Wr(0x01, 0x00);
+                    substate = 6;
+                    break;
+                case 6:
+
                     MFRC522_Wr(0x09, UID[0]);
                     MFRC522_Wr(0x09, UID[1]);
+                    substate = 7;
+                    break;
+                case 7:
+
                     MFRC522_Wr(0x01, 0x0C);
+                    substate = 8;
+                    break;
+                case 8:
+
                     MFRC522_Set_Bit(0x0D, 0x80);
                     i = 0xFF;
-                    substate = 2;
+                    substate = 9;
                     break;
+                case 9:
 
-                case 2:
                     n = MFRC522_Rd(0x04);
                     if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        MFRC522_Clear_Bit(0x0D, 0x80);
-                        if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
-
-                            n = MFRC522_Rd(0x0A);
-                            for (i = 0; i < 4; i++) {
-                                UID[i] = MFRC522_Rd(0x09);
-                            }
-                            UID[4] = 0;
-                            displayUID(UID);
-                            state = 2;
-                        }
-                        substate = 0;
+                        substate = 10;
                     }
+                    break;
+                case 10:
+
+                    MFRC522_Clear_Bit(0x0D, 0x80);
+                    substate = 11;
+                    break;
+                case 11:
+
+                    if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
+                        unsigned char fifoLevel = MFRC522_Rd(0x0A);
+                        for (i = 0; i < 4; i++) {
+                            UID[i] = MFRC522_Rd(0x09);
+                        }
+                        UID[4] = 0;
+                    }
+                    substate = 12;
+                    break;
+                case 12:
+
+                    displayUID(UID);
+                    state = 2;
+                    substate = 0;
                     break;
             }
             break;
 
         case 2:
-            MFRC522_Wr(0x01, 0x50);
-            state = 0;
+            switch(substate) {
+                case 0:
+                    MFRC522_Wr(0x01, 0x50);
+                    substate = 1;
+                    break;
+                case 1:
+
+                    state = 0;
+                    substate = 0;
+                    break;
+            }
             break;
     }
 }
