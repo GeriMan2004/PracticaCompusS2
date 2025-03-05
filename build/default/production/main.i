@@ -4842,6 +4842,7 @@ void MFRC522_Halt();
 char MFRC522_AntiColl(unsigned char *serNum);
 char MFRC522_isCard(char *TagType);
 char MFRC522_ReadCardSerial(unsigned char *str);
+void motor_RFID(void);
 
 
 void initRFID(void);
@@ -4900,8 +4901,8 @@ void main(void){
 
  while(1){
   motorTeclado();
-
-
+        motorTerminal();
+  motor_RFID();
  }
 }
 

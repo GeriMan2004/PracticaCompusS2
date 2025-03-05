@@ -719,85 +719,94 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TERMINAL.c: 89:     state = 1;
 [e = F3232 -> -> 1 `i `uc ]
 "90
-[; ;TAD_TERMINAL.c: 90:    }
+[; ;TAD_TERMINAL.c: 90:     hashtag_pressed = 0;
+[e = _hashtag_pressed -> -> 0 `i `uc ]
+"91
+[; ;TAD_TERMINAL.c: 91:    }
 }
 [e :U 328 ]
-"91
-[; ;TAD_TERMINAL.c: 91:   break;
-[e $U 324  ]
 "92
-[; ;TAD_TERMINAL.c: 92:   case 1:
-[e :U 329 ]
+[; ;TAD_TERMINAL.c: 92:   break;
+[e $U 324  ]
 "93
-[; ;TAD_TERMINAL.c: 93:    if(Terminal_RXAvailable() == 1){
+[; ;TAD_TERMINAL.c: 93:   case 1:
+[e :U 329 ]
+"94
+[; ;TAD_TERMINAL.c: 94:    if(Terminal_RXAvailable() == 1){
 [e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 330  ]
 {
-"94
-[; ;TAD_TERMINAL.c: 94:     initTeclado();
-[e ( _initTeclado ..  ]
 "95
-[; ;TAD_TERMINAL.c: 95:     if (Terminal_ReceiveChar() == '1') {
+[; ;TAD_TERMINAL.c: 95:     initTeclado();
+[e ( _initTeclado ..  ]
+"96
+[; ;TAD_TERMINAL.c: 96:     if (Terminal_ReceiveChar() == '1') {
 [e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 49 `ui 331  ]
 {
-"96
-[; ;TAD_TERMINAL.c: 96:      Terminal_SendString("Has pulsado 1");
+"97
+[; ;TAD_TERMINAL.c: 97:      Terminal_SendString("Has pulsado 1");
 [e ( _Terminal_SendString (1 :s 11C ]
-"98
-[; ;TAD_TERMINAL.c: 98:      state = 0;
-[e = F3232 -> -> 0 `i `uc ]
 "99
-[; ;TAD_TERMINAL.c: 99:     }
+[; ;TAD_TERMINAL.c: 99:      state = 0;
+[e = F3232 -> -> 0 `i `uc ]
+"100
+[; ;TAD_TERMINAL.c: 100:     }
 }
 [e $U 332  ]
-"100
-[; ;TAD_TERMINAL.c: 100:     else if (Terminal_ReceiveChar() == '2') {
+"101
+[; ;TAD_TERMINAL.c: 101:     else if (Terminal_ReceiveChar() == '2') {
 [e :U 331 ]
 [e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 50 `ui 333  ]
 {
 "102
-[; ;TAD_TERMINAL.c: 102:      state = 0;
+[; ;TAD_TERMINAL.c: 102:      Terminal_SendString("Has pulsado 2");
+[e ( _Terminal_SendString (1 :s 12C ]
+"104
+[; ;TAD_TERMINAL.c: 104:      state = 0;
 [e = F3232 -> -> 0 `i `uc ]
-"103
-[; ;TAD_TERMINAL.c: 103:     }
+"105
+[; ;TAD_TERMINAL.c: 105:     }
 }
 [e $U 334  ]
-"104
-[; ;TAD_TERMINAL.c: 104:     else if (Terminal_ReceiveChar() == '3') {
+"106
+[; ;TAD_TERMINAL.c: 106:     else if (Terminal_ReceiveChar() == '3') {
 [e :U 333 ]
 [e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 51 `ui 335  ]
 {
-"106
-[; ;TAD_TERMINAL.c: 106:      state = 0;
-[e = F3232 -> -> 0 `i `uc ]
 "107
-[; ;TAD_TERMINAL.c: 107:     }
+[; ;TAD_TERMINAL.c: 107:      Terminal_SendString("Has pulsado 3");
+[e ( _Terminal_SendString (1 :s 13C ]
+"109
+[; ;TAD_TERMINAL.c: 109:      state = 0;
+[e = F3232 -> -> 0 `i `uc ]
+"110
+[; ;TAD_TERMINAL.c: 110:     }
 }
 [e $U 336  ]
-"108
-[; ;TAD_TERMINAL.c: 108:     else {
+"111
+[; ;TAD_TERMINAL.c: 111:     else {
 [e :U 335 ]
 {
-"109
-[; ;TAD_TERMINAL.c: 109:      Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
-[e ( _Terminal_SendString (1 :s 12C ]
-"110
-[; ;TAD_TERMINAL.c: 110:      state = 0;
+"112
+[; ;TAD_TERMINAL.c: 112:      Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
+[e ( _Terminal_SendString (1 :s 14C ]
+"113
+[; ;TAD_TERMINAL.c: 113:      state = 0;
 [e = F3232 -> -> 0 `i `uc ]
-"111
-[; ;TAD_TERMINAL.c: 111:     }
+"114
+[; ;TAD_TERMINAL.c: 114:     }
 }
 [e :U 336 ]
 [e :U 334 ]
 [e :U 332 ]
-"112
-[; ;TAD_TERMINAL.c: 112:    }
+"115
+[; ;TAD_TERMINAL.c: 115:    }
 }
 [e :U 330 ]
-"113
-[; ;TAD_TERMINAL.c: 113:   break;
+"116
+[; ;TAD_TERMINAL.c: 116:   break;
 [e $U 324  ]
-"114
-[; ;TAD_TERMINAL.c: 114:  }
+"117
+[; ;TAD_TERMINAL.c: 117:  }
 }
 [e $U 324  ]
 [e :U 325 ]
@@ -805,10 +814,12 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 1 `i 329
  324 ]
 [e :U 324 ]
-"115
-[; ;TAD_TERMINAL.c: 115: }
+"118
+[; ;TAD_TERMINAL.c: 118: }
 [e :UE 323 ]
 }
+[a 13C 72 97 115 32 112 117 108 115 97 100 111 32 51 0 ]
+[a 12C 72 97 115 32 112 117 108 115 97 100 111 32 50 0 ]
 [a 11C 72 97 115 32 112 117 108 115 97 100 111 32 49 0 ]
 [a 1C 85 73 68 58 32 0 ]
 [a 10C 79 112 99 105 18446744073709551555 18446744073709551539 58 32 0 ]
@@ -817,7 +828,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 9C 9 51 46 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 32 100 101 108 32 115 105 115 116 101 109 97 13 10 0 ]
 [a 7C 9 49 46 32 81 117 105 32 104 105 32 104 97 32 97 32 108 97 32 115 97 108 97 63 13 10 0 ]
 [a 6C 84 114 105 97 32 117 110 97 32 111 112 99 105 18446744073709551555 18446744073709551539 58 13 10 0 ]
-[a 12C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 13 10 0 ]
+[a 14C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 13 10 0 ]
 [a 3C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
 [a 5C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
 [a 2C 10 0 ]

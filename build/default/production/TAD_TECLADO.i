@@ -5070,6 +5070,8 @@ void initTeclado(void) {
 }
 
 void initPortsTeclado(void) {
+
+
  TRISD = 0x0F;
  LATD = 0x00;
 }
@@ -5079,12 +5081,9 @@ void initPortsTeclado(void) {
 
 
 void motorTeclado(void) {
- Filas = ReadFilas();
- char buffer[32];
- sprintf(buffer, "State: %d\tFilas: %d\tColumnas: %d\tTecla: %d\r\n", state, Filas, Columnas, tecla);
-    Terminal_SendString(buffer);
  switch(state) {
   case 0:
+   Filas = ReadFilas();
    if (Filas == 0x0) {
     Columnas = (0x01);
     writeColumnas();
@@ -5096,6 +5095,7 @@ void motorTeclado(void) {
    }
   break;
   case 1:
+   Filas = ReadFilas();
    if (Filas == 0x0) {
     Columnas = (0x02);
     writeColumnas();
@@ -5107,6 +5107,7 @@ void motorTeclado(void) {
    }
   break;
   case 2:
+   Filas = ReadFilas();
    if (Filas != 0x0) {
     TI_ResetTics(timer);
     state = 3;
@@ -5119,6 +5120,7 @@ void motorTeclado(void) {
   break;
   case 3:
    tecla = GetTecla ();
+   Filas = ReadFilas();
    if (Filas == 0x0) {
     Columnas = (0x04);
     writeColumnas();
@@ -5133,6 +5135,7 @@ void motorTeclado(void) {
    }
   break;
   case 4:
+   Filas = ReadFilas();
    if (Filas == 0x0) {
     state = 0;
    }
@@ -5143,6 +5146,7 @@ void motorTeclado(void) {
    }
   break;
   case 5:
+   Filas = ReadFilas();
    if (Filas == 0x0) {
     state = 0;
     Columnas = (0x04);

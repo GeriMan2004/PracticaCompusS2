@@ -31,8 +31,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "11 ./TAD_TECLADO.h
 [; ;./TAD_TECLADO.h: 11: void initTeclado(void);
 [v _initTeclado `(v ~T0 @X0 0 ef ]
-"155 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 155: void initRFID(void);
+"156 ./TAD_RFID.h
+[; ;./TAD_RFID.h: 156: void initRFID(void);
 [v _initRFID `(v ~T0 @X0 0 ef ]
 "7 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 7: void Terminal_Init(void);
@@ -40,6 +40,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./TAD_TECLADO.h
 [; ;./TAD_TECLADO.h: 13: void motorTeclado(void);
 [v _motorTeclado `(v ~T0 @X0 0 ef ]
+"15 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 15: void motorTerminal(void);
+[v _motorTerminal `(v ~T0 @X0 0 ef ]
+"153 ./TAD_RFID.h
+[; ;./TAD_RFID.h: 153: void motor_RFID(void);
+[v _motor_RFID `(v ~T0 @X0 0 ef ]
 "1210 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1210: extern volatile unsigned char LATC __attribute__((address(0xF8B)));
 [v _LATC `Vuc ~T0 @X0 0 e@3979 ]
@@ -495,7 +501,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x LVP  =  OFF ]
 [v $root$_HighRSI `(v ~T0 @X0 0 e ]
 "27
-[; ;main.c: 27: 
+[; ;main.c: 27:         motorTerminal();
 [v _HighRSI `(v ~T41 @X0 1 ef ]
 {
 [e :U _HighRSI ]
@@ -546,6 +552,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "47
 [e ( _motorTeclado ..  ]
+"48
+[e ( _motorTerminal ..  ]
+"49
+[e ( _motor_RFID ..  ]
 "50
 }
 [e :U 306 ]

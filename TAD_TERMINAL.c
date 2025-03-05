@@ -87,6 +87,7 @@ void motorTerminal(void) {
 			if (hashtag_pressed == 1){
 				showMenu();
 				state = 1;
+				hashtag_pressed = 0;
 			}
 		break;
 		case 1:
@@ -98,10 +99,12 @@ void motorTerminal(void) {
 					state = 0;  
 				}
 				else if (Terminal_ReceiveChar() == '2') {
+					Terminal_SendString("Has pulsado 2");
 					// getUserConfiguration();
 					state = 0;
 				}
 				else if (Terminal_ReceiveChar() == '3') {
+					Terminal_SendString("Has pulsado 3");
 					//modifyHour();
 					state = 0;
 				}

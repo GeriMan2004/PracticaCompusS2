@@ -45,8 +45,8 @@ void main(void){
 	
 	while(1){
 		motorTeclado();  // Run keyboard state machine
-        //motorTerminal();
-		// ReadRFID_NoCooperatiu();  // Run RFID read public function
+        motorTerminal();
+		motor_RFID();  // Run RFID read public function
 	}				
 }
 

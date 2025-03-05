@@ -10,6 +10,8 @@
 #include <xc.h>
 #include "TAD_RFID.h"
 #include "TAD_TERMINAL.h"
+#include <stdio.h>
+#include <string.h>
 
 //-------------- Private functions: --------------
 void InitPortDirections () {
@@ -36,19 +38,19 @@ unsigned char MFRC522_Rd (unsigned char Address) {
     for (i = 8; i > 0; i--) {
         MFRC522_SI = ((ucAddr & 0x80) == 0x80);
         MFRC522_SCK = 1;
-        //delay_us(5);
+        delay_us(5);
         ucAddr <<= 1;
         MFRC522_SCK = 0;
-        //delay_us(5);
+        delay_us(5);
     }
 
     for (i = 8; i > 0; i--) {
         MFRC522_SCK = 1;
-        //delay_us(5);
+        delay_us(5);
         ucResult <<= 1;   
         ucResult|= MFRC522_SO;
         MFRC522_SCK = 0;
-        //delay_us(5);
+        delay_us(5);
     }
 
     MFRC522_CS = 1;
@@ -299,8 +301,7 @@ void initRFID() {
 void ReadRFID_NoCooperatiu() {
     unsigned char UID[6];    // 5 bytes para UID + 1 para null terminator
     char TagType;   // Variable para el tipo de tarjeta
-
-    if (MFRC522_isCard (&TagType)) {      
+    if (MFRC522_isCard (&TagType) == 1) {
         //At this point, TagType contains an integer value corresponding to the type of card.
         //Read ID
         if (MFRC522_ReadCardSerial (UID)) {
@@ -309,4 +310,107 @@ void ReadRFID_NoCooperatiu() {
         }                                      
         MFRC522_Halt ();
     }   
+}
+
+void motor_RFID(void) {
+    static char state = 0;
+    static char substate = 0;
+    static char function_state = 0;
+    static char irqEn, waitIRq, lastBits, n;
+    static unsigned char i;
+    static char _status;
+    static unsigned backBits, unLen;
+    static char TagType;
+    static unsigned char UID[6];
+    static char buffer[100];
+    char *p = buffer;
+    p += sprintf(p, "state: %d\r\n", state);
+    switch(state) {
+        case 0: // Inicialización y preparación para detectar tarjeta
+            switch(substate) {
+                case 0:
+                    MFRC522_Wr(BITFRAMINGREG, 0x07);
+                    TagType = PICC_REQIDL;
+                    substate = 1;
+                    break;
+                    
+                case 1: // Inicio de MFRC522_ToCard para Request
+                    irqEn = 0x77;    // Para PCD_TRANSCEIVE
+                    waitIRq = 0x30;
+                    MFRC522_Wr(COMMIENREG, irqEn | 0x80);
+                    MFRC522_Clear_Bit(COMMIRQREG, 0x80);
+                    MFRC522_Set_Bit(FIFOLEVELREG, 0x80);
+                    MFRC522_Wr(COMMANDREG, PCD_IDLE);
+                    MFRC522_Wr(FIFODATAREG, TagType);
+                    MFRC522_Wr(COMMANDREG, PCD_TRANSCEIVE);
+                    MFRC522_Set_Bit(BITFRAMINGREG, 0x80);
+                    i = 0xFF;
+                    substate = 2;
+                    break;
+                    
+                case 2: // Esperar respuesta
+                    n = MFRC522_Rd(COMMIRQREG);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        MFRC522_Clear_Bit(BITFRAMINGREG, 0x80);
+                        if (i != 0 && !(MFRC522_Rd(ERRORREG) & 0x1B)) {
+                            if (!(n & irqEn & 0x01)) {
+                                state = 1; // Tarjeta detectada, pasar a leer UID
+                            }
+                        }
+                        substate = 0; // Reset substate para próxima detección
+                    }
+                    break;
+            }
+            break;
+
+        case 1: // Leer UID (AntiColl)
+            switch(substate) {
+                case 0:
+                    MFRC522_Wr(BITFRAMINGREG, 0x00);
+                    UID[0] = PICC_ANTICOLL;
+                    UID[1] = 0x20;
+                    MFRC522_Clear_Bit(STATUS2REG, 0x08);
+                    substate = 1;
+                    break;
+                    
+                case 1: // Inicio de MFRC522_ToCard para AntiColl
+                    irqEn = 0x77;
+                    waitIRq = 0x30;
+                    MFRC522_Wr(COMMIENREG, irqEn | 0x80);
+                    MFRC522_Clear_Bit(COMMIRQREG, 0x80);
+                    MFRC522_Set_Bit(FIFOLEVELREG, 0x80);
+                    MFRC522_Wr(COMMANDREG, PCD_IDLE);
+                    MFRC522_Wr(FIFODATAREG, UID[0]);
+                    MFRC522_Wr(FIFODATAREG, UID[1]);
+                    MFRC522_Wr(COMMANDREG, PCD_TRANSCEIVE);
+                    MFRC522_Set_Bit(BITFRAMINGREG, 0x80);
+                    i = 0xFF;
+                    substate = 2;
+                    break;
+                    
+                case 2: // Esperar respuesta y procesar UID
+                    n = MFRC522_Rd(COMMIRQREG);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        MFRC522_Clear_Bit(BITFRAMINGREG, 0x80);
+                        if (i != 0 && !(MFRC522_Rd(ERRORREG) & 0x1B)) {
+                            // Leer UID recibido
+                            n = MFRC522_Rd(FIFOLEVELREG);
+                            for (i = 0; i < 4; i++) {
+                                UID[i] = MFRC522_Rd(FIFODATAREG);
+                            }
+                            UID[4] = 0; // Null terminator
+                            displayUID(UID);
+                            state = 2; // Pasar a Halt
+                        }
+                        substate = 0;
+                    }
+                    break;
+            }
+            break;
+
+        case 2: // Halt
+            MFRC522_Wr(COMMANDREG, PICC_HALT);
+            state = 0; // Volver a esperar tarjeta
+            break;
+    }
 }
