@@ -5595,7 +5595,7 @@ void motor_RFID(void) {
                     break;
                 case 18:
 
-                    sprintf(buffer, "UID: %02X%02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4], UID[5]);
+                    sprintf(buffer, "UID: %02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4]);
                     Terminal_SendString(buffer);
                     substate = 19;
                     break;

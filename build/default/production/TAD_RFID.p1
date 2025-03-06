@@ -2135,8 +2135,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_RFID.c: 549:                 case 18:
 [e :U 444 ]
 "551
-[; ;TAD_RFID.c: 551:                     sprintf(buffer, "UID: %02X%02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4], UID[5]);
-[e ( _sprintf (1 , , , , , , (. , &U F3325 :s 4C -> *U + &U F3324 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 5 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i ]
+[; ;TAD_RFID.c: 551:                     sprintf(buffer, "UID: %02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4]);
+[e ( _sprintf (1 , , , , , (. , &U F3325 :s 4C -> *U + &U F3324 * -> -> -> 0 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 1 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 2 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 3 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i -> *U + &U F3324 * -> -> -> 4 `i `ui `ux -> -> # *U &U F3324 `ui `ux `i ]
 "552
 [; ;TAD_RFID.c: 552:                     Terminal_SendString(buffer);
 [e ( _Terminal_SendString (1 -> &U F3325 `*Cuc ]
@@ -2207,5 +2207,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p f _sprintf 10518532 ]
 [a 2C 37 48 50 88 0 ]
 [a 1C 85 73 68 58 32 0 ]
-[a 4C 85 73 68 58 32 37 48 50 88 37 48 50 88 37 48 50 88 37 48 50 88 37 48 50 88 37 48 50 88 13 10 0 ]
+[a 4C 85 73 68 58 32 37 48 50 88 37 48 50 88 37 48 50 88 37 48 50 88 37 48 50 88 13 10 0 ]
 [a 3C 10 0 ]

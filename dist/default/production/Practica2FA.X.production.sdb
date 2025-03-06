@@ -396,11 +396,11 @@
 [v _motor_RFID motor_RFID `(v  1 e 1 0 ]
 {
 "399
-[v motor_RFID@backBitsCalc backBitsCalc `ui  1 a 2 80 ]
+[v motor_RFID@backBitsCalc backBitsCalc `ui  1 a 2 78 ]
 "398
-[v motor_RFID@lastBitsVal lastBitsVal `uc  1 a 1 83 ]
+[v motor_RFID@lastBitsVal lastBitsVal `uc  1 a 1 81 ]
 "397
-[v motor_RFID@fifoLevel fifoLevel `uc  1 a 1 82 ]
+[v motor_RFID@fifoLevel fifoLevel `uc  1 a 1 80 ]
 "323
 [v motor_RFID@state state `uc  1 s 1 state ]
 "324
@@ -429,9 +429,9 @@
 [u S1300 . 2 `*.30uc 1 buffer 1 0 `*.39Cuc 1 source 2 0 ]
 "13
 [s S1303 _IO_FILE 11 `S1300 1 . 2 0 `i 1 count 2 2 `[3]uc 1 ungetbuf 3 4 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v sprintf@f f `S1303  1 a 11 67 ]
+[v sprintf@f f `S1303  1 a 11 65 ]
 "12
-[v sprintf@ap ap `[1]*.30v  1 a 1 66 ]
+[v sprintf@ap ap `[1]*.30v  1 a 1 64 ]
 "9
 [v sprintf@s s `*.30uc  1 p 1 51 ]
 [v sprintf@fmt fmt `*.32Cuc  1 p 2 52 ]
