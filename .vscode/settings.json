@@ -4,6 +4,11 @@
         "tad_datos.h": "c",
         "tad_rfid.h": "c",
         "tad_terminal.h": "c",
-        "string.h": "c"
-    }
+        "string.h": "c",
+        "stdio.h": "c"
+    },
+    "mplab.clangd.arguments": [
+        "--compile-commands-dir=${workspaceRoot}\\_build\\Practica2FA\\default"
+    ],
+    "mplab.clangd.path": "c:\\Program Files\\Microchip\\xc8\\v3.00\\bin\\xc8-clangd.exe"
 }

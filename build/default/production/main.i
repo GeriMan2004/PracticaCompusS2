@@ -4813,7 +4813,6 @@ void TI_End (void);
 
 
 
-void displayUID(unsigned char *uid);
 void Terminal_Init(void);
 int Terminal_TXAvailable(void);
 char Terminal_RXAvailable(void);
@@ -4911,7 +4910,7 @@ void main(void){
 }
 
 void initPorts(void){
- ADCON1 = 0xFF;
+ ADCON1 = 0x0F;
  TRISA = 0x00;
 }
 

@@ -4838,7 +4838,6 @@ void TI_End (void);
 # 4 "./TAD_TERMINAL.h" 2
 
 
-void displayUID(unsigned char *uid);
 void Terminal_Init(void);
 int Terminal_TXAvailable(void);
 char Terminal_RXAvailable(void);
@@ -5350,12 +5349,18 @@ void initRFID() {
 void ReadRFID_NoCooperatiu() {
     unsigned char UID[6];
     char TagType;
+    char buffer[50];
     if (MFRC522_isCard (&TagType) == 1) {
 
 
         if (MFRC522_ReadCardSerial (UID)) {
+            Terminal_SendString("UID: ");
+            for (int i = 0; i < 6; i++) {
+                sprintf(buffer, "%02X", UID[i]);
+                Terminal_SendString(buffer);
+            }
+            Terminal_SendString("\n");
 
-            displayUID(UID);
         }
         MFRC522_Halt ();
     }
@@ -5370,7 +5375,9 @@ void motor_RFID(void) {
     static unsigned unLen;
     static char TagType;
     static unsigned char UID[6];
-
+    static char buffer[50];
+    static unsigned char checksum;
+    static unsigned char allZero;
     switch(state) {
 
         case 0:
@@ -5532,36 +5539,73 @@ void motor_RFID(void) {
                 case 11:
 
                     if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
-                        unsigned char fifoLevel = MFRC522_Rd(0x0A);
-                        for (i = 0; i < 4; i++) {
-                            UID[i] = MFRC522_Rd(0x09);
-                        }
-                        UID[4] = 0;
+
+                        UID[0] = MFRC522_Rd(0x09);
+                        UID[1] = MFRC522_Rd(0x09);
+                        substate = 12;
+                    } else {
+
+                        state = 0;
+                        substate = 0;
                     }
-                    substate = 12;
                     break;
                 case 12:
 
-                    displayUID(UID);
-                    state = 2;
-                    substate = 0;
+                    UID[2] = MFRC522_Rd(0x09);
+                    UID[3] = MFRC522_Rd(0x09);
+                    substate = 13;
                     break;
-            }
-        break;
+                case 13:
 
-
-        case 2:
-            switch(substate) {
-                case 0:
-                    MFRC522_Wr(0x01, 0x50);
-                    substate = 1;
+                    UID[4] = MFRC522_Rd(0x09);
+                    UID[5] = 0;
+                    substate = 14;
                     break;
-                case 1:
+                case 14:
 
+                    checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
+
+                    allZero = 1;
+                    substate = 15;
+                    break;
+                case 15:
+
+                    if (UID[0] != 0 || UID[1] != 0) {
+                        allZero = 0;
+                    }
+                    substate = 16;
+                    break;
+                case 16:
+
+                    if (UID[2] != 0 || UID[3] != 0) {
+                        allZero = 0;
+                    }
+                    substate = 17;
+                    break;
+                case 17:
+
+                    if (checksum != UID[4] || allZero) {
+
+                        state = 0;
+                        substate = 0;
+                    } else {
+
+                        substate = 18;
+                    }
+                    break;
+                case 18:
+
+                    sprintf(buffer, "UID: %02X%02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4], UID[5]);
+                    Terminal_SendString(buffer);
+                    substate = 19;
+                    break;
+                case 19:
+
+                    MFRC522_Wr(0x0D, 0x00);
                     state = 0;
                     substate = 0;
                     break;
-            }
-            break;
+                }
+        break;
     }
 }

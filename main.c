@@ -49,13 +49,13 @@ void main(void){
 		motorTeclado();  // Run keyboard state machine
     	motorTerminal();
 		motor_RFID();  // Run RFID read public function
-		// ReadRFID_NoCooperatiu();
+		//ReadRFID_NoCooperatiu();
 		LATA = 0xFF; 
 	}				
 }
 
 void initPorts(void){
-	ADCON1 = 0xFF;  // Set all pins as digital
+	ADCON1 = 0x0F;  // Set all pins as digital
 	TRISA = 0x00;   // Set all pins as output
 }
 

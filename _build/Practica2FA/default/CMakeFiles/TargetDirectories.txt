@@ -1,0 +1,4 @@
+C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default/CMakeFiles/Practica2FA_default_default_XC8_compile.dir
+C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default/CMakeFiles/Practica2FA_default_default.elf.dir
+C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default/CMakeFiles/edit_cache.dir
+C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default/CMakeFiles/rebuild_cache.dir

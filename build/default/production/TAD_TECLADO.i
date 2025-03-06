@@ -4830,7 +4830,6 @@ void showTecla(void);
 
 
 
-void displayUID(unsigned char *uid);
 void Terminal_Init(void);
 int Terminal_TXAvailable(void);
 char Terminal_RXAvailable(void);

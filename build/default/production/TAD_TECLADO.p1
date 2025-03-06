@@ -26,8 +26,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31 ./TAD_TIMER.h
 [; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);
 [v _TI_GetTics `(ul ~T0 @X0 0 ef1`uc ]
-"14 ./TAD_TERMINAL.h
-[; ;./TAD_TERMINAL.h: 14: void hashtag_pressed3s(void);
+"13 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 13: void hashtag_pressed3s(void);
 [v _hashtag_pressed3s `(v ~T0 @X0 0 ef ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
@@ -921,9 +921,9 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 353
  354 ]
 [e :U 349 ]
-[v F3224 `Cuc ~T0 @X0 -> 3 `i t ]
-[v F3223 `F3224 ~T0 @X0 -> 4 `i s ]
-[i F3223
+[v F3222 `Cuc ~T0 @X0 -> 3 `i t ]
+[v F3221 `F3222 ~T0 @X0 -> 4 `i s ]
+[i F3221
 :U ..
 :U ..
 "148
@@ -949,9 +949,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F3226 `Cuc ~T0 @X0 -> 3 `i t ]
-[v _keymap `F3226 ~T0 @X0 -> 4 `i a ]
-[e = _keymap F3223 ]
+[v F3224 `Cuc ~T0 @X0 -> 3 `i t ]
+[v _keymap `F3224 ~T0 @X0 -> 4 `i a ]
+[e = _keymap F3221 ]
 "155
 [; ;TAD_TECLADO.c: 155:     return keymap[fila][columna];
 [e ) *U + &U *U + &U _keymap * -> _fila `ux -> * -> # *U &U *U &U _keymap `ui -> -> 3 `i `ui `ux * -> _columna `ux -> -> # *U &U *U + &U _keymap * -> _fila `ux -> * -> # *U &U *U &U _keymap `ui -> -> 3 `i `ui `ux `ui `ux ]

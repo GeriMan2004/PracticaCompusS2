@@ -4812,7 +4812,6 @@ void TI_End (void);
 # 4 "./TAD_TERMINAL.h" 2
 
 
-void displayUID(unsigned char *uid);
 void Terminal_Init(void);
 int Terminal_TXAvailable(void);
 char Terminal_RXAvailable(void);
@@ -5055,21 +5054,6 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 
 char hashtag_pressed = 0;
 
-void displayUID(unsigned char *uid) {
-    char hexString[11];
-    for (int i = 0; i < 5; i++) {
-        unsigned char nibble = (uid[i] >> 4) & 0x0F;
-        hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-        nibble = uid[i] & 0x0F;
-        hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-    }
-    hexString[10] = '\0';
-
-    Terminal_SendString("UID: ");
-    Terminal_SendString(hexString);
-    Terminal_SendString("\r\n");
-}
-
 
 void Terminal_Init(void){
  TXSTA = 0x24;
@@ -5142,17 +5126,17 @@ void motorTerminal(void) {
    if(Terminal_RXAvailable() == 1){
     initTeclado();
     if (Terminal_ReceiveChar() == '1') {
-     Terminal_SendString("Has pulsado 1");
+     Terminal_SendString("Has pulsado 1\r\n");
 
      state = 0;
     }
     else if (Terminal_ReceiveChar() == '2') {
-     Terminal_SendString("Has pulsado 2");
+     Terminal_SendString("Has pulsado 2\r\n");
 
      state = 0;
     }
     else if (Terminal_ReceiveChar() == '3') {
-     Terminal_SendString("Has pulsado 3");
+     Terminal_SendString("Has pulsado 3\r\n");
 
      state = 0;
     }
