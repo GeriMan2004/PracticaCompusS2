@@ -4,7 +4,7 @@
 #include "TAD_RFID.h"
 #include "TAD_TECLADO.h"
 
-#pragma config OSC = HS
+#pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
 #pragma config MCLRE = OFF
 #pragma config DEBUG = OFF
@@ -46,8 +46,8 @@ void main(void){
 	
 	while(1){
 		LATA = 0x00;  // Clear PORTA
-		// motorTeclado();  // Run keyboard state machine
-    	// motorTerminal();
+		motorTeclado();  // Run keyboard state machine
+    	motorTerminal();
 		motor_RFID();  // Run RFID read public function
 		// ReadRFID_NoCooperatiu();
 		LATA = 0xFF; 

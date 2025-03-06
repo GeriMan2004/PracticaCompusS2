@@ -5062,6 +5062,8 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 # 15 "TAD_RFID.c" 2
 
 
+
+
 void InitPortDirections () {
     TRISCbits.TRISC0 = 1;
     TRISCbits.TRISC1 = 0;
@@ -5071,9 +5073,8 @@ void InitPortDirections () {
 }
 
 void delay_us (char howMany) {
-
     char x;
-    for (x = 0; x < howMany * 3; x++) __nop();
+    for (x = 0; x < howMany * 16; x++) __nop();
 }
 
 unsigned char MFRC522_Rd (unsigned char Address) {
@@ -5369,9 +5370,6 @@ void motor_RFID(void) {
     static unsigned unLen;
     static char TagType;
     static unsigned char UID[6];
-    static char buffer[100];
-    char *p = buffer;
-    p += sprintf(p, "state: %d, substate: %d\r\n", state, substate);
 
     switch(state) {
 
@@ -5549,7 +5547,8 @@ void motor_RFID(void) {
                     substate = 0;
                     break;
             }
-            break;
+        break;
+
 
         case 2:
             switch(substate) {

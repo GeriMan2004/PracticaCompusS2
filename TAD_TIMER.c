@@ -10,7 +10,7 @@
 
 // Definicions, per interrupci� cada 2ms.
 #define T0CON_CONFIG 0x82
-#define RECARREGA_TMR0 64911        // 2 ms, suposant FOsc a 10MHz.
+#define RECARREGA_TMR0 63036        // 2 ms, suposant FOsc a 40MHz.
 
 #define TI_NUMTIMERS 4              // Nombre de timers virtuals gestionats per aquest TAD. Si cal, s'incrementa o es disminueix...
 

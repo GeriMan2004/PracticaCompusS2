@@ -507,7 +507,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TERMINAL.c: 21:     Terminal_SendString(hexString);
 [e ( _Terminal_SendString (1 -> &U _hexString `*Cuc ]
 "22
-[; ;TAD_TERMINAL.c: 22:     Terminal_SendString("\n");
+[; ;TAD_TERMINAL.c: 22:     Terminal_SendString("\r\n");
 [e ( _Terminal_SendString (1 :s 2C ]
 "23
 [; ;TAD_TERMINAL.c: 23: }
@@ -526,8 +526,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TERMINAL.c: 28:  RCSTA = 0x90;
 [e = _RCSTA -> -> 144 `i `uc ]
 "29
-[; ;TAD_TERMINAL.c: 29:  SPBRG = 64;
-[e = _SPBRG -> -> 64 `i `uc ]
+[; ;TAD_TERMINAL.c: 29:  SPBRG = 255;
+[e = _SPBRG -> -> 255 `i `uc ]
 "30
 [; ;TAD_TERMINAL.c: 30:  BAUDCON = 0x00;
 [e = _BAUDCON -> -> 0 `i `uc ]
@@ -831,4 +831,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 14C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 13 10 0 ]
 [a 3C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
 [a 5C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
-[a 2C 10 0 ]
+[a 2C 13 10 0 ]

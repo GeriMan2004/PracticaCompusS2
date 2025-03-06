@@ -4860,7 +4860,7 @@ unsigned char GetTecla(void);
 void showTecla(void);
 # 6 "main.c" 2
 
-#pragma config OSC = HS
+#pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
 #pragma config MCLRE = OFF
 #pragma config DEBUG = OFF
@@ -4902,8 +4902,8 @@ void main(void){
 
  while(1){
   LATA = 0x00;
-
-
+  motorTeclado();
+     motorTerminal();
   motor_RFID();
 
   LATA = 0xFF;

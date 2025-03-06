@@ -26,7 +26,7 @@ void displayUID(unsigned char *uid) {
 void Terminal_Init(void){
 	TXSTA = 0x24;
 	RCSTA = 0x90;
-	SPBRG = 64;
+	SPBRG = 255;
 	BAUDCON = 0x00;
 	hashtag_pressed = 0;
 }

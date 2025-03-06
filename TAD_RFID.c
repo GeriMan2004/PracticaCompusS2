@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define NUM_US 16
+
 //-------------- Private functions: --------------
 void InitPortDirections () {
     DIR_MFRC522_SO  = 1; 
@@ -23,7 +25,6 @@ void InitPortDirections () {
 }
 
 void delay_us (char howMany) {
-    #define NUM_US 3  // A 10MHz, cada instrucción = 0.4µs, así que necesitamos ~3 instrucciones para 1µs
     char x;
     for (x = 0; x < howMany * NUM_US; x++) Nop();
 }
@@ -321,9 +322,6 @@ void motor_RFID(void) {
     static unsigned unLen;
     static char TagType;
     static unsigned char UID[6];
-    static char buffer[100];
-    char *p = buffer;
-    p += sprintf(p, "state: %d, substate: %d\r\n", state, substate);
 
     switch(state) {
         // Estado 0: Detección de tarjeta (Request)
@@ -466,9 +464,9 @@ void motor_RFID(void) {
                     substate = 8;
                     break;
                 case 8:
-                    // Activa StartSend y reinicia el contador de espera
+                    // Activa StartSend y reinicia el contador de espera (timeout reducido)
                     MFRC522_Set_Bit(BITFRAMINGREG, 0x80);
-                    i = 0xFF;
+                    i = 0xFF;  // Valor reducido para acelerar la respuesta
                     substate = 9;
                     break;
                 case 9:
@@ -501,7 +499,8 @@ void motor_RFID(void) {
                     substate = 0;
                     break;
             }
-            break;
+        break;
+
         // Estado 2: Halt
         case 2:
             switch(substate) {
@@ -518,3 +517,4 @@ void motor_RFID(void) {
             break;
     }
 }
+

@@ -43,6 +43,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "986 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 986: extern volatile unsigned char LATA __attribute__((address(0xF89)));
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
+"13 ./TAD_TECLADO.h
+[; ;./TAD_TECLADO.h: 13: void motorTeclado(void);
+[v _motorTeclado `(v ~T0 @X0 0 ef ]
+"15 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 15: void motorTerminal(void);
+[v _motorTerminal `(v ~T0 @X0 0 ef ]
 "153 ./TAD_RFID.h
 [; ;./TAD_RFID.h: 153: void motor_RFID(void);
 [v _motor_RFID `(v ~T0 @X0 0 ef ]
@@ -471,7 +477,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 0FFFh ;# ">
 "7 main.c
 [; ;main.c: 7: 
-[p x OSC  =  HS ]
+[p x OSC  =  HSPLL ]
 "8
 [; ;main.c: 8:     if (INTCONbits.TMR0IF==1) RSI_Timer0();
 [p x PBADEN  =  DIG ]
@@ -513,7 +519,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _HighRSI ]
 [f ]
 "29
-[; ;main.c: 29: 
+[; ;main.c: 29:      motorTerminal();
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 303  ]
 [e ( _RSI_Timer0 ..  ]
 [e :U 303 ]
@@ -566,6 +572,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "48
 [e = _LATA -> -> 0 `i `uc ]
+"49
+[e ( _motorTeclado ..  ]
+"50
+[e ( _motorTerminal ..  ]
 "51
 [e ( _motor_RFID ..  ]
 "53

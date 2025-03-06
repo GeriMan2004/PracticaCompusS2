@@ -859,11 +859,11 @@ static char dbuf[32];
 
 
 
-static int nout;
 
 
 
-static int pad(FILE *fp, char *buf, int p)
+
+static void pad(FILE *fp, char *buf, int p)
 {
     int i;
 # 205 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\sources\\c99\\common\\doprnt.c"
@@ -886,11 +886,11 @@ static int pad(FILE *fp, char *buf, int p)
 
 
 
-    return (int)(strlen(buf) + (size_t)p);
+
 
 }
 # 1176 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\sources\\c99\\common\\doprnt.c"
-static int
+static void
 vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 {
     char c, *cp;
@@ -903,9 +903,6 @@ vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 
   long double f;
  } convarg;
-
-
- int cnt = 0;
 # 1201 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\sources\\c99\\common\\doprnt.c"
     if ((*fmt)[0] == '%') {
         ++*fmt;
@@ -927,22 +924,22 @@ vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
     dbuf[--c] = abs(convarg.sint % 10) + '0';
     convarg.sint /= 10;
 
-    cnt++;
+
 
    } while (convarg.sint != 0 && c != 0);
    if (c != 0 && done) {
     dbuf[--c] = '-';
 
-    cnt++;
+
 
    }
    while (c != sizeof(dbuf)) {
     fputc(dbuf[c++], fp);
    }
 
-   return cnt;
 
 
+   return;
 
 
 
@@ -950,13 +947,13 @@ vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
   }
 # 1806 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\sources\\c99\\common\\doprnt.c"
         ++*fmt;
-        return (int) 0;
+        return (void) 0;
     }
 
 
     fputc((int)(*fmt)[0], fp);
     ++*fmt;
-    return (int) 1;
+    return (void) 1;
 }
 
 
@@ -967,18 +964,18 @@ int vfprintf(FILE *fp, const char *fmt, va_list ap)
 
     cfmt = (char *)fmt;
 
-    nout = 0;
+
 
     while (*cfmt) {
 
-        nout +=
+
 
    vfpfcnvrt(fp, &cfmt, ap);
     }
 
-    return nout;
 
 
+ return 0;
 
 
 
