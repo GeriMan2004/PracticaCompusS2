@@ -47,18 +47,18 @@
 
 #define SetD4_D7Sortida()		(TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0)
 #define SetD4_D7Entrada()		(TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1)
-#define SetControlsSortida()            (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0)
+#define SetControlsSortida()    (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0)
 #define SetD4(On)				(LATBbits.LATB4 = (On))
 #define SetD5(On)				(LATBbits.LATB5 = (On))
 #define SetD6(On)				(LATBbits.LATB6 = (On))
 #define SetD7(On)				(LATBbits.LATB7 = (On))
-#define GetBusyFlag()                           (PORTBbits.RB7)
+#define GetBusyFlag()           (PORTBbits.RB7)
 #define RSUp()					(LATBbits.LATB3 = 1)
-#define RSDown()				(LATBbits.LATB2 = 0)
+#define RSDown()				(LATBbits.LATB3 = 0)
 #define RWUp()					(LATBbits.LATB2 = 1)
 #define RWDown()				(LATBbits.LATB2 = 0)
-#define EnableUp()				(LATBbits.LATB5 = 1)
-#define EnableDown()                            (LATBbits.LATB5 = 0)
+#define EnableUp()				(LATBbits.LATB1 = 1)
+#define EnableDown()            (LATBbits.LATB1 = 0)
 // -------------------------------END--HARDWARE---AREA--------------------
 
 
