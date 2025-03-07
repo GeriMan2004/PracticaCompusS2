@@ -1,8 +1,6 @@
 #include <xc.h>
 #include "TAD_TECLADO.h"
 #include "TAD_TERMINAL.h"
-#include <stdio.h>
-#include <string.h>
 
 static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
 

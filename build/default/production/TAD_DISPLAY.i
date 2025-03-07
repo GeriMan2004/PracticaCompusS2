@@ -4870,7 +4870,7 @@ void LcInit(char rows, char columns) {
  RowAct = ColumnAct = 0;
  (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0);
  for (i = 0; i < 2; i++) {
-  Espera(Timer, 100);
+  Espera(Timer, 10);
 
 
   EscriuPrimeraOrdre(0x02 | 0x01);
@@ -4986,7 +4986,7 @@ void LcPutString(char *s) {
 # 210 "TAD_DISPLAY.c"
 void Espera(int Timer, int ms) {
  TI_ResetTics((unsigned char)Timer);
- while(TI_GetTics((unsigned char)Timer) < ms);
+ while(TI_GetTics((unsigned char)Timer) < ms * 10);
 }
 
 void CantaPartAlta(char c) {
@@ -5042,15 +5042,14 @@ void WaitForBusy(void) {
  (LATBbits.LATB2 = 1);
  TI_ResetTics((unsigned char)Timer);
  do {
-  (LATBbits.LATB5 = 1);(LATBbits.LATB5 = 1);
+  (LATBbits.LATB5 = 1); (LATBbits.LATB5 = 1);
   Busy = (PORTBbits.RB7);
   (LATBbits.LATB5 = 0);
   (LATBbits.LATB5 = 0);
-  (LATBbits.LATB5 = 1);(LATBbits.LATB5 = 1);
-
+  (LATBbits.LATB5 = 1); (LATBbits.LATB5 = 1);
   (LATBbits.LATB5 = 0);
   (LATBbits.LATB5 = 0);
-  if (TI_GetTics((unsigned char)Timer)) break;
+  if (TI_GetTics((unsigned char)Timer) > 1) break;
  } while(Busy);
 }
 

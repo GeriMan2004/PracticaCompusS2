@@ -4784,6 +4784,39 @@ unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
 # 2 "main.c" 2
+# 1 "./TAD_DISPLAY.h" 1
+# 65 "./TAD_DISPLAY.h"
+void LcInit(char rows, char columns);
+
+
+
+
+
+
+void LcEnd(void);
+
+
+void LcClear(void);
+
+
+
+void LcCursorOn(void);
+
+
+
+void LcCursorOff(void);
+
+
+
+void LcGotoXY(char Column, char Row);
+
+
+
+
+void LcPutChar(char c);
+# 103 "./TAD_DISPLAY.h"
+void LcPutString(char *s);
+# 3 "main.c" 2
 # 1 "./TAD_TIMER.h" 1
 # 16 "./TAD_TIMER.h"
 void RSI_Timer0(void);
@@ -4806,7 +4839,7 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 
 
 void TI_End (void);
-# 3 "main.c" 2
+# 4 "main.c" 2
 # 1 "./TAD_TERMINAL.h" 1
 
 
@@ -4822,7 +4855,7 @@ void Terminal_SendString(const char *str);
 void showMenu(void);
 void hashtag_pressed3s(void);
 void motorTerminal(void);
-# 4 "main.c" 2
+# 5 "main.c" 2
 # 1 "./TAD_RFID.h" 1
 # 137 "./TAD_RFID.h"
 unsigned char MFRC522_Rd(unsigned char Address);
@@ -4847,7 +4880,7 @@ void motor_RFID(void);
 void initRFID(void);
 
 void ReadRFID_NoCooperatiu(void);
-# 5 "main.c" 2
+# 6 "main.c" 2
 # 1 "./TAD_TECLADO.h" 1
 # 10 "./TAD_TECLADO.h"
 static unsigned char ReadFilas(void);
@@ -4857,7 +4890,7 @@ void motorTeclado(void);
 void writeColumnas(void);
 unsigned char GetTecla(void);
 void showTecla(void);
-# 6 "main.c" 2
+# 7 "main.c" 2
 
 #pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
@@ -4898,11 +4931,11 @@ void main(void){
 
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 1;
-
  while(1){
   LATA = 0x00;
   motorTeclado();
      motorTerminal();
+  LcPutString("hola");
   motor_RFID();
 
   LATA = 0xFF;
@@ -4920,4 +4953,40 @@ void ProcessKey(unsigned char key) {
 
 
  LATC = key;
+}
+
+void Espera(int Timer, int ms) {
+
+
+    TI_ResetTics((unsigned char)Timer);
+    while(TI_GetTics((unsigned char)Timer) < ms / 10);
+}
+
+
+void LcInit(char rows, char columns) {
+    int i;
+    TI_NewTimer(&Timer);
+    Rows = rows; Columns = columns;
+    RowAct = ColumnAct = 0;
+    (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0);
+    for (i = 0; i < 2; i++) {
+        Espera(Timer, 10);
+
+        EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
+        Espera(Timer, 0.5);
+        EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
+        Espera(Timer, 0.1);
+        EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
+        Espera(Timer, 0.1);
+
+
+        EscriuPrimeraOrdre(CURSOR_ON);
+        Espera(Timer, 0.1);
+        CantaIR(FUNCTION_SET | DISPLAY_CONTROL);
+        WaitForBusy(); CantaIR(DISPLAY_CONTROL);
+        WaitForBusy(); CantaIR(DISPLAY_CLEAR);
+        Espera(Timer, 0.1);
+        WaitForBusy(); CantaIR(DISPLAY_ON | CURSOR_ON);
+        WaitForBusy(); CantaIR(DISPLAY_CONTROL | DISPLAY_ON | CURSOR_ON | DISPLAY_CLEAR);
+    }
 }

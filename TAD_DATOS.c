@@ -1,13 +1,12 @@
 #include <xc.h>
 #include "TAD_DISPLAY.h"
-#include "TAD_TIMER.h"
 #include "TAD_DATOS.h"
 #include <string.h>
 
 unsigned char userUIDs[MAX_USERS][UID_SIZE] = {
-    "11-04-19-94-E0",
-    "22-05-18-74-F1",
-    "33-06-17-84-G2"
+    {0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}
 };
 
 unsigned char configurations[MAX_USERS][LEDS] = { 
@@ -16,7 +15,7 @@ unsigned char configurations[MAX_USERS][LEDS] = {
     {0, 0, 0, 0, 0, 0}
 };
 
-unsigned char currentUser[16] = "00-00-00-00-00";
+unsigned char currentUser[5] = {0, 0, 0, 0, 0};
 unsigned char new_user = 0;
 unsigned char new_configuration = 0;
 int index = 0, pointer = 0;

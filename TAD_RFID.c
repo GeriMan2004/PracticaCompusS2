@@ -11,7 +11,6 @@
 #include "TAD_RFID.h"
 #include "TAD_TERMINAL.h"
 #include <stdio.h>
-#include <string.h>
 
 #define NUM_US 16
 
@@ -307,12 +306,7 @@ void ReadRFID_NoCooperatiu() {
         //At this point, TagType contains an integer value corresponding to the type of card.
         //Read ID
         if (MFRC522_ReadCardSerial (UID)) {
-            Terminal_SendString("UID: ");  
-            for (int i = 0; i < 6; i++) {
-                sprintf(buffer, "%02X", UID[i]);
-                Terminal_SendString(buffer);
-            }
-            Terminal_SendString("\n");
+            
             //At this point, UID contains the value of the card.
         }
         MFRC522_Halt ();

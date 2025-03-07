@@ -1,8 +1,10 @@
 #include <xc.h>
+#include "TAD_DISPLAY.h"
 #include "TAD_TIMER.h"
 #include "TAD_TERMINAL.h"
 #include "TAD_RFID.h"
 #include "TAD_TECLADO.h"
+#include "TAD_DATOS.h"
 
 #pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
@@ -39,17 +41,19 @@ void main(void){
 	initRFID();     // Initialize RFID
 	Terminal_Init();  // Initialize Terminal
 	initPorts();    // Initialize Ports
+	LcInit(2, 16);
+	initDatos();
 
 	// Enable interrupts
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
 	INTCONbits.PEIE = 1;   // Peripheral Interrupt Enable
-	
+
+	LcPutString("hola");
 	while(1){
 		LATA = 0x00;  // Clear PORTA
 		motorTeclado();  // Run keyboard state machine
-    	motorTerminal();
+    	motorTerminal(),		
 		motor_RFID();  // Run RFID read public function
-		//ReadRFID_NoCooperatiu();
 		LATA = 0xFF; 
 	}				
 }

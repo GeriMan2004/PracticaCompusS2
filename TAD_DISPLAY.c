@@ -144,7 +144,6 @@ void LcGotoXY(char Column, char Row) {
 			Fisics = Column;
 			if (Row == 1) Fisics += 0x40; else
 			if (Row == 2) Fisics += Columns;      /* 0x14; */ else
-			if (Row == 3) Fisics += 0x40+Columns; /* 0x54; */
 			break;
 		case 1:
 		default:
@@ -171,22 +170,10 @@ void LcPutChar(char c) {
 	WaitForBusy(); CantaData(c);
 	// The cursor position is recalculated.
 	++ColumnAct;
-	if (Rows == 3) {
-		if (ColumnAct >= 20) {
-			ColumnAct = 0;
-			if (++RowAct >= 4) RowAct = 0;
-			LcGotoXY(ColumnAct, RowAct);
-		}
-	} else
-	if (Rows == 2) {
-		if (ColumnAct >= 40) {
-			ColumnAct = 0;
-			if (++RowAct >= 2) RowAct = 0;
-			LcGotoXY(ColumnAct, RowAct);
-		}
-	} else
-	if (RowAct == 1) {
-		if (ColumnAct >= 40) ColumnAct = 0;
+
+	if (ColumnAct >= 16) {
+		ColumnAct = 0;
+		if (++RowAct >= 2) RowAct = 0;
 		LcGotoXY(ColumnAct, RowAct);
 	}
 }
