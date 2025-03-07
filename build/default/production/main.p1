@@ -31,19 +31,34 @@ Version 4.0 HI-TECH Software Intermediate Code
 "11 ./TAD_TECLADO.h
 [; ;./TAD_TECLADO.h: 11: void initTeclado(void);
 [v _initTeclado `(v ~T0 @X0 0 ef ]
-"155 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 155: void initRFID(void);
+"156 ./TAD_RFID.h
+[; ;./TAD_RFID.h: 156: void initRFID(void);
 [v _initRFID `(v ~T0 @X0 0 ef ]
-"7 ./TAD_TERMINAL.h
-[; ;./TAD_TERMINAL.h: 7: void Terminal_Init(void);
+"6 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 6: void Terminal_Init(void);
 [v _Terminal_Init `(v ~T0 @X0 0 ef ]
+"22 main.c
+[; ;main.c: 22: 
+[v _initPorts `(v ~T0 @X0 0 ef ]
+"986 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 986: extern volatile unsigned char LATA __attribute__((address(0xF89)));
+[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
 "13 ./TAD_TECLADO.h
 [; ;./TAD_TECLADO.h: 13: void motorTeclado(void);
 [v _motorTeclado `(v ~T0 @X0 0 ef ]
-"15 ./TAD_TERMINAL.h
-[; ;./TAD_TERMINAL.h: 15: void motorTerminal(void);
+"14 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 14: void motorTerminal(void);
 [v _motorTerminal `(v ~T0 @X0 0 ef ]
-"1210 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+"153 ./TAD_RFID.h
+[; ;./TAD_RFID.h: 153: void motor_RFID(void);
+[v _motor_RFID `(v ~T0 @X0 0 ef ]
+"4714 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4714: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
+[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
+"1486
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1486: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"1210
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1210: extern volatile unsigned char LATC __attribute__((address(0xF8B)));
 [v _LATC `Vuc ~T0 @X0 0 e@3979 ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
@@ -462,7 +477,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 0FFFh ;# ">
 "7 main.c
 [; ;main.c: 7: 
-[p x OSC  =  HS ]
+[p x OSC  =  HSPLL ]
 "8
 [; ;main.c: 8:     if (INTCONbits.TMR0IF==1) RSI_Timer0();
 [p x PBADEN  =  DIG ]
@@ -498,18 +513,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x LVP  =  OFF ]
 [v $root$_HighRSI `(v ~T0 @X0 0 e ]
 "27
-[; ;main.c: 27:         motorTerminal();
+[; ;main.c: 27:   LATA = 0x00;
 [v _HighRSI `(v ~T41 @X0 1 ef ]
 {
 [e :U _HighRSI ]
 [f ]
 "29
-[; ;main.c: 29:  }
+[; ;main.c: 29:      motorTerminal();
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 303  ]
 [e ( _RSI_Timer0 ..  ]
 [e :U 303 ]
 "30
-[; ;main.c: 30: }
+[; ;main.c: 30:   motor_RFID();
 [e :UE 302 ]
 }
 [v $root$_LowRSI `(v ~T0 @X0 0 e ]
@@ -520,53 +535,79 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _LowRSI ]
 [f ]
 "33
-[; ;main.c: 33: 
+[; ;main.c: 33:  }
 [e :UE 304 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
 "36
-[; ;main.c: 36: 
+[; ;main.c: 36: void initPorts(void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
 "37
-[; ;main.c: 37:  LATC = key;
+[; ;main.c: 37:  ADCON1 = 0x0F;
 [e ( _TI_Init ..  ]
 "38
-[; ;main.c: 38: }
+[; ;main.c: 38:  TRISA = 0x00;
 [e ( _initTeclado ..  ]
 "39
+[; ;main.c: 39: }
 [e ( _initRFID ..  ]
 "40
+[; ;main.c: 40: 
 [e ( _Terminal_Init ..  ]
-"43
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"41
+[; ;main.c: 41: 
+[e ( _initPorts ..  ]
 "44
+[; ;main.c: 44: 
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"45
+[; ;main.c: 45: 
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"46
+"47
+[; ;main.c: 47: }
 [e :U 307 ]
 {
-"47
-[e ( _motorTeclado ..  ]
 "48
-[e ( _motorTerminal ..  ]
+[e = _LATA -> -> 0 `i `uc ]
+"49
+[e ( _motorTeclado ..  ]
 "50
+[e ( _motorTerminal ..  ]
+"51
+[e ( _motor_RFID ..  ]
+"53
+[e = _LATA -> -> 255 `i `uc ]
+"54
 }
 [e :U 306 ]
 [e $U 307  ]
 [e :U 308 ]
-"51
+"55
 [e :UE 305 ]
 }
-"55
+"57
+[v _initPorts `(v ~T0 @X0 1 ef ]
+{
+[e :U _initPorts ]
+[f ]
+"58
+[e = _ADCON1 -> -> 15 `i `uc ]
+"59
+[e = _TRISA -> -> 0 `i `uc ]
+"60
+[e :UE 309 ]
+}
+"64
 [v _ProcessKey `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _ProcessKey ]
 [v _key `uc ~T0 @X0 1 r1 ]
 [f ]
-"58
+"67
 [e = _LATC _key ]
-"59
-[e :UE 309 ]
+"68
+[e :UE 310 ]
 }

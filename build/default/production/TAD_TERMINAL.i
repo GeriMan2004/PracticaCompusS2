@@ -4812,7 +4812,6 @@ void TI_End (void);
 # 4 "./TAD_TERMINAL.h" 2
 
 
-void displayUID(unsigned char *uid);
 void Terminal_Init(void);
 int Terminal_TXAvailable(void);
 char Terminal_RXAvailable(void);
@@ -4835,13 +4834,11 @@ void showTecla(void);
 # 4 "TAD_TERMINAL.c" 2
 # 1 "./TAD_DATOS.h" 1
 # 10 "./TAD_DATOS.h"
-extern unsigned char userUIDs[3][5];
-extern unsigned char configurations[3][6];
-
-
-unsigned char getActualUID(void);
-unsigned char getUserConfiguration(void);
-void setUserConfiguration(unsigned char led[6], unsigned char UID);
+unsigned char* getActualUID(void);
+unsigned char* getUsersConfigurations(void);
+void newUser(void);
+void newConfiguration(void);
+void motor_datos(void);
 # 5 "TAD_TERMINAL.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
@@ -5057,26 +5054,11 @@ void *memccpy (void *restrict, const void *restrict, int, size_t);
 
 char hashtag_pressed = 0;
 
-void displayUID(unsigned char *uid) {
-    char hexString[11];
-    for (int i = 0; i < 5; i++) {
-        unsigned char nibble = (uid[i] >> 4) & 0x0F;
-        hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-        nibble = uid[i] & 0x0F;
-        hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-    }
-    hexString[10] = '\0';
-
-    Terminal_SendString("UID: ");
-    Terminal_SendString(hexString);
-    Terminal_SendString("\n");
-}
-
 
 void Terminal_Init(void){
  TXSTA = 0x24;
  RCSTA = 0x90;
- SPBRG = 64;
+ SPBRG = 255;
  BAUDCON = 0x00;
  hashtag_pressed = 0;
 }
@@ -5137,21 +5119,24 @@ void motorTerminal(void) {
    if (hashtag_pressed == 1){
     showMenu();
     state = 1;
+    hashtag_pressed = 0;
    }
   break;
   case 1:
    if(Terminal_RXAvailable() == 1){
     initTeclado();
     if (Terminal_ReceiveChar() == '1') {
-     Terminal_SendString("Has pulsado 1");
+     Terminal_SendString("Has pulsado 1\r\n");
 
      state = 0;
     }
     else if (Terminal_ReceiveChar() == '2') {
+     Terminal_SendString("Has pulsado 2\r\n");
 
      state = 0;
     }
     else if (Terminal_ReceiveChar() == '3') {
+     Terminal_SendString("Has pulsado 3\r\n");
 
      state = 0;
     }

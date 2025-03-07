@@ -7,26 +7,11 @@
 
 char hashtag_pressed = 0;
 
-void displayUID(unsigned char *uid) {
-    char hexString[11]; // 5 bytes * 2 caracteres = 10, +1 para el terminador nulo
-    for (int i = 0; i < 5; i++) {
-        unsigned char nibble = (uid[i] >> 4) & 0x0F;
-        hexString[i*2] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-        nibble = uid[i] & 0x0F;
-        hexString[i*2 + 1] = (nibble < 10) ? nibble + '0' : nibble - 10 + 'A';
-    }
-    hexString[10] = '\0';
-    
-    Terminal_SendString("UID: ");
-    Terminal_SendString(hexString);
-    Terminal_SendString("\n");
-}
-
 // Inicializar para Serial 9615 baud rate
 void Terminal_Init(void){
 	TXSTA = 0x24;
 	RCSTA = 0x90;
-	SPBRG = 64;
+	SPBRG = 255;
 	BAUDCON = 0x00;
 	hashtag_pressed = 0;
 }
@@ -87,21 +72,24 @@ void motorTerminal(void) {
 			if (hashtag_pressed == 1){
 				showMenu();
 				state = 1;
+				hashtag_pressed = 0;
 			}
 		break;
 		case 1:
 			if(Terminal_RXAvailable() == 1){
 				initTeclado();
 				if (Terminal_ReceiveChar() == '1') {
-					Terminal_SendString("Has pulsado 1");
+					Terminal_SendString("Has pulsado 1\r\n");
 					// getActualUID();
 					state = 0;  
 				}
 				else if (Terminal_ReceiveChar() == '2') {
+					Terminal_SendString("Has pulsado 2\r\n");
 					// getUserConfiguration();
 					state = 0;
 				}
 				else if (Terminal_ReceiveChar() == '3') {
+					Terminal_SendString("Has pulsado 3\r\n");
 					//modifyHour();
 					state = 0;
 				}

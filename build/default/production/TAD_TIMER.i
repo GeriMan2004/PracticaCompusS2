@@ -4831,7 +4831,7 @@ static volatile unsigned long Tics=0;
 
 void RSI_Timer0 () {
 
-    TMR0=64911;
+    TMR0=63036;
     TMR0IF=0;
     Tics++;
 }
@@ -4841,7 +4841,7 @@ void TI_Init () {
   Timers[counter].Busy=0;
  }
  T0CON=0x82;
-    TMR0=64911;
+    TMR0=63036;
  INTCONbits.TMR0IF = 0;
  INTCONbits.TMR0IE = 1;
 

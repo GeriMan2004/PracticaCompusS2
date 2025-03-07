@@ -1,0 +1,38 @@
+[
+{
+  "directory": "C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc8\\v3.00\\bin\\xc8-cc.exe -DXPRJ_default=default -D__18F4321__ -IC:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\cmake\\Practica2FA\\default\\..\\..\\.. -c -mcpu=18F4321 -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto -o CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_DISPLAY.c.p1 -c C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_DISPLAY.c",
+  "file": "C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_DISPLAY.c",
+  "output": "CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_DISPLAY.c.p1"
+},
+{
+  "directory": "C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc8\\v3.00\\bin\\xc8-cc.exe -DXPRJ_default=default -D__18F4321__ -IC:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\cmake\\Practica2FA\\default\\..\\..\\.. -c -mcpu=18F4321 -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto -o CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_RFID.c.p1 -c C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_RFID.c",
+  "file": "C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_RFID.c",
+  "output": "CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_RFID.c.p1"
+},
+{
+  "directory": "C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc8\\v3.00\\bin\\xc8-cc.exe -DXPRJ_default=default -D__18F4321__ -IC:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\cmake\\Practica2FA\\default\\..\\..\\.. -c -mcpu=18F4321 -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto -o CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TECLADO.c.p1 -c C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TECLADO.c",
+  "file": "C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TECLADO.c",
+  "output": "CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TECLADO.c.p1"
+},
+{
+  "directory": "C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc8\\v3.00\\bin\\xc8-cc.exe -DXPRJ_default=default -D__18F4321__ -IC:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\cmake\\Practica2FA\\default\\..\\..\\.. -c -mcpu=18F4321 -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto -o CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TERMINAL.c.p1 -c C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TERMINAL.c",
+  "file": "C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TERMINAL.c",
+  "output": "CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TERMINAL.c.p1"
+},
+{
+  "directory": "C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc8\\v3.00\\bin\\xc8-cc.exe -DXPRJ_default=default -D__18F4321__ -IC:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\cmake\\Practica2FA\\default\\..\\..\\.. -c -mcpu=18F4321 -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto -o CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TIMER.c.p1 -c C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TIMER.c",
+  "file": "C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TIMER.c",
+  "output": "CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\TAD_TIMER.c.p1"
+},
+{
+  "directory": "C:/Users/gerar/MPLABXProjects/Practica2FA.X/_build/Practica2FA/default",
+  "command": "c:\\PROGRA~1\\MICROC~1\\xc8\\v3.00\\bin\\xc8-cc.exe -DXPRJ_default=default -D__18F4321__ -IC:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\cmake\\Practica2FA\\default\\..\\..\\.. -c -mcpu=18F4321 -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -mwarn=-3 -Wa,-a -msummary=-psect,-class,+mem,-hex,-file -ginhx32 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto -o CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\main.c.p1 -c C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\main.c",
+  "file": "C:\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\main.c",
+  "output": "CMakeFiles\\Practica2FA_default_default_XC8_compile.dir\\C_\\Users\\gerar\\MPLABXProjects\\Practica2FA.X\\main.c.p1"
+}
+]

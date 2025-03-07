@@ -4813,7 +4813,6 @@ void TI_End (void);
 
 
 
-void displayUID(unsigned char *uid);
 void Terminal_Init(void);
 int Terminal_TXAvailable(void);
 char Terminal_RXAvailable(void);
@@ -4842,6 +4841,7 @@ void MFRC522_Halt();
 char MFRC522_AntiColl(unsigned char *serNum);
 char MFRC522_isCard(char *TagType);
 char MFRC522_ReadCardSerial(unsigned char *str);
+void motor_RFID(void);
 
 
 void initRFID(void);
@@ -4859,7 +4859,7 @@ unsigned char GetTecla(void);
 void showTecla(void);
 # 6 "main.c" 2
 
-#pragma config OSC = HS
+#pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
 #pragma config MCLRE = OFF
 #pragma config DEBUG = OFF
@@ -4874,7 +4874,7 @@ void showTecla(void);
 #pragma config LVP = OFF
 
 void main(void);
-void InitPorts(void);
+void initPorts(void);
 
 
 
@@ -4893,16 +4893,25 @@ void main(void){
  initTeclado();
  initRFID();
  Terminal_Init();
+ initPorts();
 
 
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 1;
 
  while(1){
+  LATA = 0x00;
   motorTeclado();
-        motorTerminal();
+     motorTerminal();
+  motor_RFID();
 
+  LATA = 0xFF;
  }
+}
+
+void initPorts(void){
+ ADCON1 = 0x0F;
+ TRISA = 0x00;
 }
 
 
