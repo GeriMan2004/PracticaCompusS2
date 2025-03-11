@@ -9,8 +9,7 @@
 
 #include <xc.h>
 #include "TAD_RFID.h"
-#include "TAD_TERMINAL.h"
-#include <stdio.h>
+#include "TAD_DATOS.h"
 
 #define NUM_US 16
 
@@ -130,187 +129,12 @@ void MFRC522_Init() {
     MFRC522_AntennaOn();
 }
 
-char MFRC522_ToCard (char command, char *sendData, char sendLen, char *backData, unsigned *backLen) {
-    char _status = MI_ERR;
-    char irqEn = 0x00;
-    char waitIRq = 0x00;               
-    char lastBits;
-    char n;
-    unsigned char i;
-    
-    switch (command) {
-        case PCD_AUTHENT:       //Certification cards close
-            irqEn = 0x12;
-            waitIRq = 0x10;
-            break;
 
-        case PCD_TRANSCEIVE:    //Transmit FIFO data
-            irqEn = 0x77;
-            waitIRq = 0x30;
-            break;
-    }
-    MFRC522_Wr(COMMIENREG, irqEn | 0x80);  //Interrupt request
-    MFRC522_Clear_Bit(COMMIRQREG, 0x80);   //Clear all interrupt request bit
-    MFRC522_Set_Bit(FIFOLEVELREG, 0x80);   //FlushBuffer=1, FIFO Initialization
-    MFRC522_Wr(COMMANDREG, PCD_IDLE);      //NO action; Cancel the current command???
-    
-    for (i = 0; i < sendLen; i++) MFRC522_Wr(FIFODATAREG, sendData[i]);
-    
-    MFRC522_Wr(COMMANDREG, command);
-    if (command == PCD_TRANSCEIVE) MFRC522_Set_Bit(BITFRAMINGREG, 0x80); //StartSend=1,transmission of data starts 
-    i = 0xFF;
-    do {
-        n = MFRC522_Rd(COMMIRQREG);
-        i--;
-    } while (i && !(n & 0x01) && !(n & waitIRq));
-    MFRC522_Clear_Bit(BITFRAMINGREG, 0x80);   
-    if (i != 0) {
-        if(!(MFRC522_Rd(ERRORREG) & 0x1B)){
-            _status = MI_OK;
-            if (n & irqEn & 0x01) _status = MI_NOTAGERR;      
-            if (command == PCD_TRANSCEIVE) {
-                n = MFRC522_Rd(FIFOLEVELREG);
-                lastBits = MFRC522_Rd(CONTROLREG) & 0x07;
-                if (lastBits) {
-                    *backLen = (n - 1) * 8 + lastBits;
-                } else {
-                    *backLen = n * 8;
-                }
-                if (n == 0) {
-                    n = 1;
-                } else if (n > 16) {
-                    n = 16;
-                }
-                for (i = 0; i < n; i++) {
-                    backData[i] = MFRC522_Rd(FIFODATAREG);
-                }
-                backData[i] = 0;
-            }
-        }
-        else _status = MI_ERR;
-    }
-    return _status;
-}
-
-
-char MFRC522_Request(char reqMode, char *TagType) {
-    char _status;
-    unsigned backBits;
-    MFRC522_Wr(BITFRAMINGREG, 0x07);
-    TagType[0] = reqMode;
-    _status = MFRC522_ToCard(PCD_TRANSCEIVE, TagType, 1, TagType, &backBits);
-    if ((_status != MI_OK) || (backBits != 0x10))
-        _status = MI_ERR;
-    return _status;
-}
-
-void MFRC522_CRC(char *dataIn, char length, char *dataOut) {
-    unsigned char i, n;
-    MFRC522_Clear_Bit(DIVIRQREG, 0x04);
-    MFRC522_Set_Bit(FIFOLEVELREG, 0x80);   
-    
-    for (i = 0; i < length; i++) {
-        MFRC522_Wr(FIFODATAREG, *dataIn++);
-    }
-    
-    MFRC522_Wr(COMMANDREG, PCD_CALCCRC);
-    
-    // Optimizado el bucle de espera
-    i = 255;  // Suficiente para el timeout a 10MHz
-    do {
-        n = MFRC522_Rd(DIVIRQREG);
-        i--;
-    } while (i && !(n & 0x04));        //CRCIrq = 1
-       
-    dataOut[0] = MFRC522_Rd(CRCRESULTREGL);
-    dataOut[1] = MFRC522_Rd(CRCRESULTREGM);       
-}
-
-unsigned MFRC522_SelectTag(char *serNum) {
-    char i;
-    char _status;
-    unsigned size;
-    char buffer[9];
-    
-    buffer[0] = PICC_SElECTTAG;
-    buffer[1] = 0x70;
-    
-    for (i = 0; i < 5; i++) {
-        buffer[i + 2] = *serNum++;
-    }
-    
-    MFRC522_CRC(buffer, 7, &buffer[7]);            
-    _status = MFRC522_ToCard(PCD_TRANSCEIVE, buffer, 9, buffer, &size);
-    
-    if ((_status == MI_OK) && (size == 0x18)) {
-        size = buffer[0];
-    } else {
-        size = 0;
-    }
-    return size;
-}
-
-//hibernation
-void MFRC522_Halt() {
-    unsigned unLen;
-    char buff[4];
-    
-    buff[0] = PICC_HALT;
-    buff[1] = 0;
-    MFRC522_CRC(buff, 2, &buff[2]);
-    MFRC522_Clear_Bit(STATUS2REG, 0x80);
-    MFRC522_ToCard(PCD_TRANSCEIVE, buff, 4, buff, &unLen);
-    MFRC522_Clear_Bit(STATUS2REG, 0x08);
-}
-
-char MFRC522_AntiColl(unsigned char *serNum) {
-    char _status;
-    char i;
-    char serNumCheck = 0;
-    unsigned unLen;
-    MFRC522_Wr(BITFRAMINGREG, 0x00);                //TxLastBists = BitFramingReg[2..0]
-    serNum[0] = PICC_ANTICOLL;
-    serNum[1] = 0x20;
-    MFRC522_Clear_Bit(STATUS2REG, 0x08);
-    _status = MFRC522_ToCard(PCD_TRANSCEIVE, (char *)serNum, 2, (char *)serNum, &unLen);
-    if (_status == MI_OK) {
-        for (i = 0; i < 4; i++)
-            serNumCheck ^= serNum[(int)i];  
-        if (serNumCheck != serNum[4]) 
-            _status = MI_ERR;
-    }
-    return _status;
-}
-
-char MFRC522_isCard (char *TagType) {
-    return (MFRC522_Request(PICC_REQIDL, TagType) == MI_OK);
-}
-
-char MFRC522_ReadCardSerial (unsigned char *str) {
-    char _status = MFRC522_AntiColl(str);
-    str[5] = 0;  // Aseguramos que el string termine en null
-    return (_status == MI_OK);
-}
 
 //-------------- Public functions: --------------
 void initRFID() {
     InitPortDirections();
     MFRC522_Init(); 
-}
-
-void ReadRFID_NoCooperatiu() {
-    unsigned char UID[6];    // 5 bytes para UID + 1 para null terminator
-    char TagType;   // Variable para el tipo de tarjeta
-    char buffer[50];
-    if (MFRC522_isCard (&TagType) == 1) {    
-        //At this point, TagType contains an integer value corresponding to the type of card.
-        //Read ID
-        if (MFRC522_ReadCardSerial (UID)) {
-            
-            //At this point, UID contains the value of the card.
-        }
-        MFRC522_Halt ();
-    }   
 }
 
 void motor_RFID(void) {
@@ -322,9 +146,10 @@ void motor_RFID(void) {
     static unsigned unLen;
     static char TagType;
     static unsigned char UID[6];
-    static char buffer[50];
     static unsigned char checksum;
     static unsigned char allZero;
+    static unsigned char tempRegValue; // Temporary storage for register values
+
     switch(state) {
         // Estado 0: Detección de tarjeta (Request)
         case 0:
@@ -343,49 +168,69 @@ void motor_RFID(void) {
                     substate = 2;
                     break;
                 case 2:
-                    // Limpia el registro de interrupciones
-                    MFRC522_Clear_Bit(COMMIRQREG, 0x80);
+                    // Read COMMIRQREG to prepare for clearing
+                    tempRegValue = MFRC522_Rd(COMMIRQREG);
                     substate = 3;
                     break;
                 case 3:
-                    // Reinicia el FIFO
-                    MFRC522_Set_Bit(FIFOLEVELREG, 0x80);
+                    // Clear the interrupt register
+                    MFRC522_Wr(COMMIRQREG, tempRegValue & ~0x80);
                     substate = 4;
                     break;
                 case 4:
-                    // Pone el lector en modo IDLE
-                    MFRC522_Wr(COMMANDREG, PCD_IDLE);
+                    // Read FIFOLEVELREG to prepare for setting
+                    tempRegValue = MFRC522_Rd(FIFOLEVELREG);
                     substate = 5;
                     break;
                 case 5:
-                    // Carga el comando (TagType) en el FIFO
-                    MFRC522_Wr(FIFODATAREG, TagType);
+                    // Reinicia el FIFO
+                    MFRC522_Wr(FIFOLEVELREG, tempRegValue | 0x80);
                     substate = 6;
                     break;
                 case 6:
-                    // Inicia el comando TRANSCEIVE
-                    MFRC522_Wr(COMMANDREG, PCD_TRANSCEIVE);
+                    // Pone el lector en modo IDLE
+                    MFRC522_Wr(COMMANDREG, PCD_IDLE);
                     substate = 7;
                     break;
                 case 7:
-                    // Activa StartSend para iniciar la transmisión y reinicia el contador
-                    MFRC522_Set_Bit(BITFRAMINGREG, 0x80);
-                    i = 0xFF;
+                    // Carga el comando (TagType) en el FIFO
+                    MFRC522_Wr(FIFODATAREG, TagType);
                     substate = 8;
                     break;
                 case 8:
-                    // Espera la respuesta; se realiza una comprobación en cada llamada
-                    n = MFRC522_Rd(COMMIRQREG);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        substate = 9;
-                    }
+                    // Inicia el comando TRANSCEIVE
+                    MFRC522_Wr(COMMANDREG, PCD_TRANSCEIVE);
+                    substate = 9;
                     break;
                 case 9:
-                    // Desactiva el StartSend
-                    MFRC522_Clear_Bit(BITFRAMINGREG, 0x80);
+                    // Read BITFRAMINGREG to prepare for setting
+                    tempRegValue = MFRC522_Rd(BITFRAMINGREG);
                     substate = 10;
                     break;
                 case 10:
+                    // Activa StartSend para iniciar la transmisión y reinicia el contador
+                    MFRC522_Wr(BITFRAMINGREG, tempRegValue | 0x80);
+                    i = 0xFF;
+                    substate = 11;
+                    break;
+                case 11:
+                    // Espera la respuesta; se realiza una comprobación en cada llamada
+                    n = MFRC522_Rd(COMMIRQREG);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        substate = 12;
+                    }
+                    break;
+                case 12:
+                    // Read BITFRAMINGREG to prepare for clearing
+                    tempRegValue = MFRC522_Rd(BITFRAMINGREG);
+                    substate = 13;
+                    break;
+                case 13:
+                    // Desactiva el StartSend
+                    MFRC522_Wr(BITFRAMINGREG, tempRegValue & ~0x80);
+                    substate = 14;
+                    break;
+                case 14:
                     // Valida la respuesta leyendo el FIFO y calculando la cantidad de bits recibidos
                     if (i != 0 && !(MFRC522_Rd(ERRORREG) & 0x1B)) {
                         unsigned char fifoLevel = MFRC522_Rd(FIFOLEVELREG);
@@ -397,20 +242,20 @@ void motor_RFID(void) {
                             backBitsCalc = fifoLevel * 8;
                         // Si se reciben exactamente 16 bits (0x10), la lectura es válida
                         if (backBitsCalc == 0x10) {
-                            substate = 11;
+                            substate = 15;
                         } else {
-                            substate = 12;
+                            substate = 16;
                         }
                     } else {
-                        substate = 12;
+                        substate = 16;
                     }
                     break;
-                case 11:
+                case 15:
                     // La lectura es válida: pasa al estado de lectura de UID
                     state = 1;
                     substate = 0;
                     break;
-                case 12:
+                case 16:
                     // Lectura inválida: se reinicia la detección
                     state = 0;
                     substate = 0;
@@ -428,108 +273,133 @@ void motor_RFID(void) {
                     substate = 1;
                     break;
                 case 1:
-                    // Limpia el STATUS2 para iniciar el proceso de anti-colisión
-                    MFRC522_Clear_Bit(STATUS2REG, 0x08);
+                    // Read STATUS2REG to prepare for clearing
+                    tempRegValue = MFRC522_Rd(STATUS2REG);
                     substate = 2;
                     break;
                 case 2:
+                    // Limpia el STATUS2 para iniciar el proceso de anti-colisión
+                    MFRC522_Wr(STATUS2REG, tempRegValue & ~0x08);
+                    substate = 3;
+                    break;
+                case 3:
                     // Configura las interrupciones para TRANSCEIVE en modo anti-colisión
                     irqEn = 0x77;
                     waitIRq = 0x30;
                     MFRC522_Wr(COMMIENREG, irqEn | 0x80);
-                    substate = 3;
-                    break;
-                case 3:
-                    // Limpia el registro de interrupciones
-                    MFRC522_Clear_Bit(COMMIRQREG, 0x80);
                     substate = 4;
                     break;
                 case 4:
-                    // Reinicia el FIFO
-                    MFRC522_Set_Bit(FIFOLEVELREG, 0x80);
+                    // Read COMMIRQREG to prepare for clearing
+                    tempRegValue = MFRC522_Rd(COMMIRQREG);
                     substate = 5;
                     break;
                 case 5:
-                    // Pone el lector en modo IDLE
-                    MFRC522_Wr(COMMANDREG, PCD_IDLE);
+                    // Limpia el registro de interrupciones
+                    MFRC522_Wr(COMMIRQREG, tempRegValue & ~0x80);
                     substate = 6;
                     break;
                 case 6:
-                    // Carga en el FIFO el comando de anti-colisión
-                    MFRC522_Wr(FIFODATAREG, UID[0]);
-                    MFRC522_Wr(FIFODATAREG, UID[1]);
+                    // Read FIFOLEVELREG to prepare for setting
+                    tempRegValue = MFRC522_Rd(FIFOLEVELREG);
                     substate = 7;
                     break;
                 case 7:
-                    // Inicia el comando TRANSCEIVE para anti-colisión
-                    MFRC522_Wr(COMMANDREG, PCD_TRANSCEIVE);
+                    // Reinicia el FIFO
+                    MFRC522_Wr(FIFOLEVELREG, tempRegValue | 0x80);
                     substate = 8;
                     break;
                 case 8:
-                    // Activa StartSend y reinicia el contador de espera (timeout reducido)
-                    MFRC522_Set_Bit(BITFRAMINGREG, 0x80);
-                    i = 0xFF;
+                    // Pone el lector en modo IDLE
+                    MFRC522_Wr(COMMANDREG, PCD_IDLE);
                     substate = 9;
                     break;
                 case 9:
-                    // Espera la respuesta de anti-colisión
-                    n = MFRC522_Rd(COMMIRQREG);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        substate = 10;
-                    }
+                    // Carga en el FIFO el comando de anti-colisión
+                    MFRC522_Wr(FIFODATAREG, UID[0]);
+                    MFRC522_Wr(FIFODATAREG, UID[1]);
+                    substate = 10;
                     break;
                 case 10:
-                    // Desactiva el StartSend
-                    MFRC522_Clear_Bit(BITFRAMINGREG, 0x80);
+                    // Inicia el comando TRANSCEIVE para anti-colisión
+                    MFRC522_Wr(COMMANDREG, PCD_TRANSCEIVE);
                     substate = 11;
                     break;
                 case 11:
+                    // Read BITFRAMINGREG to prepare for setting
+                    tempRegValue = MFRC522_Rd(BITFRAMINGREG);
+                    substate = 12;
+                    break;
+                case 12:
+                    // Activa StartSend y reinicia el contador de espera (timeout reducido)
+                    MFRC522_Wr(BITFRAMINGREG, tempRegValue | 0x80);
+                    i = 0xFF;
+                    substate = 13;
+                    break;
+                case 13:
+                    // Espera la respuesta de anti-colisión
+                    n = MFRC522_Rd(COMMIRQREG);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        substate = 14;
+                    }
+                    break;
+                case 14:
+                    // Read BITFRAMINGREG to prepare for clearing
+                    tempRegValue = MFRC522_Rd(BITFRAMINGREG);
+                    substate = 15;
+                    break;
+                case 15:
+                    // Desactiva el StartSend
+                    MFRC522_Wr(BITFRAMINGREG, tempRegValue & ~0x80);
+                    substate = 16;
+                    break;
+                case 16:
                     // Iniciar validación del UID - Lee el registro de errores
                     if (i != 0 && !(MFRC522_Rd(ERRORREG) & 0x1B)) {
                         // Lee los primeros 2 bytes del UID
                         UID[0] = MFRC522_Rd(FIFODATAREG);
                         UID[1] = MFRC522_Rd(FIFODATAREG);
-                        substate = 12;
+                        substate = 17;
                     } else {
                         // Error detectado, reinicia el proceso
                         state = 0;
                         substate = 0;
                     }
                     break;
-                case 12:
+                case 17:
                     // Lee segundo par de bytes del UID
                     UID[2] = MFRC522_Rd(FIFODATAREG);
                     UID[3] = MFRC522_Rd(FIFODATAREG);
-                    substate = 13;
+                    substate = 18;
                     break;
-                case 13:
+                case 18:
                     // Lee el byte de checksum y añade terminador
                     UID[4] = MFRC522_Rd(FIFODATAREG);
                     UID[5] = 0; // Terminador nulo
-                    substate = 14;
+                    substate = 19;
                     break;
-                case 14:                    
+                case 19:                    
                     // Calcula el checksum como XOR de los 4 primeros bytes
                     checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
                     // Inicializa flag para verificar UID no cero
                     allZero = 1;
-                    substate = 15;
+                    substate = 20;
                     break;
-                case 15:
+                case 20:
                     // Verifica los primeros 2 bytes del UID por si son ceros
                     if (UID[0] != 0 || UID[1] != 0) {
                         allZero = 0;
                     }
-                    substate = 16;
+                    substate = 21;
                     break;
-                case 16:
+                case 21:
                     // Verifica los siguientes 2 bytes del UID por si son ceros
                     if (UID[2] != 0 || UID[3] != 0) {
                         allZero = 0;
                     }
-                    substate = 17;
+                    substate = 22;
                     break;
-                case 17:
+                case 22:
                     // Verifica el checksum y si el UID no es todo ceros
                     if (checksum != UID[4] || allZero) {
                         // Si hay error, reinicia
@@ -537,16 +407,26 @@ void motor_RFID(void) {
                         substate = 0;
                     } else {
                         // Todo correcto, continúa
-                        substate = 18;
+                        substate = 23;
                     }
                     break;
-                case 18:
-                    // Prepara el buffer para mostrar el UID (primera parte)
-                    sprintf(buffer, "UID: %02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4]);
-                    Terminal_SendString(buffer);
-                    substate = 19;
+                case 23:
+                    {
+                        char differentUID = 1;
+                        unsigned char* currentUser = getActualUID();
+                        for (int i = 0; i < 5; i++) {
+                            if(currentUser[i] != UID[i]) {
+                                differentUID = 0;
+                                break;
+                            }
+                        }
+                        if(differentUID == 0) {
+                            setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
+                        }
+                        substate = 24;
+                    }
                     break;
-                case 19:
+                case 24:
                     // Configuración final y reinicio
                     MFRC522_Wr(BITFRAMINGREG, 0x00);
                     state = 0;

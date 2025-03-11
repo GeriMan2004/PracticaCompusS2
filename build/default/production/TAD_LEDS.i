@@ -1,4 +1,4 @@
-# 1 "TAD_TERMINAL.c"
+# 1 "TAD_LEDS.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 285 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "TAD_TERMINAL.c" 2
+# 1 "TAD_LEDS.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 1 3
 # 18 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4783,25 +4783,14 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
-# 2 "TAD_TERMINAL.c" 2
-# 1 "./TAD_TERMINAL.h" 1
-
-
-
-
-
-void Terminal_Init(void);
-int Terminal_TXAvailable(void);
-char Terminal_RXAvailable(void);
-void Terminal_SendChar(char c);
-char Terminal_ReceiveChar(void);
-void Terminal_SendString(const char *str);
-void printfUID(unsigned char *currentUser);
-void printLedConfig(unsigned char *leds);
-void showMenu(void);
-void hashtag_pressed3s(void);
-void motorTerminal(void);
-# 3 "TAD_TERMINAL.c" 2
+# 2 "TAD_LEDS.c" 2
+# 1 "./TAD_LEDS.h" 1
+# 10 "./TAD_LEDS.h"
+void initLeds(void);
+void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity);
+void updateLEDs(void);
+void motor_LEDs(void);
+# 3 "TAD_LEDS.c" 2
 # 1 "./TAD_DATOS.h" 1
 
 
@@ -4819,155 +4808,113 @@ void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
 void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
-# 4 "TAD_TERMINAL.c" 2
+# 4 "TAD_LEDS.c" 2
+# 1 "./TAD_TIMER.h" 1
+# 16 "./TAD_TIMER.h"
+void RSI_Timer0(void);
 
-char hashtag_pressed = 0;
 
 
-void Terminal_Init(void){
- TXSTA = 0x24;
- RCSTA = 0x90;
- SPBRG = 255;
- BAUDCON = 0x00;
- hashtag_pressed = 0;
+void TI_Init (void);
+
+
+unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
+
+
+
+void TI_ResetTics (unsigned char TimerHandle);
+
+
+
+unsigned long TI_GetTics (unsigned char TimerHandle);
+# 5 "TAD_LEDS.c" 2
+
+static unsigned char ActualLeds[6];
+static unsigned char timer;
+
+void initLeds(void) {
+    TRISA = 0x00;
+    TRISE = 0x00;
+    TI_NewTimer(&timer);
 }
 
-
-int Terminal_TXAvailable(void) {
- return (PIR1bits.TXIF == 1) ? 1 : 0;
-}
-
-
-char Terminal_RXAvailable(void) {
- return (PIR1bits.RCIF == 1) ? 1 : 0;
-}
-
-
-void Terminal_SendChar(char c) {
- while (Terminal_TXAvailable() == 0);
- TXREG = c;
-}
-
-
-char Terminal_ReceiveChar(void) {
- return RCREG;
-}
-
-
-void Terminal_SendString(const char *str) {
- while (*str) {
-  Terminal_SendChar(*str++);
- }
-}
-
-void showMenu(void) {
- Terminal_SendString("---------------\r\n");
- Terminal_SendString("Menú principal\r\n");
- Terminal_SendString("---------------\r\n");
- Terminal_SendString("Tria una opció:\r\n");
- Terminal_SendString("\t1. Qui hi ha a la sala?\r\n");
- Terminal_SendString("\t2. Mostrar configuracions\r\n");
- Terminal_SendString("\t3. Modificar hora del sistema\r\n");
- Terminal_SendString("Opció: ");
-}
-
-void hashtag_pressed3s(void){
- hashtag_pressed = 1;
-}
-
-void printfUID(unsigned char *currentUser) {
- Terminal_SendString("UID: ");
- for (int i = 0; i < 5; i++) {
-
-  unsigned char high = (currentUser[i] >> 4) & 0x0F;
-  Terminal_SendChar(high < 10 ? '0' + high : 'A' + high - 10);
-
-
-  unsigned char low = currentUser[i] & 0x0F;
-  Terminal_SendChar(low < 10 ? '0' + low : 'A' + low - 10);
-
-
-  if (i < 4) Terminal_SendString("-");
- }
- Terminal_SendString("\r\n");
-}
-
-void printLedConfig(unsigned char *leds) {
- for (int i = 0; i < 6; i++) {
-
-  Terminal_SendChar('L');
-  Terminal_SendChar('0' + i);
-  Terminal_SendString(": ");
-
-
-  unsigned char val = leds[i];
-  Terminal_SendChar(val < 10 ? '0' + val : 'A' + val - 10);
-
-
-  if (i < 6 - 1) Terminal_SendString(" - ");
- }
- Terminal_SendString("\r\n");
-}
-
-void motorTerminal(void) {
- static char state = 0;
-
- switch(state) {
-  case 0:
-   if (Terminal_ReceiveChar() == 0x1B) {
-    showMenu();
-    state = 1;
-   }
-
-   if (hashtag_pressed == 1){
-    showMenu();
-    state = 1;
-    hashtag_pressed = 0;
-   }
-  break;
-  case 1:
-   if(Terminal_RXAvailable() == 1){
-    if (Terminal_ReceiveChar() == '1') {
-     Terminal_SendString("\r\n");
-     unsigned char *currentUser = getActualUID();
-
-
-
-     printfUID(currentUser);
-
-     Terminal_SendString("\r\n");
-     state = 0;
+void setLedActual(unsigned char ledActual) {
+    switch(ledActual) {
+        case 0x00:
+            LATAbits.LATA0 = 1;
+            break;
+        case 0x01:
+            LATAbits.LATA1 = 1;
+            break;
+        case 0x02:
+            LATAbits.LATA2 = 1;
+            break;
+        case 0x03:
+            LATAbits.LATA3 = 1;
+            break;
+        case 0x04:
+            LATAbits.LATA4 = 1;
+            break;
+        case 0x05:
+            LATAbits.LATA5 = 1;
+            break;
+        default:
+            LATAbits.LATA0 = 1;
+            LATAbits.LATA1 = 1;
+            LATAbits.LATA2 = 1;
+            LATAbits.LATA3 = 1;
+            LATAbits.LATA4 = 1;
+            LATAbits.LATA5 = 1;
+            break;
     }
-    else if (Terminal_ReceiveChar() == '2') {
-     Terminal_SendString("\r\n");
-     showAllConfigurations();
-     state = 0;
+}
+
+void unsetLedActual(unsigned char ledActual) {
+    switch(ledActual) {
+        case 0x00:
+            LATAbits.LATA0 = 0;
+            break;
+        case 0x01:
+            LATAbits.LATA1 = 0;
+            break;
+        case 0x02:
+            LATAbits.LATA2 = 0;
+            break;
+        case 0x03:
+            LATAbits.LATA3 = 0;
+            break;
+        case 0x04:
+            LATAbits.LATA4 = 0;
+            break;
+        case 0x05:
+            LATAbits.LATA5 = 0;
+            break;
+        default:
+            LATAbits.LATA0 = 0;
+            LATAbits.LATA1 = 0;
+            LATAbits.LATA2 = 0;
+            LATAbits.LATA3 = 0;
+            LATAbits.LATA4 = 0;
+            LATAbits.LATA5 = 0;
     }
-    else if (Terminal_ReceiveChar() == '3') {
-     Terminal_SendString("\r\n");
-     Terminal_SendString("Introduce la hora actual(HHMM): ");
-     state = 2;
+}
+
+void motor_LEDs(void) {
+
+    getActualLeds(ActualLeds);
+
+
+    if (TI_GetTics(timer) >= 10) {
+        TI_ResetTics(timer);
+        setLedActual(0xFF);
+
+
     }
-    else {
-     Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
-     state = 0;
+
+
+    for (int i = 0; i < 6; i++) {
+        if (ActualLeds[i] < 0xA && TI_GetTics(timer) >= ActualLeds[i]) {
+            unsetLedActual(i);
+        }
     }
-   }
-  break;
-  case 2:
-   if(Terminal_RXAvailable() == 1){
-    static unsigned char hour[4] = "0000";
-    static char index = 0;
-    hour[index] = Terminal_ReceiveChar();
-    Terminal_SendChar(hour[index]);
-    index++;
-    if(index == 4){
-     saveHourToData(hour);
-     Terminal_SendString("\r\nHora introduida correctament\r\n");
-     index = 0;
-     state = 0;
-    }
-   }
-  break;
- }
 }

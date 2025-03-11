@@ -1,16 +1,18 @@
 #ifndef TAD_DATOS_H
 #define TAD_DATOS_H
 
-// Definición de constantes
 #define UID_SIZE 16
-#define MAX_USERS 3
+#define MAX_USERS 4
 #define LEDS 6
 
 
+void setLed(unsigned char tecla);
 unsigned char* getActualUID(void);
-unsigned char* getUsersConfigurations(void);
-void newUser(void);
+void getActualLeds(unsigned char* leds);
+void showAllConfigurations(void);
+void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
 void newConfiguration(void);
+void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 
-#endif /* TAD_DATOS_H */
+#endif 

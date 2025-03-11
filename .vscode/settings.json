@@ -6,7 +6,8 @@
         "tad_terminal.h": "c",
         "string.h": "c",
         "stdio.h": "c",
-        "tad_display.h": "c"
+        "tad_display.h": "c",
+        "tad_timer.h": "c"
     },
     "mplab.clangd.arguments": [
         "--compile-commands-dir=${workspaceRoot}\\_build\\Practica2FA\\default"

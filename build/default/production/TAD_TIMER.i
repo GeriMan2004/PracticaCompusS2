@@ -4809,10 +4809,6 @@ void TI_ResetTics (unsigned char TimerHandle);
 
 
 unsigned long TI_GetTics (unsigned char TimerHandle);
-
-
-
-void TI_End (void);
 # 10 "TAD_TIMER.c" 2
 
 

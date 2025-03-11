@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "TAD_TECLADO.h"
 #include "TAD_TERMINAL.h"
+#include "TAD_DATOS.h"
 
 static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
 
@@ -75,10 +76,11 @@ void motorTeclado(void) {
 				writeColumnas();
 				state = 0;
 			}
-			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla != 11) {
+			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla != 0x0B) {
+				setLed(tecla);
 				state = 5;
 			}
-			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla == 11) {
+			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla == 0x0B) {
 				TI_ResetTics(timer);
 				state = 4;
 			}
@@ -90,7 +92,7 @@ void motorTeclado(void) {
 			}
 			else if (Filas != 0x0 && TI_GetTics(timer) > HASHTAG_TIME) {
 				hashtag_pressed3s();
-				// zzResetData();
+				// ResetData();
 				state = 5;
 			}
 		break;
@@ -144,10 +146,10 @@ unsigned char GetTecla(void) {
     }
     
     const unsigned char keymap[4][3] = {
-        {1, 2, 3},
-        {4, 5, 6},
-        {7, 8, 9},
-        {10, 0, 11}  // 10 = *, 11 = #
+        {0x01, 0x02, 0x03},
+        {0x04, 0x05, 0x06},
+        {0x07, 0x08, 0x09},
+        {0x0A, 0x00, 0x0B}  // 10 = *, 11 = #
     };
     
     return keymap[fila][columna];

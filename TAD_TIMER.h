@@ -32,7 +32,4 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 	// Pre: Handle ha estat retornat per TI_NewGetTimer.
 	// Post: Retorna els tics transcorreguts des de la crida a TI_ResetTics per al mateix TimerHandle.
 
-void TI_End (void);
-	// Post: Destructor del TAD
-
 #endif

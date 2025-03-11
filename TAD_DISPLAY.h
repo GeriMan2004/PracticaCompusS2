@@ -1,5 +1,5 @@
-#ifndef LCTLCD_H
-#define	LCTLCD_H
+#ifndef TAD_DISPLAY_H
+#define	TAD_DISPLAY_H
 //
 // ADT for manipulating the alphanumeric display of the 
 // HD44780 controller using only 4 data bits.
@@ -45,13 +45,13 @@
 #include <xc.h>
 
 
-#define SetD4_D7Sortida()		(TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0)
-#define SetD4_D7Entrada()		(TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1)
+#define SetD4_D7Sortida()		(TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0)
+#define SetD4_D7Entrada()		(TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1)
 #define SetControlsSortida()    (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0)
 #define SetD4(On)				(LATBbits.LATB4 = (On))
 #define SetD5(On)				(LATBbits.LATB5 = (On))
-#define SetD6(On)				(LATBbits.LATB6 = (On))
-#define SetD7(On)				(LATBbits.LATB7 = (On))
+#define SetD6(On)				(LATEbits.LATE1 = (On))
+#define SetD7(On)				(LATEbits.LATE0 = (On))
 #define GetBusyFlag()           (PORTBbits.RB7)
 #define RSUp()					(LATBbits.LATB3 = 1)
 #define RSDown()				(LATBbits.LATB3 = 0)
@@ -68,9 +68,6 @@ void LcInit(char rows, char columns);
 // Pre: It needs 40ms of tranquility between the VCC raising and this constructor being called.
 // Post: This routine can last up to 100ms
 // Post: The display remains cleared, the cursor turned off and at the position 0, 0.
-
-void LcEnd(void);
-// The destructor
 
 void LcClear(void);
 // Post: Clears the display and sets the cursor to its previous state. 
@@ -105,4 +102,4 @@ void LcPutString(char *s);
 // The coordinate criteria is the same as the LcPutChar. 
 // Post: Can last up to 40us per char of a routine output.
 
-#endif	/* LCTLCD_H */
+#endif	/* TAD_DISPLAY_H */

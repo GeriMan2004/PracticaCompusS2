@@ -4810,255 +4810,24 @@ void initRFID(void);
 
 void ReadRFID_NoCooperatiu(void);
 # 12 "TAD_RFID.c" 2
-# 1 "./TAD_TERMINAL.h" 1
-
-
-# 1 "./TAD_TIMER.h" 1
-# 16 "./TAD_TIMER.h"
-void RSI_Timer0(void);
+# 1 "./TAD_DATOS.h" 1
 
 
 
-void TI_Init (void);
-
-
-unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
 
 
 
-void TI_ResetTics (unsigned char TimerHandle);
 
 
-
-unsigned long TI_GetTics (unsigned char TimerHandle);
-
-
-
-void TI_End (void);
-# 4 "./TAD_TERMINAL.h" 2
-
-
-void Terminal_Init(void);
-int Terminal_TXAvailable(void);
-char Terminal_RXAvailable(void);
-void Terminal_SendChar(char c);
-char Terminal_ReceiveChar(void);
-void Terminal_SendString(const char *str);
-void showMenu(void);
-void hashtag_pressed3s(void);
-void motorTerminal(void);
+void setLed(unsigned char tecla);
+unsigned char* getActualUID(void);
+void getActualLeds(unsigned char* leds);
+void showAllConfigurations(void);
+void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
+void newConfiguration(void);
+void saveHourToData(unsigned char hour[4]);
+void motor_datos(void);
 # 13 "TAD_RFID.c" 2
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
-# 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
-# 12 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 143 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
-typedef __int24 ssize_t;
-# 255 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
-typedef long long off_t;
-# 409 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 2 3
-# 52 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-
-
-
-
-
-int ungetc(int, FILE *);
-int getch(void);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-
-
-
-
-void putch(char);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-__attribute__((__format__(__printf__, 1, 2)))
-int printf(const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int fprintf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 2, 3)))
-int sprintf(char *restrict, const char *restrict, ...);
-__attribute__((__format__(__printf__, 3, 4)))
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-__attribute__((__format__(__printf__, 1, 0)))
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 2, 0)))
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__printf__, 3, 0)))
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-__attribute__((__format__(__scanf__, 1, 2)))
-int scanf(const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int fscanf(FILE *restrict, const char *restrict, ...);
-__attribute__((__format__(__scanf__, 2, 3)))
-int sscanf(const char *restrict, const char *restrict, ...);
-
-__attribute__((__format__(__scanf__, 1, 0)))
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-__attribute__((__format__(__scanf__, 2, 0)))
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 14 "TAD_RFID.c" 2
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 1 3
-# 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
-# 421 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
-typedef struct __locale_struct * locale_t;
-# 26 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/string.h" 2 3
-
-void *memcpy (void *restrict, const void *restrict, size_t);
-void *memmove (void *, const void *, size_t);
-void *memset (void *, int, size_t);
-int memcmp (const void *, const void *, size_t);
-void *memchr (const void *, int, size_t);
-
-char *strcpy (char *restrict, const char *restrict);
-char *strncpy (char *restrict, const char *restrict, size_t);
-
-char *strcat (char *restrict, const char *restrict);
-char *strncat (char *restrict, const char *restrict, size_t);
-
-int strcmp (const char *, const char *);
-int strncmp (const char *, const char *, size_t);
-
-int strcoll (const char *, const char *);
-size_t strxfrm (char *restrict, const char *restrict, size_t);
-
-char *strchr (const char *, int);
-char *strrchr (const char *, int);
-
-size_t strcspn (const char *, const char *);
-size_t strspn (const char *, const char *);
-char *strpbrk (const char *, const char *);
-char *strstr (const char *, const char *);
-char *strtok (char *restrict, const char *restrict);
-
-size_t strlen (const char *);
-
-char *strerror (int);
-
-
-
-
-char *strtok_r (char *restrict, const char *restrict, char **restrict);
-int strerror_r (int, char *, size_t);
-char *stpcpy(char *restrict, const char *restrict);
-char *stpncpy(char *restrict, const char *restrict, size_t);
-size_t strnlen (const char *, size_t);
-char *strdup (const char *);
-char *strndup (const char *, size_t);
-char *strsignal(int);
-char *strerror_l (int, locale_t);
-int strcoll_l (const char *, const char *, locale_t);
-size_t strxfrm_l (char *restrict, const char *restrict, size_t, locale_t);
-
-
-
-
-void *memccpy (void *restrict, const void *restrict, int, size_t);
-# 15 "TAD_RFID.c" 2
 
 
 
@@ -5178,192 +4947,12 @@ void MFRC522_Init() {
     MFRC522_AntennaOn();
 }
 
-char MFRC522_ToCard (char command, char *sendData, char sendLen, char *backData, unsigned *backLen) {
-    char _status = 2;
-    char irqEn = 0x00;
-    char waitIRq = 0x00;
-    char lastBits;
-    char n;
-    unsigned char i;
 
-    switch (command) {
-        case 0x0E:
-            irqEn = 0x12;
-            waitIRq = 0x10;
-            break;
-
-        case 0x0C:
-            irqEn = 0x77;
-            waitIRq = 0x30;
-            break;
-    }
-    MFRC522_Wr(0x02, irqEn | 0x80);
-    MFRC522_Clear_Bit(0x04, 0x80);
-    MFRC522_Set_Bit(0x0A, 0x80);
-    MFRC522_Wr(0x01, 0x00);
-
-    for (i = 0; i < sendLen; i++) MFRC522_Wr(0x09, sendData[i]);
-
-    MFRC522_Wr(0x01, command);
-    if (command == 0x0C) MFRC522_Set_Bit(0x0D, 0x80);
-    i = 0xFF;
-    do {
-        n = MFRC522_Rd(0x04);
-        i--;
-    } while (i && !(n & 0x01) && !(n & waitIRq));
-    MFRC522_Clear_Bit(0x0D, 0x80);
-    if (i != 0) {
-        if(!(MFRC522_Rd(0x06) & 0x1B)){
-            _status = 0;
-            if (n & irqEn & 0x01) _status = 1;
-            if (command == 0x0C) {
-                n = MFRC522_Rd(0x0A);
-                lastBits = MFRC522_Rd(0x0C) & 0x07;
-                if (lastBits) {
-                    *backLen = (n - 1) * 8 + lastBits;
-                } else {
-                    *backLen = n * 8;
-                }
-                if (n == 0) {
-                    n = 1;
-                } else if (n > 16) {
-                    n = 16;
-                }
-                for (i = 0; i < n; i++) {
-                    backData[i] = MFRC522_Rd(0x09);
-                }
-                backData[i] = 0;
-            }
-        }
-        else _status = 2;
-    }
-    return _status;
-}
-
-
-char MFRC522_Request(char reqMode, char *TagType) {
-    char _status;
-    unsigned backBits;
-    MFRC522_Wr(0x0D, 0x07);
-    TagType[0] = reqMode;
-    _status = MFRC522_ToCard(0x0C, TagType, 1, TagType, &backBits);
-    if ((_status != 0) || (backBits != 0x10))
-        _status = 2;
-    return _status;
-}
-
-void MFRC522_CRC(char *dataIn, char length, char *dataOut) {
-    unsigned char i, n;
-    MFRC522_Clear_Bit(0x05, 0x04);
-    MFRC522_Set_Bit(0x0A, 0x80);
-
-    for (i = 0; i < length; i++) {
-        MFRC522_Wr(0x09, *dataIn++);
-    }
-
-    MFRC522_Wr(0x01, 0x03);
-
-
-    i = 255;
-    do {
-        n = MFRC522_Rd(0x05);
-        i--;
-    } while (i && !(n & 0x04));
-
-    dataOut[0] = MFRC522_Rd(0x22);
-    dataOut[1] = MFRC522_Rd(0x21);
-}
-
-unsigned MFRC522_SelectTag(char *serNum) {
-    char i;
-    char _status;
-    unsigned size;
-    char buffer[9];
-
-    buffer[0] = 0x93;
-    buffer[1] = 0x70;
-
-    for (i = 0; i < 5; i++) {
-        buffer[i + 2] = *serNum++;
-    }
-
-    MFRC522_CRC(buffer, 7, &buffer[7]);
-    _status = MFRC522_ToCard(0x0C, buffer, 9, buffer, &size);
-
-    if ((_status == 0) && (size == 0x18)) {
-        size = buffer[0];
-    } else {
-        size = 0;
-    }
-    return size;
-}
-
-
-void MFRC522_Halt() {
-    unsigned unLen;
-    char buff[4];
-
-    buff[0] = 0x50;
-    buff[1] = 0;
-    MFRC522_CRC(buff, 2, &buff[2]);
-    MFRC522_Clear_Bit(0x08, 0x80);
-    MFRC522_ToCard(0x0C, buff, 4, buff, &unLen);
-    MFRC522_Clear_Bit(0x08, 0x08);
-}
-
-char MFRC522_AntiColl(unsigned char *serNum) {
-    char _status;
-    char i;
-    char serNumCheck = 0;
-    unsigned unLen;
-    MFRC522_Wr(0x0D, 0x00);
-    serNum[0] = 0x93;
-    serNum[1] = 0x20;
-    MFRC522_Clear_Bit(0x08, 0x08);
-    _status = MFRC522_ToCard(0x0C, (char *)serNum, 2, (char *)serNum, &unLen);
-    if (_status == 0) {
-        for (i = 0; i < 4; i++)
-            serNumCheck ^= serNum[(int)i];
-        if (serNumCheck != serNum[4])
-            _status = 2;
-    }
-    return _status;
-}
-
-char MFRC522_isCard (char *TagType) {
-    return (MFRC522_Request(0x26, TagType) == 0);
-}
-
-char MFRC522_ReadCardSerial (unsigned char *str) {
-    char _status = MFRC522_AntiColl(str);
-    str[5] = 0;
-    return (_status == 0);
-}
 
 
 void initRFID() {
     InitPortDirections();
     MFRC522_Init();
-}
-
-void ReadRFID_NoCooperatiu() {
-    unsigned char UID[6];
-    char TagType;
-    char buffer[50];
-    if (MFRC522_isCard (&TagType) == 1) {
-
-
-        if (MFRC522_ReadCardSerial (UID)) {
-            Terminal_SendString("UID: ");
-            for (int i = 0; i < 6; i++) {
-                sprintf(buffer, "%02X", UID[i]);
-                Terminal_SendString(buffer);
-            }
-            Terminal_SendString("\n");
-
-        }
-        MFRC522_Halt ();
-    }
 }
 
 void motor_RFID(void) {
@@ -5375,9 +4964,10 @@ void motor_RFID(void) {
     static unsigned unLen;
     static char TagType;
     static unsigned char UID[6];
-    static char buffer[50];
     static unsigned char checksum;
     static unsigned char allZero;
+    static unsigned char tempRegValue;
+
     switch(state) {
 
         case 0:
@@ -5397,48 +4987,68 @@ void motor_RFID(void) {
                     break;
                 case 2:
 
-                    MFRC522_Clear_Bit(0x04, 0x80);
+                    tempRegValue = MFRC522_Rd(0x04);
                     substate = 3;
                     break;
                 case 3:
 
-                    MFRC522_Set_Bit(0x0A, 0x80);
+                    MFRC522_Wr(0x04, tempRegValue & ~0x80);
                     substate = 4;
                     break;
                 case 4:
 
-                    MFRC522_Wr(0x01, 0x00);
+                    tempRegValue = MFRC522_Rd(0x0A);
                     substate = 5;
                     break;
                 case 5:
 
-                    MFRC522_Wr(0x09, TagType);
+                    MFRC522_Wr(0x0A, tempRegValue | 0x80);
                     substate = 6;
                     break;
                 case 6:
 
-                    MFRC522_Wr(0x01, 0x0C);
+                    MFRC522_Wr(0x01, 0x00);
                     substate = 7;
                     break;
                 case 7:
 
-                    MFRC522_Set_Bit(0x0D, 0x80);
-                    i = 0xFF;
+                    MFRC522_Wr(0x09, TagType);
                     substate = 8;
                     break;
                 case 8:
 
-                    n = MFRC522_Rd(0x04);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        substate = 9;
-                    }
+                    MFRC522_Wr(0x01, 0x0C);
+                    substate = 9;
                     break;
                 case 9:
 
-                    MFRC522_Clear_Bit(0x0D, 0x80);
+                    tempRegValue = MFRC522_Rd(0x0D);
                     substate = 10;
                     break;
                 case 10:
+
+                    MFRC522_Wr(0x0D, tempRegValue | 0x80);
+                    i = 0xFF;
+                    substate = 11;
+                    break;
+                case 11:
+
+                    n = MFRC522_Rd(0x04);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        substate = 12;
+                    }
+                    break;
+                case 12:
+
+                    tempRegValue = MFRC522_Rd(0x0D);
+                    substate = 13;
+                    break;
+                case 13:
+
+                    MFRC522_Wr(0x0D, tempRegValue & ~0x80);
+                    substate = 14;
+                    break;
+                case 14:
 
                     if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
                         unsigned char fifoLevel = MFRC522_Rd(0x0A);
@@ -5450,20 +5060,20 @@ void motor_RFID(void) {
                             backBitsCalc = fifoLevel * 8;
 
                         if (backBitsCalc == 0x10) {
-                            substate = 11;
+                            substate = 15;
                         } else {
-                            substate = 12;
+                            substate = 16;
                         }
                     } else {
-                        substate = 12;
+                        substate = 16;
                     }
                     break;
-                case 11:
+                case 15:
 
                     state = 1;
                     substate = 0;
                     break;
-                case 12:
+                case 16:
 
                     state = 0;
                     substate = 0;
@@ -5482,107 +5092,132 @@ void motor_RFID(void) {
                     break;
                 case 1:
 
-                    MFRC522_Clear_Bit(0x08, 0x08);
+                    tempRegValue = MFRC522_Rd(0x08);
                     substate = 2;
                     break;
                 case 2:
 
-                    irqEn = 0x77;
-                    waitIRq = 0x30;
-                    MFRC522_Wr(0x02, irqEn | 0x80);
+                    MFRC522_Wr(0x08, tempRegValue & ~0x08);
                     substate = 3;
                     break;
                 case 3:
 
-                    MFRC522_Clear_Bit(0x04, 0x80);
+                    irqEn = 0x77;
+                    waitIRq = 0x30;
+                    MFRC522_Wr(0x02, irqEn | 0x80);
                     substate = 4;
                     break;
                 case 4:
 
-                    MFRC522_Set_Bit(0x0A, 0x80);
+                    tempRegValue = MFRC522_Rd(0x04);
                     substate = 5;
                     break;
                 case 5:
 
-                    MFRC522_Wr(0x01, 0x00);
+                    MFRC522_Wr(0x04, tempRegValue & ~0x80);
                     substate = 6;
                     break;
                 case 6:
 
-                    MFRC522_Wr(0x09, UID[0]);
-                    MFRC522_Wr(0x09, UID[1]);
+                    tempRegValue = MFRC522_Rd(0x0A);
                     substate = 7;
                     break;
                 case 7:
 
-                    MFRC522_Wr(0x01, 0x0C);
+                    MFRC522_Wr(0x0A, tempRegValue | 0x80);
                     substate = 8;
                     break;
                 case 8:
 
-                    MFRC522_Set_Bit(0x0D, 0x80);
-                    i = 0xFF;
+                    MFRC522_Wr(0x01, 0x00);
                     substate = 9;
                     break;
                 case 9:
 
-                    n = MFRC522_Rd(0x04);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        substate = 10;
-                    }
+                    MFRC522_Wr(0x09, UID[0]);
+                    MFRC522_Wr(0x09, UID[1]);
+                    substate = 10;
                     break;
                 case 10:
 
-                    MFRC522_Clear_Bit(0x0D, 0x80);
+                    MFRC522_Wr(0x01, 0x0C);
                     substate = 11;
                     break;
                 case 11:
+
+                    tempRegValue = MFRC522_Rd(0x0D);
+                    substate = 12;
+                    break;
+                case 12:
+
+                    MFRC522_Wr(0x0D, tempRegValue | 0x80);
+                    i = 0xFF;
+                    substate = 13;
+                    break;
+                case 13:
+
+                    n = MFRC522_Rd(0x04);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        substate = 14;
+                    }
+                    break;
+                case 14:
+
+                    tempRegValue = MFRC522_Rd(0x0D);
+                    substate = 15;
+                    break;
+                case 15:
+
+                    MFRC522_Wr(0x0D, tempRegValue & ~0x80);
+                    substate = 16;
+                    break;
+                case 16:
 
                     if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
 
                         UID[0] = MFRC522_Rd(0x09);
                         UID[1] = MFRC522_Rd(0x09);
-                        substate = 12;
+                        substate = 17;
                     } else {
 
                         state = 0;
                         substate = 0;
                     }
                     break;
-                case 12:
+                case 17:
 
                     UID[2] = MFRC522_Rd(0x09);
                     UID[3] = MFRC522_Rd(0x09);
-                    substate = 13;
+                    substate = 18;
                     break;
-                case 13:
+                case 18:
 
                     UID[4] = MFRC522_Rd(0x09);
                     UID[5] = 0;
-                    substate = 14;
+                    substate = 19;
                     break;
-                case 14:
+                case 19:
 
                     checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
 
                     allZero = 1;
-                    substate = 15;
+                    substate = 20;
                     break;
-                case 15:
+                case 20:
 
                     if (UID[0] != 0 || UID[1] != 0) {
                         allZero = 0;
                     }
-                    substate = 16;
+                    substate = 21;
                     break;
-                case 16:
+                case 21:
 
                     if (UID[2] != 0 || UID[3] != 0) {
                         allZero = 0;
                     }
-                    substate = 17;
+                    substate = 22;
                     break;
-                case 17:
+                case 22:
 
                     if (checksum != UID[4] || allZero) {
 
@@ -5590,16 +5225,26 @@ void motor_RFID(void) {
                         substate = 0;
                     } else {
 
-                        substate = 18;
+                        substate = 23;
                     }
                     break;
-                case 18:
-
-                    sprintf(buffer, "UID: %02X%02X%02X%02X%02X\r\n", UID[0], UID[1], UID[2], UID[3], UID[4]);
-                    Terminal_SendString(buffer);
-                    substate = 19;
+                case 23:
+                    {
+                        char differentUID = 1;
+                        unsigned char* currentUser = getActualUID();
+                        for (int i = 0; i < 5; i++) {
+                            if(currentUser[i] != UID[i]) {
+                                differentUID = 0;
+                                break;
+                            }
+                        }
+                        if(differentUID == 0) {
+                            setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
+                        }
+                        substate = 24;
+                    }
                     break;
-                case 19:
+                case 24:
 
                     MFRC522_Wr(0x0D, 0x00);
                     state = 0;

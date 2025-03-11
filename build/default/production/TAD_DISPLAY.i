@@ -4803,10 +4803,6 @@ void TI_ResetTics (unsigned char TimerHandle);
 
 
 unsigned long TI_GetTics (unsigned char TimerHandle);
-
-
-
-void TI_End (void);
 # 22 "TAD_DISPLAY.c" 2
 # 1 "./TAD_DISPLAY.h" 1
 # 65 "./TAD_DISPLAY.h"
@@ -4815,9 +4811,6 @@ void LcInit(char rows, char columns);
 
 
 
-
-
-void LcEnd(void);
 
 
 void LcClear(void);
@@ -4838,7 +4831,7 @@ void LcGotoXY(char Column, char Row);
 
 
 void LcPutChar(char c);
-# 103 "./TAD_DISPLAY.h"
+# 100 "./TAD_DISPLAY.h"
 void LcPutString(char *s);
 # 23 "TAD_DISPLAY.c" 2
 # 44 "TAD_DISPLAY.c"
@@ -4870,7 +4863,7 @@ void LcInit(char rows, char columns) {
  RowAct = ColumnAct = 0;
  (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0);
  for (i = 0; i < 2; i++) {
-  Espera(Timer, 10);
+  Espera(Timer, 100);
 
 
   EscriuPrimeraOrdre(0x02 | 0x01);
@@ -4894,11 +4887,6 @@ void LcInit(char rows, char columns) {
  }
 
 
-
-
-}
-
-void LcEnd(void) {
 
 
 }
@@ -4945,14 +4933,14 @@ void LcGotoXY(char Column, char Row) {
  }
 
  WaitForBusy();
- CantaIR((char)(0x80 | Fisics));
+ CantaIR(0x80 | Fisics);
 
  RowAct = Row;
  ColumnAct = Column;
 }
 
 void LcPutChar(char c) {
-# 171 "TAD_DISPLAY.c"
+# 166 "TAD_DISPLAY.c"
  WaitForBusy(); CantaData(c);
 
  ++ColumnAct;
@@ -4983,83 +4971,83 @@ void LcPutString(char *s) {
 
  while(*s) LcPutChar(*s++);
 }
-# 210 "TAD_DISPLAY.c"
+# 205 "TAD_DISPLAY.c"
 void Espera(int Timer, int ms) {
- TI_ResetTics((unsigned char)Timer);
- while(TI_GetTics((unsigned char)Timer) < ms * 10);
+ TI_ResetTics(Timer);
+ while(TI_GetTics(Timer) < ms);
 }
 
 void CantaPartAlta(char c) {
-  (LATBbits.LATB7 = (c & 0x80 ? 1 : 0));
-  (LATBbits.LATB6 = (c & 0x40 ? 1 : 0));
-  (LATBbits.LATB5 = (c & 0x20 ? 1 : 0));
-  (LATBbits.LATB4 = (c & 0x10 ? 1 : 0));
+ (LATEbits.LATE0 = (c & 0x80 ? 1 : 0));
+ (LATEbits.LATE1 = (c & 0x40 ? 1 : 0));
+ (LATBbits.LATB5 = (c & 0x20 ? 1 : 0));
+ (LATBbits.LATB4 = (c & 0x10 ? 1 : 0));
 }
 
 void CantaPartBaixa(char c) {
-  (LATBbits.LATB7 = (c & 0x08 ? 1 : 0));
-  (LATBbits.LATB6 = (c & 0x04 ? 1 : 0));
-  (LATBbits.LATB5 = (c & 0x02 ? 1 : 0));
-  (LATBbits.LATB4 = (c & 0x01 ? 1 : 0));
+ (LATEbits.LATE0 = (c & 0x08 ? 1 : 0));
+ (LATEbits.LATE1 = (c & 0x04 ? 1 : 0));
+ (LATBbits.LATB5 = (c & 0x02 ? 1 : 0));
+ (LATBbits.LATB4 = (c & 0x01 ? 1 : 0));
 }
 
 void CantaIR(char IR) {
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0);
+ (LATBbits.LATB3 = 0);
  (LATBbits.LATB2 = 0);
- (LATBbits.LATB2 = 0);
- (LATBbits.LATB5 = 1);
+ (LATBbits.LATB1 = 1);
  CantaPartAlta(IR);
- (LATBbits.LATB5 = 1);
- (LATBbits.LATB5 = 0);
- (LATBbits.LATB5 = 0);
- (LATBbits.LATB5 = 1);
+ (LATBbits.LATB1 = 1);
+ (LATBbits.LATB1 = 0);
+ (LATBbits.LATB1 = 0);
+ (LATBbits.LATB1 = 1);
  CantaPartBaixa(IR);
- (LATBbits.LATB5 = 1);
- (LATBbits.LATB5 = 0);
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1);
+ (LATBbits.LATB1 = 1);
+ (LATBbits.LATB1 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1);
 }
 
 void CantaData(char Data) {
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0);
  (LATBbits.LATB3 = 1);
  (LATBbits.LATB2 = 0);
- (LATBbits.LATB5 = 1);
+ (LATBbits.LATB1 = 1);
  CantaPartAlta(Data);
- (LATBbits.LATB5 = 1);
- (LATBbits.LATB5 = 0);
- (LATBbits.LATB5 = 0);
- (LATBbits.LATB5 = 1);
+ (LATBbits.LATB1 = 1);
+ (LATBbits.LATB1 = 0);
+ (LATBbits.LATB1 = 0);
+ (LATBbits.LATB1 = 1);
  CantaPartBaixa(Data);
- (LATBbits.LATB5 = 1);
- (LATBbits.LATB5 = 0);
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1);
+ (LATBbits.LATB1 = 1);
+ (LATBbits.LATB1 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1);
 }
 
-void WaitForBusy(void) {
- char Busy;
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 1);
- (LATBbits.LATB2 = 0);
+void WaitForBusy(void) { char Busy;
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1);
+ (LATBbits.LATB3 = 0);
  (LATBbits.LATB2 = 1);
- TI_ResetTics((unsigned char)Timer);
+ TI_ResetTics(Timer);
  do {
-  (LATBbits.LATB5 = 1); (LATBbits.LATB5 = 1);
+  (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
   Busy = (PORTBbits.RB7);
-  (LATBbits.LATB5 = 0);
-  (LATBbits.LATB5 = 0);
-  (LATBbits.LATB5 = 1); (LATBbits.LATB5 = 1);
-  (LATBbits.LATB5 = 0);
-  (LATBbits.LATB5 = 0);
-  if (TI_GetTics((unsigned char)Timer) > 1) break;
+  (LATBbits.LATB1 = 0);
+  (LATBbits.LATB1 = 0);
+  (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
+
+  (LATBbits.LATB1 = 0);
+  (LATBbits.LATB1 = 0);
+  if (TI_GetTics(Timer) > 10) break;
  } while(Busy);
 }
 
 void EscriuPrimeraOrdre(char ordre) {
 
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISBbits.TRISB6 = TRISBbits.TRISB7 = 0); (LATBbits.LATB2 = 0); (LATBbits.LATB2 = 0);
- (LATBbits.LATB5 = 1); (LATBbits.LATB5 = 1);
-  (LATBbits.LATB7 = (ordre & 0x08 ? 1 : 0));
-  (LATBbits.LATB6 = (ordre & 0x04 ? 1 : 0));
-  (LATBbits.LATB5 = (ordre & 0x02 ? 1 : 0));
-  (LATBbits.LATB4 = (ordre & 0x01 ? 1 : 0));
- (LATBbits.LATB5 = 0);
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0); (LATBbits.LATB3 = 0); (LATBbits.LATB2 = 0);
+ (LATBbits.LATB1 = 1); (LATBbits.LATB1 = 1);
+ (LATEbits.LATE0 = (ordre & 0x08 ? 1 : 0));
+ (LATEbits.LATE1 = (ordre & 0x04 ? 1 : 0));
+ (LATBbits.LATB5 = (ordre & 0x02 ? 1 : 0));
+ (LATBbits.LATB4 = (ordre & 0x01 ? 1 : 0));
+ (LATBbits.LATB1 = 0);
 }

@@ -72,7 +72,7 @@ void LcInit(char rows, char columns) {
 // Post: This routine can last until 100ms
 // Post: The display remains cleared, the cursor is turned OFF and at the position (0, 0).
 	int i;
-	TI_NewTimer(&Timer); 
+	TI_NewTimer(&Timer);
 	Rows = rows; Columns = columns;
 	RowAct = ColumnAct = 0;
 	SetControlsSortida();
@@ -103,11 +103,6 @@ void LcInit(char rows, char columns) {
     //correctly after 40ms. Therefore, there is a loop with two initializations 
     //from here the initialization works correctly if a reset is made or if
     //the supply is turned ON and OFF. 
-}
-
-void LcEnd(void) {
-// The destructor
-	//TI_CloseTimer(Timer); // Fixed function name
 }
 
 void LcClear(void) {
@@ -144,6 +139,7 @@ void LcGotoXY(char Column, char Row) {
 			Fisics = Column;
 			if (Row == 1) Fisics += 0x40; else
 			if (Row == 2) Fisics += Columns;      /* 0x14; */ else
+			if (Row == 3) Fisics += 0x40+Columns; /* 0x54; */
 			break;
 		case 1:
 		default:
@@ -151,7 +147,7 @@ void LcGotoXY(char Column, char Row) {
 	}
 	// applying the command
 	WaitForBusy();
-	CantaIR((char)(SET_DDRAM | Fisics));
+	CantaIR(SET_DDRAM | Fisics);
 	// Finally, I refresh the local images.
 	RowAct    = Row;
 	ColumnAct = Column;
@@ -170,10 +166,22 @@ void LcPutChar(char c) {
 	WaitForBusy(); CantaData(c);
 	// The cursor position is recalculated.
 	++ColumnAct;
-
-	if (ColumnAct >= 16) {
-		ColumnAct = 0;
-		if (++RowAct >= 2) RowAct = 0;
+	if (Rows == 3) {
+		if (ColumnAct >= 20) {
+			ColumnAct = 0;
+			if (++RowAct >= 4) RowAct = 0;
+			LcGotoXY(ColumnAct, RowAct);
+		}
+	} else
+	if (Rows == 2) {
+		if (ColumnAct >= 40) {
+			ColumnAct = 0;
+			if (++RowAct >= 2) RowAct = 0;
+			LcGotoXY(ColumnAct, RowAct);
+		}
+	} else
+	if (RowAct == 1) {
+		if (ColumnAct >= 40) ColumnAct = 0;
 		LcGotoXY(ColumnAct, RowAct);
 	}
 }
@@ -195,22 +203,22 @@ void LcPutString(char *s) {
 //
 
 void Espera(int Timer, int ms) {
-	TI_ResetTics((unsigned char)Timer); // Added explicit cast
-	while(TI_GetTics((unsigned char)Timer) < ms); // Added explicit cast
+	TI_ResetTics(Timer);
+	while(TI_GetTics(Timer) < ms);
 }
 
 void CantaPartAlta(char c) {
-	 SetD7(c & 0x80 ? 1 : 0);
-	 SetD6(c & 0x40 ? 1 : 0);
-	 SetD5(c & 0x20 ? 1 : 0);
-	 SetD4(c & 0x10 ? 1 : 0);
+	SetD7(c & 0x80 ? 1 : 0);
+	SetD6(c & 0x40 ? 1 : 0);
+	SetD5(c & 0x20 ? 1 : 0);
+	SetD4(c & 0x10 ? 1 : 0);
 }
 
 void CantaPartBaixa(char c) {
-	 SetD7(c & 0x08 ? 1 : 0);
-	 SetD6(c & 0x04 ? 1 : 0);
-	 SetD5(c & 0x02 ? 1 : 0);
-	 SetD4(c & 0x01 ? 1 : 0);
+	SetD7(c & 0x08 ? 1 : 0);
+	SetD6(c & 0x04 ? 1 : 0);
+	SetD5(c & 0x02 ? 1 : 0);
+	SetD4(c & 0x01 ? 1 : 0);
 }
 
 void CantaIR(char IR) {
@@ -245,12 +253,11 @@ void CantaData(char Data) {
 	SetD4_D7Entrada();
 }
 
-void WaitForBusy(void) { 
-	char Busy;
+void WaitForBusy(void) { char Busy;
 	SetD4_D7Entrada();
 	RSDown();
 	RWUp();
-	TI_ResetTics((unsigned char)Timer); // Fixed function name and added cast
+	TI_ResetTics(Timer);
 	do {
 		EnableUp();EnableUp(); //Making sure the 500ns of the pulse time
 		Busy = GetBusyFlag();
@@ -260,7 +267,7 @@ void WaitForBusy(void) {
 		// The lower part of the address counter, it is not interesting for us. 
 		EnableDown();
 		EnableDown();
-		if (TI_GetTics((unsigned char)Timer)) break; // Fixed function name and added cast
+		if (TI_GetTics(Timer) > 10) break; // More than one ms means that the LCD has gone mad.
 	} while(Busy);
 }
 
@@ -268,13 +275,16 @@ void EscriuPrimeraOrdre(char ordre) {
 	// Write the first as if there are 8 bits.
 	SetD4_D7Sortida();  RSDown(); RWDown();
 	EnableUp(); EnableUp();
-	 SetD7(ordre & 0x08 ? 1 : 0);
-	 SetD6(ordre & 0x04 ? 1 : 0);
-	 SetD5(ordre & 0x02 ? 1 : 0);
-	 SetD4(ordre & 0x01 ? 1 : 0);
+	SetD7(ordre & 0x08 ? 1 : 0);
+	SetD6(ordre & 0x04 ? 1 : 0);
+	SetD5(ordre & 0x02 ? 1 : 0);
+	SetD4(ordre & 0x01 ? 1 : 0);
 	EnableDown();
 }
 
 //
 //---------------------------End--PRIVATE----AREA-----------
 //
+
+
+

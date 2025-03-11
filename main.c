@@ -1,5 +1,5 @@
 #include <xc.h>
-#include "TAD_DISPLAY.h"
+#include "TAD_LEDS.h"
 #include "TAD_TIMER.h"
 #include "TAD_TERMINAL.h"
 #include "TAD_RFID.h"
@@ -41,26 +41,25 @@ void main(void){
 	initRFID();     // Initialize RFID
 	Terminal_Init();  // Initialize Terminal
 	initPorts();    // Initialize Ports
-	LcInit(2, 16);
-	initDatos();
+	initLeds();
 
 	// Enable interrupts
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
-	INTCONbits.PEIE = 1;   // Peripheral Interrupt Enable
+	INTCONbits.PEIE = 0;   // Peripheral Interrupt Enable
 
-	LcPutString("hola");
 	while(1){
-		LATA = 0x00;  // Clear PORTA
 		motorTeclado();  // Run keyboard state machine
-    	motorTerminal(),		
-		motor_RFID();  // Run RFID read public function
-		LATA = 0xFF; 
+    	motorTerminal(); // Run terminal state machine
+	    //motor_RFID();  // Run RFID state machine
+		motor_LEDs();  // Run LEDs state machine
+		motor_datos();
+		LATEbits.LATE2 ^= 1;
 	}				
 }
 
 void initPorts(void){
 	ADCON1 = 0x0F;  // Set all pins as digital
-	TRISA = 0x00;   // Set all pins as output
+	TRISEbits.TRISE2 = 0;
 }
 
 
