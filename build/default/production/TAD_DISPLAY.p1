@@ -568,14 +568,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 303 ]
 {
 "80
-[; ;TAD_DISPLAY.c: 80:   Espera(Timer, 100);
-[e ( _Espera (2 , -> _Timer `i -> 100 `i ]
+[; ;TAD_DISPLAY.c: 80:   Espera(Timer, 51);
+[e ( _Espera (2 , -> _Timer `i -> 51 `i ]
 "83
 [; ;TAD_DISPLAY.c: 83:   EscriuPrimeraOrdre(0x02 | 0x01);
 [e ( _EscriuPrimeraOrdre (1 -> | -> 2 `i -> 1 `i `uc ]
 "84
-[; ;TAD_DISPLAY.c: 84:   Espera(Timer, 5);
-[e ( _Espera (2 , -> _Timer `i -> 5 `i ]
+[; ;TAD_DISPLAY.c: 84:   Espera(Timer, 2);
+[e ( _Espera (2 , -> _Timer `i -> 2 `i ]
 "85
 [; ;TAD_DISPLAY.c: 85:   EscriuPrimeraOrdre(0x02 | 0x01);
 [e ( _EscriuPrimeraOrdre (1 -> | -> 2 `i -> 1 `i `uc ]
@@ -606,8 +606,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _WaitForBusy ..  ]
 [e ( _CantaIR (1 -> -> 1 `i `uc ]
 "98
-[; ;TAD_DISPLAY.c: 98:   Espera(Timer,3);
-[e ( _Espera (2 , -> _Timer `i -> 3 `i ]
+[; ;TAD_DISPLAY.c: 98:   Espera(Timer,2);
+[e ( _Espera (2 , -> _Timer `i -> 2 `i ]
 "99
 [; ;TAD_DISPLAY.c: 99:   WaitForBusy(); CantaIR(0x04 | 0x02);
 [e ( _WaitForBusy ..  ]

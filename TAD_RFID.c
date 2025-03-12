@@ -129,13 +129,96 @@ void MFRC522_Init() {
     MFRC522_AntennaOn();
 }
 
+char motor_Write(char addr, char value) {
+    static char state_write = 0;
+    static char i = 0;
+    switch(state_write) {
+        case 0:
+            MFRC522_SCK = 0;
+            MFRC522_CS = 0;
+            state_write = 1;
+            break;
+        case 1: // in the first case we will have the logic for the first for of the write function
+            unsigned char ucAddr = ((addr << 1) & 0x7E);
+            // the first for loop of the first for in the write function
+            MFRC522_SI = ((ucAddr & 0x80) == 0x80);
+            MFRC522_SCK = 1;
+            ucAddr <<= 1;
+            delay_us(5);
+            MFRC522_SCK = 0;
+            i++;
+            if (i == 8) {
+                state_write = 1;
+                i = 0;
+            }
+        break;
+        case 2: // Second for loop of the first for in the write function
+            MFRC522_SI = ((value & 0x80) == 0x80);
+            MFRC522_SCK = 1;
+            value <<= 1;
+            delay_us(5);
+            MFRC522_SCK = 0;
+            i++;
+            if (i == 8) {
+                state_write = 0;
+                i = 0;
+                MFRC522_CS = 1;
+                MFRC522_SCK = 1;
+                return 1;
+            }
+        break;
+   }
+   return 0;
+}
 
+char motor_Read(char addr) {
+    static char state_read = 0;
+    static char i = 0;
+    switch(state_read) {
+        case 0:
+            MFRC522_SCK = 0;
+            MFRC522_CS = 0; 
+            state_read = 1;
+            break;
+        case 1: // in the first case we will have the logic for the first for of the write function
+            unsigned char ucAddr = ((addr<<1) & 0x7E) | 0x80;
+            unsigned char ucResult = 0;
+            MFRC522_SI = ((ucAddr & 0x80) == 0x80);
+            MFRC522_SCK = 1;
+            delay_us(5);
+            ucAddr <<= 1;
+            MFRC522_SCK = 0;
+            i++;
+            if (i == 8) {
+                state_read = 2;
+                i = 0;
+            }
+            break;
+        case 2: // Second for loop of the first for in the write function
+            MFRC522_SCK = 1;
+            delay_us(5);
+            ucResult <<= 1;   
+            ucResult|= MFRC522_SO;
+            MFRC522_SCK = 0;
+            i++;
+            if (i == 8) {
+                state_read = 0;
+                i = 0;
+                MFRC522_CS = 1;
+                MFRC522_SCK = 1;
+                return ucResult;
+            }
+            break;  
+    }
+    return 0;
+}
 
 //-------------- Public functions: --------------
 void initRFID() {
     InitPortDirections();
     MFRC522_Init(); 
 }
+
 
 void motor_RFID(void) {
     static char state = 0;
@@ -149,33 +232,41 @@ void motor_RFID(void) {
     static unsigned char checksum;
     static unsigned char allZero;
     static unsigned char tempRegValue; // Temporary storage for register values
-
+    unsigned char flag = 0;
     switch(state) {
         // Estado 0: Detección de tarjeta (Request)
         case 0:
             switch(substate) {
                 case 0:
                     // Configura BITFRAMING y asigna TagType
-                    MFRC522_Wr(BITFRAMINGREG, 0x07);
-                    TagType = PICC_REQIDL;
-                    substate = 1;
+                    flag = motor_Write(BITFRAMINGREG, 0x07);
+                    if (flag == 1) {
+                        TagType = PICC_REQIDL;
+                        substate = 1;
+                    }
                     break;
                 case 1:
                     // Configura las interrupciones para el comando TRANSCEIVE
                     irqEn = 0x77;
                     waitIRq = 0x30;
-                    MFRC522_Wr(COMMIENREG, irqEn | 0x80);
-                    substate = 2;
+                    flag = motor_Write(COMMIENREG, irqEn | 0x80);
+                    if (flag == 1) {
+                        substate = 2;
+                    }
                     break;
                 case 2:
                     // Read COMMIRQREG to prepare for clearing
-                    tempRegValue = MFRC522_Rd(COMMIRQREG);
-                    substate = 3;
+                    tempRegValue = motor_Read(COMMIRQREG);
+                    if (tempRegValue != 0) {
+                        substate = 3;
+                    }
                     break;
                 case 3:
                     // Clear the interrupt register
-                    MFRC522_Wr(COMMIRQREG, tempRegValue & ~0x80);
-                    substate = 4;
+                    flag = motor_Write(COMMIRQREG, tempRegValue & ~0x80);
+                    if (flag == 1) {
+                        substate = 4;
+                    }
                     break;
                 case 4:
                     // Read FIFOLEVELREG to prepare for setting

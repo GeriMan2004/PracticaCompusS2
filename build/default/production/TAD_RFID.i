@@ -4949,11 +4949,11 @@ void MFRC522_Init() {
 
 
 
-
 void initRFID() {
     InitPortDirections();
     MFRC522_Init();
 }
+
 
 void motor_RFID(void) {
     static char state = 0;

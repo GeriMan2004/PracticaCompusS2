@@ -860,20 +860,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_RFID.c: 130: }
 [e :UE 327 ]
 }
-"135
-[; ;TAD_RFID.c: 135: void initRFID() {
+"134
+[; ;TAD_RFID.c: 134: void initRFID() {
 [v _initRFID `(v ~T0 @X0 1 ef ]
 {
 [e :U _initRFID ]
 [f ]
-"136
-[; ;TAD_RFID.c: 136:     InitPortDirections();
+"135
+[; ;TAD_RFID.c: 135:     InitPortDirections();
 [e ( _InitPortDirections ..  ]
-"137
-[; ;TAD_RFID.c: 137:     MFRC522_Init();
+"136
+[; ;TAD_RFID.c: 136:     MFRC522_Init();
 [e ( _MFRC522_Init ..  ]
-"138
-[; ;TAD_RFID.c: 138: }
+"137
+[; ;TAD_RFID.c: 137: }
 [e :UE 328 ]
 }
 "140

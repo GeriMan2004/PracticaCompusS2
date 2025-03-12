@@ -5,10 +5,11 @@
 #include "TAD_RFID.h"
 #include "TAD_TECLADO.h"
 #include "TAD_DATOS.h"
+#include "TAD_DISPLAY.h"
 
 #pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
-#pragma config MCLRE = OFF
+#pragma config MCLRE = ON
 #pragma config DEBUG = OFF
 #pragma config PWRT = OFF
 #pragma config BOR = OFF
@@ -42,17 +43,19 @@ void main(void){
 	Terminal_Init();  // Initialize Terminal
 	initPorts();    // Initialize Ports
 	initLeds();
+	LcInit(2, 16);
+	
 
 	// Enable interrupts
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
 	INTCONbits.PEIE = 0;   // Peripheral Interrupt Enable
-
+	LcPutString("Hola");
 	while(1){
 		motorTeclado();  // Run keyboard state machine
     	motorTerminal(); // Run terminal state machine
-	    //motor_RFID();  // Run RFID state machine
-		motor_LEDs();  // Run LEDs state machine
-		motor_datos();
+	    motor_RFID();  // Run RFID state machine
+		//motor_LEDs();  // Run LEDs state machine
+		//motor_datos();
 		LATEbits.LATE2 ^= 1;
 	}				
 }

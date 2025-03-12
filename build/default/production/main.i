@@ -4888,10 +4888,40 @@ void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 8 "main.c" 2
+# 1 "./TAD_DISPLAY.h" 1
+# 65 "./TAD_DISPLAY.h"
+void LcInit(char rows, char columns);
+
+
+
+
+
+
+void LcClear(void);
+
+
+
+void LcCursorOn(void);
+
+
+
+void LcCursorOff(void);
+
+
+
+void LcGotoXY(char Column, char Row);
+
+
+
+
+void LcPutChar(char c);
+# 100 "./TAD_DISPLAY.h"
+void LcPutString(char *s);
+# 9 "main.c" 2
 
 #pragma config OSC = HSPLL
 #pragma config PBADEN = DIG
-#pragma config MCLRE = OFF
+#pragma config MCLRE = ON
 #pragma config DEBUG = OFF
 #pragma config PWRT = OFF
 #pragma config BOR = OFF
@@ -4925,17 +4955,19 @@ void main(void){
  Terminal_Init();
  initPorts();
  initLeds();
+ LcInit(2, 16);
+
 
 
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 0;
-
+ LcPutString("Hola");
  while(1){
   motorTeclado();
      motorTerminal();
+     motor_RFID();
 
-  motor_LEDs();
-  motor_datos();
+
   LATEbits.LATE2 ^= 1;
  }
 }

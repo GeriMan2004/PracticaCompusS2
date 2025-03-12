@@ -77,11 +77,11 @@ void LcInit(char rows, char columns) {
 	RowAct = ColumnAct = 0;
 	SetControlsSortida();
 	for (i = 0; i < 2; i++) {
-		Espera(Timer, 100);
+		Espera(Timer, 51);
 		// This sequence is set by the manual.
 
 		EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
-		Espera(Timer, 5);
+		Espera(Timer, 2);
 		EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
 		Espera(Timer, 1);
 		EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
@@ -95,7 +95,7 @@ void LcInit(char rows, char columns) {
 		// Now we can wait for busy
 		WaitForBusy(); 	CantaIR(DISPLAY_CONTROL);  	// Display Off
 		WaitForBusy(); 	CantaIR(DISPLAY_CLEAR);	   	// All spaces
-		Espera(Timer,3); // 1.64ms V1.1
+		Espera(Timer,2); // 1.64ms V1.1
 		WaitForBusy(); 	CantaIR(DISPLAY_ON | CURSOR_ON); // Auto Increment and shift
 		WaitForBusy(); 	CantaIR(DISPLAY_CONTROL | DISPLAY_ON | CURSOR_ON | DISPLAY_CLEAR); 		// Display On
 	}

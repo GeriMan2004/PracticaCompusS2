@@ -4863,11 +4863,11 @@ void LcInit(char rows, char columns) {
  RowAct = ColumnAct = 0;
  (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0);
  for (i = 0; i < 2; i++) {
-  Espera(Timer, 100);
+  Espera(Timer, 51);
 
 
   EscriuPrimeraOrdre(0x02 | 0x01);
-  Espera(Timer, 5);
+  Espera(Timer, 2);
   EscriuPrimeraOrdre(0x02 | 0x01);
   Espera(Timer, 1);
   EscriuPrimeraOrdre(0x02 | 0x01);
@@ -4881,7 +4881,7 @@ void LcInit(char rows, char columns) {
 
   WaitForBusy(); CantaIR(0x08);
   WaitForBusy(); CantaIR(0x01);
-  Espera(Timer,3);
+  Espera(Timer,2);
   WaitForBusy(); CantaIR(0x04 | 0x02);
   WaitForBusy(); CantaIR(0x08 | 0x04 | 0x02 | 0x01);
  }
