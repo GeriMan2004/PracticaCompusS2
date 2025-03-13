@@ -4828,8 +4828,183 @@ void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 13 "TAD_RFID.c" 2
+# 1 "./TAD_TERMINAL.h" 1
 
 
+
+
+
+void Terminal_Init(void);
+int Terminal_TXAvailable(void);
+char Terminal_RXAvailable(void);
+void Terminal_SendChar(char c);
+char Terminal_ReceiveChar(void);
+void Terminal_SendString(const char *str);
+void printfUID(unsigned char *currentUser);
+void printLedConfig(unsigned char *leds);
+void showMenu(void);
+void hashtag_pressed3s(void);
+void motorTerminal(void);
+# 14 "TAD_RFID.c" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 1 3
+# 24 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
+# 1 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 1 3
+# 12 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef void * va_list[1];
+
+
+
+
+typedef void * __isoc_va_list[1];
+# 143 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef __int24 ssize_t;
+# 255 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 409 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 2 3
+# 52 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include\\c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+
+
+
+
+
+int ungetc(int, FILE *);
+int getch(void);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+
+
+
+
+void putch(char);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+__attribute__((__format__(__printf__, 1, 2)))
+int printf(const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int fprintf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 2, 3)))
+int sprintf(char *restrict, const char *restrict, ...);
+__attribute__((__format__(__printf__, 3, 4)))
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+__attribute__((__format__(__printf__, 1, 0)))
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 2, 0)))
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__printf__, 3, 0)))
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+__attribute__((__format__(__scanf__, 1, 2)))
+int scanf(const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int fscanf(FILE *restrict, const char *restrict, ...);
+__attribute__((__format__(__scanf__, 2, 3)))
+int sscanf(const char *restrict, const char *restrict, ...);
+
+__attribute__((__format__(__scanf__, 1, 0)))
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+__attribute__((__format__(__scanf__, 2, 0)))
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 15 "TAD_RFID.c" 2
+
+
+
+
+char state_read = 0;
+char state_write = 0;
 
 
 void InitPortDirections () {
@@ -4912,7 +5087,19 @@ void MFRC522_Set_Bit(char addr, char mask) {
     MFRC522_Wr(addr, MFRC522_Rd(addr) | mask);
 }
 
+void resetMotorStates() {
+
+    state_read = 0;
+    state_write = 0;
+
+
+    LATCbits.LATC3 = 1;
+    LATCbits.LATC2 = 1;
+}
+
 void MFRC522_Reset () {
+    resetMotorStates();
+
     LATCbits.LATC4 = 1;
     delay_us (1);
     LATCbits.LATC4 = 0;
@@ -4948,10 +5135,9 @@ void MFRC522_Init() {
 }
 
 char motor_Write(char addr, char value) {
-    static char state_write = 0;
+    static char bit_count = 0;
     static unsigned char ucAddr;
     static unsigned char ucValue;
-    static char bit_count = 0;
 
     switch (state_write) {
         case 0:
@@ -4998,20 +5184,34 @@ char motor_Write(char addr, char value) {
 
 
 char motor_Read(char addr) {
-    static char state_read = 0;
     static char bit_count = 0;
     static unsigned char ucAddr;
     static unsigned char ucResult;
+    static unsigned int timeout_counter = 0;
+    const unsigned int MAX_TIMEOUT = 1000;
+
+
+    timeout_counter++;
+
+
+    if (timeout_counter > MAX_TIMEOUT) {
+        LATCbits.LATC3 = 1;
+        LATCbits.LATC2 = 1;
+        state_read = 0;
+        timeout_counter = 0;
+        return 0xFF;
+    }
 
     switch(state_read) {
         case 0:
+            timeout_counter = 0;
             LATCbits.LATC2 = 0;
             LATCbits.LATC3 = 0;
             ucAddr = ((addr<<1) & 0x7E) | 0x80;
             ucResult = 0;
             bit_count = 0;
             state_read = 1;
-            break;
+            return 0xFE;
 
         case 1:
             LATCbits.LATC1 = ((ucAddr & 0x80) == 0x80);
@@ -5026,7 +5226,7 @@ char motor_Read(char addr) {
                 bit_count = 0;
                 state_read = 2;
             }
-            break;
+            return 0xFE;
 
         case 2:
             LATCbits.LATC2 = 1;
@@ -5041,11 +5241,16 @@ char motor_Read(char addr) {
                 LATCbits.LATC3 = 1;
                 LATCbits.LATC2 = 1;
                 state_read = 0;
+                timeout_counter = 0;
+
+                if (ucResult == 0xFE || ucResult == 0xFF) {
+                    return 0xFD;
+                }
                 return ucResult;
             }
-            break;
+            return 0xFE;
     }
-    return 0;
+    return 0xFE;
 }
 
 
@@ -5053,7 +5258,6 @@ void initRFID() {
     InitPortDirections();
     MFRC522_Init();
 }
-
 
 void motor_RFID(void) {
     static char state = 0;
@@ -5071,6 +5275,7 @@ void motor_RFID(void) {
     static unsigned char lastBitsVal;
     static unsigned char fifoLevel;
     unsigned char backBitsCalc;
+
     switch(state) {
 
         case 0:
@@ -5095,7 +5300,10 @@ void motor_RFID(void) {
                 case 2:
 
                     flag = motor_Read(0x04);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         tempRegValue = flag;
                         substate = 3;
                     }
@@ -5109,8 +5317,14 @@ void motor_RFID(void) {
                     break;
                 case 4:
 
-                    tempRegValue = MFRC522_Rd(0x0A);
-                    substate = 5;
+                    flag = motor_Read(0x0A);
+                    if (flag == 0xFF) {
+
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        tempRegValue = flag;
+                        substate = 5;
+                    }
                     break;
                 case 5:
 
@@ -5143,7 +5357,10 @@ void motor_RFID(void) {
                 case 9:
 
                     flag = motor_Read(0x0D);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         tempRegValue = flag;
                         substate = 10;
                     }
@@ -5159,7 +5376,10 @@ void motor_RFID(void) {
                 case 11:
 
                     flag = motor_Read(0x04);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         n = flag;
                         if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
                             substate = 12;
@@ -5169,8 +5389,9 @@ void motor_RFID(void) {
                 case 12:
 
                     flag = motor_Read(0x0D);
-                    if (flag != 0){
-                        tempRegValue = flag;
+                    if (flag == 0xFF) {
+                        substate = 0;
+                    } else if (flag != 0xFE && flag != 0x00) {
                         substate = 13;
                     }
                     break;
@@ -5183,25 +5404,40 @@ void motor_RFID(void) {
                     break;
                 case 14:
 
-                    tempRegValue = MFRC522_Rd(0x06);
-                    if (i != 0 && !(tempRegValue & 0x1B)) {
-                        substate = 15;
-                    } else {
+                    flag = motor_Read(0x06);
+                    if (flag == 0xFF) {
+
                         substate = 0;
-                        state = 0;
+                    } else if (flag != 0xFE) {
+                        tempRegValue = flag;
+                        if (i != 0 && !(tempRegValue & 0x1B)) {
+                            substate = 15;
+                        } else {
+                            substate = 0;
+                            state = 0;
+                        }
                     }
                     break;
 
                 case 15:
 
-                    fifoLevel = MFRC522_Rd(0x0A);
-                    substate = 16;
+                    flag = motor_Read(0x0A);
+                    if (flag == 0xFF) {
+
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        fifoLevel = flag;
+                        substate = 16;
+                    }
                     break;
 
                 case 16:
 
                     flag = motor_Read(0x0C);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         lastBitsVal = flag & 0x07;
                         substate = 17;
                     }
@@ -5240,7 +5476,11 @@ void motor_RFID(void) {
                 case 1:
 
                     flag = motor_Read(0x08);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         tempRegValue = flag;
                         substate = 2;
                     }
@@ -5264,7 +5504,11 @@ void motor_RFID(void) {
                 case 4:
 
                     flag = motor_Read(0x04);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         tempRegValue = flag;
                         substate = 5;
                     }
@@ -5279,7 +5523,11 @@ void motor_RFID(void) {
                 case 6:
 
                     flag = motor_Read(0x0A);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         tempRegValue = flag;
                         substate = 7;
                     }
@@ -5320,8 +5568,15 @@ void motor_RFID(void) {
                     break;
                 case 12:
 
-                    tempRegValue = MFRC522_Rd(0x0D);
-                    substate = 13;
+                    flag = motor_Read(0x0D);
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        tempRegValue = flag;
+                        substate = 13;
+                    }
                     break;
                 case 13:
 
@@ -5333,15 +5588,29 @@ void motor_RFID(void) {
                     break;
                 case 14:
 
-                    n = MFRC522_Rd(0x04);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                        substate = 15;
+                    flag = motor_Read(0x04);
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        n = flag;
+                        if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                            substate = 15;
+                        }
                     }
                     break;
                 case 15:
 
-                    tempRegValue = MFRC522_Rd(0x0D);
-                    substate = 16;
+                    flag = motor_Read(0x0D);
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        tempRegValue = flag;
+                        substate = 16;
+                    }
                     break;
                 case 16:
 
@@ -5352,39 +5621,68 @@ void motor_RFID(void) {
                     break;
                 case 17:
 
-                    tempRegValue = MFRC522_Rd(0x06);
-                    if (i != 0 && !(tempRegValue & 0x1B)) {
-
-                        substate = 18;
-                    } else {
+                    flag = motor_Read(0x06);
+                    if (flag == 0xFF) {
 
                         state = 0;
                         substate = 0;
+                    } else if (flag != 0xFE) {
+                        tempRegValue = flag;
+                        if (i != 0 && !(tempRegValue & 0x1B)) {
+
+                            substate = 18;
+                        } else {
+
+                            state = 0;
+                            substate = 0;
+                        }
                     }
                     break;
 
                 case 18:
 
                     flag = motor_Read(0x09);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         UID[0] = flag;
                         substate = 19;
                     }
                     break;
                 case 19:
 
-                    UID[1] = MFRC522_Rd(0x09);
-                    substate = 20;
+                    flag = motor_Read(0x09);
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        UID[1] = flag;
+                        substate = 20;
+                    }
                     break;
                 case 20:
 
-                    UID[2] = MFRC522_Rd(0x09);
-                    substate = 21;
+                    flag = motor_Read(0x09);
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        UID[2] = flag;
+                        substate = 21;
+                    }
                     break;
                 case 21:
 
                     flag = motor_Read(0x09);
-                    if (flag != 0){
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
                         UID[3] = flag;
                         substate = 22;
                     }
@@ -5392,9 +5690,16 @@ void motor_RFID(void) {
 
                 case 22:
 
-                    UID[4] = MFRC522_Rd(0x09);
-                    UID[5] = 0;
-                    substate = 23;
+                    flag = motor_Read(0x09);
+                    if (flag == 0xFF) {
+
+                        state = 0;
+                        substate = 0;
+                    } else if (flag != 0xFE) {
+                        UID[4] = flag;
+                        UID[5] = 0;
+                        substate = 23;
+                    }
                     break;
 
                 case 23:

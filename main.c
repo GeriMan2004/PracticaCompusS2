@@ -50,7 +50,7 @@ void main(void){
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
 	INTCONbits.PEIE = 0;   // Peripheral Interrupt Enable
 	while(1){
-		motorTeclado();  // Run keyboard state machine
+		//motorTeclado();  // Run keyboard state machine
     	motorTerminal(); // Run terminal state machine
 	    motor_RFID();  // Run RFID state machine
 		//motor_LEDs();  // Run LEDs state machine

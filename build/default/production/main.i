@@ -4962,7 +4962,7 @@ void main(void){
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 0;
  while(1){
-  motorTeclado();
+
      motorTerminal();
      motor_RFID();
 

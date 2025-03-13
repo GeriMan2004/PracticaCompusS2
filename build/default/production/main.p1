@@ -46,9 +46,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65 ./TAD_DISPLAY.h
 [; ;./TAD_DISPLAY.h: 65: void LcInit(char rows, char columns);
 [v _LcInit `(v ~T0 @X0 0 ef2`uc`uc ]
-"12 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 12: void motorTeclado(void);
-[v _motorTeclado `(v ~T0 @X0 0 ef ]
 "16 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 16: void motorTerminal(void);
 [v _motorTerminal `(v ~T0 @X0 0 ef ]
@@ -603,8 +600,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "52
 [e :U 307 ]
 {
-"53
-[e ( _motorTeclado ..  ]
 "54
 [e ( _motorTerminal ..  ]
 "55
