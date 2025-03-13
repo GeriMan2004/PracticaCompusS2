@@ -33,8 +33,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3597: extern volatile unsigned char RCREG __attribute__((address(0xFAE)));
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
 "10 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 10: unsigned char* getActualUID(void);
-[v _getActualUID `(*uc ~T0 @X0 0 ef ]
+[; ;./TAD_DATOS.h: 10: void getActualUID(unsigned char* UID);
+[v _getActualUID `(v ~T0 @X0 0 ef1`*uc ]
 "12
 [; ;./TAD_DATOS.h: 12: void showAllConfigurations(void);
 [v _showAllConfigurations `(v ~T0 @X0 0 ef ]
@@ -456,430 +456,905 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "6 TAD_TERMINAL.c
-[; ;TAD_TERMINAL.c: 6: char hashtag_pressed = 0;
-[v _hashtag_pressed `uc ~T0 @X0 1 e ]
+[; ;TAD_TERMINAL.c: 6: static const char* str_ptr = ((void*)0);
+[v _str_ptr `*Cuc ~T0 @X0 1 s ]
+[i _str_ptr
+-> -> -> 0 `i `*v `*Cuc
+]
+"7
+[; ;TAD_TERMINAL.c: 7: static char state_str = 0;
+[v _state_str `uc ~T0 @X0 1 s ]
+[i _state_str
+-> -> 0 `i `uc
+]
+"8
+[; ;TAD_TERMINAL.c: 8: static char hashtag_pressed = 0;
+[v _hashtag_pressed `uc ~T0 @X0 1 s ]
 [i _hashtag_pressed
 -> -> 0 `i `uc
 ]
-"9
-[; ;TAD_TERMINAL.c: 9: void Terminal_Init(void){
+"11
+[; ;TAD_TERMINAL.c: 11: void Terminal_Init(void){
 [v _Terminal_Init `(v ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_Init ]
 [f ]
-"10
-[; ;TAD_TERMINAL.c: 10:  TXSTA = 0x24;
-[e = _TXSTA -> -> 36 `i `uc ]
-"11
-[; ;TAD_TERMINAL.c: 11:  RCSTA = 0x90;
-[e = _RCSTA -> -> 144 `i `uc ]
 "12
-[; ;TAD_TERMINAL.c: 12:  SPBRG = 255;
-[e = _SPBRG -> -> 255 `i `uc ]
+[; ;TAD_TERMINAL.c: 12:  TXSTA = 0x24;
+[e = _TXSTA -> -> 36 `i `uc ]
 "13
-[; ;TAD_TERMINAL.c: 13:  BAUDCON = 0x00;
-[e = _BAUDCON -> -> 0 `i `uc ]
+[; ;TAD_TERMINAL.c: 13:  RCSTA = 0x90;
+[e = _RCSTA -> -> 144 `i `uc ]
 "14
-[; ;TAD_TERMINAL.c: 14:  hashtag_pressed = 0;
-[e = _hashtag_pressed -> -> 0 `i `uc ]
+[; ;TAD_TERMINAL.c: 14:  SPBRG = 255;
+[e = _SPBRG -> -> 255 `i `uc ]
 "15
-[; ;TAD_TERMINAL.c: 15: }
+[; ;TAD_TERMINAL.c: 15:  BAUDCON = 0x00;
+[e = _BAUDCON -> -> 0 `i `uc ]
+"16
+[; ;TAD_TERMINAL.c: 16:  hashtag_pressed = 0;
+[e = _hashtag_pressed -> -> 0 `i `uc ]
+"17
+[; ;TAD_TERMINAL.c: 17: }
 [e :UE 302 ]
 }
-"18
-[; ;TAD_TERMINAL.c: 18: int Terminal_TXAvailable(void) {
+"20
+[; ;TAD_TERMINAL.c: 20: int Terminal_TXAvailable(void) {
 [v _Terminal_TXAvailable `(i ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_TXAvailable ]
 [f ]
-"19
-[; ;TAD_TERMINAL.c: 19:  return (PIR1bits.TXIF == 1) ? 1 : 0;
+"21
+[; ;TAD_TERMINAL.c: 21:  return (PIR1bits.TXIF == 1) ? 1 : 0;
 [e ) ? == -> . . _PIR1bits 0 4 `i -> 1 `i : -> 1 `i -> 0 `i ]
 [e $UE 303  ]
-"20
-[; ;TAD_TERMINAL.c: 20: }
+"22
+[; ;TAD_TERMINAL.c: 22: }
 [e :UE 303 ]
 }
-"23
-[; ;TAD_TERMINAL.c: 23: char Terminal_RXAvailable(void) {
+"25
+[; ;TAD_TERMINAL.c: 25: char Terminal_RXAvailable(void) {
 [v _Terminal_RXAvailable `(uc ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_RXAvailable ]
 [f ]
-"24
-[; ;TAD_TERMINAL.c: 24:  return (PIR1bits.RCIF == 1) ? 1 : 0;
+"26
+[; ;TAD_TERMINAL.c: 26:  return (PIR1bits.RCIF == 1) ? 1 : 0;
 [e ) -> ? == -> . . _PIR1bits 0 5 `i -> 1 `i : -> 1 `i -> 0 `i `uc ]
 [e $UE 304  ]
-"25
-[; ;TAD_TERMINAL.c: 25: }
+"27
+[; ;TAD_TERMINAL.c: 27: }
 [e :UE 304 ]
 }
-"28
-[; ;TAD_TERMINAL.c: 28: void Terminal_SendChar(char c) {
+"30
+[; ;TAD_TERMINAL.c: 30: void Terminal_SendChar(char c) {
 [v _Terminal_SendChar `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _Terminal_SendChar ]
 [v _c `uc ~T0 @X0 1 r1 ]
 [f ]
-"29
-[; ;TAD_TERMINAL.c: 29:  while (Terminal_TXAvailable() == 0);
+"31
+[; ;TAD_TERMINAL.c: 31:  while (Terminal_TXAvailable() == 0);
 [e $U 306  ]
 [e :U 307 ]
 [e :U 306 ]
 [e $ == ( _Terminal_TXAvailable ..  -> 0 `i 307  ]
 [e :U 308 ]
-"30
-[; ;TAD_TERMINAL.c: 30:  TXREG = c;
+"32
+[; ;TAD_TERMINAL.c: 32:  TXREG = c;
 [e = _TXREG -> _c `uc ]
-"31
-[; ;TAD_TERMINAL.c: 31: }
+"33
+[; ;TAD_TERMINAL.c: 33: }
 [e :UE 305 ]
 }
-"34
-[; ;TAD_TERMINAL.c: 34: char Terminal_ReceiveChar(void) {
+"36
+[; ;TAD_TERMINAL.c: 36: char motor_SendChar(char c) {
+[v _motor_SendChar `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _motor_SendChar ]
+[v _c `uc ~T0 @X0 1 r1 ]
+[f ]
+"38
+[; ;TAD_TERMINAL.c: 38:     if (Terminal_TXAvailable() == 0) {
+[e $ ! == ( _Terminal_TXAvailable ..  -> 0 `i 310  ]
+{
+"39
+[; ;TAD_TERMINAL.c: 39:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 309  ]
+"40
+[; ;TAD_TERMINAL.c: 40:     }
+}
+[e :U 310 ]
+"43
+[; ;TAD_TERMINAL.c: 43:     TXREG = c;
+[e = _TXREG -> _c `uc ]
+"44
+[; ;TAD_TERMINAL.c: 44:     return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 309  ]
+"45
+[; ;TAD_TERMINAL.c: 45: }
+[e :UE 309 ]
+}
+"48
+[; ;TAD_TERMINAL.c: 48: char Terminal_ReceiveChar(void) {
 [v _Terminal_ReceiveChar `(uc ~T0 @X0 1 ef ]
 {
 [e :U _Terminal_ReceiveChar ]
 [f ]
-"35
-[; ;TAD_TERMINAL.c: 35:  return RCREG;
+"49
+[; ;TAD_TERMINAL.c: 49:  return RCREG;
 [e ) -> _RCREG `uc ]
-[e $UE 309  ]
-"36
-[; ;TAD_TERMINAL.c: 36: }
-[e :UE 309 ]
+[e $UE 311  ]
+"50
+[; ;TAD_TERMINAL.c: 50: }
+[e :UE 311 ]
 }
-"39
-[; ;TAD_TERMINAL.c: 39: void Terminal_SendString(const char *str) {
+"53
+[; ;TAD_TERMINAL.c: 53: void Terminal_SendString(const char *str) {
 [v _Terminal_SendString `(v ~T0 @X0 1 ef1`*Cuc ]
 {
 [e :U _Terminal_SendString ]
 [v _str `*Cuc ~T0 @X0 1 r1 ]
 [f ]
-"40
-[; ;TAD_TERMINAL.c: 40:  while (*str) {
-[e $U 311  ]
-[e :U 312 ]
+"54
+[; ;TAD_TERMINAL.c: 54:  while (*str) {
+[e $U 313  ]
+[e :U 314 ]
 {
-"41
-[; ;TAD_TERMINAL.c: 41:   Terminal_SendChar(*str++);
+"55
+[; ;TAD_TERMINAL.c: 55:   Terminal_SendChar(*str++);
 [e ( _Terminal_SendChar (1 *U ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
-"42
-[; ;TAD_TERMINAL.c: 42:  }
+"56
+[; ;TAD_TERMINAL.c: 56:  }
 }
-[e :U 311 ]
-"40
-[; ;TAD_TERMINAL.c: 40:  while (*str) {
-[e $ != -> *U _str `i -> 0 `i 312  ]
 [e :U 313 ]
-"43
-[; ;TAD_TERMINAL.c: 43: }
-[e :UE 310 ]
+"54
+[; ;TAD_TERMINAL.c: 54:  while (*str) {
+[e $ != -> *U _str `i -> 0 `i 314  ]
+[e :U 315 ]
+"57
+[; ;TAD_TERMINAL.c: 57: }
+[e :UE 312 ]
 }
-"45
-[; ;TAD_TERMINAL.c: 45: void showMenu(void) {
+"60
+[; ;TAD_TERMINAL.c: 60: char motor_SendString(void) {
+[v _motor_SendString `(uc ~T0 @X0 1 ef ]
+{
+[e :U _motor_SendString ]
+[f ]
+"61
+[; ;TAD_TERMINAL.c: 61:     switch(state_str) {
+[e $U 318  ]
+{
+"62
+[; ;TAD_TERMINAL.c: 62:         case 0:
+[e :U 319 ]
+"63
+[; ;TAD_TERMINAL.c: 63:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 316  ]
+"65
+[; ;TAD_TERMINAL.c: 65:         case 1:
+[e :U 320 ]
+"66
+[; ;TAD_TERMINAL.c: 66:             if (*str_ptr == 0) {
+[e $ ! == -> *U _str_ptr `i -> 0 `i 321  ]
+{
+"67
+[; ;TAD_TERMINAL.c: 67:                 state_str = 0;
+[e = _state_str -> -> 0 `i `uc ]
+"68
+[; ;TAD_TERMINAL.c: 68:                 return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 316  ]
+"69
+[; ;TAD_TERMINAL.c: 69:             }
+}
+[e :U 321 ]
+"72
+[; ;TAD_TERMINAL.c: 72:             if (motor_SendChar(*str_ptr)) {
+[e $ ! != -> ( _motor_SendChar (1 *U _str_ptr `i -> 0 `i 322  ]
+{
+"73
+[; ;TAD_TERMINAL.c: 73:                 str_ptr++;
+[e ++ _str_ptr * -> -> 1 `i `x -> -> # *U _str_ptr `i `x ]
+"74
+[; ;TAD_TERMINAL.c: 74:             }
+}
+[e :U 322 ]
+"75
+[; ;TAD_TERMINAL.c: 75:             return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 316  ]
+"76
+[; ;TAD_TERMINAL.c: 76:     }
+}
+[e $U 317  ]
+[e :U 318 ]
+[e [\ _state_str , $ -> 0 `i 319
+ , $ -> 1 `i 320
+ 317 ]
+[e :U 317 ]
+"78
+[; ;TAD_TERMINAL.c: 78:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 316  ]
+"79
+[; ;TAD_TERMINAL.c: 79: }
+[e :UE 316 ]
+}
+"82
+[; ;TAD_TERMINAL.c: 82: void motor_StartSendString(const char* str) {
+[v _motor_StartSendString `(v ~T0 @X0 1 ef1`*Cuc ]
+{
+[e :U _motor_StartSendString ]
+[v _str `*Cuc ~T0 @X0 1 r1 ]
+[f ]
+"83
+[; ;TAD_TERMINAL.c: 83:     if (motor_SendString() == 1) {
+[e $ ! == -> ( _motor_SendString ..  `i -> 1 `i 324  ]
+{
+"84
+[; ;TAD_TERMINAL.c: 84:         str_ptr = str;
+[e = _str_ptr _str ]
+"85
+[; ;TAD_TERMINAL.c: 85:         state_str = 1;
+[e = _state_str -> -> 1 `i `uc ]
+"86
+[; ;TAD_TERMINAL.c: 86:     }
+}
+[e :U 324 ]
+"87
+[; ;TAD_TERMINAL.c: 87: }
+[e :UE 323 ]
+}
+"89
+[; ;TAD_TERMINAL.c: 89: void showMenu(void) {
 [v _showMenu `(v ~T0 @X0 1 ef ]
 {
 [e :U _showMenu ]
 [f ]
-"46
-[; ;TAD_TERMINAL.c: 46:  Terminal_SendString("---------------\r\n");
+"90
+[; ;TAD_TERMINAL.c: 90:  Terminal_SendString("---------------\r\n");
 [e ( _Terminal_SendString (1 :s 1C ]
-"47
-[; ;TAD_TERMINAL.c: 47:  Terminal_SendString("Menú principal\r\n");
+"91
+[; ;TAD_TERMINAL.c: 91:  Terminal_SendString("Menú principal\r\n");
 [e ( _Terminal_SendString (1 :s 2C ]
-"48
-[; ;TAD_TERMINAL.c: 48:  Terminal_SendString("---------------\r\n");
+"92
+[; ;TAD_TERMINAL.c: 92:  Terminal_SendString("---------------\r\n");
 [e ( _Terminal_SendString (1 :s 3C ]
-"49
-[; ;TAD_TERMINAL.c: 49:  Terminal_SendString("Tria una opció:\r\n");
+"93
+[; ;TAD_TERMINAL.c: 93:  Terminal_SendString("Tria una opció:\r\n");
 [e ( _Terminal_SendString (1 :s 4C ]
-"50
-[; ;TAD_TERMINAL.c: 50:  Terminal_SendString("\t1. Qui hi ha a la sala?\r\n");
+"94
+[; ;TAD_TERMINAL.c: 94:  Terminal_SendString("\t1. Qui hi ha a la sala?\r\n");
 [e ( _Terminal_SendString (1 :s 5C ]
-"51
-[; ;TAD_TERMINAL.c: 51:  Terminal_SendString("\t2. Mostrar configuracions\r\n");
+"95
+[; ;TAD_TERMINAL.c: 95:  Terminal_SendString("\t2. Mostrar configuracions\r\n");
 [e ( _Terminal_SendString (1 :s 6C ]
-"52
-[; ;TAD_TERMINAL.c: 52:  Terminal_SendString("\t3. Modificar hora del sistema\r\n");
+"96
+[; ;TAD_TERMINAL.c: 96:  Terminal_SendString("\t3. Modificar hora del sistema\r\n");
 [e ( _Terminal_SendString (1 :s 7C ]
-"53
-[; ;TAD_TERMINAL.c: 53:  Terminal_SendString("Opció: ");
+"97
+[; ;TAD_TERMINAL.c: 97:  Terminal_SendString("Opció: ");
 [e ( _Terminal_SendString (1 :s 8C ]
-"54
-[; ;TAD_TERMINAL.c: 54: }
-[e :UE 314 ]
+"98
+[; ;TAD_TERMINAL.c: 98: }
+[e :UE 325 ]
 }
-"56
-[; ;TAD_TERMINAL.c: 56: void hashtag_pressed3s(void){
+"100
+[; ;TAD_TERMINAL.c: 100: void hashtag_pressed3s(void){
 [v _hashtag_pressed3s `(v ~T0 @X0 1 ef ]
 {
 [e :U _hashtag_pressed3s ]
 [f ]
-"57
-[; ;TAD_TERMINAL.c: 57:  hashtag_pressed = 1;
+"101
+[; ;TAD_TERMINAL.c: 101:  hashtag_pressed = 1;
 [e = _hashtag_pressed -> -> 1 `i `uc ]
-"58
-[; ;TAD_TERMINAL.c: 58: }
-[e :UE 315 ]
+"102
+[; ;TAD_TERMINAL.c: 102: }
+[e :UE 326 ]
 }
-"60
-[; ;TAD_TERMINAL.c: 60: void printfUID(unsigned char *currentUser) {
+"104
+[; ;TAD_TERMINAL.c: 104: void printfUID(unsigned char *currentUser) {
 [v _printfUID `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _printfUID ]
 [v _currentUser `*uc ~T0 @X0 1 r1 ]
 [f ]
-"61
-[; ;TAD_TERMINAL.c: 61:  Terminal_SendString("UID: ");
+"105
+[; ;TAD_TERMINAL.c: 105:  Terminal_SendString("UID: ");
 [e ( _Terminal_SendString (1 :s 9C ]
-"62
-[; ;TAD_TERMINAL.c: 62:  for (int i = 0; i < 5; i++) {
+"106
+[; ;TAD_TERMINAL.c: 106:  for (int i = 0; i < 5; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 5 `i 317  ]
-[e $U 318  ]
-[e :U 317 ]
+[e $ < _i -> 5 `i 328  ]
+[e $U 329  ]
+[e :U 328 ]
 {
-"64
-[; ;TAD_TERMINAL.c: 64:   unsigned char high = (currentUser[i] >> 4) & 0x0F;
+"108
+[; ;TAD_TERMINAL.c: 108:   unsigned char high = (currentUser[i] >> 4) & 0x0F;
 [v _high `uc ~T0 @X0 1 a ]
 [e = _high -> & >> -> *U + _currentUser * -> _i `x -> -> # *U _currentUser `i `x `i -> 4 `i -> 15 `i `uc ]
-"65
-[; ;TAD_TERMINAL.c: 65:   Terminal_SendChar(high < 10 ? '0' + high : 'A' + high - 10);
+"109
+[; ;TAD_TERMINAL.c: 109:   Terminal_SendChar(high < 10 ? '0' + high : 'A' + high - 10);
 [e ( _Terminal_SendChar (1 -> ? < -> _high `i -> 10 `i : + -> 48 `ui -> _high `ui - + -> 65 `ui -> _high `ui -> -> 10 `i `ui `uc ]
-"68
-[; ;TAD_TERMINAL.c: 68:   unsigned char low = currentUser[i] & 0x0F;
+"112
+[; ;TAD_TERMINAL.c: 112:   unsigned char low = currentUser[i] & 0x0F;
 [v _low `uc ~T0 @X0 1 a ]
 [e = _low -> & -> *U + _currentUser * -> _i `x -> -> # *U _currentUser `i `x `i -> 15 `i `uc ]
-"69
-[; ;TAD_TERMINAL.c: 69:   Terminal_SendChar(low < 10 ? '0' + low : 'A' + low - 10);
+"113
+[; ;TAD_TERMINAL.c: 113:   Terminal_SendChar(low < 10 ? '0' + low : 'A' + low - 10);
 [e ( _Terminal_SendChar (1 -> ? < -> _low `i -> 10 `i : + -> 48 `ui -> _low `ui - + -> 65 `ui -> _low `ui -> -> 10 `i `ui `uc ]
-"72
-[; ;TAD_TERMINAL.c: 72:   if (i < 4) Terminal_SendString("-");
-[e $ ! < _i -> 4 `i 320  ]
+"116
+[; ;TAD_TERMINAL.c: 116:   if (i < 4) Terminal_SendString("-");
+[e $ ! < _i -> 4 `i 331  ]
 [e ( _Terminal_SendString (1 :s 10C ]
-[e :U 320 ]
-"73
-[; ;TAD_TERMINAL.c: 73:  }
+[e :U 331 ]
+"117
+[; ;TAD_TERMINAL.c: 117:  }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 5 `i 317  ]
-[e :U 318 ]
+[e $ < _i -> 5 `i 328  ]
+[e :U 329 ]
 }
-"74
-[; ;TAD_TERMINAL.c: 74:  Terminal_SendString("\r\n");
+"118
+[; ;TAD_TERMINAL.c: 118:  Terminal_SendString("\r\n");
 [e ( _Terminal_SendString (1 :s 11C ]
-"75
-[; ;TAD_TERMINAL.c: 75: }
-[e :UE 316 ]
+"119
+[; ;TAD_TERMINAL.c: 119: }
+[e :UE 327 ]
 }
-"77
-[; ;TAD_TERMINAL.c: 77: void printLedConfig(unsigned char *leds) {
+"121
+[; ;TAD_TERMINAL.c: 121: void printLedConfig(unsigned char *leds) {
 [v _printLedConfig `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _printLedConfig ]
 [v _leds `*uc ~T0 @X0 1 r1 ]
 [f ]
-"78
-[; ;TAD_TERMINAL.c: 78:  for (int i = 0; i < 6; i++) {
+"122
+[; ;TAD_TERMINAL.c: 122:  for (int i = 0; i < 6; i++) {
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 6 `i 322  ]
-[e $U 323  ]
-[e :U 322 ]
+[e $ < _i -> 6 `i 333  ]
+[e $U 334  ]
+[e :U 333 ]
 {
-"80
-[; ;TAD_TERMINAL.c: 80:   Terminal_SendChar('L');
+"124
+[; ;TAD_TERMINAL.c: 124:   Terminal_SendChar('L');
 [e ( _Terminal_SendChar (1 -> -> 76 `ui `uc ]
-"81
-[; ;TAD_TERMINAL.c: 81:   Terminal_SendChar('0' + i);
+"125
+[; ;TAD_TERMINAL.c: 125:   Terminal_SendChar('0' + i);
 [e ( _Terminal_SendChar (1 -> + -> 48 `ui -> _i `ui `uc ]
-"82
-[; ;TAD_TERMINAL.c: 82:   Terminal_SendString(": ");
+"126
+[; ;TAD_TERMINAL.c: 126:   Terminal_SendString(": ");
 [e ( _Terminal_SendString (1 :s 12C ]
-"85
-[; ;TAD_TERMINAL.c: 85:   unsigned char val = leds[i];
+"129
+[; ;TAD_TERMINAL.c: 129:   unsigned char val = leds[i];
 [v _val `uc ~T0 @X0 1 a ]
 [e = _val *U + _leds * -> _i `x -> -> # *U _leds `i `x ]
-"86
-[; ;TAD_TERMINAL.c: 86:   Terminal_SendChar(val < 10 ? '0' + val : 'A' + val - 10);
+"130
+[; ;TAD_TERMINAL.c: 130:   Terminal_SendChar(val < 10 ? '0' + val : 'A' + val - 10);
 [e ( _Terminal_SendChar (1 -> ? < -> _val `i -> 10 `i : + -> 48 `ui -> _val `ui - + -> 65 `ui -> _val `ui -> -> 10 `i `ui `uc ]
-"89
-[; ;TAD_TERMINAL.c: 89:   if (i < 6 - 1) Terminal_SendString(" - ");
-[e $ ! < _i - -> 6 `i -> 1 `i 325  ]
+"133
+[; ;TAD_TERMINAL.c: 133:   if (i < 6 - 1) Terminal_SendString(" - ");
+[e $ ! < _i - -> 6 `i -> 1 `i 336  ]
 [e ( _Terminal_SendString (1 :s 13C ]
-[e :U 325 ]
-"90
-[; ;TAD_TERMINAL.c: 90:  }
+[e :U 336 ]
+"134
+[; ;TAD_TERMINAL.c: 134:  }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 6 `i 322  ]
-[e :U 323 ]
+[e $ < _i -> 6 `i 333  ]
+[e :U 334 ]
 }
-"91
-[; ;TAD_TERMINAL.c: 91:  Terminal_SendString("\r\n");
+"135
+[; ;TAD_TERMINAL.c: 135:  Terminal_SendString("\r\n");
 [e ( _Terminal_SendString (1 :s 14C ]
-"92
-[; ;TAD_TERMINAL.c: 92: }
-[e :UE 321 ]
+"136
+[; ;TAD_TERMINAL.c: 136: }
+[e :UE 332 ]
 }
-"94
-[; ;TAD_TERMINAL.c: 94: void motorTerminal(void) {
+"138
+[; ;TAD_TERMINAL.c: 138: void motorTerminal(void) {
 [v _motorTerminal `(v ~T0 @X0 1 ef ]
 {
 [e :U _motorTerminal ]
 [f ]
-"95
-[; ;TAD_TERMINAL.c: 95:  static char state = 0;
-[v F2758 `uc ~T0 @X0 1 s state ]
-[i F2758
+"139
+[; ;TAD_TERMINAL.c: 139:  static char state = 0;
+[v F2759 `uc ~T0 @X0 1 s state ]
+[i F2759
 -> -> 0 `i `uc
 ]
-"97
-[; ;TAD_TERMINAL.c: 97:  switch(state) {
-[e $U 328  ]
-{
-"98
-[; ;TAD_TERMINAL.c: 98:   case 0:
-[e :U 329 ]
-"99
-[; ;TAD_TERMINAL.c: 99:    if (Terminal_ReceiveChar() == 0x1B) {
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i 330  ]
-{
-"100
-[; ;TAD_TERMINAL.c: 100:     showMenu();
-[e ( _showMenu ..  ]
-"101
-[; ;TAD_TERMINAL.c: 101:     state = 1;
-[e = F2758 -> -> 1 `i `uc ]
-"102
-[; ;TAD_TERMINAL.c: 102:    }
-}
-[e :U 330 ]
-"104
-[; ;TAD_TERMINAL.c: 104:    if (hashtag_pressed == 1){
-[e $ ! == -> _hashtag_pressed `i -> 1 `i 331  ]
-{
-"105
-[; ;TAD_TERMINAL.c: 105:     showMenu();
-[e ( _showMenu ..  ]
-"106
-[; ;TAD_TERMINAL.c: 106:     state = 1;
-[e = F2758 -> -> 1 `i `uc ]
-"107
-[; ;TAD_TERMINAL.c: 107:     hashtag_pressed = 0;
-[e = _hashtag_pressed -> -> 0 `i `uc ]
-"108
-[; ;TAD_TERMINAL.c: 108:    }
-}
-[e :U 331 ]
-"109
-[; ;TAD_TERMINAL.c: 109:   break;
-[e $U 327  ]
-"110
-[; ;TAD_TERMINAL.c: 110:   case 1:
-[e :U 332 ]
-"111
-[; ;TAD_TERMINAL.c: 111:    if(Terminal_RXAvailable() == 1){
-[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 333  ]
-{
-"112
-[; ;TAD_TERMINAL.c: 112:     if (Terminal_ReceiveChar() == '1') {
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 49 `ui 334  ]
-{
-"113
-[; ;TAD_TERMINAL.c: 113:      Terminal_SendString("\r\n");
-[e ( _Terminal_SendString (1 :s 15C ]
-"114
-[; ;TAD_TERMINAL.c: 114:      unsigned char *currentUser = getActualUID();
-[v _currentUser `*uc ~T0 @X0 1 a ]
-[e = _currentUser ( _getActualUID ..  ]
-"118
-[; ;TAD_TERMINAL.c: 118:      printfUID(currentUser);
-[e ( _printfUID (1 _currentUser ]
-"120
-[; ;TAD_TERMINAL.c: 120:      Terminal_SendString("\r\n");
-[e ( _Terminal_SendString (1 :s 16C ]
-"121
-[; ;TAD_TERMINAL.c: 121:      state = 0;
-[e = F2758 -> -> 0 `i `uc ]
-"122
-[; ;TAD_TERMINAL.c: 122:     }
-}
-[e $U 335  ]
-"123
-[; ;TAD_TERMINAL.c: 123:     else if (Terminal_ReceiveChar() == '2') {
-[e :U 334 ]
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 50 `ui 336  ]
-{
-"124
-[; ;TAD_TERMINAL.c: 124:      Terminal_SendString("\r\n");
-[e ( _Terminal_SendString (1 :s 17C ]
-"125
-[; ;TAD_TERMINAL.c: 125:      showAllConfigurations();
-[e ( _showAllConfigurations ..  ]
-"126
-[; ;TAD_TERMINAL.c: 126:      state = 0;
-[e = F2758 -> -> 0 `i `uc ]
-"127
-[; ;TAD_TERMINAL.c: 127:     }
-}
-[e $U 337  ]
-"128
-[; ;TAD_TERMINAL.c: 128:     else if (Terminal_ReceiveChar() == '3') {
-[e :U 336 ]
-[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 51 `ui 338  ]
-{
-"129
-[; ;TAD_TERMINAL.c: 129:      Terminal_SendString("\r\n");
-[e ( _Terminal_SendString (1 :s 18C ]
-"130
-[; ;TAD_TERMINAL.c: 130:      Terminal_SendString("Introduce la hora actual(HHMM): ");
-[e ( _Terminal_SendString (1 :s 19C ]
-"131
-[; ;TAD_TERMINAL.c: 131:      state = 2;
-[e = F2758 -> -> 2 `i `uc ]
-"132
-[; ;TAD_TERMINAL.c: 132:     }
-}
-[e $U 339  ]
-"133
-[; ;TAD_TERMINAL.c: 133:     else {
-[e :U 338 ]
-{
-"134
-[; ;TAD_TERMINAL.c: 134:      Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
-[e ( _Terminal_SendString (1 :s 20C ]
-"135
-[; ;TAD_TERMINAL.c: 135:      state = 0;
-[e = F2758 -> -> 0 `i `uc ]
-"136
-[; ;TAD_TERMINAL.c: 136:     }
-}
-[e :U 339 ]
-[e :U 337 ]
-[e :U 335 ]
-"137
-[; ;TAD_TERMINAL.c: 137:    }
-}
-[e :U 333 ]
-"138
-[; ;TAD_TERMINAL.c: 138:   break;
-[e $U 327  ]
-"139
-[; ;TAD_TERMINAL.c: 139:   case 2:
-[e :U 340 ]
 "140
-[; ;TAD_TERMINAL.c: 140:    if(Terminal_RXAvailable() == 1){
-[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 341  ]
-{
-"141
-[; ;TAD_TERMINAL.c: 141:     static unsigned char hour[4] = "0000";
-[v F2760 `uc ~T0 @X0 -> 4 `i s hour ]
+[; ;TAD_TERMINAL.c: 140:  static char sending_string = 0;
+[v F2760 `uc ~T0 @X0 1 s sending_string ]
 [i F2760
+-> -> 0 `i `uc
+]
+"143
+[; ;TAD_TERMINAL.c: 143:  if (sending_string) {
+[e $ ! != -> F2760 `i -> 0 `i 338  ]
+{
+"144
+[; ;TAD_TERMINAL.c: 144:   if (motor_SendString() == 1) {
+[e $ ! == -> ( _motor_SendString ..  `i -> 1 `i 339  ]
+{
+"145
+[; ;TAD_TERMINAL.c: 145:    sending_string = 0;
+[e = F2760 -> -> 0 `i `uc ]
+"146
+[; ;TAD_TERMINAL.c: 146:   } else {
+}
+[e $U 340  ]
+[e :U 339 ]
+{
+"147
+[; ;TAD_TERMINAL.c: 147:    return;
+[e $UE 337  ]
+"148
+[; ;TAD_TERMINAL.c: 148:   }
+}
+[e :U 340 ]
+"149
+[; ;TAD_TERMINAL.c: 149:  }
+}
+[e :U 338 ]
+"151
+[; ;TAD_TERMINAL.c: 151:  switch(state) {
+[e $U 342  ]
+{
+"152
+[; ;TAD_TERMINAL.c: 152:   case 0:
+[e :U 343 ]
+"153
+[; ;TAD_TERMINAL.c: 153:    if (Terminal_ReceiveChar() == 0x1B) {
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i 344  ]
+{
+"154
+[; ;TAD_TERMINAL.c: 154:     motor_StartSendString("---------------\r\n");
+[e ( _motor_StartSendString (1 :s 15C ]
+"155
+[; ;TAD_TERMINAL.c: 155:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"156
+[; ;TAD_TERMINAL.c: 156:     state = 10;
+[e = F2759 -> -> 10 `i `uc ]
+"157
+[; ;TAD_TERMINAL.c: 157:    }
+}
+[e :U 344 ]
+"159
+[; ;TAD_TERMINAL.c: 159:    if (hashtag_pressed == 1){
+[e $ ! == -> _hashtag_pressed `i -> 1 `i 345  ]
+{
+"160
+[; ;TAD_TERMINAL.c: 160:     motor_StartSendString("---------------\r\n");
+[e ( _motor_StartSendString (1 :s 16C ]
+"161
+[; ;TAD_TERMINAL.c: 161:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"162
+[; ;TAD_TERMINAL.c: 162:     state = 10;
+[e = F2759 -> -> 10 `i `uc ]
+"163
+[; ;TAD_TERMINAL.c: 163:     hashtag_pressed = 0;
+[e = _hashtag_pressed -> -> 0 `i `uc ]
+"164
+[; ;TAD_TERMINAL.c: 164:    }
+}
+[e :U 345 ]
+"165
+[; ;TAD_TERMINAL.c: 165:   break;
+[e $U 341  ]
+"167
+[; ;TAD_TERMINAL.c: 167:   case 10:
+[e :U 346 ]
+"168
+[; ;TAD_TERMINAL.c: 168:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 347  ]
+{
+"169
+[; ;TAD_TERMINAL.c: 169:     motor_StartSendString("Menú principal\r\n");
+[e ( _motor_StartSendString (1 :s 17C ]
+"170
+[; ;TAD_TERMINAL.c: 170:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"171
+[; ;TAD_TERMINAL.c: 171:     state = 11;
+[e = F2759 -> -> 11 `i `uc ]
+"172
+[; ;TAD_TERMINAL.c: 172:    }
+}
+[e :U 347 ]
+"173
+[; ;TAD_TERMINAL.c: 173:   break;
+[e $U 341  ]
+"175
+[; ;TAD_TERMINAL.c: 175:   case 11:
+[e :U 348 ]
+"176
+[; ;TAD_TERMINAL.c: 176:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 349  ]
+{
+"177
+[; ;TAD_TERMINAL.c: 177:     motor_StartSendString("---------------\r\n");
+[e ( _motor_StartSendString (1 :s 18C ]
+"178
+[; ;TAD_TERMINAL.c: 178:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"179
+[; ;TAD_TERMINAL.c: 179:     state = 12;
+[e = F2759 -> -> 12 `i `uc ]
+"180
+[; ;TAD_TERMINAL.c: 180:    }
+}
+[e :U 349 ]
+"181
+[; ;TAD_TERMINAL.c: 181:   break;
+[e $U 341  ]
+"183
+[; ;TAD_TERMINAL.c: 183:   case 12:
+[e :U 350 ]
+"184
+[; ;TAD_TERMINAL.c: 184:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 351  ]
+{
+"185
+[; ;TAD_TERMINAL.c: 185:     motor_StartSendString("Tria una opció:\r\n");
+[e ( _motor_StartSendString (1 :s 19C ]
+"186
+[; ;TAD_TERMINAL.c: 186:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"187
+[; ;TAD_TERMINAL.c: 187:     state = 13;
+[e = F2759 -> -> 13 `i `uc ]
+"188
+[; ;TAD_TERMINAL.c: 188:    }
+}
+[e :U 351 ]
+"189
+[; ;TAD_TERMINAL.c: 189:   break;
+[e $U 341  ]
+"191
+[; ;TAD_TERMINAL.c: 191:   case 13:
+[e :U 352 ]
+"192
+[; ;TAD_TERMINAL.c: 192:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 353  ]
+{
+"193
+[; ;TAD_TERMINAL.c: 193:     motor_StartSendString("\t1. Qui hi ha a la sala?\r\n");
+[e ( _motor_StartSendString (1 :s 20C ]
+"194
+[; ;TAD_TERMINAL.c: 194:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"195
+[; ;TAD_TERMINAL.c: 195:     state = 14;
+[e = F2759 -> -> 14 `i `uc ]
+"196
+[; ;TAD_TERMINAL.c: 196:    }
+}
+[e :U 353 ]
+"197
+[; ;TAD_TERMINAL.c: 197:   break;
+[e $U 341  ]
+"199
+[; ;TAD_TERMINAL.c: 199:   case 14:
+[e :U 354 ]
+"200
+[; ;TAD_TERMINAL.c: 200:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 355  ]
+{
+"201
+[; ;TAD_TERMINAL.c: 201:     motor_StartSendString("\t2. Mostrar configuracions\r\n");
+[e ( _motor_StartSendString (1 :s 21C ]
+"202
+[; ;TAD_TERMINAL.c: 202:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"203
+[; ;TAD_TERMINAL.c: 203:     state = 15;
+[e = F2759 -> -> 15 `i `uc ]
+"204
+[; ;TAD_TERMINAL.c: 204:    }
+}
+[e :U 355 ]
+"205
+[; ;TAD_TERMINAL.c: 205:   break;
+[e $U 341  ]
+"207
+[; ;TAD_TERMINAL.c: 207:   case 15:
+[e :U 356 ]
+"208
+[; ;TAD_TERMINAL.c: 208:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 357  ]
+{
+"209
+[; ;TAD_TERMINAL.c: 209:     motor_StartSendString("\t3. Modificar hora del sistema\r\n");
+[e ( _motor_StartSendString (1 :s 22C ]
+"210
+[; ;TAD_TERMINAL.c: 210:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"211
+[; ;TAD_TERMINAL.c: 211:     state = 16;
+[e = F2759 -> -> 16 `i `uc ]
+"212
+[; ;TAD_TERMINAL.c: 212:    }
+}
+[e :U 357 ]
+"213
+[; ;TAD_TERMINAL.c: 213:   break;
+[e $U 341  ]
+"215
+[; ;TAD_TERMINAL.c: 215:   case 16:
+[e :U 358 ]
+"216
+[; ;TAD_TERMINAL.c: 216:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 359  ]
+{
+"217
+[; ;TAD_TERMINAL.c: 217:     motor_StartSendString("Opció: ");
+[e ( _motor_StartSendString (1 :s 23C ]
+"218
+[; ;TAD_TERMINAL.c: 218:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"219
+[; ;TAD_TERMINAL.c: 219:     state = 1;
+[e = F2759 -> -> 1 `i `uc ]
+"220
+[; ;TAD_TERMINAL.c: 220:    }
+}
+[e :U 359 ]
+"221
+[; ;TAD_TERMINAL.c: 221:   break;
+[e $U 341  ]
+"223
+[; ;TAD_TERMINAL.c: 223:   case 1:
+[e :U 360 ]
+"224
+[; ;TAD_TERMINAL.c: 224:    if(Terminal_RXAvailable() == 1){
+[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 361  ]
+{
+"225
+[; ;TAD_TERMINAL.c: 225:     if (Terminal_ReceiveChar() == '1') {
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 49 `ui 362  ]
+{
+"226
+[; ;TAD_TERMINAL.c: 226:      motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 24C ]
+"227
+[; ;TAD_TERMINAL.c: 227:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"228
+[; ;TAD_TERMINAL.c: 228:      state = 20;
+[e = F2759 -> -> 20 `i `uc ]
+"229
+[; ;TAD_TERMINAL.c: 229:     }
+}
+[e $U 363  ]
+"230
+[; ;TAD_TERMINAL.c: 230:     else if (Terminal_ReceiveChar() == '2') {
+[e :U 362 ]
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 50 `ui 364  ]
+{
+"231
+[; ;TAD_TERMINAL.c: 231:      motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 25C ]
+"232
+[; ;TAD_TERMINAL.c: 232:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"233
+[; ;TAD_TERMINAL.c: 233:      state = 30;
+[e = F2759 -> -> 30 `i `uc ]
+"234
+[; ;TAD_TERMINAL.c: 234:     }
+}
+[e $U 365  ]
+"235
+[; ;TAD_TERMINAL.c: 235:     else if (Terminal_ReceiveChar() == '3') {
+[e :U 364 ]
+[e $ ! == -> ( _Terminal_ReceiveChar ..  `ui -> 51 `ui 366  ]
+{
+"236
+[; ;TAD_TERMINAL.c: 236:      motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 26C ]
+"237
+[; ;TAD_TERMINAL.c: 237:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"238
+[; ;TAD_TERMINAL.c: 238:      state = 40;
+[e = F2759 -> -> 40 `i `uc ]
+"239
+[; ;TAD_TERMINAL.c: 239:     }
+}
+[e $U 367  ]
+"240
+[; ;TAD_TERMINAL.c: 240:     else {
+[e :U 366 ]
+{
+"241
+[; ;TAD_TERMINAL.c: 241:      motor_StartSendString("ERROR. Valor introduit erroni.\r\n");
+[e ( _motor_StartSendString (1 :s 27C ]
+"242
+[; ;TAD_TERMINAL.c: 242:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"243
+[; ;TAD_TERMINAL.c: 243:      state = 0;
+[e = F2759 -> -> 0 `i `uc ]
+"244
+[; ;TAD_TERMINAL.c: 244:     }
+}
+[e :U 367 ]
+[e :U 365 ]
+[e :U 363 ]
+"245
+[; ;TAD_TERMINAL.c: 245:    }
+}
+[e :U 361 ]
+"246
+[; ;TAD_TERMINAL.c: 246:   break;
+[e $U 341  ]
+"248
+[; ;TAD_TERMINAL.c: 248:   case 20:
+[e :U 368 ]
+"249
+[; ;TAD_TERMINAL.c: 249:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 369  ]
+{
+"250
+[; ;TAD_TERMINAL.c: 250:     unsigned char currentUser[5];
+[v _currentUser `uc ~T0 @X0 -> 5 `i a ]
+"251
+[; ;TAD_TERMINAL.c: 251:     getActualUID(currentUser);
+[e ( _getActualUID (1 &U _currentUser ]
+"253
+[; ;TAD_TERMINAL.c: 253:     if (currentUser[0] != 0) {
+[e $ ! != -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i 370  ]
+{
+"254
+[; ;TAD_TERMINAL.c: 254:      motor_StartSendString("UID: ");
+[e ( _motor_StartSendString (1 :s 28C ]
+"255
+[; ;TAD_TERMINAL.c: 255:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"256
+[; ;TAD_TERMINAL.c: 256:      state = 21;
+[e = F2759 -> -> 21 `i `uc ]
+"257
+[; ;TAD_TERMINAL.c: 257:     } else {
+}
+[e $U 371  ]
+[e :U 370 ]
+{
+"258
+[; ;TAD_TERMINAL.c: 258:      motor_StartSendString("No hi ha cap usuari a la sala.\r\n");
+[e ( _motor_StartSendString (1 :s 29C ]
+"259
+[; ;TAD_TERMINAL.c: 259:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"260
+[; ;TAD_TERMINAL.c: 260:      state = 25;
+[e = F2759 -> -> 25 `i `uc ]
+"261
+[; ;TAD_TERMINAL.c: 261:     }
+}
+[e :U 371 ]
+"262
+[; ;TAD_TERMINAL.c: 262:    }
+}
+[e :U 369 ]
+"263
+[; ;TAD_TERMINAL.c: 263:   break;
+[e $U 341  ]
+"265
+[; ;TAD_TERMINAL.c: 265:   case 21:
+[e :U 372 ]
+"266
+[; ;TAD_TERMINAL.c: 266:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 373  ]
+{
+"267
+[; ;TAD_TERMINAL.c: 267:     unsigned char currentUser[5];
+[v _currentUser `uc ~T0 @X0 -> 5 `i a ]
+"268
+[; ;TAD_TERMINAL.c: 268:     getActualUID(currentUser);
+[e ( _getActualUID (1 &U _currentUser ]
+"269
+[; ;TAD_TERMINAL.c: 269:     printfUID(currentUser);
+[e ( _printfUID (1 &U _currentUser ]
+"270
+[; ;TAD_TERMINAL.c: 270:     state = 25;
+[e = F2759 -> -> 25 `i `uc ]
+"271
+[; ;TAD_TERMINAL.c: 271:    }
+}
+[e :U 373 ]
+"272
+[; ;TAD_TERMINAL.c: 272:   break;
+[e $U 341  ]
+"274
+[; ;TAD_TERMINAL.c: 274:   case 25:
+[e :U 374 ]
+"275
+[; ;TAD_TERMINAL.c: 275:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 375  ]
+{
+"276
+[; ;TAD_TERMINAL.c: 276:     motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 30C ]
+"277
+[; ;TAD_TERMINAL.c: 277:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"278
+[; ;TAD_TERMINAL.c: 278:     state = 0;
+[e = F2759 -> -> 0 `i `uc ]
+"279
+[; ;TAD_TERMINAL.c: 279:    }
+}
+[e :U 375 ]
+"280
+[; ;TAD_TERMINAL.c: 280:   break;
+[e $U 341  ]
+"282
+[; ;TAD_TERMINAL.c: 282:   case 30:
+[e :U 376 ]
+"283
+[; ;TAD_TERMINAL.c: 283:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 377  ]
+{
+"284
+[; ;TAD_TERMINAL.c: 284:     showAllConfigurations();
+[e ( _showAllConfigurations ..  ]
+"285
+[; ;TAD_TERMINAL.c: 285:     state = 0;
+[e = F2759 -> -> 0 `i `uc ]
+"286
+[; ;TAD_TERMINAL.c: 286:    }
+}
+[e :U 377 ]
+"287
+[; ;TAD_TERMINAL.c: 287:   break;
+[e $U 341  ]
+"289
+[; ;TAD_TERMINAL.c: 289:   case 40:
+[e :U 378 ]
+"290
+[; ;TAD_TERMINAL.c: 290:    if (!sending_string) {
+[e $ ! ! != -> F2760 `i -> 0 `i 379  ]
+{
+"291
+[; ;TAD_TERMINAL.c: 291:     motor_StartSendString("Introduce la hora actual(HHMM): ");
+[e ( _motor_StartSendString (1 :s 31C ]
+"292
+[; ;TAD_TERMINAL.c: 292:     sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"293
+[; ;TAD_TERMINAL.c: 293:     state = 2;
+[e = F2759 -> -> 2 `i `uc ]
+"294
+[; ;TAD_TERMINAL.c: 294:    }
+}
+[e :U 379 ]
+"295
+[; ;TAD_TERMINAL.c: 295:   break;
+[e $U 341  ]
+"297
+[; ;TAD_TERMINAL.c: 297:   case 2:
+[e :U 380 ]
+"298
+[; ;TAD_TERMINAL.c: 298:    if(Terminal_RXAvailable() == 1){
+[e $ ! == -> ( _Terminal_RXAvailable ..  `i -> 1 `i 381  ]
+{
+"299
+[; ;TAD_TERMINAL.c: 299:     static unsigned char hour[4] = "0000";
+[v F2763 `uc ~T0 @X0 -> 4 `i s hour ]
+[i F2763
 :U ..
 -> 48 `c
 -> 48 `c
@@ -887,80 +1362,106 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 48 `c
 ..
 ]
-"142
-[; ;TAD_TERMINAL.c: 142:     static char index = 0;
-[v F2761 `uc ~T0 @X0 1 s index ]
-[i F2761
+"300
+[; ;TAD_TERMINAL.c: 300:     static char index = 0;
+[v F2764 `uc ~T0 @X0 1 s index ]
+[i F2764
 -> -> 0 `i `uc
 ]
-"143
-[; ;TAD_TERMINAL.c: 143:     hour[index] = Terminal_ReceiveChar();
-[e = *U + &U F2760 * -> F2761 `ux -> -> # *U &U F2760 `ui `ux -> ( _Terminal_ReceiveChar ..  `uc ]
-"144
-[; ;TAD_TERMINAL.c: 144:     Terminal_SendChar(hour[index]);
-[e ( _Terminal_SendChar (1 -> *U + &U F2760 * -> F2761 `ux -> -> # *U &U F2760 `ui `ux `uc ]
-"145
-[; ;TAD_TERMINAL.c: 145:     index++;
-[e ++ F2761 -> -> 1 `i `uc ]
-"146
-[; ;TAD_TERMINAL.c: 146:     if(index == 4){
-[e $ ! == -> F2761 `i -> 4 `i 342  ]
+"301
+[; ;TAD_TERMINAL.c: 301:     hour[index] = Terminal_ReceiveChar();
+[e = *U + &U F2763 * -> F2764 `ux -> -> # *U &U F2763 `ui `ux -> ( _Terminal_ReceiveChar ..  `uc ]
+"302
+[; ;TAD_TERMINAL.c: 302:     Terminal_SendChar(hour[index]);
+[e ( _Terminal_SendChar (1 -> *U + &U F2763 * -> F2764 `ux -> -> # *U &U F2763 `ui `ux `uc ]
+"303
+[; ;TAD_TERMINAL.c: 303:     index++;
+[e ++ F2764 -> -> 1 `i `uc ]
+"304
+[; ;TAD_TERMINAL.c: 304:     if(index == 4){
+[e $ ! == -> F2764 `i -> 4 `i 382  ]
 {
-"147
-[; ;TAD_TERMINAL.c: 147:      saveHourToData(hour);
-[e ( _saveHourToData (1 &U F2760 ]
-"148
-[; ;TAD_TERMINAL.c: 148:      Terminal_SendString("\r\nHora introduida correctament\r\n");
-[e ( _Terminal_SendString (1 :s 21C ]
-"149
-[; ;TAD_TERMINAL.c: 149:      index = 0;
-[e = F2761 -> -> 0 `i `uc ]
-"150
-[; ;TAD_TERMINAL.c: 150:      state = 0;
-[e = F2758 -> -> 0 `i `uc ]
-"151
-[; ;TAD_TERMINAL.c: 151:     }
+"305
+[; ;TAD_TERMINAL.c: 305:      saveHourToData(hour);
+[e ( _saveHourToData (1 &U F2763 ]
+"306
+[; ;TAD_TERMINAL.c: 306:      motor_StartSendString("\r\nHora introduida correctament\r\n");
+[e ( _motor_StartSendString (1 :s 32C ]
+"307
+[; ;TAD_TERMINAL.c: 307:      sending_string = 1;
+[e = F2760 -> -> 1 `i `uc ]
+"308
+[; ;TAD_TERMINAL.c: 308:      index = 0;
+[e = F2764 -> -> 0 `i `uc ]
+"309
+[; ;TAD_TERMINAL.c: 309:      state = 0;
+[e = F2759 -> -> 0 `i `uc ]
+"310
+[; ;TAD_TERMINAL.c: 310:     }
 }
+[e :U 382 ]
+"311
+[; ;TAD_TERMINAL.c: 311:    }
+}
+[e :U 381 ]
+"312
+[; ;TAD_TERMINAL.c: 312:   break;
+[e $U 341  ]
+"313
+[; ;TAD_TERMINAL.c: 313:  }
+}
+[e $U 341  ]
 [e :U 342 ]
-"152
-[; ;TAD_TERMINAL.c: 152:    }
-}
+[e [\ F2759 , $ -> 0 `i 343
+ , $ -> 10 `i 346
+ , $ -> 11 `i 348
+ , $ -> 12 `i 350
+ , $ -> 13 `i 352
+ , $ -> 14 `i 354
+ , $ -> 15 `i 356
+ , $ -> 16 `i 358
+ , $ -> 1 `i 360
+ , $ -> 20 `i 368
+ , $ -> 21 `i 372
+ , $ -> 25 `i 374
+ , $ -> 30 `i 376
+ , $ -> 40 `i 378
+ , $ -> 2 `i 380
+ 341 ]
 [e :U 341 ]
-"153
-[; ;TAD_TERMINAL.c: 153:   break;
-[e $U 327  ]
-"154
-[; ;TAD_TERMINAL.c: 154:  }
-}
-[e $U 327  ]
-[e :U 328 ]
-[e [\ F2758 , $ -> 0 `i 329
- , $ -> 1 `i 332
- , $ -> 2 `i 340
- 327 ]
-[e :U 327 ]
-"155
-[; ;TAD_TERMINAL.c: 155: }
-[e :UE 326 ]
+"314
+[; ;TAD_TERMINAL.c: 314: }
+[e :UE 337 ]
 }
 [a 10C 45 0 ]
 [a 9C 85 73 68 58 32 0 ]
-[a 19C 73 110 116 114 111 100 117 99 101 32 108 97 32 104 111 114 97 32 97 99 116 117 97 108 40 72 72 77 77 41 58 32 0 ]
+[a 28C 85 73 68 58 32 0 ]
+[a 31C 73 110 116 114 111 100 117 99 101 32 108 97 32 104 111 114 97 32 97 99 116 117 97 108 40 72 72 77 77 41 58 32 0 ]
 [a 8C 79 112 99 105 18446744073709551555 18446744073709551539 58 32 0 ]
+[a 23C 79 112 99 105 18446744073709551555 18446744073709551539 58 32 0 ]
 [a 12C 58 32 0 ]
 [a 13C 32 45 32 0 ]
-[a 21C 13 10 72 111 114 97 32 105 110 116 114 111 100 117 105 100 97 32 99 111 114 114 101 99 116 97 109 101 110 116 13 10 0 ]
+[a 32C 13 10 72 111 114 97 32 105 110 116 114 111 100 117 105 100 97 32 99 111 114 114 101 99 116 97 109 101 110 116 13 10 0 ]
 [a 6C 9 50 46 32 77 111 115 116 114 97 114 32 99 111 110 102 105 103 117 114 97 99 105 111 110 115 13 10 0 ]
+[a 21C 9 50 46 32 77 111 115 116 114 97 114 32 99 111 110 102 105 103 117 114 97 99 105 111 110 115 13 10 0 ]
 [a 2C 77 101 110 18446744073709551555 18446744073709551546 32 112 114 105 110 99 105 112 97 108 13 10 0 ]
+[a 17C 77 101 110 18446744073709551555 18446744073709551546 32 112 114 105 110 99 105 112 97 108 13 10 0 ]
 [a 7C 9 51 46 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 32 100 101 108 32 115 105 115 116 101 109 97 13 10 0 ]
+[a 22C 9 51 46 32 77 111 100 105 102 105 99 97 114 32 104 111 114 97 32 100 101 108 32 115 105 115 116 101 109 97 13 10 0 ]
 [a 5C 9 49 46 32 81 117 105 32 104 105 32 104 97 32 97 32 108 97 32 115 97 108 97 63 13 10 0 ]
+[a 20C 9 49 46 32 81 117 105 32 104 105 32 104 97 32 97 32 108 97 32 115 97 108 97 63 13 10 0 ]
 [a 4C 84 114 105 97 32 117 110 97 32 111 112 99 105 18446744073709551555 18446744073709551539 58 13 10 0 ]
-[a 20C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 13 10 0 ]
+[a 19C 84 114 105 97 32 117 110 97 32 111 112 99 105 18446744073709551555 18446744073709551539 58 13 10 0 ]
+[a 27C 69 82 82 79 82 46 32 86 97 108 111 114 32 105 110 116 114 111 100 117 105 116 32 101 114 114 111 110 105 46 13 10 0 ]
+[a 29C 78 111 32 104 105 32 104 97 32 99 97 112 32 117 115 117 97 114 105 32 97 32 108 97 32 115 97 108 97 46 13 10 0 ]
 [a 1C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
 [a 3C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
+[a 15C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
+[a 16C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
+[a 18C 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 13 10 0 ]
 [a 11C 13 10 0 ]
 [a 14C 13 10 0 ]
-[a 15C 13 10 0 ]
-[a 16C 13 10 0 ]
-[a 17C 13 10 0 ]
-[a 18C 13 10 0 ]
+[a 24C 13 10 0 ]
+[a 25C 13 10 0 ]
+[a 26C 13 10 0 ]
+[a 30C 13 10 0 ]

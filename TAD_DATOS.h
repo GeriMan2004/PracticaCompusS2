@@ -5,9 +5,9 @@
 #define MAX_USERS 4
 #define LEDS 6
 
-
+void initData(void);
 void setLed(unsigned char tecla);
-unsigned char* getActualUID(void);
+void getActualUID(unsigned char* UID);
 void getActualLeds(unsigned char* leds);
 void showAllConfigurations(void);
 void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);

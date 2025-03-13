@@ -4801,6 +4801,11 @@ void printLedConfig(unsigned char *leds);
 void showMenu(void);
 void hashtag_pressed3s(void);
 void motorTerminal(void);
+
+
+char motor_SendChar(char c);
+char motor_SendString(void);
+void motor_StartSendString(const char* str);
 # 3 "TAD_TERMINAL.c" 2
 # 1 "./TAD_DATOS.h" 1
 
@@ -4810,9 +4815,9 @@ void motorTerminal(void);
 
 
 
-
+void initData(void);
 void setLed(unsigned char tecla);
-unsigned char* getActualUID(void);
+void getActualUID(unsigned char* UID);
 void getActualLeds(unsigned char* leds);
 void showAllConfigurations(void);
 void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
@@ -4820,38 +4825,11 @@ void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 4 "TAD_TERMINAL.c" 2
-# 1 "./TAD_DISPLAY.h" 1
-# 65 "./TAD_DISPLAY.h"
-void LcInit(char rows, char columns);
 
 
-
-
-
-
-void LcClear(void);
-
-
-
-void LcCursorOn(void);
-
-
-
-void LcCursorOff(void);
-
-
-
-void LcGotoXY(char Column, char Row);
-
-
-
-
-void LcPutChar(char c);
-# 100 "./TAD_DISPLAY.h"
-void LcPutString(char *s);
-# 5 "TAD_TERMINAL.c" 2
-
-char hashtag_pressed = 0;
+static const char* str_ptr = ((void*)0);
+static char state_str = 0;
+static char hashtag_pressed = 0;
 
 
 void Terminal_Init(void){
@@ -4879,6 +4857,18 @@ void Terminal_SendChar(char c) {
 }
 
 
+char motor_SendChar(char c) {
+
+    if (Terminal_TXAvailable() == 0) {
+        return 0;
+    }
+
+
+    TXREG = c;
+    return 1;
+}
+
+
 char Terminal_ReceiveChar(void) {
  return RCREG;
 }
@@ -4888,6 +4878,36 @@ void Terminal_SendString(const char *str) {
  while (*str) {
   Terminal_SendChar(*str++);
  }
+}
+
+
+char motor_SendString(void) {
+    switch(state_str) {
+        case 0:
+            return 1;
+
+        case 1:
+            if (*str_ptr == 0) {
+                state_str = 0;
+                return 1;
+            }
+
+
+            if (motor_SendChar(*str_ptr)) {
+                str_ptr++;
+            }
+            return 0;
+    }
+
+    return 0;
+}
+
+
+void motor_StartSendString(const char* str) {
+    if (motor_SendString() == 1) {
+        str_ptr = str;
+        state_str = 1;
+    }
 }
 
 void showMenu(void) {
@@ -4941,49 +4961,163 @@ void printLedConfig(unsigned char *leds) {
 
 void motorTerminal(void) {
  static char state = 0;
+ static char sending_string = 0;
+
+
+ if (sending_string) {
+  if (motor_SendString() == 1) {
+   sending_string = 0;
+  } else {
+   return;
+  }
+ }
 
  switch(state) {
   case 0:
    if (Terminal_ReceiveChar() == 0x1B) {
-    showMenu();
-    state = 1;
+    motor_StartSendString("---------------\r\n");
+    sending_string = 1;
+    state = 10;
    }
 
    if (hashtag_pressed == 1){
-    showMenu();
-    state = 1;
+    motor_StartSendString("---------------\r\n");
+    sending_string = 1;
+    state = 10;
     hashtag_pressed = 0;
    }
   break;
+
+  case 10:
+   if (!sending_string) {
+    motor_StartSendString("Menú principal\r\n");
+    sending_string = 1;
+    state = 11;
+   }
+  break;
+
+  case 11:
+   if (!sending_string) {
+    motor_StartSendString("---------------\r\n");
+    sending_string = 1;
+    state = 12;
+   }
+  break;
+
+  case 12:
+   if (!sending_string) {
+    motor_StartSendString("Tria una opció:\r\n");
+    sending_string = 1;
+    state = 13;
+   }
+  break;
+
+  case 13:
+   if (!sending_string) {
+    motor_StartSendString("\t1. Qui hi ha a la sala?\r\n");
+    sending_string = 1;
+    state = 14;
+   }
+  break;
+
+  case 14:
+   if (!sending_string) {
+    motor_StartSendString("\t2. Mostrar configuracions\r\n");
+    sending_string = 1;
+    state = 15;
+   }
+  break;
+
+  case 15:
+   if (!sending_string) {
+    motor_StartSendString("\t3. Modificar hora del sistema\r\n");
+    sending_string = 1;
+    state = 16;
+   }
+  break;
+
+  case 16:
+   if (!sending_string) {
+    motor_StartSendString("Opció: ");
+    sending_string = 1;
+    state = 1;
+   }
+  break;
+
   case 1:
    if(Terminal_RXAvailable() == 1){
     if (Terminal_ReceiveChar() == '1') {
-     Terminal_SendString("\r\n");
-     unsigned char *currentUser = getActualUID();
-
-
-
-     printfUID(currentUser);
-
-     Terminal_SendString("\r\n");
-     state = 0;
+     motor_StartSendString("\r\n");
+     sending_string = 1;
+     state = 20;
     }
     else if (Terminal_ReceiveChar() == '2') {
-     Terminal_SendString("\r\n");
-     showAllConfigurations();
-     state = 0;
+     motor_StartSendString("\r\n");
+     sending_string = 1;
+     state = 30;
     }
     else if (Terminal_ReceiveChar() == '3') {
-     Terminal_SendString("\r\n");
-     Terminal_SendString("Introduce la hora actual(HHMM): ");
-     state = 2;
+     motor_StartSendString("\r\n");
+     sending_string = 1;
+     state = 40;
     }
     else {
-     Terminal_SendString("ERROR. Valor introduit erroni.\r\n");
+     motor_StartSendString("ERROR. Valor introduit erroni.\r\n");
+     sending_string = 1;
      state = 0;
     }
    }
   break;
+
+  case 20:
+   if (!sending_string) {
+    unsigned char currentUser[5];
+    getActualUID(currentUser);
+
+    if (currentUser[0] != 0) {
+     motor_StartSendString("UID: ");
+     sending_string = 1;
+     state = 21;
+    } else {
+     motor_StartSendString("No hi ha cap usuari a la sala.\r\n");
+     sending_string = 1;
+     state = 25;
+    }
+   }
+  break;
+
+  case 21:
+   if (!sending_string) {
+    unsigned char currentUser[5];
+    getActualUID(currentUser);
+    printfUID(currentUser);
+    state = 25;
+   }
+  break;
+
+  case 25:
+   if (!sending_string) {
+    motor_StartSendString("\r\n");
+    sending_string = 1;
+    state = 0;
+   }
+  break;
+
+  case 30:
+   if (!sending_string) {
+    showAllConfigurations();
+    state = 0;
+   }
+  break;
+
+  case 40:
+   if (!sending_string) {
+    motor_StartSendString("Introduce la hora actual(HHMM): ");
+    sending_string = 1;
+    state = 2;
+   }
+  break;
+
   case 2:
    if(Terminal_RXAvailable() == 1){
     static unsigned char hour[4] = "0000";
@@ -4993,7 +5127,8 @@ void motorTerminal(void) {
     index++;
     if(index == 4){
      saveHourToData(hour);
-     Terminal_SendString("\r\nHora introduida correctament\r\n");
+     motor_StartSendString("\r\nHora introduida correctament\r\n");
+     sending_string = 1;
      index = 0;
      state = 0;
     }

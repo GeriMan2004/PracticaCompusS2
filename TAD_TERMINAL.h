@@ -15,5 +15,9 @@ void showMenu(void);
 void hashtag_pressed3s(void);
 void motorTerminal(void);
 
+// Funciones cooperativas
+char motor_SendChar(char c);
+char motor_SendString(void);
+void motor_StartSendString(const char* str);
 
 #endif

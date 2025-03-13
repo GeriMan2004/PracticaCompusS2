@@ -4792,9 +4792,9 @@ unsigned char __t3rd16on(void);
 
 
 
-
+void initData(void);
 void setLed(unsigned char tecla);
-unsigned char* getActualUID(void);
+void getActualUID(unsigned char* UID);
 void getActualLeds(unsigned char* leds);
 void showAllConfigurations(void);
 void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
@@ -4849,6 +4849,11 @@ void printLedConfig(unsigned char *leds);
 void showMenu(void);
 void hashtag_pressed3s(void);
 void motorTerminal(void);
+
+
+char motor_SendChar(char c);
+char motor_SendString(void);
+void motor_StartSendString(const char* str);
 # 5 "TAD_DATOS.c" 2
 
 unsigned char userUIDs[4][16] = {
@@ -4871,13 +4876,26 @@ unsigned char new_user = 0;
 int index = 0, pointer = 0;
 unsigned char currentTime[4] = "0000";
 
+void initData(void){
+ currentUser[0] = 0x00;
+ currentUser[1] = 0x00;
+ currentUser[2] = 0x00;
+ currentUser[3] = 0x00;
+ currentUser[4] = 0x00;
+}
 
 
-unsigned char* getActualUID(void) {
+void getActualUID(unsigned char* UID) {
  if(currentUser[0] == 0x00 && currentUser[1] == 0x00 && currentUser[2] == 0x00 && currentUser[3] == 0x00 && currentUser[4] == 0x00) {
-  return ((void*)0);
+  UID = ((void*)0);
  }
-    return currentUser;
+    else{
+  UID[0] = currentUser[0];
+  UID[1] = currentUser[1];
+  UID[2] = currentUser[2];
+  UID[3] = currentUser[3];
+  UID[4] = currentUser[4];
+ }
 }
 
 void getActualLeds(unsigned char* leds) {

@@ -927,9 +927,9 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 4 `i 350
  351 ]
 [e :U 346 ]
-[v F2753 `Cuc ~T0 @X0 -> 3 `i t ]
-[v F2752 `F2753 ~T0 @X0 -> 4 `i s ]
-[i F2752
+[v F2760 `Cuc ~T0 @X0 -> 3 `i t ]
+[v F2759 `F2760 ~T0 @X0 -> 4 `i s ]
+[i F2759
 :U ..
 :U ..
 "148
@@ -955,9 +955,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[v F2755 `Cuc ~T0 @X0 -> 3 `i t ]
-[v _keymap `F2755 ~T0 @X0 -> 4 `i a ]
-[e = _keymap F2752 ]
+[v F2762 `Cuc ~T0 @X0 -> 3 `i t ]
+[v _keymap `F2762 ~T0 @X0 -> 4 `i a ]
+[e = _keymap F2759 ]
 "155
 [; ;TAD_TECLADO.c: 155:     return keymap[fila][columna];
 [e ) *U + &U *U + &U _keymap * -> _fila `ux -> * -> # *U &U *U &U _keymap `ui -> -> 3 `i `ui `ux * -> _columna `ux -> -> # *U &U *U + &U _keymap * -> _fila `ux -> * -> # *U &U *U &U _keymap `ui -> -> 3 `i `ui `ux `ui `ux ]

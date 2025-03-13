@@ -4827,6 +4827,11 @@ void printLedConfig(unsigned char *leds);
 void showMenu(void);
 void hashtag_pressed3s(void);
 void motorTerminal(void);
+
+
+char motor_SendChar(char c);
+char motor_SendString(void);
+void motor_StartSendString(const char* str);
 # 5 "main.c" 2
 # 1 "./TAD_RFID.h" 1
 # 137 "./TAD_RFID.h"
@@ -4878,9 +4883,9 @@ void showTecla(void);
 
 
 
-
+void initData(void);
 void setLed(unsigned char tecla);
-unsigned char* getActualUID(void);
+void getActualUID(unsigned char* UID);
 void getActualLeds(unsigned char* leds);
 void showAllConfigurations(void);
 void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
@@ -4956,6 +4961,7 @@ void main(void){
  initPorts();
  initLeds();
  LcInit(2, 16);
+ initData();
 
 
 

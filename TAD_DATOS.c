@@ -23,13 +23,26 @@ unsigned char new_user = 0;
 int index = 0, pointer = 0;
 unsigned char currentTime[4] = "0000";
 
+void initData(void){
+	currentUser[0] = 0x00;
+	currentUser[1] = 0x00;
+	currentUser[2] = 0x00;
+	currentUser[3] = 0x00;
+	currentUser[4] = 0x00;
+}
 
 
-unsigned char* getActualUID(void) {
+void getActualUID(unsigned char* UID) {
 	if(currentUser[0] == 0x00 && currentUser[1] == 0x00 && currentUser[2] == 0x00 && currentUser[3] == 0x00 && currentUser[4] == 0x00) {
-		return NULL;
+		UID = NULL;
 	}
-    return currentUser;
+    else{
+		UID[0] = currentUser[0];
+		UID[1] = currentUser[1];
+		UID[2] = currentUser[2];
+		UID[3] = currentUser[3];
+		UID[4] = currentUser[4];
+	}
 }
 
 void getActualLeds(unsigned char* leds) {

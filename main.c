@@ -37,13 +37,14 @@ extern void __interrupt (low_priority) LowRSI (void){
 
 
 void main(void){
-	TI_Init();      // Initialize Timer system
-	initTeclado();  // Initialize Keyboard
-	initRFID();     // Initialize RFID
+	TI_Init();        // Initialize Timer system
+	initTeclado();    // Initialize Keyboard
+	initRFID();       // Initialize RFID
 	Terminal_Init();  // Initialize Terminal
-	initPorts();    // Initialize Ports
-	initLeds();
-	LcInit(2, 16);
+	initPorts();      // Initialize Ports
+	initLeds();       // Initialize Leds
+	LcInit(2, 16);    // Initialize LCD
+	initData();       // Initialize Datos
 	
 
 	// Enable interrupts

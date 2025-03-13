@@ -46,6 +46,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65 ./TAD_DISPLAY.h
 [; ;./TAD_DISPLAY.h: 65: void LcInit(char rows, char columns);
 [v _LcInit `(v ~T0 @X0 0 ef2`uc`uc ]
+"8 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 8: void initData(void);
+[v _initData `(v ~T0 @X0 0 ef ]
 "16 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 16: void motorTerminal(void);
 [v _motorTerminal `(v ~T0 @X0 0 ef ]
@@ -540,13 +543,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x LVP  =  OFF ]
 [v $root$_HighRSI `(v ~T0 @X0 0 e ]
 "30
-[; ;main.c: 30:      motorTerminal();
+[; ;main.c: 30: 
 [v _HighRSI `(v ~T41 @X0 1 ef ]
 {
 [e :U _HighRSI ]
 [f ]
 "32
-[; ;main.c: 32: 
+[; ;main.c: 32:      motor_RFID();
 [e $ ! == -> . . _INTCONbits 0 2 `i -> 1 `i 303  ]
 [e ( _RSI_Timer0 ..  ]
 [e :U 303 ]
@@ -556,30 +559,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [v $root$_LowRSI `(v ~T0 @X0 0 e ]
 "34
-[; ;main.c: 34:   LATEbits.LATE2 ^= 1;
+[; ;main.c: 34: 
 [v _LowRSI `(v ~T42 @X0 1 ef ]
 {
 [e :U _LowRSI ]
 [f ]
 "36
-[; ;main.c: 36: }
+[; ;main.c: 36:  }
 [e :UE 304 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
 "39
-[; ;main.c: 39:  ADCON1 = 0x0F;
+[; ;main.c: 39: void initPorts(void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
 "40
-[; ;main.c: 40:  TRISEbits.TRISE2 = 0;
+[; ;main.c: 40:  ADCON1 = 0x0F;
 [e ( _TI_Init ..  ]
 "41
-[; ;main.c: 41: }
+[; ;main.c: 41:  TRISEbits.TRISE2 = 0;
 [e ( _initTeclado ..  ]
 "42
-[; ;main.c: 42: 
+[; ;main.c: 42: }
 [e ( _initRFID ..  ]
 "43
 [; ;main.c: 43: 
@@ -588,52 +591,55 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 44: 
 [e ( _initPorts ..  ]
 "45
-[; ;main.c: 45: void ProcessKey(unsigned char key) {
+[; ;main.c: 45: 
 [e ( _initLeds ..  ]
 "46
-[; ;main.c: 46: 
+[; ;main.c: 46: void ProcessKey(unsigned char key) {
 [e ( _LcInit (2 , -> -> 2 `i `uc -> -> 16 `i `uc ]
-"50
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"47
+[; ;main.c: 47: 
+[e ( _initData ..  ]
 "51
-[e = . . _INTCONbits 1 6 -> -> 0 `i `uc ]
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 "52
+[e = . . _INTCONbits 1 6 -> -> 0 `i `uc ]
+"53
 [e :U 307 ]
 {
-"54
-[e ( _motorTerminal ..  ]
 "55
+[e ( _motorTerminal ..  ]
+"56
 [e ( _motor_RFID ..  ]
-"58
-[e =^ . . _LATEbits 0 2 -> -> 1 `i `Vuc ]
 "59
+[e =^ . . _LATEbits 0 2 -> -> 1 `i `Vuc ]
+"60
 }
 [e :U 306 ]
 [e $U 307  ]
 [e :U 308 ]
-"60
+"61
 [e :UE 305 ]
 }
-"62
+"63
 [v _initPorts `(v ~T0 @X0 1 ef ]
 {
 [e :U _initPorts ]
 [f ]
-"63
-[e = _ADCON1 -> -> 15 `i `uc ]
 "64
-[e = . . _TRISEbits 0 2 -> -> 0 `i `uc ]
+[e = _ADCON1 -> -> 15 `i `uc ]
 "65
+[e = . . _TRISEbits 0 2 -> -> 0 `i `uc ]
+"66
 [e :UE 309 ]
 }
-"69
+"70
 [v _ProcessKey `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _ProcessKey ]
 [v _key `uc ~T0 @X0 1 r1 ]
 [f ]
-"72
-[e = _LATC _key ]
 "73
+[e = _LATC _key ]
+"74
 [e :UE 310 ]
 }
