@@ -4961,7 +4961,6 @@ void main(void){
 
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 0;
- LcPutString("Hola");
  while(1){
   motorTeclado();
      motorTerminal();

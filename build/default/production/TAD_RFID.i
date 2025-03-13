@@ -4947,6 +4947,106 @@ void MFRC522_Init() {
     MFRC522_AntennaOn();
 }
 
+char motor_Write(char addr, char value) {
+    static char state_write = 0;
+    static unsigned char ucAddr;
+    static unsigned char ucValue;
+    static char bit_count = 0;
+
+    switch (state_write) {
+        case 0:
+            LATCbits.LATC2 = 0;
+            LATCbits.LATC3 = 0;
+            ucAddr = ((addr << 1) & 0x7E);
+            ucValue = value;
+            bit_count = 0;
+            state_write = 1;
+            break;
+
+        case 1:
+            LATCbits.LATC1 = ((ucAddr & 0x80) != 0);
+            LATCbits.LATC2 = 1;
+            ucAddr <<= 1;
+            delay_us(5);
+            LATCbits.LATC2 = 0;
+            delay_us(5);
+            bit_count++;
+            if (bit_count == 8) {
+                bit_count = 0;
+                state_write = 2;
+            }
+            break;
+
+        case 2:
+            LATCbits.LATC1 = ((ucValue & 0x80) != 0);
+            LATCbits.LATC2 = 1;
+            ucValue <<= 1;
+            delay_us(5);
+            LATCbits.LATC2 = 0;
+            delay_us(5);
+            bit_count++;
+            if (bit_count == 8) {
+                LATCbits.LATC3 = 1;
+                LATCbits.LATC2 = 1;
+                state_write = 0;
+                return 1;
+            }
+            break;
+    }
+    return 0;
+}
+
+
+char motor_Read(char addr) {
+    static char state_read = 0;
+    static char bit_count = 0;
+    static unsigned char ucAddr;
+    static unsigned char ucResult;
+
+    switch(state_read) {
+        case 0:
+            LATCbits.LATC2 = 0;
+            LATCbits.LATC3 = 0;
+            ucAddr = ((addr<<1) & 0x7E) | 0x80;
+            ucResult = 0;
+            bit_count = 0;
+            state_read = 1;
+            break;
+
+        case 1:
+            LATCbits.LATC1 = ((ucAddr & 0x80) == 0x80);
+            LATCbits.LATC2 = 1;
+            delay_us(5);
+            ucAddr <<= 1;
+            LATCbits.LATC2 = 0;
+            delay_us(5);
+            bit_count++;
+
+            if (bit_count >= 8) {
+                bit_count = 0;
+                state_read = 2;
+            }
+            break;
+
+        case 2:
+            LATCbits.LATC2 = 1;
+            delay_us(5);
+            ucResult <<= 1;
+            ucResult |= PORTCbits.RC0;
+            LATCbits.LATC2 = 0;
+            delay_us(5);
+            bit_count++;
+
+            if (bit_count >= 8) {
+                LATCbits.LATC3 = 1;
+                LATCbits.LATC2 = 1;
+                state_read = 0;
+                return ucResult;
+            }
+            break;
+    }
+    return 0;
+}
 
 
 void initRFID() {
@@ -4967,33 +5067,45 @@ void motor_RFID(void) {
     static unsigned char checksum;
     static unsigned char allZero;
     static unsigned char tempRegValue;
-
+    unsigned char flag = 0;
+    static unsigned char lastBitsVal;
+    static unsigned char fifoLevel;
+    unsigned char backBitsCalc;
     switch(state) {
 
         case 0:
             switch(substate) {
                 case 0:
 
-                    MFRC522_Wr(0x0D, 0x07);
+                    flag = motor_Write(0x0D, 0x07);
+                    if (flag != 0){
                     TagType = 0x26;
                     substate = 1;
+                    }
                     break;
                 case 1:
 
                     irqEn = 0x77;
                     waitIRq = 0x30;
-                    MFRC522_Wr(0x02, irqEn | 0x80);
+                    flag = motor_Write(0x02, irqEn | 0x80);
+                    if (flag != 0){
                     substate = 2;
+                    }
                     break;
                 case 2:
 
-                    tempRegValue = MFRC522_Rd(0x04);
-                    substate = 3;
+                    flag = motor_Read(0x04);
+                    if (flag != 0){
+                        tempRegValue = flag;
+                        substate = 3;
+                    }
                     break;
                 case 3:
 
-                    MFRC522_Wr(0x04, tempRegValue & ~0x80);
-                    substate = 4;
+                    flag = motor_Write(0x02, tempRegValue & ~0x80);
+                    if (flag != 0){
+                        substate = 4;
+                    }
                     break;
                 case 4:
 
@@ -5002,39 +5114,207 @@ void motor_RFID(void) {
                     break;
                 case 5:
 
-                    MFRC522_Wr(0x0A, tempRegValue | 0x80);
-                    substate = 6;
+                    flag = motor_Write(0x0A, tempRegValue | 0x80);
+                    if (flag != 0){
+                        substate = 6;
+                    }
                     break;
                 case 6:
 
-                    MFRC522_Wr(0x01, 0x00);
-                    substate = 7;
+                    flag = motor_Write(0x01, 0x00);
+                    if (flag != 0){
+                        substate = 7;
+                    }
                     break;
                 case 7:
 
-                    MFRC522_Wr(0x09, TagType);
-                    substate = 8;
+                    flag = motor_Write(0x09, TagType);
+                    if (flag != 0){
+                        substate = 8;
+                    }
                     break;
                 case 8:
 
-                    MFRC522_Wr(0x01, 0x0C);
-                    substate = 9;
+                    flag = motor_Write(0x01, 0x0C);
+                    if (flag != 0){
+                        substate = 9;
+                    }
                     break;
                 case 9:
 
-                    tempRegValue = MFRC522_Rd(0x0D);
-                    substate = 10;
+                    flag = motor_Read(0x0D);
+                    if (flag != 0){
+                        tempRegValue = flag;
+                        substate = 10;
+                    }
                     break;
                 case 10:
 
-                    MFRC522_Wr(0x0D, tempRegValue | 0x80);
-                    i = 0xFF;
-                    substate = 11;
+                    flag = motor_Write(0x0D, tempRegValue | 0x80);
+                    if (flag != 0){
+                        i = 0xFF;
+                        substate = 11;
+                    }
                     break;
                 case 11:
 
-                    n = MFRC522_Rd(0x04);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                    flag = motor_Read(0x04);
+                    if (flag != 0){
+                        n = flag;
+                        if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                            substate = 12;
+                        }
+                    }
+                    break;
+                case 12:
+
+                    flag = motor_Read(0x0D);
+                    if (flag != 0){
+                        tempRegValue = flag;
+                        substate = 13;
+                    }
+                    break;
+                case 13:
+
+                    flag = motor_Write(0x0D, tempRegValue & ~0x80);
+                    if (flag != 0){
+                        substate = 14;
+                    }
+                    break;
+                case 14:
+
+                    tempRegValue = MFRC522_Rd(0x06);
+                    if (i != 0 && !(tempRegValue & 0x1B)) {
+                        substate = 15;
+                    } else {
+                        substate = 0;
+                        state = 0;
+                    }
+                    break;
+
+                case 15:
+
+                    fifoLevel = MFRC522_Rd(0x0A);
+                    substate = 16;
+                    break;
+
+                case 16:
+
+                    flag = motor_Read(0x0C);
+                    if (flag != 0){
+                        lastBitsVal = flag & 0x07;
+                        substate = 17;
+                    }
+                    break;
+
+                case 17:
+
+                    if (lastBitsVal)
+                        backBitsCalc = (fifoLevel - 1) * 8 + lastBitsVal;
+                    else
+                        backBitsCalc = fifoLevel * 8;
+
+
+                    if (backBitsCalc == 0x10) {
+                        state = 1;
+                        substate = 0;
+                    } else {
+                        state = 0;
+                        substate = 0;
+                    }
+                    break;
+            }
+            break;
+
+        case 1:
+            switch(substate) {
+                case 0:
+
+                    flag = motor_Write(0x0D, 0x00);
+                    if (flag != 0){
+                    UID[0] = 0x93;
+                    UID[1] = 0x20;
+                    substate = 1;
+                    }
+                    break;
+                case 1:
+
+                    flag = motor_Read(0x08);
+                    if (flag != 0){
+                        tempRegValue = flag;
+                        substate = 2;
+                    }
+                    break;
+                case 2:
+
+                    flag = motor_Write(0x08, tempRegValue & ~0x08);
+                    if (flag != 0){
+                        substate = 3;
+                    }
+                    break;
+                case 3:
+
+                    irqEn = 0x77;
+                    waitIRq = 0x30;
+                    flag = motor_Write(0x02, irqEn | 0x80);
+                    if (flag != 0){
+                        substate = 4;
+                    }
+                    break;
+                case 4:
+
+                    flag = motor_Read(0x04);
+                    if (flag != 0){
+                        tempRegValue = flag;
+                        substate = 5;
+                    }
+                    break;
+                case 5:
+
+                    flag = motor_Write(0x04, tempRegValue & ~0x80);
+                    if (flag != 0){
+                        substate = 6;
+                    }
+                    break;
+                case 6:
+
+                    flag = motor_Read(0x0A);
+                    if (flag != 0){
+                        tempRegValue = flag;
+                        substate = 7;
+                    }
+                    break;
+                case 7:
+
+                    flag = motor_Write(0x0A, tempRegValue | 0x80);
+                    if (flag != 0){
+                        substate = 8;
+                    }
+                    break;
+                case 8:
+
+                    flag = motor_Write(0x01, 0x00);
+                    if (flag != 0){
+                        substate = 9;
+                    }
+                    break;
+                case 9:
+
+                    flag = motor_Write(0x09, UID[0]);
+                    if (flag != 0){
+                        substate = 10;
+                    }
+                    break;
+                case 10:
+                    flag = motor_Write(0x09, UID[1]);
+                    if (flag != 0){
+                        substate = 11;
+                    }
+                    break;
+                case 11:
+
+                    flag = motor_Write(0x01, 0x0C);
+                    if (flag != 0){
                         substate = 12;
                     }
                     break;
@@ -5045,179 +5325,103 @@ void motor_RFID(void) {
                     break;
                 case 13:
 
-                    MFRC522_Wr(0x0D, tempRegValue & ~0x80);
-                    substate = 14;
-                    break;
-                case 14:
-
-                    if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
-                        unsigned char fifoLevel = MFRC522_Rd(0x0A);
-                        unsigned char lastBitsVal = MFRC522_Rd(0x0C) & 0x07;
-                        unsigned backBitsCalc;
-                        if (lastBitsVal)
-                            backBitsCalc = (fifoLevel - 1) * 8 + lastBitsVal;
-                        else
-                            backBitsCalc = fifoLevel * 8;
-
-                        if (backBitsCalc == 0x10) {
-                            substate = 15;
-                        } else {
-                            substate = 16;
-                        }
-                    } else {
-                        substate = 16;
-                    }
-                    break;
-                case 15:
-
-                    state = 1;
-                    substate = 0;
-                    break;
-                case 16:
-
-                    state = 0;
-                    substate = 0;
-                    break;
-            }
-            break;
-
-        case 1:
-            switch(substate) {
-                case 0:
-
-                    MFRC522_Wr(0x0D, 0x00);
-                    UID[0] = 0x93;
-                    UID[1] = 0x20;
-                    substate = 1;
-                    break;
-                case 1:
-
-                    tempRegValue = MFRC522_Rd(0x08);
-                    substate = 2;
-                    break;
-                case 2:
-
-                    MFRC522_Wr(0x08, tempRegValue & ~0x08);
-                    substate = 3;
-                    break;
-                case 3:
-
-                    irqEn = 0x77;
-                    waitIRq = 0x30;
-                    MFRC522_Wr(0x02, irqEn | 0x80);
-                    substate = 4;
-                    break;
-                case 4:
-
-                    tempRegValue = MFRC522_Rd(0x04);
-                    substate = 5;
-                    break;
-                case 5:
-
-                    MFRC522_Wr(0x04, tempRegValue & ~0x80);
-                    substate = 6;
-                    break;
-                case 6:
-
-                    tempRegValue = MFRC522_Rd(0x0A);
-                    substate = 7;
-                    break;
-                case 7:
-
-                    MFRC522_Wr(0x0A, tempRegValue | 0x80);
-                    substate = 8;
-                    break;
-                case 8:
-
-                    MFRC522_Wr(0x01, 0x00);
-                    substate = 9;
-                    break;
-                case 9:
-
-                    MFRC522_Wr(0x09, UID[0]);
-                    MFRC522_Wr(0x09, UID[1]);
-                    substate = 10;
-                    break;
-                case 10:
-
-                    MFRC522_Wr(0x01, 0x0C);
-                    substate = 11;
-                    break;
-                case 11:
-
-                    tempRegValue = MFRC522_Rd(0x0D);
-                    substate = 12;
-                    break;
-                case 12:
-
-                    MFRC522_Wr(0x0D, tempRegValue | 0x80);
+                    flag = motor_Write(0x0D, tempRegValue | 0x80);
+                    if (flag != 0){
                     i = 0xFF;
-                    substate = 13;
-                    break;
-                case 13:
-
-                    n = MFRC522_Rd(0x04);
-                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
                         substate = 14;
                     }
                     break;
                 case 14:
 
-                    tempRegValue = MFRC522_Rd(0x0D);
-                    substate = 15;
+                    n = MFRC522_Rd(0x04);
+                    if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                        substate = 15;
+                    }
                     break;
                 case 15:
 
-                    MFRC522_Wr(0x0D, tempRegValue & ~0x80);
+                    tempRegValue = MFRC522_Rd(0x0D);
                     substate = 16;
                     break;
                 case 16:
 
-                    if (i != 0 && !(MFRC522_Rd(0x06) & 0x1B)) {
-
-                        UID[0] = MFRC522_Rd(0x09);
-                        UID[1] = MFRC522_Rd(0x09);
+                    flag = motor_Write(0x0D, tempRegValue & ~0x80);
+                    if (flag != 0){
                         substate = 17;
+                    }
+                    break;
+                case 17:
+
+                    tempRegValue = MFRC522_Rd(0x06);
+                    if (i != 0 && !(tempRegValue & 0x1B)) {
+
+                        substate = 18;
                     } else {
 
                         state = 0;
                         substate = 0;
                     }
                     break;
-                case 17:
 
-                    UID[2] = MFRC522_Rd(0x09);
-                    UID[3] = MFRC522_Rd(0x09);
-                    substate = 18;
-                    break;
                 case 18:
 
-                    UID[4] = MFRC522_Rd(0x09);
-                    UID[5] = 0;
-                    substate = 19;
+                    flag = motor_Read(0x09);
+                    if (flag != 0){
+                        UID[0] = flag;
+                        substate = 19;
+                    }
                     break;
                 case 19:
 
-                    checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
-
-                    allZero = 1;
+                    UID[1] = MFRC522_Rd(0x09);
                     substate = 20;
                     break;
                 case 20:
 
-                    if (UID[0] != 0 || UID[1] != 0) {
-                        allZero = 0;
-                    }
+                    UID[2] = MFRC522_Rd(0x09);
                     substate = 21;
                     break;
                 case 21:
 
+                    flag = motor_Read(0x09);
+                    if (flag != 0){
+                        UID[3] = flag;
+                        substate = 22;
+                    }
+                    break;
+
+                case 22:
+
+                    UID[4] = MFRC522_Rd(0x09);
+                    UID[5] = 0;
+                    substate = 23;
+                    break;
+
+                case 23:
+
+                    checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
+
+                    allZero = 1;
+                    substate = 24;
+                    break;
+
+                case 24:
+
+                    if (UID[0] != 0 || UID[1] != 0) {
+                        allZero = 0;
+                    }
+                    substate = 25;
+                    break;
+
+                case 25:
+
                     if (UID[2] != 0 || UID[3] != 0) {
                         allZero = 0;
                     }
-                    substate = 22;
+                    substate = 26;
                     break;
-                case 22:
+
+                case 26:
 
                     if (checksum != UID[4] || allZero) {
 
@@ -5225,10 +5429,11 @@ void motor_RFID(void) {
                         substate = 0;
                     } else {
 
-                        substate = 23;
+                        substate = 27;
                     }
                     break;
-                case 23:
+
+                case 27:
                     {
                         char differentUID = 1;
                         unsigned char* currentUser = getActualUID();
@@ -5241,16 +5446,19 @@ void motor_RFID(void) {
                         if(differentUID == 0) {
                             setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
                         }
-                        substate = 24;
+                        substate = 28;
                     }
                     break;
-                case 24:
 
-                    MFRC522_Wr(0x0D, 0x00);
-                    state = 0;
-                    substate = 0;
+                case 28:
+
+                    flag = motor_Write(0x0D, 0x00);
+                    if (flag != 0){
+                        state = 0;
+                        substate = 0;
+                    }
                     break;
-                }
-        break;
+            }
+            break;
     }
 }

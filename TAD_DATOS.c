@@ -1,9 +1,7 @@
 #include <xc.h>
 #include "TAD_DATOS.h"
 #include "TAD_DISPLAY.h"
-#include <string.h>
 #include "TAD_TERMINAL.h"
-#include <stdio.h>
 
 unsigned char userUIDs[MAX_USERS][UID_SIZE] = {
     {0x65, 0xDC, 0xF9, 0x03, 0x43},
@@ -105,53 +103,79 @@ char checkUserUID(void) {
 }
 
 void motor_datos(void) {
-	static char state = 0;
-    unsigned char* temp_user;
-    unsigned char* temp_config;
+    static char state = 0;
+    static char pointer = 0; // Contador para imprimir LEDs
+    unsigned char lastChar;
 
-	switch(state) {
-		case 0:
-			if (new_configuration == 1) {
-				new_configuration = 0;
-				state = 2;
-			}
-            if(new_user == 1) {
+    switch(state) {
+        case 0:
+            // Esperamos a que haya un nuevo usuario o una nueva configuración
+            if (new_configuration == 1 || new_user == 1) {
+                new_configuration = 0;
                 new_user = 0;
-				state = 2;
-            }
-		break;
-		case 2:
-			// LcPutChar(currentUser[15]);
-			LcPutChar(' ');
-			pointer = 0;
-			state = 3;
-		break;
-		case 3:
-			if (pointer < 5) {
-				LcPutChar(currentTime[pointer]);
-				pointer++;
-			}
-			else if (pointer == 5) {
-				pointer = 0;
-				LcPutChar(' ');
-				state = 4;
-			}
-		break;
-		case 4:
-			if (pointer < LEDS) {
-				LcPutChar((char)(pointer + 1));
-				LcPutChar('-');
-				LcPutChar(configurations[index][pointer]);
-				LcPutChar(' ');
-				pointer++;
-			} else {
-				pointer = 0;
-				state = 0;
-			}
-		break;
 
-	}
+                // Averiguamos qué usuario está activo según la UID
+                index = checkUserUID();  
+
+                state = 1;
+            }
+            break;
+
+        case 1:
+            // 1) Imprimimos el último byte de la UID en hexadecimal (nibble alto/bajo).
+            //    Si el valor es <10, lo mostramos como dígito, si no, como A-F.
+            lastChar = currentUser[4];
+            LcPutChar((lastChar < 10) ? ('0' + lastChar) : ('A' + (lastChar - 10)));
+            
+            // Espacio separador
+            LcPutChar(' ');
+
+            // Pasamos al siguiente estado para imprimir la hora
+            state = 2;
+            break;
+
+        case 2:
+            // 2) Imprimimos la hora en formato HH:MM
+            //    currentTime[0] y [1] → Horas
+            //    currentTime[2] y [3] → Minutos
+            LcPutChar(currentTime[0]); 
+            LcPutChar(currentTime[1]);
+            LcPutChar(':');
+            LcPutChar(currentTime[2]);
+            LcPutChar(currentTime[3]);
+            
+            // Espacio separador
+            LcPutChar(' ');
+
+            // Preparamos el contador de LEDs
+            pointer = 0;
+            state = 3;
+            break;
+
+        case 3:
+            // 3) Imprimimos el estado de los 6 LEDs, uno por llamada:
+            //    Formato "1-x 2-y 3-z 4-w 5-a 6-b"
+            if (pointer < LEDS) {
+                // (pointer+1) es el número de LED en ASCII
+                LcPutChar((char)('1' + pointer));
+                LcPutChar('-');
+				Terminal_SendChar((char)('1' + pointer));
+				Terminal_SendChar('-');
+                // Convertimos el valor (0..9) a su correspondiente dígito ASCII
+                LcPutChar((char)('0' + configurations[index][pointer]));
+                LcPutChar(' ');
+				Terminal_SendChar((char)('0' + configurations[index][pointer]));
+				Terminal_SendChar(' ');
+                pointer++;
+            } else {
+                // Hemos terminado de imprimir todos los LEDs
+                pointer = 0;
+                state = 0; // Volvemos al estado de espera
+            }
+            break;
+    }
 }
+
 
 void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity) {
     if (userIndex < MAX_USERS && ledIndex < LEDS) {

@@ -4863,11 +4863,11 @@ void LcInit(char rows, char columns) {
  RowAct = ColumnAct = 0;
  (TRISBbits.TRISB3 = TRISBbits.TRISB2 = TRISBbits.TRISB1 = 0);
  for (i = 0; i < 2; i++) {
-  Espera(Timer, 51);
+  Espera(Timer, 100);
 
 
   EscriuPrimeraOrdre(0x02 | 0x01);
-  Espera(Timer, 2);
+  Espera(Timer, 4);
   EscriuPrimeraOrdre(0x02 | 0x01);
   Espera(Timer, 1);
   EscriuPrimeraOrdre(0x02 | 0x01);
@@ -5024,21 +5024,7 @@ void CantaData(char Data) {
 }
 
 void WaitForBusy(void) { char Busy;
- (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1);
- (LATBbits.LATB3 = 0);
- (LATBbits.LATB2 = 1);
- TI_ResetTics(Timer);
- do {
-  (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
-  Busy = (PORTBbits.RB7);
-  (LATBbits.LATB1 = 0);
-  (LATBbits.LATB1 = 0);
-  (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
-
-  (LATBbits.LATB1 = 0);
-  (LATBbits.LATB1 = 0);
-  if (TI_GetTics(Timer) > 10) break;
- } while(Busy);
+ Espera(Timer, 2);
 }
 
 void EscriuPrimeraOrdre(char ordre) {

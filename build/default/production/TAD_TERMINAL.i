@@ -4820,6 +4820,36 @@ void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 4 "TAD_TERMINAL.c" 2
+# 1 "./TAD_DISPLAY.h" 1
+# 65 "./TAD_DISPLAY.h"
+void LcInit(char rows, char columns);
+
+
+
+
+
+
+void LcClear(void);
+
+
+
+void LcCursorOn(void);
+
+
+
+void LcCursorOff(void);
+
+
+
+void LcGotoXY(char Column, char Row);
+
+
+
+
+void LcPutChar(char c);
+# 100 "./TAD_DISPLAY.h"
+void LcPutString(char *s);
+# 5 "TAD_TERMINAL.c" 2
 
 char hashtag_pressed = 0;
 

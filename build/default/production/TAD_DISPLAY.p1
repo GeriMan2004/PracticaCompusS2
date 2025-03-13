@@ -83,33 +83,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2402
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2402: extern volatile TRISEbits_t TRISEbits __attribute__((address(0xF96)));
 [v _TRISEbits `VS81 ~T0 @X0 0 e@3990 ]
-"288
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 288:     struct {
-[s S15 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S15 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
-"298
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 298:     struct {
-[s S16 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S16 . INT0 INT1 INT2 CCP2 KBI0 KBI1 KBI2 KBI3 ]
-"308
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 308:     struct {
-[s S17 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S17 . AN12 AN10 AN8 AN9 AN11 PGM PGC PGD ]
-"318
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 318:     struct {
-[s S18 :1 `uc 1 ]
-[n S18 . FLT0 ]
-"321
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 321:     struct {
-[s S19 :3 `uc 1 :1 `uc 1 ]
-[n S19 . . CCP2_PA2 ]
-"287
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 287: typedef union {
-[u S14 `S15 1 `S16 1 `S17 1 `S18 1 `S19 1 ]
-[n S14 . . . . . . ]
-"326
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 326: extern volatile PORTBbits_t PORTBbits __attribute__((address(0xF81)));
-[v _PORTBbits `VS14 ~T0 @X0 0 e@3969 ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -568,14 +541,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 303 ]
 {
 "80
-[; ;TAD_DISPLAY.c: 80:   Espera(Timer, 51);
-[e ( _Espera (2 , -> _Timer `i -> 51 `i ]
+[; ;TAD_DISPLAY.c: 80:   Espera(Timer, 100);
+[e ( _Espera (2 , -> _Timer `i -> 100 `i ]
 "83
 [; ;TAD_DISPLAY.c: 83:   EscriuPrimeraOrdre(0x02 | 0x01);
 [e ( _EscriuPrimeraOrdre (1 -> | -> 2 `i -> 1 `i `uc ]
 "84
-[; ;TAD_DISPLAY.c: 84:   Espera(Timer, 2);
-[e ( _Espera (2 , -> _Timer `i -> 2 `i ]
+[; ;TAD_DISPLAY.c: 84:   Espera(Timer, 4);
+[e ( _Espera (2 , -> _Timer `i -> 4 `i ]
 "85
 [; ;TAD_DISPLAY.c: 85:   EscriuPrimeraOrdre(0x02 | 0x01);
 [e ( _EscriuPrimeraOrdre (1 -> | -> 2 `i -> 1 `i `uc ]
@@ -1049,90 +1022,44 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 [v _Busy `uc ~T0 @X0 1 a ]
 "257
-[; ;TAD_DISPLAY.c: 257:  (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1);
-[e = . . _TRISBbits 0 4 = . . _TRISBbits 0 5 = . . _TRISEbits 0 1 = . . _TRISEbits 0 0 -> -> 1 `i `uc ]
+[; ;TAD_DISPLAY.c: 257:  Espera(Timer, 2);
+[e ( _Espera (2 , -> _Timer `i -> 2 `i ]
 "258
-[; ;TAD_DISPLAY.c: 258:  (LATBbits.LATB3 = 0);
-[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
-"259
-[; ;TAD_DISPLAY.c: 259:  (LATBbits.LATB2 = 1);
-[e = . . _LATBbits 0 2 -> -> 1 `i `uc ]
-"260
-[; ;TAD_DISPLAY.c: 260:  TI_ResetTics(Timer);
-[e ( _TI_ResetTics (1 _Timer ]
-"261
-[; ;TAD_DISPLAY.c: 261:  do {
-[e :U 347 ]
-{
-"262
-[; ;TAD_DISPLAY.c: 262:   (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-"263
-[; ;TAD_DISPLAY.c: 263:   Busy = (PORTBbits.RB7);
-[e = _Busy -> . . _PORTBbits 0 7 `uc ]
-"264
-[; ;TAD_DISPLAY.c: 264:   (LATBbits.LATB1 = 0);
-[e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
-"265
-[; ;TAD_DISPLAY.c: 265:   (LATBbits.LATB1 = 0);
-[e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
-"266
-[; ;TAD_DISPLAY.c: 266:   (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-[e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-"268
-[; ;TAD_DISPLAY.c: 268:   (LATBbits.LATB1 = 0);
-[e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
-"269
-[; ;TAD_DISPLAY.c: 269:   (LATBbits.LATB1 = 0);
-[e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
-"270
-[; ;TAD_DISPLAY.c: 270:   if (TI_GetTics(Timer) > 10) break;
-[e $ ! > ( _TI_GetTics (1 _Timer -> -> -> 10 `i `l `ul 348  ]
-[e $U 346  ]
-[e :U 348 ]
-"271
-[; ;TAD_DISPLAY.c: 271:  } while(Busy);
-}
-[e $ != -> _Busy `i -> 0 `i 347  ]
-[e :U 346 ]
-"272
-[; ;TAD_DISPLAY.c: 272: }
+[; ;TAD_DISPLAY.c: 258: }
 [e :UE 344 ]
 }
-"274
-[; ;TAD_DISPLAY.c: 274: void EscriuPrimeraOrdre(char ordre) {
+"260
+[; ;TAD_DISPLAY.c: 260: void EscriuPrimeraOrdre(char ordre) {
 [v _EscriuPrimeraOrdre `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _EscriuPrimeraOrdre ]
 [v _ordre `uc ~T0 @X0 1 r1 ]
 [f ]
-"276
-[; ;TAD_DISPLAY.c: 276:  (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0); (LATBbits.LATB3 = 0); (LATBbits.LATB2 = 0);
+"262
+[; ;TAD_DISPLAY.c: 262:  (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0); (LATBbits.LATB3 = 0); (LATBbits.LATB2 = 0);
 [e = . . _TRISBbits 0 4 = . . _TRISBbits 0 5 = . . _TRISEbits 0 1 = . . _TRISEbits 0 0 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
 [e = . . _LATBbits 0 2 -> -> 0 `i `uc ]
-"277
-[; ;TAD_DISPLAY.c: 277:  (LATBbits.LATB1 = 1); (LATBbits.LATB1 = 1);
+"263
+[; ;TAD_DISPLAY.c: 263:  (LATBbits.LATB1 = 1); (LATBbits.LATB1 = 1);
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
 [e = . . _LATBbits 0 1 -> -> 1 `i `uc ]
-"278
-[; ;TAD_DISPLAY.c: 278:  (LATEbits.LATE0 = (ordre & 0x08 ? 1 : 0));
+"264
+[; ;TAD_DISPLAY.c: 264:  (LATEbits.LATE0 = (ordre & 0x08 ? 1 : 0));
 [e = . . _LATEbits 0 0 -> ? != & -> _ordre `i -> 8 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-"279
-[; ;TAD_DISPLAY.c: 279:  (LATEbits.LATE1 = (ordre & 0x04 ? 1 : 0));
+"265
+[; ;TAD_DISPLAY.c: 265:  (LATEbits.LATE1 = (ordre & 0x04 ? 1 : 0));
 [e = . . _LATEbits 0 1 -> ? != & -> _ordre `i -> 4 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-"280
-[; ;TAD_DISPLAY.c: 280:  (LATBbits.LATB5 = (ordre & 0x02 ? 1 : 0));
+"266
+[; ;TAD_DISPLAY.c: 266:  (LATBbits.LATB5 = (ordre & 0x02 ? 1 : 0));
 [e = . . _LATBbits 0 5 -> ? != & -> _ordre `i -> 2 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-"281
-[; ;TAD_DISPLAY.c: 281:  (LATBbits.LATB4 = (ordre & 0x01 ? 1 : 0));
+"267
+[; ;TAD_DISPLAY.c: 267:  (LATBbits.LATB4 = (ordre & 0x01 ? 1 : 0));
 [e = . . _LATBbits 0 4 -> ? != & -> _ordre `i -> 1 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-"282
-[; ;TAD_DISPLAY.c: 282:  (LATBbits.LATB1 = 0);
+"268
+[; ;TAD_DISPLAY.c: 268:  (LATBbits.LATB1 = 0);
 [e = . . _LATBbits 0 1 -> -> 0 `i `uc ]
-"283
-[; ;TAD_DISPLAY.c: 283: }
-[e :UE 349 ]
+"269
+[; ;TAD_DISPLAY.c: 269: }
+[e :UE 345 ]
 }

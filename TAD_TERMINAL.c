@@ -1,6 +1,7 @@
 #include <xc.h>
 #include "TAD_TERMINAL.h"
 #include "TAD_DATOS.h"
+#include "TAD_DISPLAY.h"
 
 char hashtag_pressed = 0;
 

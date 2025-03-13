@@ -77,11 +77,11 @@ void LcInit(char rows, char columns) {
 	RowAct = ColumnAct = 0;
 	SetControlsSortida();
 	for (i = 0; i < 2; i++) {
-		Espera(Timer, 51);
+		Espera(Timer, 100);
 		// This sequence is set by the manual.
 
 		EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
-		Espera(Timer, 2);
+		Espera(Timer, 4);
 		EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
 		Espera(Timer, 1);
 		EscriuPrimeraOrdre(CURSOR_ON | DISPLAY_CLEAR);
@@ -254,21 +254,7 @@ void CantaData(char Data) {
 }
 
 void WaitForBusy(void) { char Busy;
-	SetD4_D7Entrada();
-	RSDown();
-	RWUp();
-	TI_ResetTics(Timer);
-	do {
-		EnableUp();EnableUp(); //Making sure the 500ns of the pulse time
-		Busy = GetBusyFlag();
-		EnableDown();
-		EnableDown();
-		EnableUp();EnableUp();
-		// The lower part of the address counter, it is not interesting for us. 
-		EnableDown();
-		EnableDown();
-		if (TI_GetTics(Timer) > 10) break; // More than one ms means that the LCD has gone mad.
-	} while(Busy);
+	Espera(Timer, 2);
 }
 
 void EscriuPrimeraOrdre(char ordre) {

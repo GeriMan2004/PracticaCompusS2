@@ -49,7 +49,6 @@ void main(void){
 	// Enable interrupts
 	INTCONbits.GIE = 1;    // Global Interrupt Enable
 	INTCONbits.PEIE = 0;   // Peripheral Interrupt Enable
-	LcPutString("Hola");
 	while(1){
 		motorTeclado();  // Run keyboard state machine
     	motorTerminal(); // Run terminal state machine
