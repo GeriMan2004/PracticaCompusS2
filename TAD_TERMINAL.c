@@ -16,288 +16,184 @@ void Terminal_Init(void){
 	hashtag_pressed = 0;
 }
 
-// Verificar si hay datos disponibles para enviar
-int Terminal_TXAvailable(void) {
-	return (PIR1bits.TXIF == 1) ? 1 : 0;
-}
-
-// Verificar si hay datos disponibles para recibir
-char Terminal_RXAvailable(void) {
-	return (PIR1bits.RCIF == 1) ? 1 : 0;
-}
+// Verificar si hay datos disponibles para enviar/recibir
+int Terminal_TXAvailable(void) { return (PIR1bits.TXIF == 1); }
+char Terminal_RXAvailable(void) { return (PIR1bits.RCIF == 1); }
+char Terminal_ReceiveChar(void) { return RCREG; }
 
 // Enviar un caracter
 void Terminal_SendChar(char c) {
-	while (Terminal_TXAvailable() == 0);
+	while (!Terminal_TXAvailable());
 	TXREG = c;
 }
 
-// Versión cooperativa de SendChar
-char motor_SendChar(char c) {
-    // Si no hay espacio en el buffer de transmisión, retornar 0 (necesita más llamadas)
-    if (Terminal_TXAvailable() == 0) {
-        return 0;
-    }
-    
-    // Si hay espacio, enviar el caracter y retornar 1 (completado)
-    TXREG = c;
-    return 1;
-}
-
-// Recibir un caracter
-char Terminal_ReceiveChar(void) {
-	return RCREG;
-}
-
-// Enviar una cadena de caracteres
 void Terminal_SendString(const char *str) {
 	while (*str) {
 		Terminal_SendChar(*str++);
 	}
 }
 
+// Versión cooperativa de SendChar
+char motor_SendChar(char c) {
+	if (!Terminal_TXAvailable()) return 0;
+	TXREG = c;
+	return 1;
+}
+
 // Versión cooperativa de SendString
 char motor_SendString(void) {
-    switch(state_str) {
-        case 0: // Estado inicial: espera un string para enviar
-            return 1; // Listo para recibir un nuevo string (estado de inactividad)
-            
-        case 1: // Estado de envío: procesando caracteres
-            if (*str_ptr == 0) { // Final del string
-                state_str = 0;       // Volver al estado inicial
-                return 1;        // Completado
-            }
-            
-            // Intentar enviar el caracter actual
-            if (motor_SendChar(*str_ptr)) {
-                str_ptr++; // Avanzar al siguiente caracter
-            }
-            return 0; // Necesita más llamadas
-    }
-    
-    return 0; // Por defecto: necesita más llamadas
+	switch(state_str) {
+		case 0: return 1;
+		case 1:
+			if (!*str_ptr) {
+				state_str = 0;
+				return 1;
+			}
+			if (motor_SendChar(*str_ptr)) str_ptr++;
+			return 0;
+	}
+	return 0;
 }
 
-// Función para iniciar el envío de un string con el motor
 void motor_StartSendString(const char* str) {
-    if (motor_SendString() == 1) { // Verificar que el motor esté inactivo
-        str_ptr = str;             // Guardar el puntero al string
-        state_str = 1;                 // Cambiar al estado de envío
-    }
+	if (motor_SendString() == 1) {
+		str_ptr = str;
+		state_str = 1;
+	}
 }
 
-void hashtag_pressed3s(void){
-	hashtag_pressed = 1;
-}
+void hashtag_pressed3s(void) { hashtag_pressed = 1; }
 
+// Función optimizada para imprimir UID
 void printfUID(unsigned char *currentUser) {
+	static const char hex[] = "0123456789ABCDEF";
 	Terminal_SendString("UID: ");
 	for (int i = 0; i < 5; i++) {
-		// Convert high nibble to hex
-		unsigned char high = (currentUser[i] >> 4) & 0x0F;
-		Terminal_SendChar(high < 10 ? '0' + high : 'A' + high - 10);
-		
-		// Convert low nibble to hex
-		unsigned char low = currentUser[i] & 0x0F;
-		Terminal_SendChar(low < 10 ? '0' + low : 'A' + low - 10);
-		
-		// Add separator between bytes
+		Terminal_SendChar(hex[currentUser[i] >> 4]);
+		Terminal_SendChar(hex[currentUser[i] & 0x0F]);
 		if (i < 4) Terminal_SendString("-");
 	}
 	Terminal_SendString("\r\n");
 }
 
+// Función optimizada para imprimir configuración de LEDs
 void printLedConfig(unsigned char *leds) {
-	for (int i = 0; i < MAX_LEDS; i++) {
-		// LED label with padding
+	static const char hex[] = "0123456789ABCDEF";
+	for (int i = 0; i < 6; i++) {
 		Terminal_SendChar('L');
 		Terminal_SendChar('0' + i);
 		Terminal_SendString(": ");
-		
-		// Convert intensity to hex
-		unsigned char val = leds[i];
-		Terminal_SendChar(val < 10 ? '0' + val : 'A' + val - 10);
-		
-		// Add separator with proper spacing
-		if (i < MAX_LEDS - 1) Terminal_SendString(" - ");
+		Terminal_SendChar(hex[leds[i]]);
+		if (i < 5) Terminal_SendString(" - ");
 	}
 	Terminal_SendString("\r\n");
 }
 
+// Motor de terminal optimizado
 void motorTerminal(void) {
 	static char state = 0;
-	static char sending_string = 0; // Flag para indicar si estamos enviando texto
-	
-	// Si estamos enviando un string, seguir procesándolo
+	static char sending_string = 0;
+	static unsigned char hour[4] = "0000";
+	static char index = 0;
+
 	if (sending_string) {
 		if (motor_SendString() == 1) {
-			sending_string = 0; // Terminamos de enviar
+			sending_string = 0;
 		} else {
-			return; // Seguimos enviando, no hacer más en este ciclo
+			return;
 		}
 	}
 
 	switch(state) {
 		case 0:
-			if (Terminal_ReceiveChar() == 0x1B) {
+			if (Terminal_ReceiveChar() == 0x1B || hashtag_pressed) {
 				motor_StartSendString("---------------\r\n");
 				sending_string = 1;
-				state = 10; // Estado intermedio para mostrar el menú con cooperación
-			}
-			
-			if (hashtag_pressed == 1){
-				motor_StartSendString("---------------\r\n");
-				sending_string = 1;
-				state = 10; // Estado intermedio para mostrar el menú con cooperación
+				state = 10;
 				hashtag_pressed = 0;
 			}
-		break;
-		
-		case 10: // Menú - parte 1
+			break;
+
+		case 10: // Menú principal
 			if (!sending_string) {
-				motor_StartSendString("Menú principal\r\n");
-				sending_string = 1;
-				state = 11;
-			}
-		break;
-		
-		case 11: // Menú - parte 2
-			if (!sending_string) {
-				motor_StartSendString("---------------\r\n");
-				sending_string = 1;
-				state = 12;
-			}
-		break;
-		
-		case 12: // Menú - parte 3
-			if (!sending_string) {
-				motor_StartSendString("Tria una opció:\r\n");
+				motor_StartSendString("Menú principal\r\n---------------\r\nTria una opció:\r\n");
 				sending_string = 1;
 				state = 13;
 			}
-		break;
-		
-		case 13: // Menú - parte 4
+			break;
+
+		case 13: // Opciones del menú
 			if (!sending_string) {
-				motor_StartSendString("\t1. Qui hi ha a la sala?\r\n");
-				sending_string = 1;
-				state = 14;
-			}
-		break;
-		
-		case 14: // Menú - parte 5
-			if (!sending_string) {
-				motor_StartSendString("\t2. Mostrar configuracions\r\n");
-				sending_string = 1;
-				state = 15;
-			}
-		break;
-		
-		case 15: // Menú - parte 6
-			if (!sending_string) {
-				motor_StartSendString("\t3. Modificar hora del sistema\r\n");
-				sending_string = 1;
-				state = 16;
-			}
-		break;
-		
-		case 16: // Menú - parte 7 (final)
-			if (!sending_string) {
-				motor_StartSendString("Opció: ");
+				motor_StartSendString("\t1. Qui hi ha a la sala?\r\n\t2. Mostrar configuracions\r\n\t3. Modificar hora del sistema\r\nOpció: ");
 				sending_string = 1;
 				state = 1;
 			}
-		break;
-		
-		case 1:
-			if(Terminal_RXAvailable() == 1){
-				if (Terminal_ReceiveChar() == '1') {
+			break;
+
+		case 1: // Procesar opción seleccionada
+			if(Terminal_RXAvailable()) {
+				char opcion = Terminal_ReceiveChar();
+				if (opcion >= '1' && opcion <= '3') {
 					motor_StartSendString("\r\n");
 					sending_string = 1;
-					state = 20; // Estado para mostrar UID
-				}
-				else if (Terminal_ReceiveChar() == '2') {
-					motor_StartSendString("\r\n");
-					sending_string = 1;
-					state = 30; // Estado para mostrar configuraciones
-				}
-				else if (Terminal_ReceiveChar() == '3') {
-					motor_StartSendString("\r\n");
-					sending_string = 1;
-					state = 40; // Estado para cambiar la hora
-				}
-				else {
+					state = (opcion - '1') * 10 + 20;
+				} else {
 					motor_StartSendString("ERROR. Valor introduit erroni.\r\n");
 					sending_string = 1;
 					state = 0;
 				}
 			}
-		break;
-		
-		case 20: // Mostrar UID - parte 1
+			break;
+
+		case 20: // Mostrar UID
 			if (!sending_string) {
 				unsigned char currentUser[5];
 				getActualUID(currentUser);
-				
-				if (currentUser[0] != 0) {
-					motor_StartSendString("UID: ");
-					sending_string = 1;
-					state = 21; // Continuar mostrando UID
+				if (currentUser[0]) {
+					printfUID(currentUser);
 				} else {
 					motor_StartSendString("No hi ha cap usuari a la sala.\r\n");
 					sending_string = 1;
-					state = 25; // Saltar a final
 				}
-			}
-		break;
-		
-		case 21: // Mostrar UID - parte 2 (imprimir UID - delegamos a otra función)
-			if (!sending_string) {
-				unsigned char currentUser[5];
-				getActualUID(currentUser);
-				printfUID(currentUser);
 				state = 25;
 			}
-		break;
-		
-		case 25: // Volver a menú principal
+			break;
+
+		case 25: // Volver a menú
 			if (!sending_string) {
 				motor_StartSendString("\r\n");
 				sending_string = 1;
 				state = 0;
 			}
-		break;
-		
+			break;
+
 		case 30: // Mostrar configuraciones
 			if (!sending_string) {
 				showAllConfigurations();
 				state = 0;
 			}
-		break;
-		
-		case 40: // Cambiar hora - parte 1
+			break;
+
+		case 40: // Cambiar hora
 			if (!sending_string) {
 				motor_StartSendString("Introduce la hora actual(HHMM): ");
 				sending_string = 1;
-				state = 2; // Ir al estado original de entrada de hora
+				state = 2;
+				index = 0;
 			}
-		break;
-		
-		case 2: // Estado original para entrada de hora
-			if(Terminal_RXAvailable() == 1){
-				static unsigned char hour[4] = "0000";
-				static char index = 0;
+			break;
+
+		case 2: // Procesar entrada de hora
+			if(Terminal_RXAvailable()) {
 				hour[index] = Terminal_ReceiveChar();
-				Terminal_SendChar(hour[index]); // Esto podría hacerse cooperativo también
-				index++;
-				if(index == 4){
+				Terminal_SendChar(hour[index]);
+				if(++index == 4) {
 					saveHourToData(hour);
 					motor_StartSendString("\r\nHora introduida correctament\r\n");
 					sending_string = 1;
-					index = 0;
 					state = 0;
 				}
 			}
-		break;
+			break;
 	}
 }

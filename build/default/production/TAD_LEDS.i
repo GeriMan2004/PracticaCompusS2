@@ -4841,7 +4841,7 @@ void initLeds(void) {
 
 void controlLED(unsigned char ledActual, char estado) {
 
-    static const unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
+    static unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
 
     if (ledActual < 6) {
 

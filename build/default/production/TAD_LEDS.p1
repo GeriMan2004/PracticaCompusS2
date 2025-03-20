@@ -468,8 +468,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _estado `uc ~T0 @X0 1 r2 ]
 [f ]
 "18
-[; ;TAD_LEDS.c: 18:     static const unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
-[v F2732 `Cuc ~T0 @X0 -> 6 `i s ledBits ]
+[; ;TAD_LEDS.c: 18:     static unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
+[v F2732 `uc ~T0 @X0 -> 6 `i s ledBits ]
 [i F2732
 :U ..
 -> -> 1 `i `uc

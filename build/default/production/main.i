@@ -4866,14 +4866,10 @@ void ReadRFID_NoCooperatiu(void);
 
 
 
-
-static unsigned char ReadFilas(void);
 void initTeclado(void);
-void initPortsTeclado(void);
 void motorTeclado(void);
 void writeColumnas(void);
 unsigned char GetTecla(void);
-void showTecla(void);
 # 7 "main.c" 2
 # 1 "./TAD_DATOS.h" 1
 
@@ -4968,11 +4964,11 @@ void main(void){
  INTCONbits.GIE = 1;
  INTCONbits.PEIE = 0;
  while(1){
-
+  motorTeclado();
      motorTerminal();
      motor_RFID();
 
-
+        motor_datos();
   LATEbits.LATE2 ^= 1;
  }
 }

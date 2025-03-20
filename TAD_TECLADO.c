@@ -4,153 +4,141 @@
 #include "TAD_DATOS.h"
 #include "TAD_TIMER.h"
 
-static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
+// Bits para control de columnas (corresponden a los pines físicos)
+#define COL1 (1<<5)
+#define COL2 (1<<6)
+#define COL3 (1<<4)
 
-const unsigned char keymap[4][3] = {
-        {0x01, 0x02, 0x03},
-        {0x04, 0x05, 0x06},
-        {0x07, 0x08, 0x09},
-        {0x0A, 0x00, 0x0B}  // 10 = *, 11 = #
-    };
+// Variables globales compactas
+static unsigned char Filas, Columnas, timer, tecla, state;
 
-static unsigned char ReadFilas(void) {
-    return (PORTD & 0x0F);  // Read only the lower 4 bits
-}
+// Mapeo de teclado compacto - usando constante para ahorrar memoria de programa
+static const char keymap[] = {
+    0x01, 0x02, 0x03,  // Fila 1: 1,2,3
+    0x04, 0x05, 0x06,  // Fila 2: 4,5,6
+    0x07, 0x08, 0x09,  // Fila 3: 7,8,9
+    0x0A, 0x00, 0x0B   // Fila 4: *,0,#
+};
 
+// Tabla de valores de columna para secuencia de escaneo
+static unsigned char colValues[] = {COL1, COL2, COL3};
+
+// Función optimizada para leer filas
+#define ReadFilas() (PORTD & 0x0F)
+
+// Inicialización del teclado
 void initTeclado(void) {
-	initPortsTeclado();
-    Filas = 0x00;    // Initialize rows to all high (pulled up)
-    Columnas = 0x00;  // Initialize columns to all high
-    tecla = 0;
-	state = 0;
+    // Configuración de puertos directamente
+    TRISD = 0x0F;  // Bits 0-3 como entradas (filas), 4-7 como salidas (columnas)
+    LATD = 0x00;   // Inicializar salidas a 0
+    
+    // Inicializa variables de estado
+    Filas = Columnas = tecla = state = 0;
+    
+    // Crear timer para rebotes
     TI_NewTimer(&timer);
 }
 
-void initPortsTeclado(void) {
-	// set portd as digital
-	
-	TRISD = 0x0F; // Set the lower 4 bits as inputs, Filas, and the upper 3 bits (4, 5 y 6) as outpus, Columnas
-	LATD = 0x00;  // Initialize all columns to low
-}
-/**
- * En esta funcin, seguiremos la logica del motor implementado desde el diseo de un examen (LSElevator)
- * En este motor, utilizan el barrido en las columnas en vez de en las filas, esto es debido a que de esta
- * manera se ahorran un estado
- */
-void motorTeclado(void) {
-	switch(state) {
-		case 0:
-			Filas = ReadFilas();
-			if (Filas == 0x0) {
-				Columnas = (0x01);
-				writeColumnas();
-				state = 1;
-			}
-			else if (Filas != 0x0) {
-				TI_ResetTics(timer);
-				state = 3;
-			}
-		break;
-		case 1:
-			Filas = ReadFilas();
-			if (Filas == 0x0) {
-				Columnas = (0x02);
-				writeColumnas();
-				state = 2;
-			}
-			else if (Filas != 0x0) {
-				TI_ResetTics(timer);
-				state = 3;
-			}
-		break;
-		case 2:
-			Filas = ReadFilas();
-			if (Filas != 0x0) {
-				TI_ResetTics(timer);
-				state = 3;
-			}
-			else if (Filas == 0x0) {
-				Columnas = (0x04);
-				writeColumnas();
-				state = 0;
-			}
-		break;
-		case 3:
-			tecla = GetTecla ();
-			Filas = ReadFilas();
-			if (Filas == 0x0) {
-				Columnas = (0x04);
-				writeColumnas();
-				state = 0;
-			}
-			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla != 0x0B) {
-				setLed(tecla);
-				state = 5;
-			}
-			else if (Filas != 0x0 && TI_GetTics(timer) > REBOTE && tecla == 0x0B) {
-				TI_ResetTics(timer);
-				state = 4;
-			}
-		break;
-		case 4:
-			Filas = ReadFilas();
-			if (Filas == 0x0) {
-				state = 0;
-			}
-			else if (Filas != 0x0 && TI_GetTics(timer) > HASHTAG_TIME) {
-				hashtag_pressed3s();
-				// ResetData();
-				state = 5;
-			}
-		break;
-		case 5:
-			Filas = ReadFilas();
-			if (Filas == 0x0) {
-				state = 0;
-				Columnas = (0x04);
-				writeColumnas();
-			}
-		break;
-	}
-}
-/**
- * En esta función, printaremos la columna en el puerto D, pero teniendo en cuenta que utilizo los bits 4-6
- * y que en vez de ser columna 1 es bit 4, columna 2 es bit 5 y columna 3 es bit 6, he hecho que columna 1 
- * sea el bit 5, columna 2 sea el bit 6 y columna 3 sea el bit 4, esto debido a que era mas facil de soldar
- */
+// La función writeColumnas simplificada usando índice
 void writeColumnas(void) {
-    LATD = (0x00);  
-    if (Columnas == 0x01) {
-        // Columna 1 -> Bit 5
-        LATD |= (1 << 5);  // Set bit 5
-    } else if (Columnas == 0x02) {
-        // Columna 2 -> Bit 6
-        LATD |= (1 << 6);  // Set bit 6
-    } else if (Columnas == 0x04) {
-        // Columna 3 -> Bit 4
-        LATD |= (1 << 4);  // Set bit 4
+    if (Columnas < 3) {
+        LATD = colValues[Columnas];
+    } else {
+        LATD = 0;
     }
 }
 
+// Función optimizada GetTecla que evita switch múltiples
 unsigned char GetTecla(void) {
-    unsigned char fila = 0;
-    unsigned char columna = 0;
+    unsigned char fila = 0, columna = 0;
     
+    // Detectar fila activa con operaciones de bit
     switch(Filas) {
         case 0x1: fila = 0; break;
         case 0x2: fila = 1; break;
         case 0x4: fila = 2; break;
         case 0x8: fila = 3; break;
-        default: return 0xFF;  // Invalid/multiple/no keys
+        default: return 0xFF;
     }
     
-    // Find which column is active
-    switch(Columnas & 0x07) {
-        case 0x01: columna = 0; break;  // 110
-        case 0x02: columna = 1; break;  // 101
-        case 0x04: columna = 2; break;  // 011
-        default: return 0xFF;  // Invalid column
-    }
+    // Mapear columna según valor actual de Columnas
+    columna = Columnas;
     
-    return keymap[fila][columna];
+    // Devolver valor del keymap usando acceso directo al array unidimensional
+    return keymap[fila * 3 + columna];
+}
+
+// Motor de teclado optimizado con menos código repetido
+void motorTeclado(void) {
+    // Lectura común de filas para todos los estados
+    Filas = ReadFilas();
+    
+    switch(state) {
+        case 0:
+            if (Filas) {
+                TI_ResetTics(timer);
+                state = 3;
+            } else {
+                Columnas = 0; // Primera columna
+                writeColumnas();
+                state = 1;
+            }
+            break;
+            
+        case 1:
+            if (Filas) {
+                TI_ResetTics(timer);
+                state = 3;
+            } else {
+                Columnas = 1; // Segunda columna
+                writeColumnas();
+                state = 2;
+            }
+            break;
+            
+        case 2:
+            if (Filas) {
+                TI_ResetTics(timer);
+                state = 3;
+            } else {
+                Columnas = 2; // Tercera columna
+                writeColumnas();
+                state = 0;
+            }
+            break;
+            
+        case 3:
+            tecla = GetTecla();
+            if (!Filas) {
+                Columnas = 2; // Volver a columna 3
+                writeColumnas();
+                state = 0;
+            } else if (TI_GetTics(timer) > REBOTE) {
+                if (tecla != 0x0B) {
+                    setLed(tecla);
+                    state = 5;
+                } else {
+                    TI_ResetTics(timer);
+                    state = 4;
+                }
+            }
+            break;
+            
+        case 4:
+            if (!Filas) {
+                state = 0;
+            } else if (TI_GetTics(timer) > HASHTAG_TIME) {
+                hashtag_pressed3s();
+                state = 5;
+            }
+            break;
+            
+        case 5:
+            if (!Filas) {
+                state = 0;
+                Columnas = 2;
+                writeColumnas();
+            }
+            break;
+    }
 }

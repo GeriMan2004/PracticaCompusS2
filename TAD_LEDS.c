@@ -15,7 +15,7 @@ void initLeds(void) {
 // Función combinada para manipular LEDs (ahorra código)
 void controlLED(unsigned char ledActual, char estado) {
     // Tabla de bits para cada LED
-    static const unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
+    static unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
     
     if (ledActual < 6) {
         // Asigna estado a un LED específico

@@ -4787,37 +4787,15 @@ unsigned char __t3rd16on(void);
 # 1 "./TAD_TECLADO.h" 1
 
 
-# 1 "./TAD_TIMER.h" 1
-# 16 "./TAD_TIMER.h"
-void RSI_Timer0(void);
-
-
-
-void TI_Init (void);
-
-
-unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
-
-
-
-void TI_ResetTics (unsigned char TimerHandle);
-
-
-
-unsigned long TI_GetTics (unsigned char TimerHandle);
-# 4 "./TAD_TECLADO.h" 2
 
 
 
 
 
-static unsigned char ReadFilas(void);
 void initTeclado(void);
-void initPortsTeclado(void);
 void motorTeclado(void);
 void writeColumnas(void);
 unsigned char GetTecla(void);
-void showTecla(void);
 # 3 "TAD_TECLADO.c" 2
 # 1 "./TAD_TERMINAL.h" 1
 
@@ -4860,139 +4838,74 @@ void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 5 "TAD_TECLADO.c" 2
+# 1 "./TAD_TIMER.h" 1
+# 16 "./TAD_TIMER.h"
+void RSI_Timer0(void);
 
 
-static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
 
-const unsigned char keymap[4][3] = {
-        {0x01, 0x02, 0x03},
-        {0x04, 0x05, 0x06},
-        {0x07, 0x08, 0x09},
-        {0x0A, 0x00, 0x0B}
-    };
+void TI_Init (void);
 
-static unsigned char ReadFilas(void) {
-    return (PORTD & 0x0F);
-}
+
+unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
+
+
+
+void TI_ResetTics (unsigned char TimerHandle);
+
+
+
+unsigned long TI_GetTics (unsigned char TimerHandle);
+# 6 "TAD_TECLADO.c" 2
+
+
+
+
+
+
+
+static unsigned char Filas, Columnas, timer, tecla, state;
+
+
+static const char keymap[] = {
+    0x01, 0x02, 0x03,
+    0x04, 0x05, 0x06,
+    0x07, 0x08, 0x09,
+    0x0A, 0x00, 0x0B
+};
+
+
+static unsigned char colValues[] = {(1<<5), (1<<6), (1<<4)};
+
+
+
+
 
 void initTeclado(void) {
- initPortsTeclado();
-    Filas = 0x00;
-    Columnas = 0x00;
-    tecla = 0;
- state = 0;
+
+    TRISD = 0x0F;
+    LATD = 0x00;
+
+
+    Filas = Columnas = tecla = state = 0;
+
+
     TI_NewTimer(&timer);
 }
 
-void initPortsTeclado(void) {
-
-
- TRISD = 0x0F;
- LATD = 0x00;
-}
-
-
-
-
-
-void motorTeclado(void) {
- switch(state) {
-  case 0:
-   Filas = ReadFilas();
-   if (Filas == 0x0) {
-    Columnas = (0x01);
-    writeColumnas();
-    state = 1;
-   }
-   else if (Filas != 0x0) {
-    TI_ResetTics(timer);
-    state = 3;
-   }
-  break;
-  case 1:
-   Filas = ReadFilas();
-   if (Filas == 0x0) {
-    Columnas = (0x02);
-    writeColumnas();
-    state = 2;
-   }
-   else if (Filas != 0x0) {
-    TI_ResetTics(timer);
-    state = 3;
-   }
-  break;
-  case 2:
-   Filas = ReadFilas();
-   if (Filas != 0x0) {
-    TI_ResetTics(timer);
-    state = 3;
-   }
-   else if (Filas == 0x0) {
-    Columnas = (0x04);
-    writeColumnas();
-    state = 0;
-   }
-  break;
-  case 3:
-   tecla = GetTecla ();
-   Filas = ReadFilas();
-   if (Filas == 0x0) {
-    Columnas = (0x04);
-    writeColumnas();
-    state = 0;
-   }
-   else if (Filas != 0x0 && TI_GetTics(timer) > 4 && tecla != 0x0B) {
-    setLed(tecla);
-    state = 5;
-   }
-   else if (Filas != 0x0 && TI_GetTics(timer) > 4 && tecla == 0x0B) {
-    TI_ResetTics(timer);
-    state = 4;
-   }
-  break;
-  case 4:
-   Filas = ReadFilas();
-   if (Filas == 0x0) {
-    state = 0;
-   }
-   else if (Filas != 0x0 && TI_GetTics(timer) > 1500) {
-    hashtag_pressed3s();
-
-    state = 5;
-   }
-  break;
-  case 5:
-   Filas = ReadFilas();
-   if (Filas == 0x0) {
-    state = 0;
-    Columnas = (0x04);
-    writeColumnas();
-   }
-  break;
- }
-}
-
-
-
-
 
 void writeColumnas(void) {
-    LATD = (0x00);
-    if (Columnas == 0x01) {
-
-        LATD |= (1 << 5);
-    } else if (Columnas == 0x02) {
-
-        LATD |= (1 << 6);
-    } else if (Columnas == 0x04) {
-
-        LATD |= (1 << 4);
+    if (Columnas < 3) {
+        LATD = colValues[Columnas];
+    } else {
+        LATD = 0;
     }
 }
 
+
 unsigned char GetTecla(void) {
-    unsigned char fila = 0;
-    unsigned char columna = 0;
+    unsigned char fila = 0, columna = 0;
+
 
     switch(Filas) {
         case 0x1: fila = 0; break;
@@ -5003,12 +4916,83 @@ unsigned char GetTecla(void) {
     }
 
 
-    switch(Columnas & 0x07) {
-        case 0x01: columna = 0; break;
-        case 0x02: columna = 1; break;
-        case 0x04: columna = 2; break;
-        default: return 0xFF;
-    }
+    columna = Columnas;
 
-    return keymap[fila][columna];
+
+    return keymap[fila * 3 + columna];
+}
+
+
+void motorTeclado(void) {
+
+    Filas = (PORTD & 0x0F);
+
+    switch(state) {
+        case 0:
+            if (Filas) {
+                TI_ResetTics(timer);
+                state = 3;
+            } else {
+                Columnas = 0;
+                writeColumnas();
+                state = 1;
+            }
+            break;
+
+        case 1:
+            if (Filas) {
+                TI_ResetTics(timer);
+                state = 3;
+            } else {
+                Columnas = 1;
+                writeColumnas();
+                state = 2;
+            }
+            break;
+
+        case 2:
+            if (Filas) {
+                TI_ResetTics(timer);
+                state = 3;
+            } else {
+                Columnas = 2;
+                writeColumnas();
+                state = 0;
+            }
+            break;
+
+        case 3:
+            tecla = GetTecla();
+            if (!Filas) {
+                Columnas = 2;
+                writeColumnas();
+                state = 0;
+            } else if (TI_GetTics(timer) > 4) {
+                if (tecla != 0x0B) {
+                    setLed(tecla);
+                    state = 5;
+                } else {
+                    TI_ResetTics(timer);
+                    state = 4;
+                }
+            }
+            break;
+
+        case 4:
+            if (!Filas) {
+                state = 0;
+            } else if (TI_GetTics(timer) > 1500) {
+                hashtag_pressed3s();
+                state = 5;
+            }
+            break;
+
+        case 5:
+            if (!Filas) {
+                state = 0;
+                Columnas = 2;
+                writeColumnas();
+            }
+            break;
+    }
 }

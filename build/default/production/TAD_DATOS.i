@@ -4856,62 +4856,74 @@ char motor_SendString(void);
 void motor_StartSendString(const char* str);
 # 5 "TAD_DATOS.c" 2
 
+
 unsigned char userUIDs[4][16] = {
     {0x65, 0xDC, 0xF9, 0x03, 0x43},
     {0xDC, 0x0D, 0xF9, 0x03, 0x2B},
     {0xDF, 0x8B, 0xDF, 0xC4, 0x4F},
- {0x21, 0x32, 0xA9, 0x89, 0x33}
+    {0x21, 0x32, 0xA9, 0x89, 0x33}
 };
 
 unsigned char configurations[4][6] = {
     {1, 1, 1, 1, 1, 1},
     {1, 1, 1, 1, 1, 1},
     {1, 1, 1, 1, 1, 1},
- {1, 1, 1, 1, 1, 1}
+    {1, 1, 1, 1, 1, 1}
 };
 
-unsigned char currentUser[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
-unsigned char new_configuration = 0;
-unsigned char new_user = 0;
-int index = 0, pointer = 0;
-unsigned char currentTime[4] = "0000";
 
-void initData(void){
- currentUser[0] = 0x00;
- currentUser[1] = 0x00;
- currentUser[2] = 0x00;
- currentUser[3] = 0x00;
- currentUser[4] = 0x00;
+static unsigned char currentUser[5] = {0};
+static unsigned char new_configuration = 0;
+static unsigned char new_user = 0;
+static int index = 0;
+static unsigned char currentTime[4] = "0000";
+
+
+void initData(void) {
+    for(char i = 0; i < 5; i++) currentUser[i] = 0;
 }
 
 
 void getActualUID(unsigned char* UID) {
- if(currentUser[0] == 0x00 && currentUser[1] == 0x00 && currentUser[2] == 0x00 && currentUser[3] == 0x00 && currentUser[4] == 0x00) {
-  UID = ((void*)0);
- }
-    else{
-  UID[0] = currentUser[0];
-  UID[1] = currentUser[1];
-  UID[2] = currentUser[2];
-  UID[3] = currentUser[3];
-  UID[4] = currentUser[4];
- }
+    if(!UID) return;
+
+
+    if(!currentUser[0]) {
+        UID[0] = 0x00;
+        UID[1] = 0x00;
+        UID[2] = 0x00;
+        UID[3] = 0x00;
+        UID[4] = 0x00;
+        return;
+    }
+
+
+    for(char i = 0; i < 5; i++) {
+        UID[i] = currentUser[i];
+    }
 }
 
+
 void getActualLeds(unsigned char* leds) {
-    for(int i = 0; i < 6; i++) {
+    if(!leds) return;
+
+
+    for(char i = 0; i < 6; i++) {
         leds[i] = configurations[index][i];
     }
 }
 
+
 void showAllConfigurations(void) {
-    for (int i = 0; i < 4; i++) {
-        Terminal_SendString("User ");
+    static const char userStr[] = "User ";
+    static const char configStr[] = " Config: ";
+
+    for(char i = 0; i < 4; i++) {
+        Terminal_SendString(userStr);
         Terminal_SendChar('1' + i);
-        Terminal_SendString(" Config: ");
+        Terminal_SendString(configStr);
 
-        for (int j = 0; j < 6; j++) {
-
+        for(char j = 0; j < 6; j++) {
             Terminal_SendChar('0' + configurations[i][j]);
             Terminal_SendString(" ");
         }
@@ -4925,112 +4937,84 @@ void newConfiguration(void) {
 }
 
 void saveHourToData(unsigned char hour[4]) {
-    currentTime[0] = hour[0];
-    currentTime[1] = hour[1];
-    currentTime[2] = hour[2];
-    currentTime[3] = hour[3];
+    if(!hour) return;
+    for(char i = 0; i < 4; i++) currentTime[i] = hour[i];
 }
+
 
 void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
- currentUser[0] = UID0;
- currentUser[1] = UID1;
- currentUser[2] = UID2;
- currentUser[3] = UID3;
- currentUser[4] = UID4;
- new_user = 1;
- Terminal_SendString("Targeta detectada!\r\n\t");
- printfUID(currentUser);
- Terminal_SendString("\t");
- printLedConfig(configurations[index]);
+    currentUser[0] = UID0;
+    currentUser[1] = UID1;
+    currentUser[2] = UID2;
+    currentUser[3] = UID3;
+    currentUser[4] = UID4;
+    new_user = 1;
+
+    Terminal_SendString("Targeta detectada!\r\n\t");
+    printfUID(currentUser);
+    Terminal_SendString("\t");
+    printLedConfig(configurations[index]);
 }
 
+
 char checkUserUID(void) {
-    if (currentUser[0] == userUIDs[0][0] && currentUser[1] == userUIDs[0][1] &&
-        currentUser[2] == userUIDs[0][2] && currentUser[3] == userUIDs[0][3] &&
-        currentUser[4] == userUIDs[0][4]) {
-        return 0;
+
+    if(!currentUser[0]) return 0;
+
+
+    for(char i = 0; i < 4; i++) {
+        char match = 1;
+        for(char j = 0; j < 5; j++) {
+            if(currentUser[j] != userUIDs[i][j]) {
+                match = 0;
+                break;
+            }
+        }
+        if(match) return i;
     }
-    else if (currentUser[0] == userUIDs[1][0] && currentUser[1] == userUIDs[1][1] &&
-             currentUser[2] == userUIDs[1][2] && currentUser[3] == userUIDs[1][3] &&
-             currentUser[4] == userUIDs[1][4]) {
-        return 1;
-    }
-    else if (currentUser[0] == userUIDs[2][0] && currentUser[1] == userUIDs[2][1] &&
-             currentUser[2] == userUIDs[2][2] && currentUser[3] == userUIDs[2][3] &&
-             currentUser[4] == userUIDs[2][4]) {
-        return 2;
-    }
-    else if (currentUser[0] == userUIDs[3][0] && currentUser[1] == userUIDs[3][1] &&
-             currentUser[2] == userUIDs[3][2] && currentUser[3] == userUIDs[3][3] &&
-             currentUser[4] == userUIDs[3][4]) {
-     return 3;
-    }
- return 0;
+    return 0;
 }
+
 
 void motor_datos(void) {
     static char state = 0;
     static char pointer = 0;
-    unsigned char lastChar;
+    static unsigned char lastChar;
 
     switch(state) {
         case 0:
-
-            if (new_configuration == 1 || new_user == 1) {
-                new_configuration = 0;
-                new_user = 0;
-
-
+            if(new_configuration || new_user) {
+                new_configuration = new_user = 0;
                 index = checkUserUID();
-
                 state = 1;
             }
             break;
 
         case 1:
-
-
             lastChar = currentUser[4];
             LcPutChar((lastChar < 10) ? ('0' + lastChar) : ('A' + (lastChar - 10)));
-
-
             LcPutChar(' ');
-
-
             state = 2;
             break;
 
         case 2:
-
-
-
-            LcPutChar(currentTime[0]);
-            LcPutChar(currentTime[1]);
-            LcPutChar(':');
-            LcPutChar(currentTime[2]);
-            LcPutChar(currentTime[3]);
-
-
+            for(char i = 0; i < 4; i++) {
+                LcPutChar(currentTime[i]);
+                if(i == 1) LcPutChar(':');
+            }
             LcPutChar(' ');
-
-
             pointer = 0;
             state = 3;
             break;
 
         case 3:
-
-
-            if (pointer < 6) {
-
-                LcPutChar((char)('1' + pointer));
+            if(pointer < 6) {
+                LcPutChar('1' + pointer);
                 LcPutChar('-');
-
-                LcPutChar((char)('0' + configurations[index][pointer]));
+                LcPutChar('0' + configurations[index][pointer]);
                 LcPutChar(' ');
                 pointer++;
             } else {
-
                 pointer = 0;
                 state = 0;
             }
@@ -5040,26 +5024,24 @@ void motor_datos(void) {
 
 
 void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity) {
-    if (userIndex < 4 && ledIndex < 6) {
-        if (intensity <= 0xA) {
-            configurations[userIndex][ledIndex] = intensity;
-        }
+    if(userIndex < 4 && ledIndex < 6 && intensity <= 0xA) {
+        configurations[userIndex][ledIndex] = intensity;
     }
 }
 
-void setLed(unsigned char tecla){
- static char modeLED = 0;
- static char ledIndex = 0;
- static char userIndex = 0;
 
- if(modeLED == 0){
-  ledIndex = tecla - 1;
-  modeLED = 1;
- } else{
-  userIndex = checkUserUID();
-  setLEDIntensity(userIndex, ledIndex, tecla);
-  new_configuration = 1;
-  modeLED = 0;
- }
+void setLed(unsigned char tecla) {
+    static char modeLED = 0;
+    static char ledIndex = 0;
+    static char userIndex = 0;
 
+    if(!modeLED) {
+        ledIndex = tecla - 1;
+        modeLED = 1;
+    } else {
+        userIndex = checkUserUID();
+        setLEDIntensity(userIndex, ledIndex, tecla);
+        new_configuration = 1;
+        modeLED = 0;
+    }
 }

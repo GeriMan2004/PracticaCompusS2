@@ -5025,7 +5025,7 @@ char motor_Read(char addr) {
     static unsigned char ucAddr;
     static unsigned char ucResult;
     static unsigned int timeout_counter = 0;
-    const unsigned int MAX_TIMEOUT = 1000;
+    static unsigned int MAX_TIMEOUT = 1000;
 
     if (++timeout_counter > MAX_TIMEOUT) {
         LATCbits.LATC3 = LATCbits.LATC2 = 1;
@@ -5069,9 +5069,39 @@ char motor_Read(char addr) {
 
 
 void initRFID() {
+
     InitPortDirections();
-    MFRC522_Init();
+
+
+    resetMotorStates();
+    LATCbits.LATC4 = 1;
+    delay_us(1);
+    LATCbits.LATC4 = 0;
+    delay_us(1);
+    LATCbits.LATC4 = 1;
+    delay_us(1);
+
+
+    while (!motor_Write(0x01, 0x0F)) { }
+    delay_us(1);
+
+
+    while (!motor_Write(0x2A, 0x8D)) { }
+    while (!motor_Write(0x2B, 0x3E)) { }
+    while (!motor_Write(0x2D, 30)) { }
+    while (!motor_Write(0x2C, 0)) { }
+    while (!motor_Write(0x15, 0x40)) { }
+    while (!motor_Write(0x11, 0x3D)) { }
+
+
+    unsigned char regVal;
+    do {
+        regVal = motor_Read(0x14);
+    } while (regVal == 0xFE);
+    regVal |= 0x03;
+    while (!motor_Write(0x14, regVal)) { }
 }
+
 
 
 void process_substates(char *substate, char flag, char next_state) {
@@ -5092,361 +5122,420 @@ void motor_RFID(void) {
     static unsigned char checksum;
     static unsigned char allZero;
     static unsigned char tempRegValue;
-    unsigned char flag = 0;
     static unsigned char lastBitsVal;
     static unsigned char fifoLevel;
-    unsigned char backBitsCalc;
+    static unsigned char backBitsCalc;
 
-    switch(state) {
 
-        case 0:
-            switch(substate) {
-                case 0:
-                    flag = motor_Write(0x0D, 0x07);
-                    if (flag != 0){
-                        TagType = 0x26;
+    static char operation_pending = 0;
+    static unsigned char addr;
+    static unsigned char value;
+    unsigned char flag = 0;
+
+
+    if (operation_pending == 1) {
+
+        flag = motor_Read(addr);
+        if (flag != 0xFE) {
+            tempRegValue = flag;
+            operation_pending = 0;
+        } else {
+            return;
+        }
+    } else if (operation_pending == 2) {
+
+        flag = motor_Write(addr, value);
+        if (flag != 0) {
+            operation_pending = 0;
+        } else {
+            return;
+        }
+    } else {
+
+        switch(state) {
+
+            case 0:
+                switch(substate) {
+                    case 0:
+                        addr = 0x0D;
+                        value = 0x07;
+                        operation_pending = 2;
                         substate = 1;
-                    }
-                    break;
-                case 1:
-                    irqEn = 0x77;
-                    waitIRq = 0x30;
-                    flag = motor_Write(0x02, irqEn | 0x80);
-                    if (flag != 0) substate = 2;
-                    break;
-                case 2:
-                    flag = motor_Read(0x04);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
+                        break;
+                    case 1:
+                        TagType = 0x26;
+                        irqEn = 0x77;
+                        waitIRq = 0x30;
+                        addr = 0x02;
+                        value = irqEn | 0x80;
+                        operation_pending = 2;
+                        substate = 2;
+                        break;
+                    case 2:
+                        addr = 0x04;
+                        operation_pending = 1;
                         substate = 3;
-                    }
-                    break;
-                case 3:
-                    flag = motor_Write(0x02, tempRegValue & ~0x80);
-                    if (flag != 0) substate = 4;
-                    break;
-                case 4:
-                    flag = motor_Read(0x0A);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        substate = 5;
-                    }
-                    break;
-                case 5:
-                    flag = motor_Write(0x0A, tempRegValue | 0x80);
-                    if (flag != 0) substate = 6;
-                    break;
-                case 6:
-                    flag = motor_Write(0x01, 0x00);
-                    if (flag != 0) substate = 7;
-                    break;
-                case 7:
-                    flag = motor_Write(0x09, TagType);
-                    if (flag != 0) substate = 8;
-                    break;
-                case 8:
-                    flag = motor_Write(0x01, 0x0C);
-                    if (flag != 0) substate = 9;
-                    break;
-                case 9:
-                    flag = motor_Read(0x0D);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        substate = 10;
-                    }
-                    break;
-                case 10:
-                    flag = motor_Write(0x0D, tempRegValue | 0x80);
-                    if (flag != 0){
-                        i = 0xFF;
-                        substate = 11;
-                    }
-                    break;
-                case 11:
-                    flag = motor_Read(0x04);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        n = flag;
-                        if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                            substate = 12;
+                        break;
+                    case 3:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else {
+                            addr = 0x02;
+                            value = tempRegValue & ~0x80;
+                            operation_pending = 2;
+                            substate = 4;
                         }
-                    }
-                    break;
-                case 12:
-                    flag = motor_Read(0x0D);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE && flag != 0x00) {
-                        substate = 13;
-                    }
-                    break;
-                case 13:
-                    flag = motor_Write(0x0D, tempRegValue & ~0x80);
-                    if (flag != 0) substate = 14;
-                    break;
-                case 14:
-                    flag = motor_Read(0x06);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        if (i != 0 && !(tempRegValue & 0x1B)) {
-                            substate = 15;
+                        break;
+                    case 4:
+                        addr = 0x0A;
+                        operation_pending = 1;
+                        substate = 5;
+                        break;
+                    case 5:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else {
+                            addr = 0x0A;
+                            value = tempRegValue | 0x80;
+                            operation_pending = 2;
+                            substate = 6;
+                        }
+                        break;
+                    case 6:
+                        addr = 0x01;
+                        value = 0x00;
+                        operation_pending = 2;
+                        substate = 7;
+                        break;
+                    case 7:
+                        addr = 0x09;
+                        value = TagType;
+                        operation_pending = 2;
+                        substate = 8;
+                        break;
+                    case 8:
+                        addr = 0x01;
+                        value = 0x0C;
+                        operation_pending = 2;
+                        substate = 9;
+                        break;
+                    case 9:
+                        addr = 0x0D;
+                        operation_pending = 1;
+                        substate = 10;
+                        break;
+                    case 10:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else {
+                            addr = 0x0D;
+                            value = tempRegValue | 0x80;
+                            operation_pending = 2;
+                            substate = 11;
+                        }
+                        break;
+                    case 11:
+                        i = 0xFF;
+                        addr = 0x04;
+                        operation_pending = 1;
+                        substate = 12;
+                        break;
+                    case 12:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else {
+                            n = tempRegValue;
+                            if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                                addr = 0x0D;
+                                operation_pending = 1;
+                                substate = 13;
+                            } else {
+                                addr = 0x04;
+                                operation_pending = 1;
+
+                            }
+                        }
+                        break;
+                    case 13:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else if (tempRegValue != 0x00) {
+                            addr = 0x0D;
+                            value = tempRegValue & ~0x80;
+                            operation_pending = 2;
+                            substate = 14;
+                        } else {
+                            addr = 0x0D;
+                            operation_pending = 1;
+
+                        }
+                        break;
+                    case 14:
+                        addr = 0x06;
+                        operation_pending = 1;
+                        substate = 15;
+                        break;
+                    case 15:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else if (i != 0 && !(tempRegValue & 0x1B)) {
+                            addr = 0x0A;
+                            operation_pending = 1;
+                            substate = 16;
                         } else {
                             state = substate = 0;
                         }
-                    }
-                    break;
-                case 15:
-                    flag = motor_Read(0x0A);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        fifoLevel = flag;
-                        substate = 16;
-                    }
-                    break;
-                case 16:
-                    flag = motor_Read(0x0C);
-                    if (flag == 0xFF) {
-                        substate = 0;
-                    } else if (flag != 0xFE) {
-                        lastBitsVal = flag & 0x07;
-                        substate = 17;
-                    }
-                    break;
-                case 17:
-                    backBitsCalc = lastBitsVal ? (fifoLevel - 1) * 8 + lastBitsVal : fifoLevel * 8;
-                    if (backBitsCalc == 0x10) {
-                        state = 1;
-                        substate = 0;
-                    } else {
-                        state = substate = 0;
-                    }
-                    break;
-            }
-            break;
+                        break;
+                    case 16:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else {
+                            fifoLevel = tempRegValue;
+                            addr = 0x0C;
+                            operation_pending = 1;
+                            substate = 17;
+                        }
+                        break;
+                    case 17:
+                        if (tempRegValue == 0xFF) {
+                            substate = 0;
+                        } else {
+                            lastBitsVal = tempRegValue & 0x07;
+                            backBitsCalc = lastBitsVal ? (fifoLevel - 1) * 8 + lastBitsVal : fifoLevel * 8;
+                            if (backBitsCalc == 0x10) {
+                                state = 1;
+                                substate = 0;
+                            } else {
+                                state = substate = 0;
+                            }
+                        }
+                        break;
+                }
+                break;
 
-        case 1:
-            switch(substate) {
-                case 0:
-                    flag = motor_Write(0x0D, 0x00);
-                    if (flag != 0){
+            case 1:
+                switch(substate) {
+                    case 0:
+                        addr = 0x0D;
+                        value = 0x00;
+                        operation_pending = 2;
+                        substate = 1;
+                        break;
+                    case 1:
                         UID[0] = 0x93;
                         UID[1] = 0x20;
-                        substate = 1;
-                    }
-                    break;
-                case 1:
-                    flag = motor_Read(0x08);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
+                        addr = 0x08;
+                        operation_pending = 1;
                         substate = 2;
-                    }
-                    break;
-                case 2:
-                    flag = motor_Write(0x08, tempRegValue & ~0x08);
-                    if (flag != 0) substate = 3;
-                    break;
-                case 3:
-                    irqEn = 0x77;
-                    waitIRq = 0x30;
-                    flag = motor_Write(0x02, irqEn | 0x80);
-                    if (flag != 0) substate = 4;
-                    break;
-                case 4:
-                    flag = motor_Read(0x04);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        substate = 5;
-                    }
-                    break;
-                case 5:
-                    flag = motor_Write(0x04, tempRegValue & ~0x80);
-                    if (flag != 0) substate = 6;
-                    break;
-                case 6:
-                    flag = motor_Read(0x0A);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        substate = 7;
-                    }
-                    break;
-                case 7:
-                    flag = motor_Write(0x0A, tempRegValue | 0x80);
-                    if (flag != 0) substate = 8;
-                    break;
-                case 8:
-                    flag = motor_Write(0x01, 0x00);
-                    if (flag != 0) substate = 9;
-                    break;
-                case 9:
-                    flag = motor_Write(0x09, UID[0]);
-                    if (flag != 0) substate = 10;
-                    break;
-                case 10:
-                    flag = motor_Write(0x09, UID[1]);
-                    if (flag != 0) substate = 11;
-                    break;
-                case 11:
-                    flag = motor_Write(0x01, 0x0C);
-                    if (flag != 0) substate = 12;
-                    break;
-                case 12:
-                    flag = motor_Read(0x0D);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        substate = 13;
-                    }
-                    break;
-                case 13:
-                    flag = motor_Write(0x0D, tempRegValue | 0x80);
-                    if (flag != 0){
-                        i = 0xFF;
-                        substate = 14;
-                    }
-                    break;
-                case 14:
-                    flag = motor_Read(0x04);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        n = flag;
-                        if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-                            substate = 15;
+                        break;
+                    case 2:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            addr = 0x08;
+                            value = tempRegValue & ~0x08;
+                            operation_pending = 2;
+                            substate = 3;
                         }
-                    }
-                    break;
-                case 15:
-                    flag = motor_Read(0x0D);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        substate = 16;
-                    }
-                    break;
-                case 16:
-                    flag = motor_Write(0x0D, tempRegValue & ~0x80);
-                    if (flag != 0) substate = 17;
-                    break;
-                case 17:
-                    flag = motor_Read(0x06);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        tempRegValue = flag;
-                        if (i != 0 && !(tempRegValue & 0x1B)) {
-                            substate = 18;
+                        break;
+                    case 3:
+                        irqEn = 0x77;
+                        waitIRq = 0x30;
+                        addr = 0x02;
+                        value = irqEn | 0x80;
+                        operation_pending = 2;
+                        substate = 4;
+                        break;
+                    case 4:
+                        addr = 0x04;
+                        operation_pending = 1;
+                        substate = 5;
+                        break;
+                    case 5:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            addr = 0x04;
+                            value = tempRegValue & ~0x80;
+                            operation_pending = 2;
+                            substate = 6;
+                        }
+                        break;
+                    case 6:
+                        addr = 0x0A;
+                        operation_pending = 1;
+                        substate = 7;
+                        break;
+                    case 7:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            addr = 0x0A;
+                            value = tempRegValue | 0x80;
+                            operation_pending = 2;
+                            substate = 8;
+                        }
+                        break;
+                    case 8:
+                        addr = 0x01;
+                        value = 0x00;
+                        operation_pending = 2;
+                        substate = 9;
+                        break;
+                    case 9:
+                        addr = 0x09;
+                        value = UID[0];
+                        operation_pending = 2;
+                        substate = 10;
+                        break;
+                    case 10:
+                        addr = 0x09;
+                        value = UID[1];
+                        operation_pending = 2;
+                        substate = 11;
+                        break;
+                    case 11:
+                        addr = 0x01;
+                        value = 0x0C;
+                        operation_pending = 2;
+                        substate = 12;
+                        break;
+                    case 12:
+                        addr = 0x0D;
+                        operation_pending = 1;
+                        substate = 13;
+                        break;
+                    case 13:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            addr = 0x0D;
+                            value = tempRegValue | 0x80;
+                            operation_pending = 2;
+                            substate = 14;
+                        }
+                        break;
+                    case 14:
+                        i = 0xFF;
+                        addr = 0x04;
+                        operation_pending = 1;
+                        substate = 15;
+                        break;
+                    case 15:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            n = tempRegValue;
+                            if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+                                addr = 0x0D;
+                                operation_pending = 1;
+                                substate = 16;
+                            } else {
+                                addr = 0x04;
+                                operation_pending = 1;
+
+                            }
+                        }
+                        break;
+                    case 16:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            addr = 0x0D;
+                            value = tempRegValue & ~0x80;
+                            operation_pending = 2;
+                            substate = 17;
+                        }
+                        break;
+                    case 17:
+                        addr = 0x06;
+                        operation_pending = 1;
+                        substate = 18;
+                        break;
+                    case 18:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else if (i != 0 && !(tempRegValue & 0x1B)) {
+                            addr = 0x09;
+                            operation_pending = 1;
+                            substate = 19;
                         } else {
                             state = substate = 0;
                         }
-                    }
-                    break;
-
-                case 18:
-                    flag = motor_Read(0x09);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        UID[0] = flag;
-                        substate = 19;
-                    }
-                    break;
-                case 19:
-                    flag = motor_Read(0x09);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        UID[1] = flag;
-                        substate = 20;
-                    }
-                    break;
-                case 20:
-                    flag = motor_Read(0x09);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        UID[2] = flag;
-                        substate = 21;
-                    }
-                    break;
-                case 21:
-                    flag = motor_Read(0x09);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        UID[3] = flag;
-                        substate = 22;
-                    }
-                    break;
-
-                case 22:
-                    flag = motor_Read(0x09);
-                    if (flag == 0xFF) {
-                        state = substate = 0;
-                    } else if (flag != 0xFE) {
-                        UID[4] = flag;
-                        UID[5] = 0;
-                        substate = 23;
-                    }
-                    break;
-
-                case 23:
-                    checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
-                    allZero = 1;
-                    substate = 24;
-                    break;
-
-                case 24:
-
-                    allZero = ((UID[0] | UID[1] | UID[2] | UID[3]) == 0);
-                    substate = 26;
-                    break;
-
-                case 26:
-                    if (checksum != UID[4] || allZero) {
-                        state = substate = 0;
-                    } else {
-                        substate = 27;
-                    }
-                    break;
-
-                case 27:
-                    {
-                        char differentUID = 1;
-                        unsigned char currentUser[5];
-                        getActualUID(currentUser);
-
-                        if(currentUser[0] != UID[0]) {
-                            setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
+                        break;
+                    case 19:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            UID[0] = tempRegValue;
+                            addr = 0x09;
+                            operation_pending = 1;
+                            substate = 20;
                         }
-                        substate = 28;
-                    }
-                    break;
+                        break;
+                    case 20:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            UID[1] = tempRegValue;
+                            addr = 0x09;
+                            operation_pending = 1;
+                            substate = 21;
+                        }
+                        break;
+                    case 21:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            UID[2] = tempRegValue;
+                            addr = 0x09;
+                            operation_pending = 1;
+                            substate = 22;
+                        }
+                        break;
+                    case 22:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            UID[3] = tempRegValue;
+                            addr = 0x09;
+                            operation_pending = 1;
+                            substate = 23;
+                        }
+                        break;
+                    case 23:
+                        if (tempRegValue == 0xFF) {
+                            state = substate = 0;
+                        } else {
+                            UID[4] = tempRegValue;
+                            UID[5] = 0;
+                            checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
+                            allZero = ((UID[0] | UID[1] | UID[2] | UID[3]) == 0);
+                            substate = 24;
+                        }
+                        break;
+                    case 24:
+                        if (checksum != UID[4] || allZero) {
+                            state = substate = 0;
+                        } else {
+                            char differentUID = 1;
+                            unsigned char currentUser[5];
+                            getActualUID(currentUser);
 
-                case 28:
-                    flag = motor_Write(0x0D, 0x00);
-                    if (flag != 0) {
+                            if(currentUser[0] != UID[0]) {
+                                setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
+                            }
+                            addr = 0x0D;
+                            value = 0x00;
+                            operation_pending = 2;
+                            substate = 25;
+                        }
+                        break;
+                    case 25:
                         state = substate = 0;
-                    }
-                    break;
-            }
-            break;
+                        break;
+                }
+                break;
+        }
     }
 }

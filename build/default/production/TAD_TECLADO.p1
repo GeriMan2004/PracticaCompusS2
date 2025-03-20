@@ -1,29 +1,20 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"641 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 641: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
-"11 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 11: void initPortsTeclado(void);
-[v _initPortsTeclado `(v ~T0 @X0 0 ef ]
-"23 ./TAD_TIMER.h
-[; ;./TAD_TIMER.h: 23: unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
-[v _TI_NewTimer `(uc ~T0 @X0 0 ef1`*uc ]
 "2152 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2152: extern volatile unsigned char TRISD __attribute__((address(0xF95)));
 [v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
 "1322
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1322: extern volatile unsigned char LATD __attribute__((address(0xF8C)));
 [v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"13 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 13: void writeColumnas(void);
-[v _writeColumnas `(v ~T0 @X0 0 ef ]
+"23 ./TAD_TIMER.h
+[; ;./TAD_TIMER.h: 23: unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
+[v _TI_NewTimer `(uc ~T0 @X0 0 ef1`*uc ]
+"641 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 641: extern volatile unsigned char PORTD __attribute__((address(0xF83)));
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
 "27 ./TAD_TIMER.h
 [; ;./TAD_TIMER.h: 27: void TI_ResetTics (unsigned char TimerHandle);
 [v _TI_ResetTics `(v ~T0 @X0 0 ef1`uc ]
-"14 ./TAD_TECLADO.h
-[; ;./TAD_TECLADO.h: 14: unsigned char GetTecla(void);
-[v _GetTecla `(uc ~T0 @X0 0 ef ]
-"31 ./TAD_TIMER.h
+"31
 [; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);
 [v _TI_GetTics `(ul ~T0 @X0 0 ef1`uc ]
 "9 ./TAD_DATOS.h
@@ -446,520 +437,403 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7008
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"7 TAD_TECLADO.c
-[; ;TAD_TECLADO.c: 7: static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
+"13 TAD_TECLADO.c
+[; ;TAD_TECLADO.c: 13: static unsigned char Filas, Columnas, timer, tecla, state;
 [v _Filas `uc ~T0 @X0 1 s ]
 [v _Columnas `uc ~T0 @X0 1 s ]
 [v _timer `uc ~T0 @X0 1 s ]
 [v _tecla `uc ~T0 @X0 1 s ]
-[i _tecla
--> -> 0 `i `uc
-]
 [v _state `uc ~T0 @X0 1 s ]
-[i _state
--> -> 0 `i `uc
-]
-[v F2752 `Cuc ~T0 @X0 -> 3 `i t ]
-"9
-[; ;TAD_TECLADO.c: 9: const unsigned char keymap[4][3] = {
-[v _keymap `F2752 ~T0 @X0 -> 4 `i e ]
+"16
+[; ;TAD_TECLADO.c: 16: static const char keymap[] = {
+[v _keymap `Cuc ~T0 @X0 -> 12 `i s ]
 [i _keymap
-:U ..
 :U ..
 -> -> 1 `i `uc
 -> -> 2 `i `uc
 -> -> 3 `i `uc
-..
-:U ..
 -> -> 4 `i `uc
 -> -> 5 `i `uc
 -> -> 6 `i `uc
-..
-:U ..
 -> -> 7 `i `uc
 -> -> 8 `i `uc
 -> -> 9 `i `uc
-..
-:U ..
 -> -> 10 `i `uc
 -> -> 0 `i `uc
 -> -> 11 `i `uc
 ..
+]
+"24
+[; ;TAD_TECLADO.c: 24: static unsigned char colValues[] = {(1<<5), (1<<6), (1<<4)};
+[v _colValues `uc ~T0 @X0 -> 3 `i s ]
+[i _colValues
+:U ..
+-> << -> 1 `i -> 5 `i `uc
+-> << -> 1 `i -> 6 `i `uc
+-> << -> 1 `i -> 4 `i `uc
 ..
 ]
-"16
-[; ;TAD_TECLADO.c: 16: static unsigned char ReadFilas(void) {
-[v _ReadFilas `(uc ~T0 @X0 1 sf ]
-{
-[e :U _ReadFilas ]
-[f ]
-"17
-[; ;TAD_TECLADO.c: 17:     return (PORTD & 0x0F);
-[e ) -> & -> _PORTD `i -> 15 `i `uc ]
-[e $UE 302  ]
-"18
-[; ;TAD_TECLADO.c: 18: }
-[e :UE 302 ]
-}
-"20
-[; ;TAD_TECLADO.c: 20: void initTeclado(void) {
+"30
+[; ;TAD_TECLADO.c: 30: void initTeclado(void) {
 [v _initTeclado `(v ~T0 @X0 1 ef ]
 {
 [e :U _initTeclado ]
 [f ]
-"21
-[; ;TAD_TECLADO.c: 21:  initPortsTeclado();
-[e ( _initPortsTeclado ..  ]
-"22
-[; ;TAD_TECLADO.c: 22:     Filas = 0x00;
-[e = _Filas -> -> 0 `i `uc ]
-"23
-[; ;TAD_TECLADO.c: 23:     Columnas = 0x00;
-[e = _Columnas -> -> 0 `i `uc ]
-"24
-[; ;TAD_TECLADO.c: 24:     tecla = 0;
-[e = _tecla -> -> 0 `i `uc ]
-"25
-[; ;TAD_TECLADO.c: 25:  state = 0;
-[e = _state -> -> 0 `i `uc ]
-"26
-[; ;TAD_TECLADO.c: 26:     TI_NewTimer(&timer);
-[e ( _TI_NewTimer (1 &U _timer ]
-"27
-[; ;TAD_TECLADO.c: 27: }
-[e :UE 303 ]
-}
-"29
-[; ;TAD_TECLADO.c: 29: void initPortsTeclado(void) {
-[v _initPortsTeclado `(v ~T0 @X0 1 ef ]
-{
-[e :U _initPortsTeclado ]
-[f ]
 "32
-[; ;TAD_TECLADO.c: 32:  TRISD = 0x0F;
+[; ;TAD_TECLADO.c: 32:     TRISD = 0x0F;
 [e = _TRISD -> -> 15 `i `uc ]
 "33
-[; ;TAD_TECLADO.c: 33:  LATD = 0x00;
+[; ;TAD_TECLADO.c: 33:     LATD = 0x00;
 [e = _LATD -> -> 0 `i `uc ]
-"34
-[; ;TAD_TECLADO.c: 34: }
-[e :UE 304 ]
-}
+"36
+[; ;TAD_TECLADO.c: 36:     Filas = Columnas = tecla = state = 0;
+[e = _Filas = _Columnas = _tecla = _state -> -> 0 `i `uc ]
+"39
+[; ;TAD_TECLADO.c: 39:     TI_NewTimer(&timer);
+[e ( _TI_NewTimer (1 &U _timer ]
 "40
-[; ;TAD_TECLADO.c: 40: void motorTeclado(void) {
-[v _motorTeclado `(v ~T0 @X0 1 ef ]
-{
-[e :U _motorTeclado ]
-[f ]
-"41
-[; ;TAD_TECLADO.c: 41:  switch(state) {
-[e $U 307  ]
-{
-"42
-[; ;TAD_TECLADO.c: 42:   case 0:
-[e :U 308 ]
+[; ;TAD_TECLADO.c: 40: }
+[e :UE 302 ]
+}
 "43
-[; ;TAD_TECLADO.c: 43:    Filas = ReadFilas();
-[e = _Filas ( _ReadFilas ..  ]
-"44
-[; ;TAD_TECLADO.c: 44:    if (Filas == 0x0) {
-[e $ ! == -> _Filas `i -> 0 `i 309  ]
-{
-"45
-[; ;TAD_TECLADO.c: 45:     Columnas = (0x01);
-[e = _Columnas -> -> 1 `i `uc ]
-"46
-[; ;TAD_TECLADO.c: 46:     writeColumnas();
-[e ( _writeColumnas ..  ]
-"47
-[; ;TAD_TECLADO.c: 47:     state = 1;
-[e = _state -> -> 1 `i `uc ]
-"48
-[; ;TAD_TECLADO.c: 48:    }
-}
-[e $U 310  ]
-"49
-[; ;TAD_TECLADO.c: 49:    else if (Filas != 0x0) {
-[e :U 309 ]
-[e $ ! != -> _Filas `i -> 0 `i 311  ]
-{
-"50
-[; ;TAD_TECLADO.c: 50:     TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
-"51
-[; ;TAD_TECLADO.c: 51:     state = 3;
-[e = _state -> -> 3 `i `uc ]
-"52
-[; ;TAD_TECLADO.c: 52:    }
-}
-[e :U 311 ]
-[e :U 310 ]
-"53
-[; ;TAD_TECLADO.c: 53:   break;
-[e $U 306  ]
-"54
-[; ;TAD_TECLADO.c: 54:   case 1:
-[e :U 312 ]
-"55
-[; ;TAD_TECLADO.c: 55:    Filas = ReadFilas();
-[e = _Filas ( _ReadFilas ..  ]
-"56
-[; ;TAD_TECLADO.c: 56:    if (Filas == 0x0) {
-[e $ ! == -> _Filas `i -> 0 `i 313  ]
-{
-"57
-[; ;TAD_TECLADO.c: 57:     Columnas = (0x02);
-[e = _Columnas -> -> 2 `i `uc ]
-"58
-[; ;TAD_TECLADO.c: 58:     writeColumnas();
-[e ( _writeColumnas ..  ]
-"59
-[; ;TAD_TECLADO.c: 59:     state = 2;
-[e = _state -> -> 2 `i `uc ]
-"60
-[; ;TAD_TECLADO.c: 60:    }
-}
-[e $U 314  ]
-"61
-[; ;TAD_TECLADO.c: 61:    else if (Filas != 0x0) {
-[e :U 313 ]
-[e $ ! != -> _Filas `i -> 0 `i 315  ]
-{
-"62
-[; ;TAD_TECLADO.c: 62:     TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
-"63
-[; ;TAD_TECLADO.c: 63:     state = 3;
-[e = _state -> -> 3 `i `uc ]
-"64
-[; ;TAD_TECLADO.c: 64:    }
-}
-[e :U 315 ]
-[e :U 314 ]
-"65
-[; ;TAD_TECLADO.c: 65:   break;
-[e $U 306  ]
-"66
-[; ;TAD_TECLADO.c: 66:   case 2:
-[e :U 316 ]
-"67
-[; ;TAD_TECLADO.c: 67:    Filas = ReadFilas();
-[e = _Filas ( _ReadFilas ..  ]
-"68
-[; ;TAD_TECLADO.c: 68:    if (Filas != 0x0) {
-[e $ ! != -> _Filas `i -> 0 `i 317  ]
-{
-"69
-[; ;TAD_TECLADO.c: 69:     TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
-"70
-[; ;TAD_TECLADO.c: 70:     state = 3;
-[e = _state -> -> 3 `i `uc ]
-"71
-[; ;TAD_TECLADO.c: 71:    }
-}
-[e $U 318  ]
-"72
-[; ;TAD_TECLADO.c: 72:    else if (Filas == 0x0) {
-[e :U 317 ]
-[e $ ! == -> _Filas `i -> 0 `i 319  ]
-{
-"73
-[; ;TAD_TECLADO.c: 73:     Columnas = (0x04);
-[e = _Columnas -> -> 4 `i `uc ]
-"74
-[; ;TAD_TECLADO.c: 74:     writeColumnas();
-[e ( _writeColumnas ..  ]
-"75
-[; ;TAD_TECLADO.c: 75:     state = 0;
-[e = _state -> -> 0 `i `uc ]
-"76
-[; ;TAD_TECLADO.c: 76:    }
-}
-[e :U 319 ]
-[e :U 318 ]
-"77
-[; ;TAD_TECLADO.c: 77:   break;
-[e $U 306  ]
-"78
-[; ;TAD_TECLADO.c: 78:   case 3:
-[e :U 320 ]
-"79
-[; ;TAD_TECLADO.c: 79:    tecla = GetTecla ();
-[e = _tecla ( _GetTecla ..  ]
-"80
-[; ;TAD_TECLADO.c: 80:    Filas = ReadFilas();
-[e = _Filas ( _ReadFilas ..  ]
-"81
-[; ;TAD_TECLADO.c: 81:    if (Filas == 0x0) {
-[e $ ! == -> _Filas `i -> 0 `i 321  ]
-{
-"82
-[; ;TAD_TECLADO.c: 82:     Columnas = (0x04);
-[e = _Columnas -> -> 4 `i `uc ]
-"83
-[; ;TAD_TECLADO.c: 83:     writeColumnas();
-[e ( _writeColumnas ..  ]
-"84
-[; ;TAD_TECLADO.c: 84:     state = 0;
-[e = _state -> -> 0 `i `uc ]
-"85
-[; ;TAD_TECLADO.c: 85:    }
-}
-[e $U 322  ]
-"86
-[; ;TAD_TECLADO.c: 86:    else if (Filas != 0x0 && TI_GetTics(timer) > 4 && tecla != 0x0B) {
-[e :U 321 ]
-[e $ ! && && != -> _Filas `i -> 0 `i > ( _TI_GetTics (1 _timer -> -> -> 4 `i `l `ul != -> _tecla `i -> 11 `i 323  ]
-{
-"87
-[; ;TAD_TECLADO.c: 87:     setLed(tecla);
-[e ( _setLed (1 _tecla ]
-"88
-[; ;TAD_TECLADO.c: 88:     state = 5;
-[e = _state -> -> 5 `i `uc ]
-"89
-[; ;TAD_TECLADO.c: 89:    }
-}
-[e $U 324  ]
-"90
-[; ;TAD_TECLADO.c: 90:    else if (Filas != 0x0 && TI_GetTics(timer) > 4 && tecla == 0x0B) {
-[e :U 323 ]
-[e $ ! && && != -> _Filas `i -> 0 `i > ( _TI_GetTics (1 _timer -> -> -> 4 `i `l `ul == -> _tecla `i -> 11 `i 325  ]
-{
-"91
-[; ;TAD_TECLADO.c: 91:     TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
-"92
-[; ;TAD_TECLADO.c: 92:     state = 4;
-[e = _state -> -> 4 `i `uc ]
-"93
-[; ;TAD_TECLADO.c: 93:    }
-}
-[e :U 325 ]
-[e :U 324 ]
-[e :U 322 ]
-"94
-[; ;TAD_TECLADO.c: 94:   break;
-[e $U 306  ]
-"95
-[; ;TAD_TECLADO.c: 95:   case 4:
-[e :U 326 ]
-"96
-[; ;TAD_TECLADO.c: 96:    Filas = ReadFilas();
-[e = _Filas ( _ReadFilas ..  ]
-"97
-[; ;TAD_TECLADO.c: 97:    if (Filas == 0x0) {
-[e $ ! == -> _Filas `i -> 0 `i 327  ]
-{
-"98
-[; ;TAD_TECLADO.c: 98:     state = 0;
-[e = _state -> -> 0 `i `uc ]
-"99
-[; ;TAD_TECLADO.c: 99:    }
-}
-[e $U 328  ]
-"100
-[; ;TAD_TECLADO.c: 100:    else if (Filas != 0x0 && TI_GetTics(timer) > 1500) {
-[e :U 327 ]
-[e $ ! && != -> _Filas `i -> 0 `i > ( _TI_GetTics (1 _timer -> -> -> 1500 `i `l `ul 329  ]
-{
-"101
-[; ;TAD_TECLADO.c: 101:     hashtag_pressed3s();
-[e ( _hashtag_pressed3s ..  ]
-"103
-[; ;TAD_TECLADO.c: 103:     state = 5;
-[e = _state -> -> 5 `i `uc ]
-"104
-[; ;TAD_TECLADO.c: 104:    }
-}
-[e :U 329 ]
-[e :U 328 ]
-"105
-[; ;TAD_TECLADO.c: 105:   break;
-[e $U 306  ]
-"106
-[; ;TAD_TECLADO.c: 106:   case 5:
-[e :U 330 ]
-"107
-[; ;TAD_TECLADO.c: 107:    Filas = ReadFilas();
-[e = _Filas ( _ReadFilas ..  ]
-"108
-[; ;TAD_TECLADO.c: 108:    if (Filas == 0x0) {
-[e $ ! == -> _Filas `i -> 0 `i 331  ]
-{
-"109
-[; ;TAD_TECLADO.c: 109:     state = 0;
-[e = _state -> -> 0 `i `uc ]
-"110
-[; ;TAD_TECLADO.c: 110:     Columnas = (0x04);
-[e = _Columnas -> -> 4 `i `uc ]
-"111
-[; ;TAD_TECLADO.c: 111:     writeColumnas();
-[e ( _writeColumnas ..  ]
-"112
-[; ;TAD_TECLADO.c: 112:    }
-}
-[e :U 331 ]
-"113
-[; ;TAD_TECLADO.c: 113:   break;
-[e $U 306  ]
-"114
-[; ;TAD_TECLADO.c: 114:  }
-}
-[e $U 306  ]
-[e :U 307 ]
-[e [\ _state , $ -> 0 `i 308
- , $ -> 1 `i 312
- , $ -> 2 `i 316
- , $ -> 3 `i 320
- , $ -> 4 `i 326
- , $ -> 5 `i 330
- 306 ]
-[e :U 306 ]
-"115
-[; ;TAD_TECLADO.c: 115: }
-[e :UE 305 ]
-}
-"121
-[; ;TAD_TECLADO.c: 121: void writeColumnas(void) {
+[; ;TAD_TECLADO.c: 43: void writeColumnas(void) {
 [v _writeColumnas `(v ~T0 @X0 1 ef ]
 {
 [e :U _writeColumnas ]
 [f ]
-"122
-[; ;TAD_TECLADO.c: 122:     LATD = (0x00);
+"44
+[; ;TAD_TECLADO.c: 44:     if (Columnas < 3) {
+[e $ ! < -> _Columnas `i -> 3 `i 304  ]
+{
+"45
+[; ;TAD_TECLADO.c: 45:         LATD = colValues[Columnas];
+[e = _LATD *U + &U _colValues * -> _Columnas `ux -> -> # *U &U _colValues `ui `ux ]
+"46
+[; ;TAD_TECLADO.c: 46:     } else {
+}
+[e $U 305  ]
+[e :U 304 ]
+{
+"47
+[; ;TAD_TECLADO.c: 47:         LATD = 0;
 [e = _LATD -> -> 0 `i `uc ]
-"123
-[; ;TAD_TECLADO.c: 123:     if (Columnas == 0x01) {
-[e $ ! == -> _Columnas `i -> 1 `i 333  ]
-{
-"125
-[; ;TAD_TECLADO.c: 125:         LATD |= (1 << 5);
-[e =| _LATD -> << -> 1 `i -> 5 `i `Vuc ]
-"126
-[; ;TAD_TECLADO.c: 126:     } else if (Columnas == 0x02) {
+"48
+[; ;TAD_TECLADO.c: 48:     }
 }
-[e $U 334  ]
-[e :U 333 ]
-[e $ ! == -> _Columnas `i -> 2 `i 335  ]
-{
-"128
-[; ;TAD_TECLADO.c: 128:         LATD |= (1 << 6);
-[e =| _LATD -> << -> 1 `i -> 6 `i `Vuc ]
-"129
-[; ;TAD_TECLADO.c: 129:     } else if (Columnas == 0x04) {
+[e :U 305 ]
+"49
+[; ;TAD_TECLADO.c: 49: }
+[e :UE 303 ]
 }
-[e $U 336  ]
-[e :U 335 ]
-[e $ ! == -> _Columnas `i -> 4 `i 337  ]
-{
-"131
-[; ;TAD_TECLADO.c: 131:         LATD |= (1 << 4);
-[e =| _LATD -> << -> 1 `i -> 4 `i `Vuc ]
-"132
-[; ;TAD_TECLADO.c: 132:     }
-}
-[e :U 337 ]
-[e :U 336 ]
-[e :U 334 ]
-"133
-[; ;TAD_TECLADO.c: 133: }
-[e :UE 332 ]
-}
-"135
-[; ;TAD_TECLADO.c: 135: unsigned char GetTecla(void) {
+"52
+[; ;TAD_TECLADO.c: 52: unsigned char GetTecla(void) {
 [v _GetTecla `(uc ~T0 @X0 1 ef ]
 {
 [e :U _GetTecla ]
 [f ]
-"136
-[; ;TAD_TECLADO.c: 136:     unsigned char fila = 0;
+"53
+[; ;TAD_TECLADO.c: 53:     unsigned char fila = 0, columna = 0;
 [v _fila `uc ~T0 @X0 1 a ]
 [e = _fila -> -> 0 `i `uc ]
-"137
-[; ;TAD_TECLADO.c: 137:     unsigned char columna = 0;
 [v _columna `uc ~T0 @X0 1 a ]
 [e = _columna -> -> 0 `i `uc ]
-"139
-[; ;TAD_TECLADO.c: 139:     switch(Filas) {
-[e $U 340  ]
+"56
+[; ;TAD_TECLADO.c: 56:     switch(Filas) {
+[e $U 308  ]
 {
-"140
-[; ;TAD_TECLADO.c: 140:         case 0x1: fila = 0; break;
-[e :U 341 ]
+"57
+[; ;TAD_TECLADO.c: 57:         case 0x1: fila = 0; break;
+[e :U 309 ]
 [e = _fila -> -> 0 `i `uc ]
-[e $U 339  ]
-"141
-[; ;TAD_TECLADO.c: 141:         case 0x2: fila = 1; break;
-[e :U 342 ]
+[e $U 307  ]
+"58
+[; ;TAD_TECLADO.c: 58:         case 0x2: fila = 1; break;
+[e :U 310 ]
 [e = _fila -> -> 1 `i `uc ]
-[e $U 339  ]
-"142
-[; ;TAD_TECLADO.c: 142:         case 0x4: fila = 2; break;
-[e :U 343 ]
+[e $U 307  ]
+"59
+[; ;TAD_TECLADO.c: 59:         case 0x4: fila = 2; break;
+[e :U 311 ]
 [e = _fila -> -> 2 `i `uc ]
-[e $U 339  ]
-"143
-[; ;TAD_TECLADO.c: 143:         case 0x8: fila = 3; break;
-[e :U 344 ]
+[e $U 307  ]
+"60
+[; ;TAD_TECLADO.c: 60:         case 0x8: fila = 3; break;
+[e :U 312 ]
 [e = _fila -> -> 3 `i `uc ]
-[e $U 339  ]
-"144
-[; ;TAD_TECLADO.c: 144:         default: return 0xFF;
-[e :U 345 ]
+[e $U 307  ]
+"61
+[; ;TAD_TECLADO.c: 61:         default: return 0xFF;
+[e :U 313 ]
 [e ) -> -> 255 `i `uc ]
-[e $UE 338  ]
-"145
-[; ;TAD_TECLADO.c: 145:     }
+[e $UE 306  ]
+"62
+[; ;TAD_TECLADO.c: 62:     }
 }
-[e $U 339  ]
-[e :U 340 ]
-[e [\ _Filas , $ -> 1 `i 341
- , $ -> 2 `i 342
- , $ -> 4 `i 343
- , $ -> 8 `i 344
- 345 ]
-[e :U 339 ]
-"148
-[; ;TAD_TECLADO.c: 148:     switch(Columnas & 0x07) {
-[e $U 347  ]
+[e $U 307  ]
+[e :U 308 ]
+[e [\ _Filas , $ -> 1 `i 309
+ , $ -> 2 `i 310
+ , $ -> 4 `i 311
+ , $ -> 8 `i 312
+ 313 ]
+[e :U 307 ]
+"65
+[; ;TAD_TECLADO.c: 65:     columna = Columnas;
+[e = _columna _Columnas ]
+"68
+[; ;TAD_TECLADO.c: 68:     return keymap[fila * 3 + columna];
+[e ) -> *U + &U _keymap * -> -> + * -> _fila `i -> 3 `i -> _columna `i `ui `ux -> -> # *U &U _keymap `ui `ux `uc ]
+[e $UE 306  ]
+"69
+[; ;TAD_TECLADO.c: 69: }
+[e :UE 306 ]
+}
+"72
+[; ;TAD_TECLADO.c: 72: void motorTeclado(void) {
+[v _motorTeclado `(v ~T0 @X0 1 ef ]
 {
-"149
-[; ;TAD_TECLADO.c: 149:         case 0x01: columna = 0; break;
-[e :U 348 ]
-[e = _columna -> -> 0 `i `uc ]
-[e $U 346  ]
-"150
-[; ;TAD_TECLADO.c: 150:         case 0x02: columna = 1; break;
-[e :U 349 ]
-[e = _columna -> -> 1 `i `uc ]
-[e $U 346  ]
-"151
-[; ;TAD_TECLADO.c: 151:         case 0x04: columna = 2; break;
-[e :U 350 ]
-[e = _columna -> -> 2 `i `uc ]
-[e $U 346  ]
-"152
-[; ;TAD_TECLADO.c: 152:         default: return 0xFF;
-[e :U 351 ]
-[e ) -> -> 255 `i `uc ]
-[e $UE 338  ]
-"153
-[; ;TAD_TECLADO.c: 153:     }
+[e :U _motorTeclado ]
+[f ]
+"74
+[; ;TAD_TECLADO.c: 74:     Filas = (PORTD & 0x0F);
+[e = _Filas -> & -> _PORTD `i -> 15 `i `uc ]
+"76
+[; ;TAD_TECLADO.c: 76:     switch(state) {
+[e $U 316  ]
+{
+"77
+[; ;TAD_TECLADO.c: 77:         case 0:
+[e :U 317 ]
+"78
+[; ;TAD_TECLADO.c: 78:             if (Filas) {
+[e $ ! != -> _Filas `i -> 0 `i 318  ]
+{
+"79
+[; ;TAD_TECLADO.c: 79:                 TI_ResetTics(timer);
+[e ( _TI_ResetTics (1 _timer ]
+"80
+[; ;TAD_TECLADO.c: 80:                 state = 3;
+[e = _state -> -> 3 `i `uc ]
+"81
+[; ;TAD_TECLADO.c: 81:             } else {
 }
-[e $U 346  ]
-[e :U 347 ]
-[e [\ & -> _Columnas `i -> 7 `i , $ -> 1 `i 348
- , $ -> 2 `i 349
- , $ -> 4 `i 350
- 351 ]
-[e :U 346 ]
-"155
-[; ;TAD_TECLADO.c: 155:     return keymap[fila][columna];
-[e ) *U + &U *U + &U _keymap * -> _fila `ux -> * -> # *U &U *U &U _keymap `ui -> -> 3 `i `ui `ux * -> _columna `ux -> -> # *U &U *U + &U _keymap * -> _fila `ux -> * -> # *U &U *U &U _keymap `ui -> -> 3 `i `ui `ux `ui `ux ]
-[e $UE 338  ]
-"156
-[; ;TAD_TECLADO.c: 156: }
-[e :UE 338 ]
+[e $U 319  ]
+[e :U 318 ]
+{
+"82
+[; ;TAD_TECLADO.c: 82:                 Columnas = 0;
+[e = _Columnas -> -> 0 `i `uc ]
+"83
+[; ;TAD_TECLADO.c: 83:                 writeColumnas();
+[e ( _writeColumnas ..  ]
+"84
+[; ;TAD_TECLADO.c: 84:                 state = 1;
+[e = _state -> -> 1 `i `uc ]
+"85
+[; ;TAD_TECLADO.c: 85:             }
+}
+[e :U 319 ]
+"86
+[; ;TAD_TECLADO.c: 86:             break;
+[e $U 315  ]
+"88
+[; ;TAD_TECLADO.c: 88:         case 1:
+[e :U 320 ]
+"89
+[; ;TAD_TECLADO.c: 89:             if (Filas) {
+[e $ ! != -> _Filas `i -> 0 `i 321  ]
+{
+"90
+[; ;TAD_TECLADO.c: 90:                 TI_ResetTics(timer);
+[e ( _TI_ResetTics (1 _timer ]
+"91
+[; ;TAD_TECLADO.c: 91:                 state = 3;
+[e = _state -> -> 3 `i `uc ]
+"92
+[; ;TAD_TECLADO.c: 92:             } else {
+}
+[e $U 322  ]
+[e :U 321 ]
+{
+"93
+[; ;TAD_TECLADO.c: 93:                 Columnas = 1;
+[e = _Columnas -> -> 1 `i `uc ]
+"94
+[; ;TAD_TECLADO.c: 94:                 writeColumnas();
+[e ( _writeColumnas ..  ]
+"95
+[; ;TAD_TECLADO.c: 95:                 state = 2;
+[e = _state -> -> 2 `i `uc ]
+"96
+[; ;TAD_TECLADO.c: 96:             }
+}
+[e :U 322 ]
+"97
+[; ;TAD_TECLADO.c: 97:             break;
+[e $U 315  ]
+"99
+[; ;TAD_TECLADO.c: 99:         case 2:
+[e :U 323 ]
+"100
+[; ;TAD_TECLADO.c: 100:             if (Filas) {
+[e $ ! != -> _Filas `i -> 0 `i 324  ]
+{
+"101
+[; ;TAD_TECLADO.c: 101:                 TI_ResetTics(timer);
+[e ( _TI_ResetTics (1 _timer ]
+"102
+[; ;TAD_TECLADO.c: 102:                 state = 3;
+[e = _state -> -> 3 `i `uc ]
+"103
+[; ;TAD_TECLADO.c: 103:             } else {
+}
+[e $U 325  ]
+[e :U 324 ]
+{
+"104
+[; ;TAD_TECLADO.c: 104:                 Columnas = 2;
+[e = _Columnas -> -> 2 `i `uc ]
+"105
+[; ;TAD_TECLADO.c: 105:                 writeColumnas();
+[e ( _writeColumnas ..  ]
+"106
+[; ;TAD_TECLADO.c: 106:                 state = 0;
+[e = _state -> -> 0 `i `uc ]
+"107
+[; ;TAD_TECLADO.c: 107:             }
+}
+[e :U 325 ]
+"108
+[; ;TAD_TECLADO.c: 108:             break;
+[e $U 315  ]
+"110
+[; ;TAD_TECLADO.c: 110:         case 3:
+[e :U 326 ]
+"111
+[; ;TAD_TECLADO.c: 111:             tecla = GetTecla();
+[e = _tecla ( _GetTecla ..  ]
+"112
+[; ;TAD_TECLADO.c: 112:             if (!Filas) {
+[e $ ! ! != -> _Filas `i -> 0 `i 327  ]
+{
+"113
+[; ;TAD_TECLADO.c: 113:                 Columnas = 2;
+[e = _Columnas -> -> 2 `i `uc ]
+"114
+[; ;TAD_TECLADO.c: 114:                 writeColumnas();
+[e ( _writeColumnas ..  ]
+"115
+[; ;TAD_TECLADO.c: 115:                 state = 0;
+[e = _state -> -> 0 `i `uc ]
+"116
+[; ;TAD_TECLADO.c: 116:             } else if (TI_GetTics(timer) > 4) {
+}
+[e $U 328  ]
+[e :U 327 ]
+[e $ ! > ( _TI_GetTics (1 _timer -> -> -> 4 `i `l `ul 329  ]
+{
+"117
+[; ;TAD_TECLADO.c: 117:                 if (tecla != 0x0B) {
+[e $ ! != -> _tecla `i -> 11 `i 330  ]
+{
+"118
+[; ;TAD_TECLADO.c: 118:                     setLed(tecla);
+[e ( _setLed (1 _tecla ]
+"119
+[; ;TAD_TECLADO.c: 119:                     state = 5;
+[e = _state -> -> 5 `i `uc ]
+"120
+[; ;TAD_TECLADO.c: 120:                 } else {
+}
+[e $U 331  ]
+[e :U 330 ]
+{
+"121
+[; ;TAD_TECLADO.c: 121:                     TI_ResetTics(timer);
+[e ( _TI_ResetTics (1 _timer ]
+"122
+[; ;TAD_TECLADO.c: 122:                     state = 4;
+[e = _state -> -> 4 `i `uc ]
+"123
+[; ;TAD_TECLADO.c: 123:                 }
+}
+[e :U 331 ]
+"124
+[; ;TAD_TECLADO.c: 124:             }
+}
+[e :U 329 ]
+[e :U 328 ]
+"125
+[; ;TAD_TECLADO.c: 125:             break;
+[e $U 315  ]
+"127
+[; ;TAD_TECLADO.c: 127:         case 4:
+[e :U 332 ]
+"128
+[; ;TAD_TECLADO.c: 128:             if (!Filas) {
+[e $ ! ! != -> _Filas `i -> 0 `i 333  ]
+{
+"129
+[; ;TAD_TECLADO.c: 129:                 state = 0;
+[e = _state -> -> 0 `i `uc ]
+"130
+[; ;TAD_TECLADO.c: 130:             } else if (TI_GetTics(timer) > 1500) {
+}
+[e $U 334  ]
+[e :U 333 ]
+[e $ ! > ( _TI_GetTics (1 _timer -> -> -> 1500 `i `l `ul 335  ]
+{
+"131
+[; ;TAD_TECLADO.c: 131:                 hashtag_pressed3s();
+[e ( _hashtag_pressed3s ..  ]
+"132
+[; ;TAD_TECLADO.c: 132:                 state = 5;
+[e = _state -> -> 5 `i `uc ]
+"133
+[; ;TAD_TECLADO.c: 133:             }
+}
+[e :U 335 ]
+[e :U 334 ]
+"134
+[; ;TAD_TECLADO.c: 134:             break;
+[e $U 315  ]
+"136
+[; ;TAD_TECLADO.c: 136:         case 5:
+[e :U 336 ]
+"137
+[; ;TAD_TECLADO.c: 137:             if (!Filas) {
+[e $ ! ! != -> _Filas `i -> 0 `i 337  ]
+{
+"138
+[; ;TAD_TECLADO.c: 138:                 state = 0;
+[e = _state -> -> 0 `i `uc ]
+"139
+[; ;TAD_TECLADO.c: 139:                 Columnas = 2;
+[e = _Columnas -> -> 2 `i `uc ]
+"140
+[; ;TAD_TECLADO.c: 140:                 writeColumnas();
+[e ( _writeColumnas ..  ]
+"141
+[; ;TAD_TECLADO.c: 141:             }
+}
+[e :U 337 ]
+"142
+[; ;TAD_TECLADO.c: 142:             break;
+[e $U 315  ]
+"143
+[; ;TAD_TECLADO.c: 143:     }
+}
+[e $U 315  ]
+[e :U 316 ]
+[e [\ _state , $ -> 0 `i 317
+ , $ -> 1 `i 320
+ , $ -> 2 `i 323
+ , $ -> 3 `i 326
+ , $ -> 4 `i 332
+ , $ -> 5 `i 336
+ 315 ]
+[e :U 315 ]
+"144
+[; ;TAD_TECLADO.c: 144: }
+[e :UE 314 ]
 }

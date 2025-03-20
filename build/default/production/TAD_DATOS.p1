@@ -429,8 +429,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 [v F2745 `uc ~T0 @X0 -> 16 `i t ]
-"6 TAD_DATOS.c
-[; ;TAD_DATOS.c: 6: unsigned char userUIDs[4][16] = {
+"7 TAD_DATOS.c
+[; ;TAD_DATOS.c: 7: unsigned char userUIDs[4][16] = {
 [v _userUIDs `F2745 ~T0 @X0 -> 4 `i e ]
 [i _userUIDs
 :U ..
@@ -465,8 +465,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v F2747 `uc ~T0 @X0 -> 6 `i t ]
-"13
-[; ;TAD_DATOS.c: 13: unsigned char configurations[4][6] = {
+"14
+[; ;TAD_DATOS.c: 14: unsigned char configurations[4][6] = {
 [v _configurations `F2747 ~T0 @X0 -> 4 `i e ]
 [i _configurations
 :U ..
@@ -504,43 +504,35 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"20
-[; ;TAD_DATOS.c: 20: unsigned char currentUser[5] = {0x00, 0x00, 0x00, 0x00, 0x00};
-[v _currentUser `uc ~T0 @X0 -> 5 `i e ]
+"22
+[; ;TAD_DATOS.c: 22: static unsigned char currentUser[5] = {0};
+[v _currentUser `uc ~T0 @X0 -> 5 `i s ]
 [i _currentUser
 :U ..
 -> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
 ..
 ]
-"21
-[; ;TAD_DATOS.c: 21: unsigned char new_configuration = 0;
-[v _new_configuration `uc ~T0 @X0 1 e ]
+"23
+[; ;TAD_DATOS.c: 23: static unsigned char new_configuration = 0;
+[v _new_configuration `uc ~T0 @X0 1 s ]
 [i _new_configuration
 -> -> 0 `i `uc
 ]
-"22
-[; ;TAD_DATOS.c: 22: unsigned char new_user = 0;
-[v _new_user `uc ~T0 @X0 1 e ]
+"24
+[; ;TAD_DATOS.c: 24: static unsigned char new_user = 0;
+[v _new_user `uc ~T0 @X0 1 s ]
 [i _new_user
 -> -> 0 `i `uc
 ]
-"23
-[; ;TAD_DATOS.c: 23: int index = 0, pointer = 0;
-[v _index `i ~T0 @X0 1 e ]
+"25
+[; ;TAD_DATOS.c: 25: static int index = 0;
+[v _index `i ~T0 @X0 1 s ]
 [i _index
 -> 0 `i
 ]
-[v _pointer `i ~T0 @X0 1 e ]
-[i _pointer
--> 0 `i
-]
-"24
-[; ;TAD_DATOS.c: 24: unsigned char currentTime[4] = "0000";
-[v _currentTime `uc ~T0 @X0 -> 4 `i e ]
+"26
+[; ;TAD_DATOS.c: 26: static unsigned char currentTime[4] = "0000";
+[v _currentTime `uc ~T0 @X0 -> 4 `i s ]
 [i _currentTime
 :U ..
 -> 48 `c
@@ -549,204 +541,259 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 48 `c
 ..
 ]
-"26
-[; ;TAD_DATOS.c: 26: void initData(void){
+"29
+[; ;TAD_DATOS.c: 29: void initData(void) {
 [v _initData `(v ~T0 @X0 1 ef ]
 {
 [e :U _initData ]
 [f ]
-"27
-[; ;TAD_DATOS.c: 27:  currentUser[0] = 0x00;
-[e = *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> -> 0 `i `uc ]
-"28
-[; ;TAD_DATOS.c: 28:  currentUser[1] = 0x00;
-[e = *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> -> 0 `i `uc ]
-"29
-[; ;TAD_DATOS.c: 29:  currentUser[2] = 0x00;
-[e = *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> -> 0 `i `uc ]
 "30
-[; ;TAD_DATOS.c: 30:  currentUser[3] = 0x00;
-[e = *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> -> 0 `i `uc ]
+[; ;TAD_DATOS.c: 30:     for(char i = 0; i < 5; i++) currentUser[i] = 0;
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 5 `i 303  ]
+[e $U 304  ]
+[e :U 303 ]
+[e = *U + &U _currentUser * -> _i `ux -> -> # *U &U _currentUser `ui `ux -> -> 0 `i `uc ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 303  ]
+[e :U 304 ]
+}
 "31
-[; ;TAD_DATOS.c: 31:  currentUser[4] = 0x00;
-[e = *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> -> 0 `i `uc ]
-"32
-[; ;TAD_DATOS.c: 32: }
+[; ;TAD_DATOS.c: 31: }
 [e :UE 302 ]
 }
-"35
-[; ;TAD_DATOS.c: 35: void getActualUID(unsigned char* UID) {
+"34
+[; ;TAD_DATOS.c: 34: void getActualUID(unsigned char* UID) {
 [v _getActualUID `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _getActualUID ]
 [v _UID `*uc ~T0 @X0 1 r1 ]
 [f ]
-"36
-[; ;TAD_DATOS.c: 36:  if(currentUser[0] == 0x00 && currentUser[1] == 0x00 && currentUser[2] == 0x00 && currentUser[3] == 0x00 && currentUser[4] == 0x00) {
-[e $ ! && && && && == -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i == -> *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i == -> *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i == -> *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i == -> *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i 304  ]
-{
-"37
-[; ;TAD_DATOS.c: 37:   UID = ((void*)0);
-[e = _UID -> -> -> 0 `i `*v `*uc ]
+"35
+[; ;TAD_DATOS.c: 35:     if(!UID) return;
+[e $ ! ! != _UID -> -> 0 `i `*uc 307  ]
+[e $UE 306  ]
+[e :U 307 ]
 "38
-[; ;TAD_DATOS.c: 38:  }
-}
-[e $U 305  ]
-"39
-[; ;TAD_DATOS.c: 39:     else{
-[e :U 304 ]
+[; ;TAD_DATOS.c: 38:     if(!currentUser[0]) {
+[e $ ! ! != -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i 308  ]
 {
+"39
+[; ;TAD_DATOS.c: 39:         UID[0] = 0x00;
+[e = *U + _UID * -> -> 0 `i `x -> -> # *U _UID `i `x -> -> 0 `i `uc ]
 "40
-[; ;TAD_DATOS.c: 40:   UID[0] = currentUser[0];
-[e = *U + _UID * -> -> 0 `i `x -> -> # *U _UID `i `x *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+[; ;TAD_DATOS.c: 40:         UID[1] = 0x00;
+[e = *U + _UID * -> -> 1 `i `x -> -> # *U _UID `i `x -> -> 0 `i `uc ]
 "41
-[; ;TAD_DATOS.c: 41:   UID[1] = currentUser[1];
-[e = *U + _UID * -> -> 1 `i `x -> -> # *U _UID `i `x *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+[; ;TAD_DATOS.c: 41:         UID[2] = 0x00;
+[e = *U + _UID * -> -> 2 `i `x -> -> # *U _UID `i `x -> -> 0 `i `uc ]
 "42
-[; ;TAD_DATOS.c: 42:   UID[2] = currentUser[2];
-[e = *U + _UID * -> -> 2 `i `x -> -> # *U _UID `i `x *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+[; ;TAD_DATOS.c: 42:         UID[3] = 0x00;
+[e = *U + _UID * -> -> 3 `i `x -> -> # *U _UID `i `x -> -> 0 `i `uc ]
 "43
-[; ;TAD_DATOS.c: 43:   UID[3] = currentUser[3];
-[e = *U + _UID * -> -> 3 `i `x -> -> # *U _UID `i `x *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+[; ;TAD_DATOS.c: 43:         UID[4] = 0x00;
+[e = *U + _UID * -> -> 4 `i `x -> -> # *U _UID `i `x -> -> 0 `i `uc ]
 "44
-[; ;TAD_DATOS.c: 44:   UID[4] = currentUser[4];
-[e = *U + _UID * -> -> 4 `i `x -> -> # *U _UID `i `x *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+[; ;TAD_DATOS.c: 44:         return;
+[e $UE 306  ]
 "45
-[; ;TAD_DATOS.c: 45:  }
+[; ;TAD_DATOS.c: 45:     }
 }
-[e :U 305 ]
-"46
-[; ;TAD_DATOS.c: 46: }
-[e :UE 303 ]
-}
+[e :U 308 ]
 "48
-[; ;TAD_DATOS.c: 48: void getActualLeds(unsigned char* leds) {
+[; ;TAD_DATOS.c: 48:     for(char i = 0; i < 5; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 5 `i 309  ]
+[e $U 310  ]
+[e :U 309 ]
+{
+"49
+[; ;TAD_DATOS.c: 49:         UID[i] = currentUser[i];
+[e = *U + _UID * -> _i `ux -> -> # *U _UID `ui `ux *U + &U _currentUser * -> _i `ux -> -> # *U &U _currentUser `ui `ux ]
+"50
+[; ;TAD_DATOS.c: 50:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 5 `i 309  ]
+[e :U 310 ]
+}
+"51
+[; ;TAD_DATOS.c: 51: }
+[e :UE 306 ]
+}
+"54
+[; ;TAD_DATOS.c: 54: void getActualLeds(unsigned char* leds) {
 [v _getActualLeds `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _getActualLeds ]
 [v _leds `*uc ~T0 @X0 1 r1 ]
 [f ]
-"49
-[; ;TAD_DATOS.c: 49:     for(int i = 0; i < 6; i++) {
+"55
+[; ;TAD_DATOS.c: 55:     if(!leds) return;
+[e $ ! ! != _leds -> -> 0 `i `*uc 313  ]
+[e $UE 312  ]
+[e :U 313 ]
+"58
+[; ;TAD_DATOS.c: 58:     for(char i = 0; i < 6; i++) {
 {
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 6 `i 307  ]
-[e $U 308  ]
-[e :U 307 ]
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 314  ]
+[e $U 315  ]
+[e :U 314 ]
 {
-"50
-[; ;TAD_DATOS.c: 50:         leds[i] = configurations[index][i];
-[e = *U + _leds * -> _i `x -> -> # *U _leds `i `x *U + &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> -> _i `ui `ux -> -> # *U &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux ]
-"51
-[; ;TAD_DATOS.c: 51:     }
+"59
+[; ;TAD_DATOS.c: 59:         leds[i] = configurations[index][i];
+[e = *U + _leds * -> _i `ux -> -> # *U _leds `ui `ux *U + &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> _i `ux -> -> # *U &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux ]
+"60
+[; ;TAD_DATOS.c: 60:     }
 }
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 6 `i 307  ]
-[e :U 308 ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 314  ]
+[e :U 315 ]
 }
-"52
-[; ;TAD_DATOS.c: 52: }
-[e :UE 306 ]
+"61
+[; ;TAD_DATOS.c: 61: }
+[e :UE 312 ]
 }
-"54
-[; ;TAD_DATOS.c: 54: void showAllConfigurations(void) {
+"64
+[; ;TAD_DATOS.c: 64: void showAllConfigurations(void) {
 [v _showAllConfigurations `(v ~T0 @X0 1 ef ]
 {
 [e :U _showAllConfigurations ]
 [f ]
-"55
-[; ;TAD_DATOS.c: 55:     for (int i = 0; i < 4; i++) {
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 4 `i 311  ]
-[e $U 312  ]
-[e :U 311 ]
-{
-"56
-[; ;TAD_DATOS.c: 56:         Terminal_SendString("User ");
-[e ( _Terminal_SendString (1 :s 1C ]
-"57
-[; ;TAD_DATOS.c: 57:         Terminal_SendChar('1' + i);
-[e ( _Terminal_SendChar (1 -> + -> 49 `ui -> _i `ui `uc ]
-"58
-[; ;TAD_DATOS.c: 58:         Terminal_SendString(" Config: ");
-[e ( _Terminal_SendString (1 :s 2C ]
-"60
-[; ;TAD_DATOS.c: 60:         for (int j = 0; j < 6; j++) {
-{
-[v _j `i ~T0 @X0 1 a ]
-[e = _j -> 0 `i ]
-[e $ < _j -> 6 `i 314  ]
-[e $U 315  ]
-[e :U 314 ]
-{
-"62
-[; ;TAD_DATOS.c: 62:             Terminal_SendChar('0' + configurations[i][j]);
-[e ( _Terminal_SendChar (1 -> + -> 48 `ui -> *U + &U *U + &U _configurations * -> -> _i `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> -> _j `ui `ux -> -> # *U &U *U + &U _configurations * -> -> _i `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux `ui `uc ]
-"63
-[; ;TAD_DATOS.c: 63:             Terminal_SendString(" ");
-[e ( _Terminal_SendString (1 :s 3C ]
-"64
-[; ;TAD_DATOS.c: 64:         }
-}
-[e ++ _j -> 1 `i ]
-[e $ < _j -> 6 `i 314  ]
-[e :U 315 ]
-}
 "65
-[; ;TAD_DATOS.c: 65:         Terminal_SendString("\r\n");
-[e ( _Terminal_SendString (1 :s 4C ]
+[; ;TAD_DATOS.c: 65:     static const char userStr[] = "User ";
+[v F2763 `Cuc ~T0 @X0 -> 6 `i s userStr ]
+[i F2763
+:U ..
+-> 85 `c
+-> 115 `c
+-> 101 `c
+-> 114 `c
+-> 32 `c
+-> 0 `c
+..
+]
 "66
-[; ;TAD_DATOS.c: 66:     }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 4 `i 311  ]
-[e :U 312 ]
-}
-"67
-[; ;TAD_DATOS.c: 67: }
-[e :UE 310 ]
-}
+[; ;TAD_DATOS.c: 66:     static const char configStr[] = " Config: ";
+[v F2764 `Cuc ~T0 @X0 -> 10 `i s configStr ]
+[i F2764
+:U ..
+-> 32 `c
+-> 67 `c
+-> 111 `c
+-> 110 `c
+-> 102 `c
+-> 105 `c
+-> 103 `c
+-> 58 `c
+-> 32 `c
+-> 0 `c
+..
+]
+"68
+[; ;TAD_DATOS.c: 68:     for(char i = 0; i < 4; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 4 `i 318  ]
+[e $U 319  ]
+[e :U 318 ]
+{
+"69
+[; ;TAD_DATOS.c: 69:         Terminal_SendString(userStr);
+[e ( _Terminal_SendString (1 &U F2763 ]
 "70
-[; ;TAD_DATOS.c: 70: void newConfiguration(void) {
+[; ;TAD_DATOS.c: 70:         Terminal_SendChar('1' + i);
+[e ( _Terminal_SendChar (1 -> + -> 49 `ui -> _i `ui `uc ]
+"71
+[; ;TAD_DATOS.c: 71:         Terminal_SendString(configStr);
+[e ( _Terminal_SendString (1 &U F2764 ]
+"73
+[; ;TAD_DATOS.c: 73:         for(char j = 0; j < 6; j++) {
+{
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 6 `i 321  ]
+[e $U 322  ]
+[e :U 321 ]
+{
+"74
+[; ;TAD_DATOS.c: 74:             Terminal_SendChar('0' + configurations[i][j]);
+[e ( _Terminal_SendChar (1 -> + -> 48 `ui -> *U + &U *U + &U _configurations * -> _i `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> _j `ux -> -> # *U &U *U + &U _configurations * -> _i `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux `ui `uc ]
+"75
+[; ;TAD_DATOS.c: 75:             Terminal_SendString(" ");
+[e ( _Terminal_SendString (1 :s 1C ]
+"76
+[; ;TAD_DATOS.c: 76:         }
+}
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 6 `i 321  ]
+[e :U 322 ]
+}
+"77
+[; ;TAD_DATOS.c: 77:         Terminal_SendString("\r\n");
+[e ( _Terminal_SendString (1 :s 2C ]
+"78
+[; ;TAD_DATOS.c: 78:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 4 `i 318  ]
+[e :U 319 ]
+}
+"79
+[; ;TAD_DATOS.c: 79: }
+[e :UE 317 ]
+}
+"82
+[; ;TAD_DATOS.c: 82: void newConfiguration(void) {
 [v _newConfiguration `(v ~T0 @X0 1 ef ]
 {
 [e :U _newConfiguration ]
 [f ]
-"71
-[; ;TAD_DATOS.c: 71:     new_configuration = 1;
+"83
+[; ;TAD_DATOS.c: 83:     new_configuration = 1;
 [e = _new_configuration -> -> 1 `i `uc ]
-"72
-[; ;TAD_DATOS.c: 72: }
-[e :UE 317 ]
+"84
+[; ;TAD_DATOS.c: 84: }
+[e :UE 324 ]
 }
-"74
-[; ;TAD_DATOS.c: 74: void saveHourToData(unsigned char hour[4]) {
+"86
+[; ;TAD_DATOS.c: 86: void saveHourToData(unsigned char hour[4]) {
 [v _saveHourToData `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _saveHourToData ]
 [v _hour `*uc ~T0 @X0 1 r1 ]
 [f ]
-"75
-[; ;TAD_DATOS.c: 75:     currentTime[0] = hour[0];
-[e = *U + &U _currentTime * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentTime `ui `ux *U + _hour * -> -> 0 `i `x -> -> # *U _hour `i `x ]
-"76
-[; ;TAD_DATOS.c: 76:     currentTime[1] = hour[1];
-[e = *U + &U _currentTime * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentTime `ui `ux *U + _hour * -> -> 1 `i `x -> -> # *U _hour `i `x ]
-"77
-[; ;TAD_DATOS.c: 77:     currentTime[2] = hour[2];
-[e = *U + &U _currentTime * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentTime `ui `ux *U + _hour * -> -> 2 `i `x -> -> # *U _hour `i `x ]
-"78
-[; ;TAD_DATOS.c: 78:     currentTime[3] = hour[3];
-[e = *U + &U _currentTime * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentTime `ui `ux *U + _hour * -> -> 3 `i `x -> -> # *U _hour `i `x ]
-"79
-[; ;TAD_DATOS.c: 79: }
-[e :UE 318 ]
+"87
+[; ;TAD_DATOS.c: 87:     if(!hour) return;
+[e $ ! ! != _hour -> -> 0 `i `*uc 326  ]
+[e $UE 325  ]
+[e :U 326 ]
+"88
+[; ;TAD_DATOS.c: 88:     for(char i = 0; i < 4; i++) currentTime[i] = hour[i];
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 4 `i 327  ]
+[e $U 328  ]
+[e :U 327 ]
+[e = *U + &U _currentTime * -> _i `ux -> -> # *U &U _currentTime `ui `ux *U + _hour * -> _i `ux -> -> # *U _hour `ui `ux ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 4 `i 327  ]
+[e :U 328 ]
 }
-"81
-[; ;TAD_DATOS.c: 81: void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
+"89
+[; ;TAD_DATOS.c: 89: }
+[e :UE 325 ]
+}
+"92
+[; ;TAD_DATOS.c: 92: void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
 [v _setCurrentUser `(v ~T0 @X0 1 ef5`uc`uc`uc`uc`uc ]
 {
 [e :U _setCurrentUser ]
@@ -756,273 +803,279 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _UID3 `uc ~T0 @X0 1 r4 ]
 [v _UID4 `uc ~T0 @X0 1 r5 ]
 [f ]
-"82
-[; ;TAD_DATOS.c: 82:  currentUser[0] = UID0;
+"93
+[; ;TAD_DATOS.c: 93:     currentUser[0] = UID0;
 [e = *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID0 `uc ]
-"83
-[; ;TAD_DATOS.c: 83:  currentUser[1] = UID1;
-[e = *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID1 `uc ]
-"84
-[; ;TAD_DATOS.c: 84:  currentUser[2] = UID2;
-[e = *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID2 `uc ]
-"85
-[; ;TAD_DATOS.c: 85:  currentUser[3] = UID3;
-[e = *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID3 `uc ]
-"86
-[; ;TAD_DATOS.c: 86:  currentUser[4] = UID4;
-[e = *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID4 `uc ]
-"87
-[; ;TAD_DATOS.c: 87:  new_user = 1;
-[e = _new_user -> -> 1 `i `uc ]
-"88
-[; ;TAD_DATOS.c: 88:  Terminal_SendString("Targeta detectada!\r\n\t");
-[e ( _Terminal_SendString (1 :s 5C ]
-"89
-[; ;TAD_DATOS.c: 89:  printfUID(currentUser);
-[e ( _printfUID (1 &U _currentUser ]
-"90
-[; ;TAD_DATOS.c: 90:  Terminal_SendString("\t");
-[e ( _Terminal_SendString (1 :s 6C ]
-"91
-[; ;TAD_DATOS.c: 91:  printLedConfig(configurations[index]);
-[e ( _printLedConfig (1 &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux ]
-"92
-[; ;TAD_DATOS.c: 92: }
-[e :UE 319 ]
-}
 "94
-[; ;TAD_DATOS.c: 94: char checkUserUID(void) {
+[; ;TAD_DATOS.c: 94:     currentUser[1] = UID1;
+[e = *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID1 `uc ]
+"95
+[; ;TAD_DATOS.c: 95:     currentUser[2] = UID2;
+[e = *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID2 `uc ]
+"96
+[; ;TAD_DATOS.c: 96:     currentUser[3] = UID3;
+[e = *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID3 `uc ]
+"97
+[; ;TAD_DATOS.c: 97:     currentUser[4] = UID4;
+[e = *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux -> _UID4 `uc ]
+"98
+[; ;TAD_DATOS.c: 98:     new_user = 1;
+[e = _new_user -> -> 1 `i `uc ]
+"100
+[; ;TAD_DATOS.c: 100:     Terminal_SendString("Targeta detectada!\r\n\t");
+[e ( _Terminal_SendString (1 :s 3C ]
+"101
+[; ;TAD_DATOS.c: 101:     printfUID(currentUser);
+[e ( _printfUID (1 &U _currentUser ]
+"102
+[; ;TAD_DATOS.c: 102:     Terminal_SendString("\t");
+[e ( _Terminal_SendString (1 :s 4C ]
+"103
+[; ;TAD_DATOS.c: 103:     printLedConfig(configurations[index]);
+[e ( _printLedConfig (1 &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux ]
+"104
+[; ;TAD_DATOS.c: 104: }
+[e :UE 330 ]
+}
+"107
+[; ;TAD_DATOS.c: 107: char checkUserUID(void) {
 [v _checkUserUID `(uc ~T0 @X0 1 ef ]
 {
 [e :U _checkUserUID ]
 [f ]
-"95
-[; ;TAD_DATOS.c: 95:     if (currentUser[0] == userUIDs[0][0] && currentUser[1] == userUIDs[0][1] &&
-[e $ ! && && && && == -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 2 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 3 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 4 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i 321  ]
-"97
-[; ;TAD_DATOS.c: 97:         currentUser[4] == userUIDs[0][4]) {
-{
-"98
-[; ;TAD_DATOS.c: 98:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 320  ]
-"99
-[; ;TAD_DATOS.c: 99:     }
-}
-[e $U 322  ]
-"100
-[; ;TAD_DATOS.c: 100:     else if (currentUser[0] == userUIDs[1][0] && currentUser[1] == userUIDs[1][1] &&
-[e :U 321 ]
-[e $ ! && && && && == -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 2 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 3 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 4 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 1 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i 323  ]
-"102
-[; ;TAD_DATOS.c: 102:              currentUser[4] == userUIDs[1][4]) {
-{
-"103
-[; ;TAD_DATOS.c: 103:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 320  ]
-"104
-[; ;TAD_DATOS.c: 104:     }
-}
-[e $U 324  ]
-"105
-[; ;TAD_DATOS.c: 105:     else if (currentUser[0] == userUIDs[2][0] && currentUser[1] == userUIDs[2][1] &&
-[e :U 323 ]
-[e $ ! && && && && == -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 2 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 3 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 4 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 2 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i 325  ]
-"107
-[; ;TAD_DATOS.c: 107:              currentUser[4] == userUIDs[2][4]) {
-{
-"108
-[; ;TAD_DATOS.c: 108:         return 2;
-[e ) -> -> 2 `i `uc ]
-[e $UE 320  ]
 "109
-[; ;TAD_DATOS.c: 109:     }
-}
-[e $U 326  ]
-"110
-[; ;TAD_DATOS.c: 110:     else if (currentUser[0] == userUIDs[3][0] && currentUser[1] == userUIDs[3][1] &&
-[e :U 325 ]
-[e $ ! && && && && == -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 0 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 1 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 2 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 3 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i == -> *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> -> -> 4 `i `ui `ux -> -> # *U &U *U + &U _userUIDs * -> -> -> 3 `i `ui `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i 327  ]
+[; ;TAD_DATOS.c: 109:     if(!currentUser[0]) return 0;
+[e $ ! ! != -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> 0 `i 332  ]
+[e ) -> -> 0 `i `uc ]
+[e $UE 331  ]
+[e :U 332 ]
 "112
-[; ;TAD_DATOS.c: 112:              currentUser[4] == userUIDs[3][4]) {
+[; ;TAD_DATOS.c: 112:     for(char i = 0; i < 4; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 4 `i 333  ]
+[e $U 334  ]
+[e :U 333 ]
 {
 "113
-[; ;TAD_DATOS.c: 113:      return 3;
-[e ) -> -> 3 `i `uc ]
-[e $UE 320  ]
+[; ;TAD_DATOS.c: 113:         char match = 1;
+[v _match `uc ~T0 @X0 1 a ]
+[e = _match -> -> 1 `i `uc ]
 "114
-[; ;TAD_DATOS.c: 114:     }
-}
-[e :U 327 ]
-[e :U 326 ]
-[e :U 324 ]
-[e :U 322 ]
+[; ;TAD_DATOS.c: 114:         for(char j = 0; j < 5; j++) {
+{
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+[e $ < -> _j `i -> 5 `i 336  ]
+[e $U 337  ]
+[e :U 336 ]
+{
 "115
-[; ;TAD_DATOS.c: 115:  return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 320  ]
+[; ;TAD_DATOS.c: 115:             if(currentUser[j] != userUIDs[i][j]) {
+[e $ ! != -> *U + &U _currentUser * -> _j `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U *U + &U _userUIDs * -> _i `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux * -> _j `ux -> -> # *U &U *U + &U _userUIDs * -> _i `ux -> * -> # *U &U *U &U _userUIDs `ui -> -> 16 `i `ui `ux `ui `ux `i 339  ]
+{
 "116
-[; ;TAD_DATOS.c: 116: }
-[e :UE 320 ]
-}
+[; ;TAD_DATOS.c: 116:                 match = 0;
+[e = _match -> -> 0 `i `uc ]
+"117
+[; ;TAD_DATOS.c: 117:                 break;
+[e $U 337  ]
 "118
-[; ;TAD_DATOS.c: 118: void motor_datos(void) {
+[; ;TAD_DATOS.c: 118:             }
+}
+[e :U 339 ]
+"119
+[; ;TAD_DATOS.c: 119:         }
+}
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 5 `i 336  ]
+[e :U 337 ]
+}
+"120
+[; ;TAD_DATOS.c: 120:         if(match) return i;
+[e $ ! != -> _match `i -> 0 `i 340  ]
+[e ) _i ]
+[e $UE 331  ]
+[e :U 340 ]
+"121
+[; ;TAD_DATOS.c: 121:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 4 `i 333  ]
+[e :U 334 ]
+}
+"122
+[; ;TAD_DATOS.c: 122:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 331  ]
+"123
+[; ;TAD_DATOS.c: 123: }
+[e :UE 331 ]
+}
+"126
+[; ;TAD_DATOS.c: 126: void motor_datos(void) {
 [v _motor_datos `(v ~T0 @X0 1 ef ]
 {
 [e :U _motor_datos ]
 [f ]
-"119
-[; ;TAD_DATOS.c: 119:     static char state = 0;
-[v F2797 `uc ~T0 @X0 1 s state ]
-[i F2797
--> -> 0 `i `uc
-]
-"120
-[; ;TAD_DATOS.c: 120:     static char pointer = 0;
-[v F2798 `uc ~T0 @X0 1 s pointer ]
-[i F2798
--> -> 0 `i `uc
-]
-"121
-[; ;TAD_DATOS.c: 121:     unsigned char lastChar;
-[v _lastChar `uc ~T0 @X0 1 a ]
-"123
-[; ;TAD_DATOS.c: 123:     switch(state) {
-[e $U 330  ]
-{
-"124
-[; ;TAD_DATOS.c: 124:         case 0:
-[e :U 331 ]
-"126
-[; ;TAD_DATOS.c: 126:             if (new_configuration == 1 || new_user == 1) {
-[e $ ! || == -> _new_configuration `i -> 1 `i == -> _new_user `i -> 1 `i 332  ]
-{
 "127
-[; ;TAD_DATOS.c: 127:                 new_configuration = 0;
-[e = _new_configuration -> -> 0 `i `uc ]
+[; ;TAD_DATOS.c: 127:     static char state = 0;
+[v F2785 `uc ~T0 @X0 1 s state ]
+[i F2785
+-> -> 0 `i `uc
+]
 "128
-[; ;TAD_DATOS.c: 128:                 new_user = 0;
-[e = _new_user -> -> 0 `i `uc ]
+[; ;TAD_DATOS.c: 128:     static char pointer = 0;
+[v F2786 `uc ~T0 @X0 1 s pointer ]
+[i F2786
+-> -> 0 `i `uc
+]
+"129
+[; ;TAD_DATOS.c: 129:     static unsigned char lastChar;
+[v F2787 `uc ~T0 @X0 1 s lastChar ]
 "131
-[; ;TAD_DATOS.c: 131:                 index = checkUserUID();
-[e = _index -> ( _checkUserUID ..  `i ]
+[; ;TAD_DATOS.c: 131:     switch(state) {
+[e $U 343  ]
+{
+"132
+[; ;TAD_DATOS.c: 132:         case 0:
+[e :U 344 ]
 "133
-[; ;TAD_DATOS.c: 133:                 state = 1;
-[e = F2797 -> -> 1 `i `uc ]
+[; ;TAD_DATOS.c: 133:             if(new_configuration || new_user) {
+[e $ ! || != -> _new_configuration `i -> 0 `i != -> _new_user `i -> 0 `i 345  ]
+{
 "134
-[; ;TAD_DATOS.c: 134:             }
-}
-[e :U 332 ]
+[; ;TAD_DATOS.c: 134:                 new_configuration = new_user = 0;
+[e = _new_configuration = _new_user -> -> 0 `i `uc ]
 "135
-[; ;TAD_DATOS.c: 135:             break;
-[e $U 329  ]
+[; ;TAD_DATOS.c: 135:                 index = checkUserUID();
+[e = _index -> ( _checkUserUID ..  `i ]
+"136
+[; ;TAD_DATOS.c: 136:                 state = 1;
+[e = F2785 -> -> 1 `i `uc ]
 "137
-[; ;TAD_DATOS.c: 137:         case 1:
-[e :U 333 ]
+[; ;TAD_DATOS.c: 137:             }
+}
+[e :U 345 ]
+"138
+[; ;TAD_DATOS.c: 138:             break;
+[e $U 342  ]
 "140
-[; ;TAD_DATOS.c: 140:             lastChar = currentUser[4];
-[e = _lastChar *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+[; ;TAD_DATOS.c: 140:         case 1:
+[e :U 346 ]
 "141
-[; ;TAD_DATOS.c: 141:             LcPutChar((lastChar < 10) ? ('0' + lastChar) : ('A' + (lastChar - 10)));
-[e ( _LcPutChar (1 -> ? < -> _lastChar `i -> 10 `i : + -> 48 `ui -> _lastChar `ui + -> 65 `ui -> - -> _lastChar `i -> 10 `i `ui `uc ]
+[; ;TAD_DATOS.c: 141:             lastChar = currentUser[4];
+[e = F2787 *U + &U _currentUser * -> -> -> 4 `i `ui `ux -> -> # *U &U _currentUser `ui `ux ]
+"142
+[; ;TAD_DATOS.c: 142:             LcPutChar((lastChar < 10) ? ('0' + lastChar) : ('A' + (lastChar - 10)));
+[e ( _LcPutChar (1 -> ? < -> F2787 `i -> 10 `i : + -> 48 `ui -> F2787 `ui + -> 65 `ui -> - -> F2787 `i -> 10 `i `ui `uc ]
+"143
+[; ;TAD_DATOS.c: 143:             LcPutChar(' ');
+[e ( _LcPutChar (1 -> -> 32 `ui `uc ]
 "144
-[; ;TAD_DATOS.c: 144:             LcPutChar(' ');
-[e ( _LcPutChar (1 -> -> 32 `ui `uc ]
+[; ;TAD_DATOS.c: 144:             state = 2;
+[e = F2785 -> -> 2 `i `uc ]
+"145
+[; ;TAD_DATOS.c: 145:             break;
+[e $U 342  ]
 "147
-[; ;TAD_DATOS.c: 147:             state = 2;
-[e = F2797 -> -> 2 `i `uc ]
+[; ;TAD_DATOS.c: 147:         case 2:
+[e :U 347 ]
 "148
-[; ;TAD_DATOS.c: 148:             break;
-[e $U 329  ]
+[; ;TAD_DATOS.c: 148:             for(char i = 0; i < 4; i++) {
+{
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 4 `i 348  ]
+[e $U 349  ]
+[e :U 348 ]
+{
+"149
+[; ;TAD_DATOS.c: 149:                 LcPutChar(currentTime[i]);
+[e ( _LcPutChar (1 -> *U + &U _currentTime * -> _i `ux -> -> # *U &U _currentTime `ui `ux `uc ]
 "150
-[; ;TAD_DATOS.c: 150:         case 2:
-[e :U 334 ]
-"154
-[; ;TAD_DATOS.c: 154:             LcPutChar(currentTime[0]);
-[e ( _LcPutChar (1 -> *U + &U _currentTime * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentTime `ui `ux `uc ]
-"155
-[; ;TAD_DATOS.c: 155:             LcPutChar(currentTime[1]);
-[e ( _LcPutChar (1 -> *U + &U _currentTime * -> -> -> 1 `i `ui `ux -> -> # *U &U _currentTime `ui `ux `uc ]
-"156
-[; ;TAD_DATOS.c: 156:             LcPutChar(':');
+[; ;TAD_DATOS.c: 150:                 if(i == 1) LcPutChar(':');
+[e $ ! == -> _i `i -> 1 `i 351  ]
 [e ( _LcPutChar (1 -> -> 58 `ui `uc ]
+[e :U 351 ]
+"151
+[; ;TAD_DATOS.c: 151:             }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 4 `i 348  ]
+[e :U 349 ]
+}
+"152
+[; ;TAD_DATOS.c: 152:             LcPutChar(' ');
+[e ( _LcPutChar (1 -> -> 32 `ui `uc ]
+"153
+[; ;TAD_DATOS.c: 153:             pointer = 0;
+[e = F2786 -> -> 0 `i `uc ]
+"154
+[; ;TAD_DATOS.c: 154:             state = 3;
+[e = F2785 -> -> 3 `i `uc ]
+"155
+[; ;TAD_DATOS.c: 155:             break;
+[e $U 342  ]
 "157
-[; ;TAD_DATOS.c: 157:             LcPutChar(currentTime[2]);
-[e ( _LcPutChar (1 -> *U + &U _currentTime * -> -> -> 2 `i `ui `ux -> -> # *U &U _currentTime `ui `ux `uc ]
+[; ;TAD_DATOS.c: 157:         case 3:
+[e :U 352 ]
 "158
-[; ;TAD_DATOS.c: 158:             LcPutChar(currentTime[3]);
-[e ( _LcPutChar (1 -> *U + &U _currentTime * -> -> -> 3 `i `ui `ux -> -> # *U &U _currentTime `ui `ux `uc ]
-"161
-[; ;TAD_DATOS.c: 161:             LcPutChar(' ');
-[e ( _LcPutChar (1 -> -> 32 `ui `uc ]
-"164
-[; ;TAD_DATOS.c: 164:             pointer = 0;
-[e = F2798 -> -> 0 `i `uc ]
-"165
-[; ;TAD_DATOS.c: 165:             state = 3;
-[e = F2797 -> -> 3 `i `uc ]
-"166
-[; ;TAD_DATOS.c: 166:             break;
-[e $U 329  ]
-"168
-[; ;TAD_DATOS.c: 168:         case 3:
-[e :U 335 ]
-"171
-[; ;TAD_DATOS.c: 171:             if (pointer < 6) {
-[e $ ! < -> F2798 `i -> 6 `i 336  ]
+[; ;TAD_DATOS.c: 158:             if(pointer < 6) {
+[e $ ! < -> F2786 `i -> 6 `i 353  ]
 {
-"173
-[; ;TAD_DATOS.c: 173:                 LcPutChar((char)('1' + pointer));
-[e ( _LcPutChar (1 -> + -> 49 `ui -> F2798 `ui `uc ]
-"174
-[; ;TAD_DATOS.c: 174:                 LcPutChar('-');
+"159
+[; ;TAD_DATOS.c: 159:                 LcPutChar('1' + pointer);
+[e ( _LcPutChar (1 -> + -> 49 `ui -> F2786 `ui `uc ]
+"160
+[; ;TAD_DATOS.c: 160:                 LcPutChar('-');
 [e ( _LcPutChar (1 -> -> 45 `ui `uc ]
-"176
-[; ;TAD_DATOS.c: 176:                 LcPutChar((char)('0' + configurations[index][pointer]));
-[e ( _LcPutChar (1 -> + -> 48 `ui -> *U + &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> F2798 `ux -> -> # *U &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux `ui `uc ]
-"177
-[; ;TAD_DATOS.c: 177:                 LcPutChar(' ');
+"161
+[; ;TAD_DATOS.c: 161:                 LcPutChar('0' + configurations[index][pointer]);
+[e ( _LcPutChar (1 -> + -> 48 `ui -> *U + &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> F2786 `ux -> -> # *U &U *U + &U _configurations * -> -> _index `ui `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux `ui `uc ]
+"162
+[; ;TAD_DATOS.c: 162:                 LcPutChar(' ');
 [e ( _LcPutChar (1 -> -> 32 `ui `uc ]
-"178
-[; ;TAD_DATOS.c: 178:                 pointer++;
-[e ++ F2798 -> -> 1 `i `uc ]
-"179
-[; ;TAD_DATOS.c: 179:             } else {
+"163
+[; ;TAD_DATOS.c: 163:                 pointer++;
+[e ++ F2786 -> -> 1 `i `uc ]
+"164
+[; ;TAD_DATOS.c: 164:             } else {
 }
-[e $U 337  ]
-[e :U 336 ]
+[e $U 354  ]
+[e :U 353 ]
 {
-"181
-[; ;TAD_DATOS.c: 181:                 pointer = 0;
-[e = F2798 -> -> 0 `i `uc ]
-"182
-[; ;TAD_DATOS.c: 182:                 state = 0;
-[e = F2797 -> -> 0 `i `uc ]
-"183
-[; ;TAD_DATOS.c: 183:             }
+"165
+[; ;TAD_DATOS.c: 165:                 pointer = 0;
+[e = F2786 -> -> 0 `i `uc ]
+"166
+[; ;TAD_DATOS.c: 166:                 state = 0;
+[e = F2785 -> -> 0 `i `uc ]
+"167
+[; ;TAD_DATOS.c: 167:             }
 }
-[e :U 337 ]
-"184
-[; ;TAD_DATOS.c: 184:             break;
-[e $U 329  ]
-"185
-[; ;TAD_DATOS.c: 185:     }
+[e :U 354 ]
+"168
+[; ;TAD_DATOS.c: 168:             break;
+[e $U 342  ]
+"169
+[; ;TAD_DATOS.c: 169:     }
 }
-[e $U 329  ]
-[e :U 330 ]
-[e [\ F2797 , $ -> 0 `i 331
- , $ -> 1 `i 333
- , $ -> 2 `i 334
- , $ -> 3 `i 335
- 329 ]
-[e :U 329 ]
-"186
-[; ;TAD_DATOS.c: 186: }
-[e :UE 328 ]
+[e $U 342  ]
+[e :U 343 ]
+[e [\ F2785 , $ -> 0 `i 344
+ , $ -> 1 `i 346
+ , $ -> 2 `i 347
+ , $ -> 3 `i 352
+ 342 ]
+[e :U 342 ]
+"170
+[; ;TAD_DATOS.c: 170: }
+[e :UE 341 ]
 }
-"189
-[; ;TAD_DATOS.c: 189: void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity) {
+"173
+[; ;TAD_DATOS.c: 173: void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity) {
 [v _setLEDIntensity `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 {
 [e :U _setLEDIntensity ]
@@ -1030,93 +1083,83 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ledIndex `uc ~T0 @X0 1 r2 ]
 [v _intensity `uc ~T0 @X0 1 r3 ]
 [f ]
-"190
-[; ;TAD_DATOS.c: 190:     if (userIndex < 4 && ledIndex < 6) {
-[e $ ! && < -> _userIndex `i -> 4 `i < -> _ledIndex `i -> 6 `i 339  ]
+"174
+[; ;TAD_DATOS.c: 174:     if(userIndex < 4 && ledIndex < 6 && intensity <= 0xA) {
+[e $ ! && && < -> _userIndex `i -> 4 `i < -> _ledIndex `i -> 6 `i <= -> _intensity `i -> 10 `i 356  ]
 {
-"191
-[; ;TAD_DATOS.c: 191:         if (intensity <= 0xA) {
-[e $ ! <= -> _intensity `i -> 10 `i 340  ]
-{
-"192
-[; ;TAD_DATOS.c: 192:             configurations[userIndex][ledIndex] = intensity;
+"175
+[; ;TAD_DATOS.c: 175:         configurations[userIndex][ledIndex] = intensity;
 [e = *U + &U *U + &U _configurations * -> _userIndex `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux * -> _ledIndex `ux -> -> # *U &U *U + &U _configurations * -> _userIndex `ux -> * -> # *U &U *U &U _configurations `ui -> -> 6 `i `ui `ux `ui `ux _intensity ]
-"193
-[; ;TAD_DATOS.c: 193:         }
+"176
+[; ;TAD_DATOS.c: 176:     }
 }
-[e :U 340 ]
-"194
-[; ;TAD_DATOS.c: 194:     }
+[e :U 356 ]
+"177
+[; ;TAD_DATOS.c: 177: }
+[e :UE 355 ]
 }
-[e :U 339 ]
-"195
-[; ;TAD_DATOS.c: 195: }
-[e :UE 338 ]
-}
-"197
-[; ;TAD_DATOS.c: 197: void setLed(unsigned char tecla){
+"180
+[; ;TAD_DATOS.c: 180: void setLed(unsigned char tecla) {
 [v _setLed `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _setLed ]
 [v _tecla `uc ~T0 @X0 1 r1 ]
 [f ]
-"198
-[; ;TAD_DATOS.c: 198:  static char modeLED = 0;
-[v F2808 `uc ~T0 @X0 1 s modeLED ]
-[i F2808
+"181
+[; ;TAD_DATOS.c: 181:     static char modeLED = 0;
+[v F2797 `uc ~T0 @X0 1 s modeLED ]
+[i F2797
 -> -> 0 `i `uc
 ]
-"199
-[; ;TAD_DATOS.c: 199:  static char ledIndex = 0;
-[v F2809 `uc ~T0 @X0 1 s ledIndex ]
-[i F2809
+"182
+[; ;TAD_DATOS.c: 182:     static char ledIndex = 0;
+[v F2798 `uc ~T0 @X0 1 s ledIndex ]
+[i F2798
 -> -> 0 `i `uc
 ]
-"200
-[; ;TAD_DATOS.c: 200:  static char userIndex = 0;
-[v F2810 `uc ~T0 @X0 1 s userIndex ]
-[i F2810
+"183
+[; ;TAD_DATOS.c: 183:     static char userIndex = 0;
+[v F2799 `uc ~T0 @X0 1 s userIndex ]
+[i F2799
 -> -> 0 `i `uc
 ]
-"202
-[; ;TAD_DATOS.c: 202:  if(modeLED == 0){
-[e $ ! == -> F2808 `i -> 0 `i 342  ]
+"185
+[; ;TAD_DATOS.c: 185:     if(!modeLED) {
+[e $ ! ! != -> F2797 `i -> 0 `i 358  ]
 {
-"203
-[; ;TAD_DATOS.c: 203:   ledIndex = tecla - 1;
-[e = F2809 -> - -> _tecla `i -> 1 `i `uc ]
-"204
-[; ;TAD_DATOS.c: 204:   modeLED = 1;
-[e = F2808 -> -> 1 `i `uc ]
-"205
-[; ;TAD_DATOS.c: 205:  } else{
+"186
+[; ;TAD_DATOS.c: 186:         ledIndex = tecla - 1;
+[e = F2798 -> - -> _tecla `i -> 1 `i `uc ]
+"187
+[; ;TAD_DATOS.c: 187:         modeLED = 1;
+[e = F2797 -> -> 1 `i `uc ]
+"188
+[; ;TAD_DATOS.c: 188:     } else {
 }
-[e $U 343  ]
-[e :U 342 ]
+[e $U 359  ]
+[e :U 358 ]
 {
-"206
-[; ;TAD_DATOS.c: 206:   userIndex = checkUserUID();
-[e = F2810 ( _checkUserUID ..  ]
-"207
-[; ;TAD_DATOS.c: 207:   setLEDIntensity(userIndex, ledIndex, tecla);
-[e ( _setLEDIntensity (3 , , -> F2810 `uc -> F2809 `uc _tecla ]
-"208
-[; ;TAD_DATOS.c: 208:   new_configuration = 1;
+"189
+[; ;TAD_DATOS.c: 189:         userIndex = checkUserUID();
+[e = F2799 ( _checkUserUID ..  ]
+"190
+[; ;TAD_DATOS.c: 190:         setLEDIntensity(userIndex, ledIndex, tecla);
+[e ( _setLEDIntensity (3 , , -> F2799 `uc -> F2798 `uc _tecla ]
+"191
+[; ;TAD_DATOS.c: 191:         new_configuration = 1;
 [e = _new_configuration -> -> 1 `i `uc ]
-"209
-[; ;TAD_DATOS.c: 209:   modeLED = 0;
-[e = F2808 -> -> 0 `i `uc ]
-"210
-[; ;TAD_DATOS.c: 210:  }
+"192
+[; ;TAD_DATOS.c: 192:         modeLED = 0;
+[e = F2797 -> -> 0 `i `uc ]
+"193
+[; ;TAD_DATOS.c: 193:     }
 }
-[e :U 343 ]
-"212
-[; ;TAD_DATOS.c: 212: }
-[e :UE 341 ]
+[e :U 359 ]
+"194
+[; ;TAD_DATOS.c: 194: }
+[e :UE 357 ]
 }
-[a 1C 85 115 101 114 32 0 ]
-[a 2C 32 67 111 110 102 105 103 58 32 0 ]
-[a 3C 32 0 ]
-[a 4C 13 10 0 ]
-[a 5C 84 97 114 103 101 116 97 32 100 101 116 101 99 116 97 100 97 33 13 10 9 0 ]
-[a 6C 9 0 ]
+[a 1C 32 0 ]
+[a 2C 13 10 0 ]
+[a 3C 84 97 114 103 101 116 97 32 100 101 116 101 99 116 97 100 97 33 13 10 9 0 ]
+[a 4C 9 0 ]

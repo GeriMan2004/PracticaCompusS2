@@ -4841,38 +4841,15 @@ void Terminal_Init(void){
 }
 
 
-int Terminal_TXAvailable(void) {
- return (PIR1bits.TXIF == 1) ? 1 : 0;
-}
-
-
-char Terminal_RXAvailable(void) {
- return (PIR1bits.RCIF == 1) ? 1 : 0;
-}
+int Terminal_TXAvailable(void) { return (PIR1bits.TXIF == 1); }
+char Terminal_RXAvailable(void) { return (PIR1bits.RCIF == 1); }
+char Terminal_ReceiveChar(void) { return RCREG; }
 
 
 void Terminal_SendChar(char c) {
- while (Terminal_TXAvailable() == 0);
+ while (!Terminal_TXAvailable());
  TXREG = c;
 }
-
-
-char motor_SendChar(char c) {
-
-    if (Terminal_TXAvailable() == 0) {
-        return 0;
-    }
-
-
-    TXREG = c;
-    return 1;
-}
-
-
-char Terminal_ReceiveChar(void) {
- return RCREG;
-}
-
 
 void Terminal_SendString(const char *str) {
  while (*str) {
@@ -4881,77 +4858,67 @@ void Terminal_SendString(const char *str) {
 }
 
 
-char motor_SendString(void) {
-    switch(state_str) {
-        case 0:
-            return 1;
-
-        case 1:
-            if (*str_ptr == 0) {
-                state_str = 0;
-                return 1;
-            }
-
-
-            if (motor_SendChar(*str_ptr)) {
-                str_ptr++;
-            }
-            return 0;
-    }
-
-    return 0;
+char motor_SendChar(char c) {
+ if (!Terminal_TXAvailable()) return 0;
+ TXREG = c;
+ return 1;
 }
 
+
+char motor_SendString(void) {
+ switch(state_str) {
+  case 0: return 1;
+  case 1:
+   if (!*str_ptr) {
+    state_str = 0;
+    return 1;
+   }
+   if (motor_SendChar(*str_ptr)) str_ptr++;
+   return 0;
+ }
+ return 0;
+}
 
 void motor_StartSendString(const char* str) {
-    if (motor_SendString() == 1) {
-        str_ptr = str;
-        state_str = 1;
-    }
+ if (motor_SendString() == 1) {
+  str_ptr = str;
+  state_str = 1;
+ }
 }
 
-void hashtag_pressed3s(void){
- hashtag_pressed = 1;
-}
+void hashtag_pressed3s(void) { hashtag_pressed = 1; }
+
 
 void printfUID(unsigned char *currentUser) {
+ static const char hex[] = "0123456789ABCDEF";
  Terminal_SendString("UID: ");
  for (int i = 0; i < 5; i++) {
-
-  unsigned char high = (currentUser[i] >> 4) & 0x0F;
-  Terminal_SendChar(high < 10 ? '0' + high : 'A' + high - 10);
-
-
-  unsigned char low = currentUser[i] & 0x0F;
-  Terminal_SendChar(low < 10 ? '0' + low : 'A' + low - 10);
-
-
+  Terminal_SendChar(hex[currentUser[i] >> 4]);
+  Terminal_SendChar(hex[currentUser[i] & 0x0F]);
   if (i < 4) Terminal_SendString("-");
  }
  Terminal_SendString("\r\n");
 }
 
-void printLedConfig(unsigned char *leds) {
- for (int i = 0; i < 6; i++) {
 
+void printLedConfig(unsigned char *leds) {
+ static const char hex[] = "0123456789ABCDEF";
+ for (int i = 0; i < 6; i++) {
   Terminal_SendChar('L');
   Terminal_SendChar('0' + i);
   Terminal_SendString(": ");
-
-
-  unsigned char val = leds[i];
-  Terminal_SendChar(val < 10 ? '0' + val : 'A' + val - 10);
-
-
-  if (i < 6 - 1) Terminal_SendString(" - ");
+  Terminal_SendChar(hex[leds[i]]);
+  if (i < 5) Terminal_SendString(" - ");
  }
  Terminal_SendString("\r\n");
 }
 
+
 void motorTerminal(void) {
  static char state = 0;
  static char sending_string = 0;
-
+ static unsigned char hour[4] = "0000";
+ static char index = 0;
 
  if (sending_string) {
   if (motor_SendString() == 1) {
@@ -4963,126 +4930,58 @@ void motorTerminal(void) {
 
  switch(state) {
   case 0:
-   if (Terminal_ReceiveChar() == 0x1B) {
-    motor_StartSendString("---------------\r\n");
-    sending_string = 1;
-    state = 10;
-   }
-
-   if (hashtag_pressed == 1){
+   if (Terminal_ReceiveChar() == 0x1B || hashtag_pressed) {
     motor_StartSendString("---------------\r\n");
     sending_string = 1;
     state = 10;
     hashtag_pressed = 0;
    }
-  break;
+   break;
 
   case 10:
    if (!sending_string) {
-    motor_StartSendString("Menú principal\r\n");
-    sending_string = 1;
-    state = 11;
-   }
-  break;
-
-  case 11:
-   if (!sending_string) {
-    motor_StartSendString("---------------\r\n");
-    sending_string = 1;
-    state = 12;
-   }
-  break;
-
-  case 12:
-   if (!sending_string) {
-    motor_StartSendString("Tria una opció:\r\n");
+    motor_StartSendString("Menú principal\r\n---------------\r\nTria una opció:\r\n");
     sending_string = 1;
     state = 13;
    }
-  break;
+   break;
 
   case 13:
    if (!sending_string) {
-    motor_StartSendString("\t1. Qui hi ha a la sala?\r\n");
-    sending_string = 1;
-    state = 14;
-   }
-  break;
-
-  case 14:
-   if (!sending_string) {
-    motor_StartSendString("\t2. Mostrar configuracions\r\n");
-    sending_string = 1;
-    state = 15;
-   }
-  break;
-
-  case 15:
-   if (!sending_string) {
-    motor_StartSendString("\t3. Modificar hora del sistema\r\n");
-    sending_string = 1;
-    state = 16;
-   }
-  break;
-
-  case 16:
-   if (!sending_string) {
-    motor_StartSendString("Opció: ");
+    motor_StartSendString("\t1. Qui hi ha a la sala?\r\n\t2. Mostrar configuracions\r\n\t3. Modificar hora del sistema\r\nOpció: ");
     sending_string = 1;
     state = 1;
    }
-  break;
+   break;
 
   case 1:
-   if(Terminal_RXAvailable() == 1){
-    if (Terminal_ReceiveChar() == '1') {
+   if(Terminal_RXAvailable()) {
+    char opcion = Terminal_ReceiveChar();
+    if (opcion >= '1' && opcion <= '3') {
      motor_StartSendString("\r\n");
      sending_string = 1;
-     state = 20;
-    }
-    else if (Terminal_ReceiveChar() == '2') {
-     motor_StartSendString("\r\n");
-     sending_string = 1;
-     state = 30;
-    }
-    else if (Terminal_ReceiveChar() == '3') {
-     motor_StartSendString("\r\n");
-     sending_string = 1;
-     state = 40;
-    }
-    else {
+     state = (opcion - '1') * 10 + 20;
+    } else {
      motor_StartSendString("ERROR. Valor introduit erroni.\r\n");
      sending_string = 1;
      state = 0;
     }
    }
-  break;
+   break;
 
   case 20:
    if (!sending_string) {
     unsigned char currentUser[5];
     getActualUID(currentUser);
-
-    if (currentUser[0] != 0) {
-     motor_StartSendString("UID: ");
-     sending_string = 1;
-     state = 21;
+    if (currentUser[0]) {
+     printfUID(currentUser);
     } else {
      motor_StartSendString("No hi ha cap usuari a la sala.\r\n");
      sending_string = 1;
-     state = 25;
     }
-   }
-  break;
-
-  case 21:
-   if (!sending_string) {
-    unsigned char currentUser[5];
-    getActualUID(currentUser);
-    printfUID(currentUser);
     state = 25;
    }
-  break;
+   break;
 
   case 25:
    if (!sending_string) {
@@ -5090,38 +4989,35 @@ void motorTerminal(void) {
     sending_string = 1;
     state = 0;
    }
-  break;
+   break;
 
   case 30:
    if (!sending_string) {
     showAllConfigurations();
     state = 0;
    }
-  break;
+   break;
 
   case 40:
    if (!sending_string) {
     motor_StartSendString("Introduce la hora actual(HHMM): ");
     sending_string = 1;
     state = 2;
+    index = 0;
    }
-  break;
+   break;
 
   case 2:
-   if(Terminal_RXAvailable() == 1){
-    static unsigned char hour[4] = "0000";
-    static char index = 0;
+   if(Terminal_RXAvailable()) {
     hour[index] = Terminal_ReceiveChar();
     Terminal_SendChar(hour[index]);
-    index++;
-    if(index == 4){
+    if(++index == 4) {
      saveHourToData(hour);
      motor_StartSendString("\r\nHora introduida correctament\r\n");
      sending_string = 1;
-     index = 0;
      state = 0;
     }
    }
-  break;
+   break;
  }
 }
