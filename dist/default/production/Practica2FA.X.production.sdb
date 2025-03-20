@@ -49,9 +49,9 @@
 [v _setCurrentUser setCurrentUser `(v  1 e 1 0 ]
 "94
 [v _checkUserUID checkUserUID `(uc  1 e 1 0 ]
-"193
+"189
 [v _setLEDIntensity setLEDIntensity `(v  1 e 1 0 ]
-"201
+"197
 [v _setLed setLed `(v  1 e 1 0 ]
 "68 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_DISPLAY.c
 [v _LcInit LcInit `(v  1 e 1 0 ]
@@ -75,10 +75,8 @@
 [v _EscriuPrimeraOrdre EscriuPrimeraOrdre `(v  1 e 1 0 ]
 "9 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_LEDS.c
 [v _initLeds initLeds `(v  1 e 1 0 ]
-"15
-[v _setLedActual setLedActual `(v  1 e 1 0 ]
-"46
-[v _unsetLedActual unsetLedActual `(v  1 e 1 0 ]
+"16
+[v _controlLED controlLED `(v  1 e 1 0 ]
 "22 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _InitPortDirections InitPortDirections `(v  1 e 1 0 ]
 "31
@@ -97,23 +95,25 @@
 [v _MFRC522_AntennaControl MFRC522_AntennaControl `(v  1 e 1 0 ]
 "131
 [v _MFRC522_Init MFRC522_Init `(v  1 e 1 0 ]
-"146
+"147
+[v _processBit processBit `(v  1 e 1 0 ]
+"161
 [v _motor_Write motor_Write `(uc  1 e 1 0 ]
-"192
+"193
 [v _motor_Read motor_Read `(uc  1 e 1 0 ]
-"250
+"241
 [v _initRFID initRFID `(v  1 e 1 0 ]
-"262
+"253
 [v _motor_RFID motor_RFID `(v  1 e 1 0 ]
-"9 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"16 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _ReadFilas ReadFilas `(uc  1 s 1 ReadFilas ]
-"13
+"20
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
-"22
+"29
 [v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
-"114
+"121
 [v _writeColumnas writeColumnas `(v  1 e 1 0 ]
-"128
+"135
 [v _GetTecla GetTecla `(uc  1 e 1 0 ]
 "11 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
@@ -133,13 +133,13 @@
 [v _motor_SendString motor_SendString `(uc  1 e 1 0 ]
 "82
 [v _motor_StartSendString motor_StartSendString `(v  1 e 1 0 ]
-"100
+"89
 [v _hashtag_pressed3s hashtag_pressed3s `(v  1 e 1 0 ]
-"104
+"93
 [v _printfUID printfUID `(v  1 e 1 0 ]
-"121
+"110
 [v _printLedConfig printLedConfig `(v  1 e 1 0 ]
-"138
+"127
 [v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 "25 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TIMER.c
 [v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
@@ -151,7 +151,7 @@
 [v _TI_ResetTics TI_ResetTics `(v  1 e 1 0 ]
 "61
 [v _TI_GetTics TI_GetTics `(ul  1 e 4 0 ]
-[s S326 . 1 `uc 1 RC0 1 0 :1:0 
+[s S324 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -161,7 +161,7 @@
 `uc 1 RC7 1 0 :1:7 
 ]
 "506 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[s S410 . 1 `uc 1 T1OSO 1 0 :1:0 
+[s S408 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
 `uc 1 SCK 1 0 :1:3 
@@ -170,7 +170,7 @@
 `uc 1 TX 1 0 :1:6 
 `uc 1 RX 1 0 :1:7 
 ]
-[s S419 . 1 `uc 1 T13CKI 1 0 :1:0 
+[s S417 . 1 `uc 1 T13CKI 1 0 :1:0 
 `uc 1 CCP2 1 0 :1:1 
 `uc 1 P1A 1 0 :1:2 
 `uc 1 SCL 1 0 :1:3 
@@ -179,38 +179,19 @@
 `uc 1 CK 1 0 :1:6 
 `uc 1 DT 1 0 :1:7 
 ]
-[s S428 . 1 `uc 1 T1CKI 1 0 :1:0 
+[s S426 . 1 `uc 1 T1CKI 1 0 :1:0 
 ]
-[s S430 . 1 `uc 1 . 1 0 :1:0 
+[s S428 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 PA2 1 0 :1:1 
 `uc 1 PA1 1 0 :1:2 
 ]
-[u S434 . 1 `S326 1 . 1 0 `S410 1 . 1 0 `S419 1 . 1 0 `S428 1 . 1 0 `S430 1 . 1 0 ]
-[v _PORTCbits PORTCbits `VES434  1 e 1 @3970 ]
+[u S432 . 1 `S324 1 . 1 0 `S408 1 . 1 0 `S417 1 . 1 0 `S426 1 . 1 0 `S428 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES432  1 e 1 @3970 ]
 "641
 [v _PORTD PORTD `VEuc  1 e 1 @3971 ]
-[s S977 . 1 `uc 1 LATA0 1 0 :1:0 
-`uc 1 LATA1 1 0 :1:1 
-`uc 1 LATA2 1 0 :1:2 
-`uc 1 LATA3 1 0 :1:3 
-`uc 1 LATA4 1 0 :1:4 
-`uc 1 LATA5 1 0 :1:5 
-`uc 1 LATA6 1 0 :1:6 
-`uc 1 LATA7 1 0 :1:7 
-]
-"1013
-[s S986 . 1 `uc 1 LA0 1 0 :1:0 
-`uc 1 LA1 1 0 :1:1 
-`uc 1 LA2 1 0 :1:2 
-`uc 1 LA3 1 0 :1:3 
-`uc 1 LA4 1 0 :1:4 
-`uc 1 LA5 1 0 :1:5 
-`uc 1 LA6 1 0 :1:6 
-`uc 1 LA7 1 0 :1:7 
-]
-[u S995 . 1 `S977 1 . 1 0 `S986 1 . 1 0 ]
-[v _LATAbits LATAbits `VES995  1 e 1 @3977 ]
-[s S670 . 1 `uc 1 LATB0 1 0 :1:0 
+"986
+[v _LATA LATA `VEuc  1 e 1 @3977 ]
+[s S674 . 1 `uc 1 LATB0 1 0 :1:0 
 `uc 1 LATB1 1 0 :1:1 
 `uc 1 LATB2 1 0 :1:2 
 `uc 1 LATB3 1 0 :1:3 
@@ -220,7 +201,7 @@
 `uc 1 LATB7 1 0 :1:7 
 ]
 "1125
-[s S679 . 1 `uc 1 LB0 1 0 :1:0 
+[s S683 . 1 `uc 1 LB0 1 0 :1:0 
 `uc 1 LB1 1 0 :1:1 
 `uc 1 LB2 1 0 :1:2 
 `uc 1 LB3 1 0 :1:3 
@@ -229,11 +210,11 @@
 `uc 1 LB6 1 0 :1:6 
 `uc 1 LB7 1 0 :1:7 
 ]
-[u S688 . 1 `S670 1 . 1 0 `S679 1 . 1 0 ]
-[v _LATBbits LATBbits `VES688  1 e 1 @3978 ]
+[u S692 . 1 `S674 1 . 1 0 `S683 1 . 1 0 ]
+[v _LATBbits LATBbits `VES692  1 e 1 @3978 ]
 "1210
 [v _LATC LATC `VEuc  1 e 1 @3979 ]
-[s S361 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S359 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -243,7 +224,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "1237
-[s S370 . 1 `uc 1 LC0 1 0 :1:0 
+[s S368 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -252,8 +233,8 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S379 . 1 `S361 1 . 1 0 `S370 1 . 1 0 ]
-[v _LATCbits LATCbits `VES379  1 e 1 @3979 ]
+[u S377 . 1 `S359 1 . 1 0 `S368 1 . 1 0 ]
+[v _LATCbits LATCbits `VES377  1 e 1 @3979 ]
 "1322
 [v _LATD LATD `VEuc  1 e 1 @3980 ]
 [s S119 . 1 `uc 1 LATE0 1 0 :1:0 
@@ -269,7 +250,7 @@
 [v _LATEbits LATEbits `VES127  1 e 1 @3981 ]
 "1486
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
-[s S591 . 1 `uc 1 TRISB0 1 0 :1:0 
+[s S595 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -279,7 +260,7 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1740
-[s S600 . 1 `uc 1 RB0 1 0 :1:0 
+[s S604 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
 `uc 1 RB3 1 0 :1:3 
@@ -288,9 +269,9 @@
 `uc 1 RB6 1 0 :1:6 
 `uc 1 RB7 1 0 :1:7 
 ]
-[u S609 . 1 `S591 1 . 1 0 `S600 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES609  1 e 1 @3987 ]
-[s S317 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S613 . 1 `S595 1 . 1 0 `S604 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES613  1 e 1 @3987 ]
+[s S315 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -300,8 +281,8 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "1962
-[u S335 . 1 `S317 1 . 1 0 `S326 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES335  1 e 1 @3988 ]
+[u S333 . 1 `S315 1 . 1 0 `S324 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES333  1 e 1 @3988 ]
 "2152
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
 "2374
@@ -323,7 +304,7 @@
 ]
 [u S154 . 1 `S140 1 . 1 0 `S149 1 . 1 0 ]
 [v _TRISEbits TRISEbits `VES154  1 e 1 @3990 ]
-[s S788 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S792 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -333,12 +314,12 @@
 `uc 1 PSPIF 1 0 :1:7 
 ]
 "2702
-[s S797 . 1 `uc 1 . 1 0 :4:0 
+[s S801 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 ]
-[u S801 . 1 `S788 1 . 1 0 `S797 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES801  1 e 1 @3998 ]
+[u S805 . 1 `S792 1 . 1 0 `S801 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES805  1 e 1 @3998 ]
 "3119
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
 "3329
@@ -409,17 +390,19 @@
 "6 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_LEDS.c
 [v _ActualLeds ActualLeds `[6]uc  1 s 6 ActualLeds ]
 "7
-[v _timer@TAD_LEDS$F1021 timer `uc  1 s 1 timer ]
+[v _timer@TAD_LEDS$F977 timer `uc  1 s 1 timer ]
 "18 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _state_read state_read `uc  1 e 1 0 ]
 "19
 [v _state_write state_write `uc  1 e 1 0 ]
-"6 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"7 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _Filas Filas `uc  1 s 1 Filas ]
 [v _Columnas Columnas `uc  1 s 1 Columnas ]
 [v _timer timer `uc  1 s 1 timer ]
 [v _tecla tecla `uc  1 s 1 tecla ]
 [v _state state `uc  1 s 1 state ]
+"9
+[v _keymap keymap `C[4][3]uc  1 e 12 0 ]
 "6 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _str_ptr str_ptr `*.32Cuc  1 s 2 str_ptr ]
 "7
@@ -436,42 +419,42 @@
 {
 "61
 } 0
-"262 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+"253 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _motor_RFID motor_RFID `(v  1 e 1 0 ]
 {
-"612
+"603
 [v motor_RFID@currentUser currentUser `[5]uc  1 a 5 25 ]
-"611
+"602
 [v motor_RFID@differentUID differentUID `uc  1 a 1 24 ]
-"274
-[v motor_RFID@flag flag `uc  1 a 1 33 ]
-"277
-[v motor_RFID@backBitsCalc backBitsCalc `uc  1 a 1 32 ]
-"263
-[v motor_RFID@state state `uc  1 s 1 state ]
-"264
-[v motor_RFID@substate substate `uc  1 s 1 substate ]
 "265
+[v motor_RFID@flag flag `uc  1 a 1 33 ]
+"268
+[v motor_RFID@backBitsCalc backBitsCalc `uc  1 a 1 32 ]
+"254
+[v motor_RFID@state state `uc  1 s 1 state ]
+"255
+[v motor_RFID@substate substate `uc  1 s 1 substate ]
+"256
 [v motor_RFID@irqEn irqEn `uc  1 s 1 irqEn ]
 [v motor_RFID@waitIRq waitIRq `uc  1 s 1 waitIRq ]
 [v motor_RFID@n n `uc  1 s 1 n ]
-"266
+"257
 [v motor_RFID@i i `uc  1 s 1 i ]
-"269
+"260
 [v motor_RFID@TagType TagType `uc  1 s 1 TagType ]
-"270
+"261
 [v motor_RFID@UID UID `[6]uc  1 s 6 UID ]
-"271
+"262
 [v motor_RFID@checksum checksum `uc  1 s 1 checksum ]
-"272
+"263
 [v motor_RFID@allZero allZero `uc  1 s 1 allZero ]
-"273
+"264
 [v motor_RFID@tempRegValue tempRegValue `uc  1 s 1 tempRegValue ]
-"275
+"266
 [v motor_RFID@lastBitsVal lastBitsVal `uc  1 s 1 lastBitsVal ]
-"276
+"267
 [v motor_RFID@fifoLevel fifoLevel `uc  1 s 1 fifoLevel ]
-"631
+"622
 } 0
 "81 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_DATOS.c
 [v _setCurrentUser setCurrentUser `(v  1 e 1 0 ]
@@ -485,66 +468,75 @@
 [v setCurrentUser@UID0 UID0 `uc  1 p 1 21 ]
 "92
 } 0
-"121 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"110 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _printLedConfig printLedConfig `(v  1 e 1 0 ]
 {
-"129
+"118
 [v printLedConfig@val val `uc  1 a 1 10 ]
-"122
+"111
 [v printLedConfig@i i `i  1 a 2 11 ]
-"121
+"110
 [v printLedConfig@leds leds `*.30uc  1 p 1 7 ]
-"136
+"125
 } 0
-"146 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+"161 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _motor_Write motor_Write `(uc  1 e 1 0 ]
 {
 [v motor_Write@addr addr `uc  1 p 1 wreg ]
 [v motor_Write@addr addr `uc  1 p 1 wreg ]
-[v motor_Write@value value `uc  1 p 1 3 ]
-"147
+[v motor_Write@value value `uc  1 p 1 8 ]
+"162
 [v motor_Write@bit_count bit_count `uc  1 s 1 bit_count ]
-"148
+"163
 [v motor_Write@ucAddr ucAddr `uc  1 s 1 ucAddr ]
-"149
+"164
 [v motor_Write@ucValue ucValue `uc  1 s 1 ucValue ]
-"146
-[v motor_Write@addr addr `uc  1 p 1 5 ]
+"161
+[v motor_Write@addr addr `uc  1 p 1 9 ]
 "190
 } 0
-"192
+"193
 [v _motor_Read motor_Read `(uc  1 e 1 0 ]
 {
 [v motor_Read@addr addr `uc  1 p 1 wreg ]
 [v motor_Read@addr addr `uc  1 p 1 wreg ]
-"193
-[v motor_Read@bit_count bit_count `uc  1 s 1 bit_count ]
 "194
-[v motor_Read@ucAddr ucAddr `uc  1 s 1 ucAddr ]
+[v motor_Read@bit_count bit_count `uc  1 s 1 bit_count ]
 "195
-[v motor_Read@ucResult ucResult `uc  1 s 1 ucResult ]
+[v motor_Read@ucAddr ucAddr `uc  1 s 1 ucAddr ]
 "196
+[v motor_Read@ucResult ucResult `uc  1 s 1 ucResult ]
+"197
 [v motor_Read@timeout_counter timeout_counter `ui  1 s 2 timeout_counter ]
-"192
-[v motor_Read@addr addr `uc  1 p 1 4 ]
-"247
+"193
+[v motor_Read@addr addr `uc  1 p 1 9 ]
+"238
 } 0
-"138 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"147
+[v _processBit processBit `(v  1 e 1 0 ]
+{
+[v processBit@val val `*.30uc  1 p 1 3 ]
+[v processBit@bit_count bit_count `*.30uc  1 p 1 4 ]
+[v processBit@state state `*.30uc  1 p 1 5 ]
+[v processBit@next_state next_state `uc  1 p 1 6 ]
+"158
+} 0
+"127 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 {
-"267
-[v motorTerminal@currentUser_910 currentUser `[5]uc  1 a 5 22 ]
-"250
+"256
+[v motorTerminal@currentUser_905 currentUser `[5]uc  1 a 5 22 ]
+"239
 [v motorTerminal@currentUser currentUser `[5]uc  1 a 5 17 ]
-"139
+"128
 [v motorTerminal@state state `uc  1 s 1 state ]
-"140
+"129
 [v motorTerminal@sending_string sending_string `uc  1 s 1 sending_string ]
-"299
+"288
 [v motorTerminal@hour hour `[4]uc  1 s 4 hour ]
-"300
+"289
 [v motorTerminal@index index `uc  1 s 1 index ]
-"314
+"303
 } 0
 "54 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_DATOS.c
 [v _showAllConfigurations showAllConfigurations `(v  1 e 1 0 ]
@@ -561,18 +553,18 @@
 [v saveHourToData@hour hour `*.30uc  1 p 1 1 ]
 "79
 } 0
-"104 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
+"93 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TERMINAL.c
 [v _printfUID printfUID `(v  1 e 1 0 ]
 {
-"112
+"101
 [v printfUID@low low `uc  1 a 1 14 ]
-"108
+"97
 [v printfUID@high high `uc  1 a 1 13 ]
-"106
+"95
 [v printfUID@i i `i  1 a 2 15 ]
-"104
+"93
 [v printfUID@currentUser currentUser `*.30uc  1 p 1 7 ]
-"119
+"108
 } 0
 "53
 [v _Terminal_SendString Terminal_SendString `(v  1 e 1 0 ]
@@ -629,20 +621,20 @@
 {
 "27
 } 0
-"13 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
+"20 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_TECLADO.c
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
-{
-"20
-} 0
-"22
-[v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
 {
 "27
 } 0
-"250 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
+"29
+[v _initPortsTeclado initPortsTeclado `(v  1 e 1 0 ]
+{
+"34
+} 0
+"241 C:\Users\gerar\MPLABXProjects\Practica2FA.X\TAD_RFID.c
 [v _initRFID initRFID `(v  1 e 1 0 ]
 {
-"253
+"244
 } 0
 "131
 [v _MFRC522_Init MFRC522_Init `(v  1 e 1 0 ]

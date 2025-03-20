@@ -4861,8 +4861,15 @@ void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 5 "TAD_TECLADO.c" 2
 
+
 static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
 
+const unsigned char keymap[4][3] = {
+        {0x01, 0x02, 0x03},
+        {0x04, 0x05, 0x06},
+        {0x07, 0x08, 0x09},
+        {0x0A, 0x00, 0x0B}
+    };
 
 static unsigned char ReadFilas(void) {
     return (PORTD & 0x0F);
@@ -4948,7 +4955,7 @@ void motorTeclado(void) {
    if (Filas == 0x0) {
     state = 0;
    }
-   else if (Filas != 0x0 && TI_GetTics(timer) > 500) {
+   else if (Filas != 0x0 && TI_GetTics(timer) > 1500) {
     hashtag_pressed3s();
 
     state = 5;
@@ -5002,13 +5009,6 @@ unsigned char GetTecla(void) {
         case 0x04: columna = 2; break;
         default: return 0xFF;
     }
-
-    const unsigned char keymap[4][3] = {
-        {0x01, 0x02, 0x03},
-        {0x04, 0x05, 0x06},
-        {0x07, 0x08, 0x09},
-        {0x0A, 0x00, 0x0B}
-    };
 
     return keymap[fila][columna];
 }

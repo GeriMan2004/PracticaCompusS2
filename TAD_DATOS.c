@@ -172,13 +172,9 @@ void motor_datos(void) {
                 // (pointer+1) es el número de LED en ASCII
                 LcPutChar((char)('1' + pointer));
                 LcPutChar('-');
-				Terminal_SendChar((char)('1' + pointer));
-				Terminal_SendChar('-');
                 // Convertimos el valor (0..9) a su correspondiente dígito ASCII
                 LcPutChar((char)('0' + configurations[index][pointer]));
                 LcPutChar(' ');
-				Terminal_SendChar((char)('0' + configurations[index][pointer]));
-				Terminal_SendChar(' ');
                 pointer++;
             } else {
                 // Hemos terminado de imprimir todos los LEDs

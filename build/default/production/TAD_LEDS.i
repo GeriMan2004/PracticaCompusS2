@@ -4838,83 +4838,51 @@ void initLeds(void) {
     TI_NewTimer(&timer);
 }
 
-void setLedActual(unsigned char ledActual) {
-    switch(ledActual) {
-        case 0x00:
-            LATAbits.LATA0 = 1;
-            break;
-        case 0x01:
-            LATAbits.LATA1 = 1;
-            break;
-        case 0x02:
-            LATAbits.LATA2 = 1;
-            break;
-        case 0x03:
-            LATAbits.LATA3 = 1;
-            break;
-        case 0x04:
-            LATAbits.LATA4 = 1;
-            break;
-        case 0x05:
-            LATAbits.LATA5 = 1;
-            break;
-        default:
-            LATAbits.LATA0 = 1;
-            LATAbits.LATA1 = 1;
-            LATAbits.LATA2 = 1;
-            LATAbits.LATA3 = 1;
-            LATAbits.LATA4 = 1;
-            LATAbits.LATA5 = 1;
-            break;
+
+void controlLED(unsigned char ledActual, char estado) {
+
+    static const unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
+
+    if (ledActual < 6) {
+
+        if (estado)
+            LATA |= ledBits[ledActual];
+        else
+            LATA &= ~ledBits[ledActual];
+    }
+    else if (ledActual == 0xFF) {
+
+        LATA = estado ? 0x3F : 0x00;
     }
 }
 
-void unsetLedActual(unsigned char ledActual) {
-    switch(ledActual) {
-        case 0x00:
-            LATAbits.LATA0 = 0;
-            break;
-        case 0x01:
-            LATAbits.LATA1 = 0;
-            break;
-        case 0x02:
-            LATAbits.LATA2 = 0;
-            break;
-        case 0x03:
-            LATAbits.LATA3 = 0;
-            break;
-        case 0x04:
-            LATAbits.LATA4 = 0;
-            break;
-        case 0x05:
-            LATAbits.LATA5 = 0;
-            break;
-        default:
-            LATAbits.LATA0 = 0;
-            LATAbits.LATA1 = 0;
-            LATAbits.LATA2 = 0;
-            LATAbits.LATA3 = 0;
-            LATAbits.LATA4 = 0;
-            LATAbits.LATA5 = 0;
-    }
-}
+
+
+
 
 void motor_LEDs(void) {
 
     getActualLeds(ActualLeds);
 
 
-    if (TI_GetTics(timer) >= 10) {
+    static unsigned long lastTics = 0;
+    unsigned long currentTics = TI_GetTics(timer);
+
+
+    if (currentTics == lastTics) return;
+    lastTics = currentTics;
+
+
+    if (currentTics >= 10) {
         TI_ResetTics(timer);
-        setLedActual(0xFF);
-
-
+        controlLED(0xFF, 1);
+        return;
     }
 
 
-    for (int i = 0; i < 6; i++) {
-        if (ActualLeds[i] < 0xA && TI_GetTics(timer) >= ActualLeds[i]) {
-            unsetLedActual(i);
-        }
+    char i;
+    for (i = 0; i < 6; i++) {
+        if (ActualLeds[i] < 0xA && currentTics >= ActualLeds[i])
+            controlLED(i, 0);
     }
 }

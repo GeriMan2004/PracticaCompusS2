@@ -143,6 +143,21 @@ void MFRC522_Init() {
     MFRC522_AntennaOn();
 }
 
+// Consolidate repetitive bit manipulation into a function
+void processBit(unsigned char *val, char *bit_count, char *state, char next_state) {
+    MFRC522_SI = ((*val & 0x80) != 0);
+    MFRC522_SCK = 1;
+    *val <<= 1;
+    delay_us(5);
+    MFRC522_SCK = 0;
+    delay_us(5);
+    if (++(*bit_count) == 8) {
+        *bit_count = 0;
+        *state = next_state;
+    }
+}
+
+// Use the new function in motor_Write
 char motor_Write(char addr, char value) {
     static char bit_count = 0;
     static unsigned char ucAddr;
@@ -159,29 +174,14 @@ char motor_Write(char addr, char value) {
             break;
 
         case 1: // Send address bits
-            MFRC522_SI = ((ucAddr & 0x80) != 0);
-            MFRC522_SCK = 1;
-            ucAddr <<= 1;
-            delay_us(5);
-            MFRC522_SCK = 0;
-            delay_us(5);
-            if (++bit_count == 8) {
-                bit_count = 0;
-                state_write = 2;
-            }
+            processBit(&ucAddr, &bit_count, &state_write, 2);
             break;
 
         case 2: // Send value bits
-            MFRC522_SI = ((ucValue & 0x80) != 0);
-            MFRC522_SCK = 1;
-            ucValue <<= 1;
-            delay_us(5);
-            MFRC522_SCK = 0;
-            delay_us(5);
-            if (++bit_count == 8) {
+            processBit(&ucValue, &bit_count, &state_write, 0);
+            if (state_write == 0) {
                 MFRC522_CS = 1;
                 MFRC522_SCK = 1;
-                state_write = 0;
                 return 1;
             }
             break;
@@ -189,6 +189,7 @@ char motor_Write(char addr, char value) {
     return 0;
 }
 
+// Use the new function in motor_Read
 char motor_Read(char addr) {
     static char bit_count = 0;
     static unsigned char ucAddr;
@@ -215,17 +216,7 @@ char motor_Read(char addr) {
             return 0xFE;
             
         case 1: // Send address bits
-            MFRC522_SI = ((ucAddr & 0x80) == 0x80);
-            MFRC522_SCK = 1;
-            delay_us(5);
-            ucAddr <<= 1;
-            MFRC522_SCK = 0;
-            delay_us(5);
-            
-            if (++bit_count >= 8) {
-                bit_count = 0;
-                state_read = 2;
-            }
+            processBit(&ucAddr, &bit_count, &state_read, 2);
             return 0xFE;
             
         case 2: // Receive data bits

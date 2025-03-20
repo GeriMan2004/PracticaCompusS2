@@ -4973,6 +4973,21 @@ void MFRC522_Init() {
     MFRC522_AntennaControl(1);
 }
 
+
+void processBit(unsigned char *val, char *bit_count, char *state, char next_state) {
+    LATCbits.LATC1 = ((*val & 0x80) != 0);
+    LATCbits.LATC2 = 1;
+    *val <<= 1;
+    delay_us(5);
+    LATCbits.LATC2 = 0;
+    delay_us(5);
+    if (++(*bit_count) == 8) {
+        *bit_count = 0;
+        *state = next_state;
+    }
+}
+
+
 char motor_Write(char addr, char value) {
     static char bit_count = 0;
     static unsigned char ucAddr;
@@ -4989,35 +5004,21 @@ char motor_Write(char addr, char value) {
             break;
 
         case 1:
-            LATCbits.LATC1 = ((ucAddr & 0x80) != 0);
-            LATCbits.LATC2 = 1;
-            ucAddr <<= 1;
-            delay_us(5);
-            LATCbits.LATC2 = 0;
-            delay_us(5);
-            if (++bit_count == 8) {
-                bit_count = 0;
-                state_write = 2;
-            }
+            processBit(&ucAddr, &bit_count, &state_write, 2);
             break;
 
         case 2:
-            LATCbits.LATC1 = ((ucValue & 0x80) != 0);
-            LATCbits.LATC2 = 1;
-            ucValue <<= 1;
-            delay_us(5);
-            LATCbits.LATC2 = 0;
-            delay_us(5);
-            if (++bit_count == 8) {
+            processBit(&ucValue, &bit_count, &state_write, 0);
+            if (state_write == 0) {
                 LATCbits.LATC3 = 1;
                 LATCbits.LATC2 = 1;
-                state_write = 0;
                 return 1;
             }
             break;
     }
     return 0;
 }
+
 
 char motor_Read(char addr) {
     static char bit_count = 0;
@@ -5045,17 +5046,7 @@ char motor_Read(char addr) {
             return 0xFE;
 
         case 1:
-            LATCbits.LATC1 = ((ucAddr & 0x80) == 0x80);
-            LATCbits.LATC2 = 1;
-            delay_us(5);
-            ucAddr <<= 1;
-            LATCbits.LATC2 = 0;
-            delay_us(5);
-
-            if (++bit_count >= 8) {
-                bit_count = 0;
-                state_read = 2;
-            }
+            processBit(&ucAddr, &bit_count, &state_read, 2);
             return 0xFE;
 
         case 2:

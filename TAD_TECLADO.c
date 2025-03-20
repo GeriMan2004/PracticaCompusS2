@@ -2,9 +2,16 @@
 #include "TAD_TECLADO.h"
 #include "TAD_TERMINAL.h"
 #include "TAD_DATOS.h"
+#include "TAD_TIMER.h"
 
 static unsigned char Filas, Columnas, timer, tecla = 0, state = 0;
 
+const unsigned char keymap[4][3] = {
+        {0x01, 0x02, 0x03},
+        {0x04, 0x05, 0x06},
+        {0x07, 0x08, 0x09},
+        {0x0A, 0x00, 0x0B}  // 10 = *, 11 = #
+    };
 
 static unsigned char ReadFilas(void) {
     return (PORTD & 0x0F);  // Read only the lower 4 bits
@@ -144,13 +151,6 @@ unsigned char GetTecla(void) {
         case 0x04: columna = 2; break;  // 011
         default: return 0xFF;  // Invalid column
     }
-    
-    const unsigned char keymap[4][3] = {
-        {0x01, 0x02, 0x03},
-        {0x04, 0x05, 0x06},
-        {0x07, 0x08, 0x09},
-        {0x0A, 0x00, 0x0B}  // 10 = *, 11 = #
-    };
     
     return keymap[fila][columna];
 }

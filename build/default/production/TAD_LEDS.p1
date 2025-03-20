@@ -8,21 +8,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "23 ./TAD_TIMER.h
 [; ;./TAD_TIMER.h: 23: unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
 [v _TI_NewTimer `(uc ~T0 @X0 0 ef1`*uc ]
-"992 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 992:     struct {
-[s S43 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S43 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"1002
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1002:     struct {
-[s S44 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S44 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"991
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 991: typedef union {
-[u S42 `S43 1 `S44 1 ]
-[n S42 . . . ]
-"1013
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1013: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
-[v _LATAbits `VS42 ~T0 @X0 0 e@3977 ]
+"986 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 986: extern volatile unsigned char LATA __attribute__((address(0xF89)));
+[v _LATA `Vuc ~T0 @X0 0 e@3977 ]
 "11 ./TAD_DATOS.h
 [; ;./TAD_DATOS.h: 11: void getActualLeds(unsigned char* leds);
 [v _getActualLeds `(v ~T0 @X0 0 ef1`*uc ]
@@ -471,266 +459,136 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_LEDS.c: 13: }
 [e :UE 302 ]
 }
-"15
-[; ;TAD_LEDS.c: 15: void setLedActual(unsigned char ledActual) {
-[v _setLedActual `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _setLedActual ]
-[v _ledActual `uc ~T0 @X0 1 r1 ]
-[f ]
 "16
-[; ;TAD_LEDS.c: 16:     switch(ledActual) {
-[e $U 305  ]
+[; ;TAD_LEDS.c: 16: void controlLED(unsigned char ledActual, char estado) {
+[v _controlLED `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-"17
-[; ;TAD_LEDS.c: 17:         case 0x00:
-[e :U 306 ]
+[e :U _controlLED ]
+[v _ledActual `uc ~T0 @X0 1 r1 ]
+[v _estado `uc ~T0 @X0 1 r2 ]
+[f ]
 "18
-[; ;TAD_LEDS.c: 18:             LATAbits.LATA0 = 1;
-[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-"19
-[; ;TAD_LEDS.c: 19:             break;
-[e $U 304  ]
+[; ;TAD_LEDS.c: 18:     static const unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
+[v F2732 `Cuc ~T0 @X0 -> 6 `i s ledBits ]
+[i F2732
+:U ..
+-> -> 1 `i `uc
+-> -> 2 `i `uc
+-> -> 4 `i `uc
+-> -> 8 `i `uc
+-> -> 16 `i `uc
+-> -> 32 `i `uc
+..
+]
 "20
-[; ;TAD_LEDS.c: 20:         case 0x01:
-[e :U 307 ]
-"21
-[; ;TAD_LEDS.c: 21:             LATAbits.LATA1 = 1;
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
+[; ;TAD_LEDS.c: 20:     if (ledActual < 6) {
+[e $ ! < -> _ledActual `i -> 6 `i 304  ]
+{
 "22
-[; ;TAD_LEDS.c: 22:             break;
-[e $U 304  ]
+[; ;TAD_LEDS.c: 22:         if (estado)
+[e $ ! != -> _estado `i -> 0 `i 305  ]
 "23
-[; ;TAD_LEDS.c: 23:         case 0x02:
-[e :U 308 ]
+[; ;TAD_LEDS.c: 23:             LATA |= ledBits[ledActual];
+[e =| _LATA -> *U + &U F2732 * -> _ledActual `ux -> -> # *U &U F2732 `ui `ux `Vuc ]
+[e $U 306  ]
 "24
-[; ;TAD_LEDS.c: 24:             LATAbits.LATA2 = 1;
-[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-"25
-[; ;TAD_LEDS.c: 25:             break;
-[e $U 304  ]
-"26
-[; ;TAD_LEDS.c: 26:         case 0x03:
-[e :U 309 ]
-"27
-[; ;TAD_LEDS.c: 27:             LATAbits.LATA3 = 1;
-[e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
-"28
-[; ;TAD_LEDS.c: 28:             break;
-[e $U 304  ]
-"29
-[; ;TAD_LEDS.c: 29:         case 0x04:
-[e :U 310 ]
-"30
-[; ;TAD_LEDS.c: 30:             LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
-"31
-[; ;TAD_LEDS.c: 31:             break;
-[e $U 304  ]
-"32
-[; ;TAD_LEDS.c: 32:         case 0x05:
-[e :U 311 ]
-"33
-[; ;TAD_LEDS.c: 33:             LATAbits.LATA5 = 1;
-[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
-"34
-[; ;TAD_LEDS.c: 34:             break;
-[e $U 304  ]
-"35
-[; ;TAD_LEDS.c: 35:         default:
-[e :U 312 ]
-"36
-[; ;TAD_LEDS.c: 36:             LATAbits.LATA0 = 1;
-[e = . . _LATAbits 0 0 -> -> 1 `i `uc ]
-"37
-[; ;TAD_LEDS.c: 37:             LATAbits.LATA1 = 1;
-[e = . . _LATAbits 0 1 -> -> 1 `i `uc ]
-"38
-[; ;TAD_LEDS.c: 38:             LATAbits.LATA2 = 1;
-[e = . . _LATAbits 0 2 -> -> 1 `i `uc ]
-"39
-[; ;TAD_LEDS.c: 39:             LATAbits.LATA3 = 1;
-[e = . . _LATAbits 0 3 -> -> 1 `i `uc ]
-"40
-[; ;TAD_LEDS.c: 40:             LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
-"41
-[; ;TAD_LEDS.c: 41:             LATAbits.LATA5 = 1;
-[e = . . _LATAbits 0 5 -> -> 1 `i `uc ]
-"42
-[; ;TAD_LEDS.c: 42:             break;
-[e $U 304  ]
-"43
-[; ;TAD_LEDS.c: 43:     }
-}
-[e $U 304  ]
+[; ;TAD_LEDS.c: 24:         else
 [e :U 305 ]
-[e [\ _ledActual , $ -> 0 `i 306
- , $ -> 1 `i 307
- , $ -> 2 `i 308
- , $ -> 3 `i 309
- , $ -> 4 `i 310
- , $ -> 5 `i 311
- 312 ]
+"25
+[; ;TAD_LEDS.c: 25:             LATA &= ~ledBits[ledActual];
+[e =& _LATA -> ~ -> *U + &U F2732 * -> _ledActual `ux -> -> # *U &U F2732 `ui `ux `i `Vuc ]
+[e :U 306 ]
+"26
+[; ;TAD_LEDS.c: 26:     }
+}
+[e $U 307  ]
+"27
+[; ;TAD_LEDS.c: 27:     else if (ledActual == 0xFF) {
 [e :U 304 ]
-"44
-[; ;TAD_LEDS.c: 44: }
+[e $ ! == -> _ledActual `i -> 255 `i 308  ]
+{
+"29
+[; ;TAD_LEDS.c: 29:         LATA = estado ? 0x3F : 0x00;
+[e = _LATA -> ? != -> _estado `i -> 0 `i : -> 63 `i -> 0 `i `uc ]
+"30
+[; ;TAD_LEDS.c: 30:     }
+}
+[e :U 308 ]
+[e :U 307 ]
+"31
+[; ;TAD_LEDS.c: 31: }
 [e :UE 303 ]
 }
-"46
-[; ;TAD_LEDS.c: 46: void unsetLedActual(unsigned char ledActual) {
-[v _unsetLedActual `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _unsetLedActual ]
-[v _ledActual `uc ~T0 @X0 1 r1 ]
-[f ]
-"47
-[; ;TAD_LEDS.c: 47:     switch(ledActual) {
-[e $U 315  ]
-{
-"48
-[; ;TAD_LEDS.c: 48:         case 0x00:
-[e :U 316 ]
-"49
-[; ;TAD_LEDS.c: 49:             LATAbits.LATA0 = 0;
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-"50
-[; ;TAD_LEDS.c: 50:             break;
-[e $U 314  ]
-"51
-[; ;TAD_LEDS.c: 51:         case 0x01:
-[e :U 317 ]
-"52
-[; ;TAD_LEDS.c: 52:             LATAbits.LATA1 = 0;
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-"53
-[; ;TAD_LEDS.c: 53:             break;
-[e $U 314  ]
-"54
-[; ;TAD_LEDS.c: 54:         case 0x02:
-[e :U 318 ]
-"55
-[; ;TAD_LEDS.c: 55:             LATAbits.LATA2 = 0;
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"56
-[; ;TAD_LEDS.c: 56:             break;
-[e $U 314  ]
-"57
-[; ;TAD_LEDS.c: 57:         case 0x03:
-[e :U 319 ]
-"58
-[; ;TAD_LEDS.c: 58:             LATAbits.LATA3 = 0;
-[e = . . _LATAbits 0 3 -> -> 0 `i `uc ]
-"59
-[; ;TAD_LEDS.c: 59:             break;
-[e $U 314  ]
-"60
-[; ;TAD_LEDS.c: 60:         case 0x04:
-[e :U 320 ]
-"61
-[; ;TAD_LEDS.c: 61:             LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-"62
-[; ;TAD_LEDS.c: 62:             break;
-[e $U 314  ]
-"63
-[; ;TAD_LEDS.c: 63:         case 0x05:
-[e :U 321 ]
-"64
-[; ;TAD_LEDS.c: 64:             LATAbits.LATA5 = 0;
-[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
-"65
-[; ;TAD_LEDS.c: 65:             break;
-[e $U 314  ]
-"66
-[; ;TAD_LEDS.c: 66:         default:
-[e :U 322 ]
-"67
-[; ;TAD_LEDS.c: 67:             LATAbits.LATA0 = 0;
-[e = . . _LATAbits 0 0 -> -> 0 `i `uc ]
-"68
-[; ;TAD_LEDS.c: 68:             LATAbits.LATA1 = 0;
-[e = . . _LATAbits 0 1 -> -> 0 `i `uc ]
-"69
-[; ;TAD_LEDS.c: 69:             LATAbits.LATA2 = 0;
-[e = . . _LATAbits 0 2 -> -> 0 `i `uc ]
-"70
-[; ;TAD_LEDS.c: 70:             LATAbits.LATA3 = 0;
-[e = . . _LATAbits 0 3 -> -> 0 `i `uc ]
-"71
-[; ;TAD_LEDS.c: 71:             LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-"72
-[; ;TAD_LEDS.c: 72:             LATAbits.LATA5 = 0;
-[e = . . _LATAbits 0 5 -> -> 0 `i `uc ]
-"73
-[; ;TAD_LEDS.c: 73:     }
-}
-[e $U 314  ]
-[e :U 315 ]
-[e [\ _ledActual , $ -> 0 `i 316
- , $ -> 1 `i 317
- , $ -> 2 `i 318
- , $ -> 3 `i 319
- , $ -> 4 `i 320
- , $ -> 5 `i 321
- 322 ]
-[e :U 314 ]
-"74
-[; ;TAD_LEDS.c: 74: }
-[e :UE 313 ]
-}
-"76
-[; ;TAD_LEDS.c: 76: void motor_LEDs(void) {
+"37
+[; ;TAD_LEDS.c: 37: void motor_LEDs(void) {
 [v _motor_LEDs `(v ~T0 @X0 1 ef ]
 {
 [e :U _motor_LEDs ]
 [f ]
-"78
-[; ;TAD_LEDS.c: 78:     getActualLeds(ActualLeds);
+"39
+[; ;TAD_LEDS.c: 39:     getActualLeds(ActualLeds);
 [e ( _getActualLeds (1 &U _ActualLeds ]
-"81
-[; ;TAD_LEDS.c: 81:     if (TI_GetTics(timer) >= 10) {
-[e $ ! >= ( _TI_GetTics (1 _timer -> -> -> 10 `i `l `ul 324  ]
+"42
+[; ;TAD_LEDS.c: 42:     static unsigned long lastTics = 0;
+[v F2734 `ul ~T0 @X0 1 s lastTics ]
+[i F2734
+-> -> -> 0 `i `l `ul
+]
+"43
+[; ;TAD_LEDS.c: 43:     unsigned long currentTics = TI_GetTics(timer);
+[v _currentTics `ul ~T0 @X0 1 a ]
+[e = _currentTics ( _TI_GetTics (1 _timer ]
+"46
+[; ;TAD_LEDS.c: 46:     if (currentTics == lastTics) return;
+[e $ ! == _currentTics F2734 310  ]
+[e $UE 309  ]
+[e :U 310 ]
+"47
+[; ;TAD_LEDS.c: 47:     lastTics = currentTics;
+[e = F2734 _currentTics ]
+"50
+[; ;TAD_LEDS.c: 50:     if (currentTics >= 10) {
+[e $ ! >= _currentTics -> -> -> 10 `i `l `ul 311  ]
 {
-"82
-[; ;TAD_LEDS.c: 82:         TI_ResetTics(timer);
+"51
+[; ;TAD_LEDS.c: 51:         TI_ResetTics(timer);
 [e ( _TI_ResetTics (1 _timer ]
-"83
-[; ;TAD_LEDS.c: 83:         setLedActual(0xFF);
-[e ( _setLedActual (1 -> -> 255 `i `uc ]
-"86
-[; ;TAD_LEDS.c: 86:     }
+"52
+[; ;TAD_LEDS.c: 52:         controlLED(0xFF, 1);
+[e ( _controlLED (2 , -> -> 255 `i `uc -> -> 1 `i `uc ]
+"53
+[; ;TAD_LEDS.c: 53:         return;
+[e $UE 309  ]
+"54
+[; ;TAD_LEDS.c: 54:     }
 }
-[e :U 324 ]
-"89
-[; ;TAD_LEDS.c: 89:     for (int i = 0; i < 6; i++) {
+[e :U 311 ]
+"57
+[; ;TAD_LEDS.c: 57:     char i;
+[v _i `uc ~T0 @X0 1 a ]
+"58
+[; ;TAD_LEDS.c: 58:     for (i = 0; i < 6; i++) {
 {
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 6 `i 325  ]
-[e $U 326  ]
-[e :U 325 ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 6 `i 312  ]
+[e $U 313  ]
+[e :U 312 ]
 {
-"90
-[; ;TAD_LEDS.c: 90:         if (ActualLeds[i] < 0xA && TI_GetTics(timer) >= ActualLeds[i]) {
-[e $ ! && < -> *U + &U _ActualLeds * -> -> _i `ui `ux -> -> # *U &U _ActualLeds `ui `ux `i -> 10 `i >= ( _TI_GetTics (1 _timer -> *U + &U _ActualLeds * -> -> _i `ui `ux -> -> # *U &U _ActualLeds `ui `ux `ul 328  ]
-{
-"91
-[; ;TAD_LEDS.c: 91:             unsetLedActual(i);
-[e ( _unsetLedActual (1 -> _i `uc ]
-"92
-[; ;TAD_LEDS.c: 92:         }
+"59
+[; ;TAD_LEDS.c: 59:         if (ActualLeds[i] < 0xA && currentTics >= ActualLeds[i])
+[e $ ! && < -> *U + &U _ActualLeds * -> _i `ux -> -> # *U &U _ActualLeds `ui `ux `i -> 10 `i >= _currentTics -> *U + &U _ActualLeds * -> _i `ux -> -> # *U &U _ActualLeds `ui `ux `ul 315  ]
+"60
+[; ;TAD_LEDS.c: 60:             controlLED(i, 0);
+[e ( _controlLED (2 , -> _i `uc -> -> 0 `i `uc ]
+[e :U 315 ]
+"61
+[; ;TAD_LEDS.c: 61:     }
 }
-[e :U 328 ]
-"93
-[; ;TAD_LEDS.c: 93:     }
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 6 `i 312  ]
+[e :U 313 ]
 }
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 6 `i 325  ]
-[e :U 326 ]
-}
-"94
-[; ;TAD_LEDS.c: 94: }
-[e :UE 323 ]
+"62
+[; ;TAD_LEDS.c: 62: }
+[e :UE 309 ]
 }

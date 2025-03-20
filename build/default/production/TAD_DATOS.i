@@ -5025,13 +5025,9 @@ void motor_datos(void) {
 
                 LcPutChar((char)('1' + pointer));
                 LcPutChar('-');
-    Terminal_SendChar((char)('1' + pointer));
-    Terminal_SendChar('-');
 
                 LcPutChar((char)('0' + configurations[index][pointer]));
                 LcPutChar(' ');
-    Terminal_SendChar((char)('0' + configurations[index][pointer]));
-    Terminal_SendChar(' ');
                 pointer++;
             } else {
 

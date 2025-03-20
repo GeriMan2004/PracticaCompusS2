@@ -86,17 +86,6 @@ void motor_StartSendString(const char* str) {
     }
 }
 
-void showMenu(void) {
-	Terminal_SendString("---------------\r\n");
-	Terminal_SendString("Menú principal\r\n");
-	Terminal_SendString("---------------\r\n");
-	Terminal_SendString("Tria una opció:\r\n");
-	Terminal_SendString("\t1. Qui hi ha a la sala?\r\n");
-	Terminal_SendString("\t2. Mostrar configuracions\r\n");
-	Terminal_SendString("\t3. Modificar hora del sistema\r\n");
-	Terminal_SendString("Opció: ");
-}
-
 void hashtag_pressed3s(void){
 	hashtag_pressed = 1;
 }

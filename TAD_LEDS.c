@@ -12,83 +12,52 @@ void initLeds(void) {
     TI_NewTimer(&timer);
 }
 
-void setLedActual(unsigned char ledActual) {
-    switch(ledActual) {
-        case 0x00:
-            LATAbits.LATA0 = 1;
-            break;
-        case 0x01:
-            LATAbits.LATA1 = 1;
-            break;
-        case 0x02:
-            LATAbits.LATA2 = 1;
-            break;
-        case 0x03:
-            LATAbits.LATA3 = 1;
-            break;
-        case 0x04:
-            LATAbits.LATA4 = 1;
-            break;
-        case 0x05:
-            LATAbits.LATA5 = 1;
-            break;
-        default: // set all leds to 1
-            LATAbits.LATA0 = 1;
-            LATAbits.LATA1 = 1;
-            LATAbits.LATA2 = 1;
-            LATAbits.LATA3 = 1;
-            LATAbits.LATA4 = 1;
-            LATAbits.LATA5 = 1;
-            break;
+// Función combinada para manipular LEDs (ahorra código)
+void controlLED(unsigned char ledActual, char estado) {
+    // Tabla de bits para cada LED
+    static const unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
+    
+    if (ledActual < 6) {
+        // Asigna estado a un LED específico
+        if (estado)
+            LATA |= ledBits[ledActual];
+        else
+            LATA &= ~ledBits[ledActual];
+    }
+    else if (ledActual == 0xFF) {
+        // Asigna estado a todos los LEDs
+        LATA = estado ? 0x3F : 0x00;
     }
 }
 
-void unsetLedActual(unsigned char ledActual) {
-    switch(ledActual) {
-        case 0x00:
-            LATAbits.LATA0 = 0;
-            break;
-        case 0x01:
-            LATAbits.LATA1 = 0;
-            break;
-        case 0x02:
-            LATAbits.LATA2 = 0;
-            break;
-        case 0x03:
-            LATAbits.LATA3 = 0;
-            break;
-        case 0x04:
-            LATAbits.LATA4 = 0;
-            break;
-        case 0x05:
-            LATAbits.LATA5 = 0;
-            break;
-        default: // set all leds to 0
-            LATAbits.LATA0 = 0;
-            LATAbits.LATA1 = 0;
-            LATAbits.LATA2 = 0;
-            LATAbits.LATA3 = 0;
-            LATAbits.LATA4 = 0;
-            LATAbits.LATA5 = 0;
-    }
-}
+// Macros para mantener compatibilidad con código existente
+#define setLedActual(led) controlLED(led, 1)
+#define unsetLedActual(led) controlLED(led, 0)
 
 void motor_LEDs(void) {    
     // Get the current LED intensities
     getActualLeds(ActualLeds);
     
+    // Optimización: solo continuar si el timer ha cambiado
+    static unsigned long lastTics = 0;
+    unsigned long currentTics = TI_GetTics(timer);
+    
+    // Si no ha pasado tiempo, no actualizamos nada
+    if (currentTics == lastTics) return;
+    lastTics = currentTics;
+    
     // At the start of each PWM cycle, turn all LEDs on
-    if (TI_GetTics(timer) >= PWM_TIME) {
+    if (currentTics >= PWM_TIME) {
         TI_ResetTics(timer);
-        setLedActual(0xFF);  // Turn all LEDs on
-        //negate the value of the led 7 to turn it on and off and calculate the time of the pwm
-        //LATEbits.LATE2 ^= 1;
+        controlLED(0xFF, 1);  // Turn all LEDs on
+        return;
     }
     
-    // Check each LED's PWM duty cycle
-    for (int i = 0; i < LEDS; i++) {
-        if (ActualLeds[i] < 0xA && TI_GetTics(timer) >= ActualLeds[i]) {
-            unsetLedActual(i);  // Turn LED off if its duty cycle is complete
-        }
+    // Check each LED's PWM duty cycle - recorremos con contador para ahorrar memoria
+    char i;
+    for (i = 0; i < LEDS; i++) {
+        if (ActualLeds[i] < 0xA && currentTics >= ActualLeds[i])
+            controlLED(i, 0);  // Turn LED off if its duty cycle is complete
     }
 }
+
