@@ -3,18 +3,6 @@
 
 #include <xc.h> 
 
-/* pin out 
-SDA (Slave Select): Serial Data  (CS)
-SCK: Serial Clock
-MOSI (SDI?):
-MISO (SDO?):
-IRQ: Not connected
-GND
-RST: Reset
-3V3: 3V3 from USB to TTL!
-*/      
-
-
 //------------------------------------------------
 // Constant values (I/O pins) to be defined
 //-------------------------------------------------
@@ -113,7 +101,6 @@ RST: Reset
 #define     TRELOADREGL           0x2D
 #define     TCOUNTERVALUEREGH     0x2E
 #define     TCOUNTERVALUEREGL     0x2F
-//PAGE 3:TEST REGISTER    
 #define     RESERVED30            0x30
 #define     TESTSEL1REG           0x31
 #define     TESTSEL2REG           0x32
@@ -131,32 +118,8 @@ RST: Reset
 #define     RESERVED33            0x3E  
 #define     RESERVED34            0x3F
 
-
-
-//-------------- Private functions: --------------
-unsigned char MFRC522_Rd(unsigned char Address);
-void MFRC522_Wr(unsigned char Address, unsigned char value);
-void MFRC522_Clear_Bit(char addr, char mask);
-void MFRC522_Set_Bit(char addr, char mask);
-void MFRC522_Reset();
-void MFRC522_AntennaOn();
-void MFRC522_AntennaOff();
-void MFRC522_Init();
-char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
-char MFRC522_Request(char reqMode, char *TagType);
-void MFRC522_CRC(char *dataIn, char length, char *dataOut);
-unsigned MFRC522_SelectTag(char *serNum);
-void MFRC522_Halt();
-char MFRC522_AntiColl(unsigned char *serNum);
-char MFRC522_isCard(char *TagType);
-char MFRC522_ReadCardSerial(unsigned char *str);
 void motor_RFID(void);
-
-//-------------- Public functions: --------------
 void initRFID(void);
-//Post: initializes the RFID modem.
-void ReadRFID_NoCooperatiu(void);
-//Post: fills the variable TagType and UID with the type and value of the card 
-//present at the sensor. WARNING: this function is not cooperative!
+
         
 #endif	

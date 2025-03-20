@@ -4834,29 +4834,9 @@ char motor_SendString(void);
 void motor_StartSendString(const char* str);
 # 5 "main.c" 2
 # 1 "./TAD_RFID.h" 1
-# 137 "./TAD_RFID.h"
-unsigned char MFRC522_Rd(unsigned char Address);
-void MFRC522_Wr(unsigned char Address, unsigned char value);
-void MFRC522_Clear_Bit(char addr, char mask);
-void MFRC522_Set_Bit(char addr, char mask);
-void MFRC522_Reset();
-void MFRC522_AntennaOn();
-void MFRC522_AntennaOff();
-void MFRC522_Init();
-char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
-char MFRC522_Request(char reqMode, char *TagType);
-void MFRC522_CRC(char *dataIn, char length, char *dataOut);
-unsigned MFRC522_SelectTag(char *serNum);
-void MFRC522_Halt();
-char MFRC522_AntiColl(unsigned char *serNum);
-char MFRC522_isCard(char *TagType);
-char MFRC522_ReadCardSerial(unsigned char *str);
+# 121 "./TAD_RFID.h"
 void motor_RFID(void);
-
-
 void initRFID(void);
-
-void ReadRFID_NoCooperatiu(void);
 # 6 "main.c" 2
 # 1 "./TAD_TECLADO.h" 1
 
@@ -4967,8 +4947,8 @@ void main(void){
   motorTeclado();
      motorTerminal();
      motor_RFID();
+  motor_LEDs();
 
-        motor_datos();
   LATEbits.LATE2 ^= 1;
  }
 }

@@ -1,19 +1,4 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"1941 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1941:     struct {
-[s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S70 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
-"1951
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1951:     struct {
-[s S71 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S71 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"1940
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1940: typedef union {
-[u S69 `S70 1 `S71 1 ]
-[n S69 . . . ]
-"1962
-[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1962: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
-[v _TRISCbits `VS69 ~T0 @X0 0 e@3988 ]
 "8 C:\Program Files\Microchip\xc8\v3.00\pic\include/builtins.h
 [v ___nop `(v ~T0 @X0 0 ef ]
 [p i ___nop ]
@@ -59,6 +44,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "506
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 506: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
 [v _PORTCbits `VS20 ~T0 @X0 0 e@3970 ]
+"1941
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1941:     struct {
+[s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S70 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1951
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1951:     struct {
+[s S71 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S71 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"1940
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1940: typedef union {
+[u S69 `S70 1 `S71 1 ]
+[n S69 . . . ]
+"1962
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1962: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
+[v _TRISCbits `VS69 ~T0 @X0 0 e@3988 ]
 "10 ./TAD_DATOS.h
 [; ;./TAD_DATOS.h: 10: void getActualUID(unsigned char* UID);
 [v _getActualUID `(v ~T0 @X0 0 ef1`*uc ]
@@ -479,385 +479,43 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7008
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"18 TAD_RFID.c
-[; ;TAD_RFID.c: 18: char state_read = 0;
-[v _state_read `uc ~T0 @X0 1 e ]
+"17 TAD_RFID.c
+[; ;TAD_RFID.c: 17: static char state_read = 0;
+[v _state_read `uc ~T0 @X0 1 s ]
 [i _state_read
 -> -> 0 `i `uc
 ]
-"19
-[; ;TAD_RFID.c: 19: char state_write = 0;
-[v _state_write `uc ~T0 @X0 1 e ]
+"18
+[; ;TAD_RFID.c: 18: static char state_write = 0;
+[v _state_write `uc ~T0 @X0 1 s ]
 [i _state_write
 -> -> 0 `i `uc
 ]
-"22
-[; ;TAD_RFID.c: 22: void InitPortDirections () {
-[v _InitPortDirections `(v ~T0 @X0 1 ef ]
-{
-[e :U _InitPortDirections ]
-[f ]
 "23
-[; ;TAD_RFID.c: 23:     TRISCbits.TRISC0 = 1;
-[e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
-"24
-[; ;TAD_RFID.c: 24:     TRISCbits.TRISC1 = 0;
-[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
-"25
-[; ;TAD_RFID.c: 25:     TRISCbits.TRISC2 = 0;
-[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
-"26
-[; ;TAD_RFID.c: 26:     TRISCbits.TRISC3 = 0;
-[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
-"27
-[; ;TAD_RFID.c: 27:     TRISCbits.TRISC4 = 0;
-[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
-"28
-[; ;TAD_RFID.c: 28: }
-[e :UE 302 ]
-}
-"31
-[; ;TAD_RFID.c: 31: void delay_us (char howMany) {
+[; ;TAD_RFID.c: 23: void delay_us (char howMany) {
 [v _delay_us `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _delay_us ]
 [v _howMany `uc ~T0 @X0 1 r1 ]
 [f ]
-"32
-[; ;TAD_RFID.c: 32:     char x = howMany * 8;
+"24
+[; ;TAD_RFID.c: 24:     char x = howMany * 8;
 [v _x `uc ~T0 @X0 1 a ]
 [e = _x -> * -> _howMany `i -> 8 `i `uc ]
-"33
-[; ;TAD_RFID.c: 33:     while(x--) __nop();
-[e $U 304  ]
-[e :U 305 ]
-[e ( ___nop ..  ]
+"25
+[; ;TAD_RFID.c: 25:     while(x--) __nop();
+[e $U 303  ]
 [e :U 304 ]
-[e $ != -> -- _x -> -> 1 `i `uc `i -> 0 `i 305  ]
-[e :U 306 ]
-"34
-[; ;TAD_RFID.c: 34: }
-[e :UE 303 ]
+[e ( ___nop ..  ]
+[e :U 303 ]
+[e $ != -> -- _x -> -> 1 `i `uc `i -> 0 `i 304  ]
+[e :U 305 ]
+"26
+[; ;TAD_RFID.c: 26: }
+[e :UE 302 ]
 }
-"46
-[; ;TAD_RFID.c: 46: unsigned char MFRC522_Rd (unsigned char Address) {
-[v _MFRC522_Rd `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _MFRC522_Rd ]
-[v _Address `uc ~T0 @X0 1 r1 ]
-[f ]
-"47
-[; ;TAD_RFID.c: 47:     unsigned char i, ucAddr = ((Address<<1) & 0x7E) | 0x80;
-[v _i `uc ~T0 @X0 1 a ]
-[v _ucAddr `uc ~T0 @X0 1 a ]
-[e = _ucAddr -> | & << -> _Address `i -> 1 `i -> 126 `i -> 128 `i `uc ]
-"48
-[; ;TAD_RFID.c: 48:     unsigned char ucResult = 0;
-[v _ucResult `uc ~T0 @X0 1 a ]
-[e = _ucResult -> -> 0 `i `uc ]
-"50
-[; ;TAD_RFID.c: 50:     LATCbits.LATC2 = 0;
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"51
-[; ;TAD_RFID.c: 51:     LATCbits.LATC3 = 0;
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-"54
-[; ;TAD_RFID.c: 54:     for (i = 8; i > 0; i--) {
-{
-[e = _i -> -> 8 `i `uc ]
-[e $ > -> _i `i -> 0 `i 308  ]
-[e $U 309  ]
-[e :U 308 ]
-{
-"55
-[; ;TAD_RFID.c: 55:         do { LATCbits.LATC1 = ((ucAddr & 0x80) ? 1 : 0); LATCbits.LATC2 = 1; ucAddr <<= 1; delay_us(5); LATCbits.LATC2 = 0; delay_us(5); } while(0);
-[e :U 313 ]
-{
-[e = . . _LATCbits 0 1 -> ? != & -> _ucAddr `i -> 128 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-[e =<< _ucAddr -> -> 1 `i `uc ]
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-}
-[e :U 312 ]
-"56
-[; ;TAD_RFID.c: 56:     }
-}
-[e -- _i -> -> 1 `i `uc ]
-[e $ > -> _i `i -> 0 `i 308  ]
-[e :U 309 ]
-}
-"58
-[; ;TAD_RFID.c: 58:     for (i = 8; i > 0; i--) {
-{
-[e = _i -> -> 8 `i `uc ]
-[e $ > -> _i `i -> 0 `i 314  ]
-[e $U 315  ]
-[e :U 314 ]
-{
-"59
-[; ;TAD_RFID.c: 59:         LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"60
-[; ;TAD_RFID.c: 60:         delay_us(5);
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-"61
-[; ;TAD_RFID.c: 61:         ucResult <<= 1;
-[e =<< _ucResult -> -> 1 `i `uc ]
-"62
-[; ;TAD_RFID.c: 62:         ucResult|= PORTCbits.RC0;
-[e =| _ucResult -> . . _PORTCbits 0 0 `uc ]
-"63
-[; ;TAD_RFID.c: 63:         LATCbits.LATC2 = 0;
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"64
-[; ;TAD_RFID.c: 64:         delay_us(5);
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-"65
-[; ;TAD_RFID.c: 65:     }
-}
-[e -- _i -> -> 1 `i `uc ]
-[e $ > -> _i `i -> 0 `i 314  ]
-[e :U 315 ]
-}
-"67
-[; ;TAD_RFID.c: 67:     LATCbits.LATC3 = 1;
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
-"68
-[; ;TAD_RFID.c: 68:     LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"69
-[; ;TAD_RFID.c: 69:     return ucResult;
-[e ) _ucResult ]
-[e $UE 307  ]
-"70
-[; ;TAD_RFID.c: 70: }
-[e :UE 307 ]
-}
-"72
-[; ;TAD_RFID.c: 72: void MFRC522_Wr (unsigned char Address, unsigned char value) {
-[v _MFRC522_Wr `(v ~T0 @X0 1 ef2`uc`uc ]
-{
-[e :U _MFRC522_Wr ]
-[v _Address `uc ~T0 @X0 1 r1 ]
-[v _value `uc ~T0 @X0 1 r2 ]
-[f ]
-"73
-[; ;TAD_RFID.c: 73:     unsigned char i, ucAddr = ((Address << 1) & 0x7E);
-[v _i `uc ~T0 @X0 1 a ]
-[v _ucAddr `uc ~T0 @X0 1 a ]
-[e = _ucAddr -> & << -> _Address `i -> 1 `i -> 126 `i `uc ]
-"75
-[; ;TAD_RFID.c: 75:     LATCbits.LATC2 = 0;
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"76
-[; ;TAD_RFID.c: 76:     LATCbits.LATC3 = 0;
-[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-"79
-[; ;TAD_RFID.c: 79:     for (i = 8; i > 0; i--) {
-{
-[e = _i -> -> 8 `i `uc ]
-[e $ > -> _i `i -> 0 `i 318  ]
-[e $U 319  ]
-[e :U 318 ]
-{
-"80
-[; ;TAD_RFID.c: 80:         do { LATCbits.LATC1 = ((ucAddr & 0x80) ? 1 : 0); LATCbits.LATC2 = 1; ucAddr <<= 1; delay_us(5); LATCbits.LATC2 = 0; delay_us(5); } while(0);
-[e :U 323 ]
-{
-[e = . . _LATCbits 0 1 -> ? != & -> _ucAddr `i -> 128 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-[e =<< _ucAddr -> -> 1 `i `uc ]
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-}
-[e :U 322 ]
-"81
-[; ;TAD_RFID.c: 81:     }
-}
-[e -- _i -> -> 1 `i `uc ]
-[e $ > -> _i `i -> 0 `i 318  ]
-[e :U 319 ]
-}
-"83
-[; ;TAD_RFID.c: 83:     for (i = 8; i > 0; i--) {
-{
-[e = _i -> -> 8 `i `uc ]
-[e $ > -> _i `i -> 0 `i 324  ]
-[e $U 325  ]
-[e :U 324 ]
-{
-"84
-[; ;TAD_RFID.c: 84:         do { LATCbits.LATC1 = ((value & 0x80) ? 1 : 0); LATCbits.LATC2 = 1; value <<= 1; delay_us(5); LATCbits.LATC2 = 0; delay_us(5); } while(0);
-[e :U 329 ]
-{
-[e = . . _LATCbits 0 1 -> ? != & -> _value `i -> 128 `i -> 0 `i : -> 1 `i -> 0 `i `uc ]
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-[e =<< _value -> -> 1 `i `uc ]
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-[e ( _delay_us (1 -> -> 5 `i `uc ]
-}
-[e :U 328 ]
-"85
-[; ;TAD_RFID.c: 85:     }
-}
-[e -- _i -> -> 1 `i `uc ]
-[e $ > -> _i `i -> 0 `i 324  ]
-[e :U 325 ]
-}
-"87
-[; ;TAD_RFID.c: 87:     LATCbits.LATC3 = 1;
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
-"88
-[; ;TAD_RFID.c: 88:     LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"89
-[; ;TAD_RFID.c: 89: }
-[e :UE 317 ]
-}
-"92
-[; ;TAD_RFID.c: 92: void MFRC522_Bit_Mask(char addr, char mask, char op) {
-[v _MFRC522_Bit_Mask `(v ~T0 @X0 1 ef3`uc`uc`uc ]
-{
-[e :U _MFRC522_Bit_Mask ]
-[v _addr `uc ~T0 @X0 1 r1 ]
-[v _mask `uc ~T0 @X0 1 r2 ]
-[v _op `uc ~T0 @X0 1 r3 ]
-[f ]
-"93
-[; ;TAD_RFID.c: 93:     char temp = MFRC522_Rd(addr);
-[v _temp `uc ~T0 @X0 1 a ]
-[e = _temp -> ( _MFRC522_Rd (1 -> _addr `uc `uc ]
-"94
-[; ;TAD_RFID.c: 94:     MFRC522_Wr(addr, op ? (temp | mask) : (temp & ~mask));
-[e ( _MFRC522_Wr (2 , -> _addr `uc -> ? != -> _op `i -> 0 `i : | -> _temp `i -> _mask `i & -> _temp `i ~ -> _mask `i `uc ]
-"95
-[; ;TAD_RFID.c: 95: }
-[e :UE 330 ]
-}
-"101
-[; ;TAD_RFID.c: 101: void resetMotorStates() {
-[v _resetMotorStates `(v ~T0 @X0 1 ef ]
-{
-[e :U _resetMotorStates ]
-[f ]
-"102
-[; ;TAD_RFID.c: 102:     state_read = state_write = 0;
-[e = _state_read = _state_write -> -> 0 `i `uc ]
-"103
-[; ;TAD_RFID.c: 103:     LATCbits.LATC3 = LATCbits.LATC2 = 1;
-[e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"104
-[; ;TAD_RFID.c: 104: }
-[e :UE 331 ]
-}
-"106
-[; ;TAD_RFID.c: 106: void MFRC522_Reset () {
-[v _MFRC522_Reset `(v ~T0 @X0 1 ef ]
-{
-[e :U _MFRC522_Reset ]
-[f ]
-"107
-[; ;TAD_RFID.c: 107:     resetMotorStates();
-[e ( _resetMotorStates ..  ]
-"109
-[; ;TAD_RFID.c: 109:     LATCbits.LATC4 = 1;
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"110
-[; ;TAD_RFID.c: 110:     delay_us(1);
-[e ( _delay_us (1 -> -> 1 `i `uc ]
-"111
-[; ;TAD_RFID.c: 111:     LATCbits.LATC4 = 0;
-[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
-"112
-[; ;TAD_RFID.c: 112:     delay_us(1);
-[e ( _delay_us (1 -> -> 1 `i `uc ]
-"113
-[; ;TAD_RFID.c: 113:     LATCbits.LATC4 = 1;
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"114
-[; ;TAD_RFID.c: 114:     delay_us(1);
-[e ( _delay_us (1 -> -> 1 `i `uc ]
-"115
-[; ;TAD_RFID.c: 115:     MFRC522_Wr(0x01, 0x0F);
-[e ( _MFRC522_Wr (2 , -> -> 1 `i `uc -> -> 15 `i `uc ]
-"116
-[; ;TAD_RFID.c: 116:     delay_us(1);
-[e ( _delay_us (1 -> -> 1 `i `uc ]
-"117
-[; ;TAD_RFID.c: 117: }
-[e :UE 332 ]
-}
-"120
-[; ;TAD_RFID.c: 120: void MFRC522_AntennaControl(char on) {
-[v _MFRC522_AntennaControl `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _MFRC522_AntennaControl ]
-[v _on `uc ~T0 @X0 1 r1 ]
-[f ]
-"121
-[; ;TAD_RFID.c: 121:     if(on)
-[e $ ! != -> _on `i -> 0 `i 334  ]
-"122
-[; ;TAD_RFID.c: 122:         MFRC522_Bit_Mask(0x14, 0x03, 1);
-[e ( _MFRC522_Bit_Mask (3 , , -> -> 20 `i `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
-[e $U 335  ]
-"123
-[; ;TAD_RFID.c: 123:     else
-[e :U 334 ]
-"124
-[; ;TAD_RFID.c: 124:         MFRC522_Bit_Mask(0x14, 0x03, 0);
-[e ( _MFRC522_Bit_Mask (3 , , -> -> 20 `i `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
-[e :U 335 ]
-"125
-[; ;TAD_RFID.c: 125: }
-[e :UE 333 ]
-}
-"131
-[; ;TAD_RFID.c: 131: void MFRC522_Init() {
-[v _MFRC522_Init `(v ~T0 @X0 1 ef ]
-{
-[e :U _MFRC522_Init ]
-[f ]
-"132
-[; ;TAD_RFID.c: 132:     LATCbits.LATC3 = 1;
-[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
-"133
-[; ;TAD_RFID.c: 133:     LATCbits.LATC4 = 1;
-[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"135
-[; ;TAD_RFID.c: 135:     MFRC522_Reset();
-[e ( _MFRC522_Reset ..  ]
-"136
-[; ;TAD_RFID.c: 136:     MFRC522_Wr(0x2A, 0x8D);
-[e ( _MFRC522_Wr (2 , -> -> 42 `i `uc -> -> 141 `i `uc ]
-"137
-[; ;TAD_RFID.c: 137:     MFRC522_Wr(0x2B, 0x3E);
-[e ( _MFRC522_Wr (2 , -> -> 43 `i `uc -> -> 62 `i `uc ]
-"138
-[; ;TAD_RFID.c: 138:     MFRC522_Wr(0x2D, 30);
-[e ( _MFRC522_Wr (2 , -> -> 45 `i `uc -> -> 30 `i `uc ]
-"139
-[; ;TAD_RFID.c: 139:     MFRC522_Wr(0x2C, 0);
-[e ( _MFRC522_Wr (2 , -> -> 44 `i `uc -> -> 0 `i `uc ]
-"140
-[; ;TAD_RFID.c: 140:     MFRC522_Wr(0x15, 0x40);
-[e ( _MFRC522_Wr (2 , -> -> 21 `i `uc -> -> 64 `i `uc ]
-"141
-[; ;TAD_RFID.c: 141:     MFRC522_Wr(0x11, 0x3D);
-[e ( _MFRC522_Wr (2 , -> -> 17 `i `uc -> -> 61 `i `uc ]
-"143
-[; ;TAD_RFID.c: 143:     MFRC522_AntennaControl(1);
-[e ( _MFRC522_AntennaControl (1 -> -> 1 `i `uc ]
-"144
-[; ;TAD_RFID.c: 144: }
-[e :UE 336 ]
-}
-"147
-[; ;TAD_RFID.c: 147: void processBit(unsigned char *val, char *bit_count, char *state, char next_state) {
+"29
+[; ;TAD_RFID.c: 29: void processBit(unsigned char *val, char *bit_count, char *state, char next_state) {
 [v _processBit `(v ~T0 @X0 1 ef4`*uc`*uc`*uc`uc ]
 {
 [e :U _processBit ]
@@ -866,1273 +524,1672 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _state `*uc ~T0 @X0 1 r3 ]
 [v _next_state `uc ~T0 @X0 1 r4 ]
 [f ]
-"148
-[; ;TAD_RFID.c: 148:     LATCbits.LATC1 = ((*val & 0x80) != 0);
+"30
+[; ;TAD_RFID.c: 30:     LATCbits.LATC1 = ((*val & 0x80) != 0);
 [e = . . _LATCbits 0 1 -> -> != & -> *U _val `i -> 128 `i -> 0 `i `i `uc ]
-"149
-[; ;TAD_RFID.c: 149:     LATCbits.LATC2 = 1;
+"31
+[; ;TAD_RFID.c: 31:     LATCbits.LATC2 = 1;
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"150
-[; ;TAD_RFID.c: 150:     *val <<= 1;
+"32
+[; ;TAD_RFID.c: 32:     *val <<= 1;
 [e =<< *U _val -> -> 1 `i `uc ]
-"151
-[; ;TAD_RFID.c: 151:     delay_us(5);
+"33
+[; ;TAD_RFID.c: 33:     delay_us(5);
 [e ( _delay_us (1 -> -> 5 `i `uc ]
-"152
-[; ;TAD_RFID.c: 152:     LATCbits.LATC2 = 0;
+"34
+[; ;TAD_RFID.c: 34:     LATCbits.LATC2 = 0;
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"153
-[; ;TAD_RFID.c: 153:     delay_us(5);
+"35
+[; ;TAD_RFID.c: 35:     delay_us(5);
 [e ( _delay_us (1 -> -> 5 `i `uc ]
-"154
-[; ;TAD_RFID.c: 154:     if (++(*bit_count) == 8) {
-[e $ ! == -> =+ *U _bit_count -> -> 1 `i `uc `i -> 8 `i 338  ]
+"36
+[; ;TAD_RFID.c: 36:     if (++(*bit_count) == 8) {
+[e $ ! == -> =+ *U _bit_count -> -> 1 `i `uc `i -> 8 `i 307  ]
 {
-"155
-[; ;TAD_RFID.c: 155:         *bit_count = 0;
+"37
+[; ;TAD_RFID.c: 37:         *bit_count = 0;
 [e = *U _bit_count -> -> 0 `i `uc ]
-"156
-[; ;TAD_RFID.c: 156:         *state = next_state;
+"38
+[; ;TAD_RFID.c: 38:         *state = next_state;
 [e = *U _state _next_state ]
-"157
-[; ;TAD_RFID.c: 157:     }
+"39
+[; ;TAD_RFID.c: 39:     }
 }
-[e :U 338 ]
-"158
-[; ;TAD_RFID.c: 158: }
-[e :UE 337 ]
+[e :U 307 ]
+"40
+[; ;TAD_RFID.c: 40: }
+[e :UE 306 ]
 }
-"161
-[; ;TAD_RFID.c: 161: char motor_Write(char addr, char value) {
+"43
+[; ;TAD_RFID.c: 43: char motor_Write(char addr, char value) {
 [v _motor_Write `(uc ~T0 @X0 1 ef2`uc`uc ]
 {
 [e :U _motor_Write ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _value `uc ~T0 @X0 1 r2 ]
 [f ]
-"162
-[; ;TAD_RFID.c: 162:     static char bit_count = 0;
-[v F2805 `uc ~T0 @X0 1 s bit_count ]
-[i F2805
+"44
+[; ;TAD_RFID.c: 44:     static char bit_count = 0;
+[v F2726 `uc ~T0 @X0 1 s bit_count ]
+[i F2726
 -> -> 0 `i `uc
 ]
-"163
-[; ;TAD_RFID.c: 163:     static unsigned char ucAddr;
-[v F2806 `uc ~T0 @X0 1 s ucAddr ]
-"164
-[; ;TAD_RFID.c: 164:     static unsigned char ucValue;
-[v F2807 `uc ~T0 @X0 1 s ucValue ]
-"166
-[; ;TAD_RFID.c: 166:     switch (state_write) {
-[e $U 341  ]
+"45
+[; ;TAD_RFID.c: 45:     static unsigned char ucAddr;
+[v F2727 `uc ~T0 @X0 1 s ucAddr ]
+"46
+[; ;TAD_RFID.c: 46:     static unsigned char ucValue;
+[v F2728 `uc ~T0 @X0 1 s ucValue ]
+"48
+[; ;TAD_RFID.c: 48:     switch (state_write) {
+[e $U 310  ]
 {
-"167
-[; ;TAD_RFID.c: 167:         case 0:
-[e :U 342 ]
-"168
-[; ;TAD_RFID.c: 168:             LATCbits.LATC2 = 0;
+"49
+[; ;TAD_RFID.c: 49:         case 0:
+[e :U 311 ]
+"50
+[; ;TAD_RFID.c: 50:             LATCbits.LATC2 = 0;
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"169
-[; ;TAD_RFID.c: 169:             LATCbits.LATC3 = 0;
+"51
+[; ;TAD_RFID.c: 51:             LATCbits.LATC3 = 0;
 [e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-"170
-[; ;TAD_RFID.c: 170:             ucAddr = ((addr << 1) & 0x7E);
-[e = F2806 -> & << -> _addr `i -> 1 `i -> 126 `i `uc ]
-"171
-[; ;TAD_RFID.c: 171:             ucValue = value;
-[e = F2807 -> _value `uc ]
-"172
-[; ;TAD_RFID.c: 172:             bit_count = 0;
-[e = F2805 -> -> 0 `i `uc ]
-"173
-[; ;TAD_RFID.c: 173:             state_write = 1;
+"52
+[; ;TAD_RFID.c: 52:             ucAddr = ((addr << 1) & 0x7E);
+[e = F2727 -> & << -> _addr `i -> 1 `i -> 126 `i `uc ]
+"53
+[; ;TAD_RFID.c: 53:             ucValue = value;
+[e = F2728 -> _value `uc ]
+"54
+[; ;TAD_RFID.c: 54:             bit_count = 0;
+[e = F2726 -> -> 0 `i `uc ]
+"55
+[; ;TAD_RFID.c: 55:             state_write = 1;
 [e = _state_write -> -> 1 `i `uc ]
-"174
-[; ;TAD_RFID.c: 174:             break;
-[e $U 340  ]
-"176
-[; ;TAD_RFID.c: 176:         case 1:
-[e :U 343 ]
-"177
-[; ;TAD_RFID.c: 177:             processBit(&ucAddr, &bit_count, &state_write, 2);
-[e ( _processBit (4 , , , &U F2806 &U F2805 &U _state_write -> -> 2 `i `uc ]
-"178
-[; ;TAD_RFID.c: 178:             break;
-[e $U 340  ]
-"180
-[; ;TAD_RFID.c: 180:         case 2:
-[e :U 344 ]
-"181
-[; ;TAD_RFID.c: 181:             processBit(&ucValue, &bit_count, &state_write, 0);
-[e ( _processBit (4 , , , &U F2807 &U F2805 &U _state_write -> -> 0 `i `uc ]
-"182
-[; ;TAD_RFID.c: 182:             if (state_write == 0) {
-[e $ ! == -> _state_write `i -> 0 `i 345  ]
+"56
+[; ;TAD_RFID.c: 56:             break;
+[e $U 309  ]
+"58
+[; ;TAD_RFID.c: 58:         case 1:
+[e :U 312 ]
+"59
+[; ;TAD_RFID.c: 59:             processBit(&ucAddr, &bit_count, &state_write, 2);
+[e ( _processBit (4 , , , &U F2727 &U F2726 &U _state_write -> -> 2 `i `uc ]
+"60
+[; ;TAD_RFID.c: 60:             break;
+[e $U 309  ]
+"62
+[; ;TAD_RFID.c: 62:         case 2:
+[e :U 313 ]
+"63
+[; ;TAD_RFID.c: 63:             processBit(&ucValue, &bit_count, &state_write, 0);
+[e ( _processBit (4 , , , &U F2728 &U F2726 &U _state_write -> -> 0 `i `uc ]
+"64
+[; ;TAD_RFID.c: 64:             if (state_write == 0) {
+[e $ ! == -> _state_write `i -> 0 `i 314  ]
 {
-"183
-[; ;TAD_RFID.c: 183:                 LATCbits.LATC3 = 1;
+"65
+[; ;TAD_RFID.c: 65:                 LATCbits.LATC3 = 1;
 [e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
-"184
-[; ;TAD_RFID.c: 184:                 LATCbits.LATC2 = 1;
+"66
+[; ;TAD_RFID.c: 66:                 LATCbits.LATC2 = 1;
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"185
-[; ;TAD_RFID.c: 185:                 return 1;
+"67
+[; ;TAD_RFID.c: 67:                 return 1;
 [e ) -> -> 1 `i `uc ]
-[e $UE 339  ]
-"186
-[; ;TAD_RFID.c: 186:             }
+[e $UE 308  ]
+"68
+[; ;TAD_RFID.c: 68:             }
 }
-[e :U 345 ]
-"187
-[; ;TAD_RFID.c: 187:             break;
-[e $U 340  ]
-"188
-[; ;TAD_RFID.c: 188:     }
+[e :U 314 ]
+"69
+[; ;TAD_RFID.c: 69:             break;
+[e $U 309  ]
+"70
+[; ;TAD_RFID.c: 70:     }
 }
-[e $U 340  ]
-[e :U 341 ]
-[e [\ _state_write , $ -> 0 `i 342
- , $ -> 1 `i 343
- , $ -> 2 `i 344
- 340 ]
-[e :U 340 ]
-"189
-[; ;TAD_RFID.c: 189:     return 0;
+[e $U 309  ]
+[e :U 310 ]
+[e [\ _state_write , $ -> 0 `i 311
+ , $ -> 1 `i 312
+ , $ -> 2 `i 313
+ 309 ]
+[e :U 309 ]
+"71
+[; ;TAD_RFID.c: 71:     return 0;
 [e ) -> -> 0 `i `uc ]
-[e $UE 339  ]
-"190
-[; ;TAD_RFID.c: 190: }
-[e :UE 339 ]
+[e $UE 308  ]
+"72
+[; ;TAD_RFID.c: 72: }
+[e :UE 308 ]
 }
-"193
-[; ;TAD_RFID.c: 193: char motor_Read(char addr) {
+"75
+[; ;TAD_RFID.c: 75: char motor_Read(char addr) {
 [v _motor_Read `(uc ~T0 @X0 1 ef1`uc ]
 {
 [e :U _motor_Read ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [f ]
-"194
-[; ;TAD_RFID.c: 194:     static char bit_count = 0;
-[v F2810 `uc ~T0 @X0 1 s bit_count ]
-[i F2810
+"76
+[; ;TAD_RFID.c: 76:     static char bit_count = 0;
+[v F2731 `uc ~T0 @X0 1 s bit_count ]
+[i F2731
 -> -> 0 `i `uc
 ]
-"195
-[; ;TAD_RFID.c: 195:     static unsigned char ucAddr;
-[v F2811 `uc ~T0 @X0 1 s ucAddr ]
-"196
-[; ;TAD_RFID.c: 196:     static unsigned char ucResult;
-[v F2812 `uc ~T0 @X0 1 s ucResult ]
-"197
-[; ;TAD_RFID.c: 197:     static unsigned int timeout_counter = 0;
-[v F2813 `ui ~T0 @X0 1 s timeout_counter ]
-[i F2813
+"77
+[; ;TAD_RFID.c: 77:     static unsigned char ucAddr;
+[v F2732 `uc ~T0 @X0 1 s ucAddr ]
+"78
+[; ;TAD_RFID.c: 78:     static unsigned char ucResult;
+[v F2733 `uc ~T0 @X0 1 s ucResult ]
+"79
+[; ;TAD_RFID.c: 79:     static unsigned int timeout_counter = 0;
+[v F2734 `ui ~T0 @X0 1 s timeout_counter ]
+[i F2734
 -> -> 0 `i `ui
 ]
-"198
-[; ;TAD_RFID.c: 198:     static unsigned int MAX_TIMEOUT = 1000;
-[v F2814 `ui ~T0 @X0 1 s MAX_TIMEOUT ]
-[i F2814
+"80
+[; ;TAD_RFID.c: 80:     static unsigned int MAX_TIMEOUT = 1000;
+[v F2735 `ui ~T0 @X0 1 s MAX_TIMEOUT ]
+[i F2735
 -> -> 1000 `i `ui
 ]
-"200
-[; ;TAD_RFID.c: 200:     if (++timeout_counter > MAX_TIMEOUT) {
-[e $ ! > =+ F2813 -> -> 1 `i `ui F2814 347  ]
+"82
+[; ;TAD_RFID.c: 82:     if (++timeout_counter > MAX_TIMEOUT) {
+[e $ ! > =+ F2734 -> -> 1 `i `ui F2735 316  ]
 {
-"201
-[; ;TAD_RFID.c: 201:         LATCbits.LATC3 = LATCbits.LATC2 = 1;
+"83
+[; ;TAD_RFID.c: 83:         LATCbits.LATC3 = LATCbits.LATC2 = 1;
 [e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"202
-[; ;TAD_RFID.c: 202:         state_read = 0;
+"84
+[; ;TAD_RFID.c: 84:         state_read = 0;
 [e = _state_read -> -> 0 `i `uc ]
-"203
-[; ;TAD_RFID.c: 203:         timeout_counter = 0;
-[e = F2813 -> -> 0 `i `ui ]
-"204
-[; ;TAD_RFID.c: 204:         return 0xFF;
+"85
+[; ;TAD_RFID.c: 85:         timeout_counter = 0;
+[e = F2734 -> -> 0 `i `ui ]
+"86
+[; ;TAD_RFID.c: 86:         return 0xFF;
 [e ) -> -> 255 `i `uc ]
-[e $UE 346  ]
-"205
-[; ;TAD_RFID.c: 205:     }
+[e $UE 315  ]
+"87
+[; ;TAD_RFID.c: 87:     }
 }
-[e :U 347 ]
-"207
-[; ;TAD_RFID.c: 207:     switch(state_read) {
-[e $U 349  ]
+[e :U 316 ]
+"89
+[; ;TAD_RFID.c: 89:     switch(state_read) {
+[e $U 318  ]
 {
-"208
-[; ;TAD_RFID.c: 208:         case 0:
-[e :U 350 ]
-"209
-[; ;TAD_RFID.c: 209:             timeout_counter = 0;
-[e = F2813 -> -> 0 `i `ui ]
-"210
-[; ;TAD_RFID.c: 210:             LATCbits.LATC2 = 0;
+"90
+[; ;TAD_RFID.c: 90:         case 0:
+[e :U 319 ]
+"91
+[; ;TAD_RFID.c: 91:             timeout_counter = 0;
+[e = F2734 -> -> 0 `i `ui ]
+"92
+[; ;TAD_RFID.c: 92:             LATCbits.LATC2 = 0;
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"211
-[; ;TAD_RFID.c: 211:             LATCbits.LATC3 = 0;
+"93
+[; ;TAD_RFID.c: 93:             LATCbits.LATC3 = 0;
 [e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
-"212
-[; ;TAD_RFID.c: 212:             ucAddr = ((addr<<1) & 0x7E) | 0x80;
-[e = F2811 -> | & << -> _addr `i -> 1 `i -> 126 `i -> 128 `i `uc ]
-"213
-[; ;TAD_RFID.c: 213:             ucResult = 0;
-[e = F2812 -> -> 0 `i `uc ]
-"214
-[; ;TAD_RFID.c: 214:             bit_count = 0;
-[e = F2810 -> -> 0 `i `uc ]
-"215
-[; ;TAD_RFID.c: 215:             state_read = 1;
+"94
+[; ;TAD_RFID.c: 94:             ucAddr = ((addr<<1) & 0x7E) | 0x80;
+[e = F2732 -> | & << -> _addr `i -> 1 `i -> 126 `i -> 128 `i `uc ]
+"95
+[; ;TAD_RFID.c: 95:             ucResult = 0;
+[e = F2733 -> -> 0 `i `uc ]
+"96
+[; ;TAD_RFID.c: 96:             bit_count = 0;
+[e = F2731 -> -> 0 `i `uc ]
+"97
+[; ;TAD_RFID.c: 97:             state_read = 1;
 [e = _state_read -> -> 1 `i `uc ]
-"216
-[; ;TAD_RFID.c: 216:             return 0xFE;
+"98
+[; ;TAD_RFID.c: 98:             return 0xFE;
 [e ) -> -> 254 `i `uc ]
-[e $UE 346  ]
-"218
-[; ;TAD_RFID.c: 218:         case 1:
-[e :U 351 ]
-"219
-[; ;TAD_RFID.c: 219:             processBit(&ucAddr, &bit_count, &state_read, 2);
-[e ( _processBit (4 , , , &U F2811 &U F2810 &U _state_read -> -> 2 `i `uc ]
-"220
-[; ;TAD_RFID.c: 220:             return 0xFE;
+[e $UE 315  ]
+"100
+[; ;TAD_RFID.c: 100:         case 1:
+[e :U 320 ]
+"101
+[; ;TAD_RFID.c: 101:             processBit(&ucAddr, &bit_count, &state_read, 2);
+[e ( _processBit (4 , , , &U F2732 &U F2731 &U _state_read -> -> 2 `i `uc ]
+"102
+[; ;TAD_RFID.c: 102:             return 0xFE;
 [e ) -> -> 254 `i `uc ]
-[e $UE 346  ]
-"222
-[; ;TAD_RFID.c: 222:         case 2:
-[e :U 352 ]
-"223
-[; ;TAD_RFID.c: 223:             LATCbits.LATC2 = 1;
+[e $UE 315  ]
+"104
+[; ;TAD_RFID.c: 104:         case 2:
+[e :U 321 ]
+"105
+[; ;TAD_RFID.c: 105:             LATCbits.LATC2 = 1;
 [e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"224
-[; ;TAD_RFID.c: 224:             delay_us(5);
+"106
+[; ;TAD_RFID.c: 106:             delay_us(5);
 [e ( _delay_us (1 -> -> 5 `i `uc ]
-"225
-[; ;TAD_RFID.c: 225:             ucResult = (ucResult << 1) | PORTCbits.RC0;
-[e = F2812 -> | << -> F2812 `i -> 1 `i -> . . _PORTCbits 0 0 `i `uc ]
-"226
-[; ;TAD_RFID.c: 226:             LATCbits.LATC2 = 0;
+"107
+[; ;TAD_RFID.c: 107:             ucResult = (ucResult << 1) | PORTCbits.RC0;
+[e = F2733 -> | << -> F2733 `i -> 1 `i -> . . _PORTCbits 0 0 `i `uc ]
+"108
+[; ;TAD_RFID.c: 108:             LATCbits.LATC2 = 0;
 [e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
-"227
-[; ;TAD_RFID.c: 227:             delay_us(5);
+"109
+[; ;TAD_RFID.c: 109:             delay_us(5);
 [e ( _delay_us (1 -> -> 5 `i `uc ]
-"229
-[; ;TAD_RFID.c: 229:             if (++bit_count >= 8) {
-[e $ ! >= -> =+ F2810 -> -> 1 `i `uc `i -> 8 `i 353  ]
+"111
+[; ;TAD_RFID.c: 111:             if (++bit_count >= 8) {
+[e $ ! >= -> =+ F2731 -> -> 1 `i `uc `i -> 8 `i 322  ]
 {
-"230
-[; ;TAD_RFID.c: 230:                 LATCbits.LATC3 = LATCbits.LATC2 = 1;
+"112
+[; ;TAD_RFID.c: 112:                 LATCbits.LATC3 = LATCbits.LATC2 = 1;
 [e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
-"231
-[; ;TAD_RFID.c: 231:                 state_read = 0;
+"113
+[; ;TAD_RFID.c: 113:                 state_read = 0;
 [e = _state_read -> -> 0 `i `uc ]
-"232
-[; ;TAD_RFID.c: 232:                 timeout_counter = 0;
-[e = F2813 -> -> 0 `i `ui ]
-"233
-[; ;TAD_RFID.c: 233:                 return (ucResult == 0xFE || ucResult == 0xFF) ? 0xFD : ucResult;
-[e ) -> ? || == -> F2812 `i -> 254 `i == -> F2812 `i -> 255 `i : -> 253 `i -> F2812 `i `uc ]
-[e $UE 346  ]
-"234
-[; ;TAD_RFID.c: 234:             }
+"114
+[; ;TAD_RFID.c: 114:                 timeout_counter = 0;
+[e = F2734 -> -> 0 `i `ui ]
+"115
+[; ;TAD_RFID.c: 115:                 return (ucResult == 0xFE || ucResult == 0xFF) ? 0xFD : ucResult;
+[e ) -> ? || == -> F2733 `i -> 254 `i == -> F2733 `i -> 255 `i : -> 253 `i -> F2733 `i `uc ]
+[e $UE 315  ]
+"116
+[; ;TAD_RFID.c: 116:             }
 }
-[e :U 353 ]
-"235
-[; ;TAD_RFID.c: 235:             return 0xFE;
+[e :U 322 ]
+"117
+[; ;TAD_RFID.c: 117:             return 0xFE;
 [e ) -> -> 254 `i `uc ]
-[e $UE 346  ]
-"236
-[; ;TAD_RFID.c: 236:     }
+[e $UE 315  ]
+"118
+[; ;TAD_RFID.c: 118:     }
 }
-[e $U 348  ]
-[e :U 349 ]
-[e [\ _state_read , $ -> 0 `i 350
- , $ -> 1 `i 351
- , $ -> 2 `i 352
- 348 ]
-[e :U 348 ]
-"237
-[; ;TAD_RFID.c: 237:     return 0xFE;
+[e $U 317  ]
+[e :U 318 ]
+[e [\ _state_read , $ -> 0 `i 319
+ , $ -> 1 `i 320
+ , $ -> 2 `i 321
+ 317 ]
+[e :U 317 ]
+"119
+[; ;TAD_RFID.c: 119:     return 0xFE;
 [e ) -> -> 254 `i `uc ]
-[e $UE 346  ]
-"238
-[; ;TAD_RFID.c: 238: }
-[e :UE 346 ]
+[e $UE 315  ]
+"120
+[; ;TAD_RFID.c: 120: }
+[e :UE 315 ]
 }
-"241
-[; ;TAD_RFID.c: 241: void initRFID() {
+"123
+[; ;TAD_RFID.c: 123: void initRFID() {
 [v _initRFID `(v ~T0 @X0 1 ef ]
 {
 [e :U _initRFID ]
 [f ]
-"243
-[; ;TAD_RFID.c: 243:     InitPortDirections();
-[e ( _InitPortDirections ..  ]
-"246
-[; ;TAD_RFID.c: 246:     resetMotorStates();
-[e ( _resetMotorStates ..  ]
-"247
-[; ;TAD_RFID.c: 247:     LATCbits.LATC4 = 1;
+"125
+[; ;TAD_RFID.c: 125:     TRISCbits.TRISC0 = 1;
+[e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
+"126
+[; ;TAD_RFID.c: 126:     TRISCbits.TRISC1 = 0;
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
+"127
+[; ;TAD_RFID.c: 127:     TRISCbits.TRISC2 = 0;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+"128
+[; ;TAD_RFID.c: 128:     TRISCbits.TRISC3 = 0;
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
+"129
+[; ;TAD_RFID.c: 129:     TRISCbits.TRISC4 = 0;
+[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
+"131
+[; ;TAD_RFID.c: 131:     state_read = state_write = 0;
+[e = _state_read = _state_write -> -> 0 `i `uc ]
+"132
+[; ;TAD_RFID.c: 132:     LATCbits.LATC3 = LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"133
+[; ;TAD_RFID.c: 133:     LATCbits.LATC4 = 1;
 [e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"248
-[; ;TAD_RFID.c: 248:     delay_us(1);
+"134
+[; ;TAD_RFID.c: 134:     delay_us(1);
 [e ( _delay_us (1 -> -> 1 `i `uc ]
-"249
-[; ;TAD_RFID.c: 249:     LATCbits.LATC4 = 0;
+"135
+[; ;TAD_RFID.c: 135:     LATCbits.LATC4 = 0;
 [e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
-"250
-[; ;TAD_RFID.c: 250:     delay_us(1);
+"136
+[; ;TAD_RFID.c: 136:     delay_us(1);
 [e ( _delay_us (1 -> -> 1 `i `uc ]
-"251
-[; ;TAD_RFID.c: 251:     LATCbits.LATC4 = 1;
+"137
+[; ;TAD_RFID.c: 137:     LATCbits.LATC4 = 1;
 [e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
-"252
-[; ;TAD_RFID.c: 252:     delay_us(1);
+"138
+[; ;TAD_RFID.c: 138:     delay_us(1);
 [e ( _delay_us (1 -> -> 1 `i `uc ]
-"255
-[; ;TAD_RFID.c: 255:     while (!motor_Write(0x01, 0x0F)) { }
-[e $U 355  ]
-[e :U 356 ]
+"141
+[; ;TAD_RFID.c: 141:     while (!motor_Write(0x01, 0x0F)) { }
+[e $U 324  ]
+[e :U 325 ]
 {
 }
-[e :U 355 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 1 `i `uc -> -> 15 `i `uc `i -> 0 `i 356  ]
-[e :U 357 ]
-"256
-[; ;TAD_RFID.c: 256:     delay_us(1);
+[e :U 324 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 1 `i `uc -> -> 15 `i `uc `i -> 0 `i 325  ]
+[e :U 326 ]
+"142
+[; ;TAD_RFID.c: 142:     delay_us(1);
 [e ( _delay_us (1 -> -> 1 `i `uc ]
-"259
-[; ;TAD_RFID.c: 259:     while (!motor_Write(0x2A, 0x8D)) { }
-[e $U 358  ]
-[e :U 359 ]
+"145
+[; ;TAD_RFID.c: 145:     while (!motor_Write(0x2A, 0x8D)) { }
+[e $U 327  ]
+[e :U 328 ]
 {
 }
-[e :U 358 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 42 `i `uc -> -> 141 `i `uc `i -> 0 `i 359  ]
-[e :U 360 ]
-"260
-[; ;TAD_RFID.c: 260:     while (!motor_Write(0x2B, 0x3E)) { }
-[e $U 361  ]
-[e :U 362 ]
+[e :U 327 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 42 `i `uc -> -> 141 `i `uc `i -> 0 `i 328  ]
+[e :U 329 ]
+"146
+[; ;TAD_RFID.c: 146:     while (!motor_Write(0x2B, 0x3E)) { }
+[e $U 330  ]
+[e :U 331 ]
 {
 }
-[e :U 361 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 43 `i `uc -> -> 62 `i `uc `i -> 0 `i 362  ]
-[e :U 363 ]
-"261
-[; ;TAD_RFID.c: 261:     while (!motor_Write(0x2D, 30)) { }
-[e $U 364  ]
-[e :U 365 ]
+[e :U 330 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 43 `i `uc -> -> 62 `i `uc `i -> 0 `i 331  ]
+[e :U 332 ]
+"147
+[; ;TAD_RFID.c: 147:     while (!motor_Write(0x2D, 30)) { }
+[e $U 333  ]
+[e :U 334 ]
 {
 }
-[e :U 364 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 45 `i `uc -> -> 30 `i `uc `i -> 0 `i 365  ]
-[e :U 366 ]
-"262
-[; ;TAD_RFID.c: 262:     while (!motor_Write(0x2C, 0)) { }
-[e $U 367  ]
-[e :U 368 ]
+[e :U 333 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 45 `i `uc -> -> 30 `i `uc `i -> 0 `i 334  ]
+[e :U 335 ]
+"148
+[; ;TAD_RFID.c: 148:     while (!motor_Write(0x2C, 0)) { }
+[e $U 336  ]
+[e :U 337 ]
 {
 }
-[e :U 367 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 44 `i `uc -> -> 0 `i `uc `i -> 0 `i 368  ]
-[e :U 369 ]
-"263
-[; ;TAD_RFID.c: 263:     while (!motor_Write(0x15, 0x40)) { }
-[e $U 370  ]
-[e :U 371 ]
+[e :U 336 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 44 `i `uc -> -> 0 `i `uc `i -> 0 `i 337  ]
+[e :U 338 ]
+"149
+[; ;TAD_RFID.c: 149:     while (!motor_Write(0x15, 0x40)) { }
+[e $U 339  ]
+[e :U 340 ]
 {
 }
-[e :U 370 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 21 `i `uc -> -> 64 `i `uc `i -> 0 `i 371  ]
-[e :U 372 ]
-"264
-[; ;TAD_RFID.c: 264:     while (!motor_Write(0x11, 0x3D)) { }
-[e $U 373  ]
-[e :U 374 ]
+[e :U 339 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 21 `i `uc -> -> 64 `i `uc `i -> 0 `i 340  ]
+[e :U 341 ]
+"150
+[; ;TAD_RFID.c: 150:     while (!motor_Write(0x11, 0x3D)) { }
+[e $U 342  ]
+[e :U 343 ]
 {
 }
-[e :U 373 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 17 `i `uc -> -> 61 `i `uc `i -> 0 `i 374  ]
-[e :U 375 ]
-"267
-[; ;TAD_RFID.c: 267:     unsigned char regVal;
+[e :U 342 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 17 `i `uc -> -> 61 `i `uc `i -> 0 `i 343  ]
+[e :U 344 ]
+"153
+[; ;TAD_RFID.c: 153:     unsigned char regVal;
 [v _regVal `uc ~T0 @X0 1 a ]
-"268
-[; ;TAD_RFID.c: 268:     do {
-[e :U 378 ]
+"154
+[; ;TAD_RFID.c: 154:     do {
+[e :U 347 ]
 {
-"269
-[; ;TAD_RFID.c: 269:         regVal = motor_Read(0x14);
+"155
+[; ;TAD_RFID.c: 155:         regVal = motor_Read(0x14);
 [e = _regVal -> ( _motor_Read (1 -> -> 20 `i `uc `uc ]
-"270
-[; ;TAD_RFID.c: 270:     } while (regVal == 0xFE);
+"156
+[; ;TAD_RFID.c: 156:     } while (regVal == 0xFE);
 }
-[e $ == -> _regVal `i -> 254 `i 378  ]
-[e :U 377 ]
-"271
-[; ;TAD_RFID.c: 271:     regVal |= 0x03;
+[e $ == -> _regVal `i -> 254 `i 347  ]
+[e :U 346 ]
+"157
+[; ;TAD_RFID.c: 157:     regVal |= 0x03;
 [e =| _regVal -> -> 3 `i `uc ]
-"272
-[; ;TAD_RFID.c: 272:     while (!motor_Write(0x14, regVal)) { }
-[e $U 379  ]
-[e :U 380 ]
+"158
+[; ;TAD_RFID.c: 158:     while (!motor_Write(0x14, regVal)) { }
+[e $U 348  ]
+[e :U 349 ]
 {
 }
-[e :U 379 ]
-[e $ ! != -> ( _motor_Write (2 , -> -> 20 `i `uc -> _regVal `uc `i -> 0 `i 380  ]
-[e :U 381 ]
-"273
-[; ;TAD_RFID.c: 273: }
-[e :UE 354 ]
+[e :U 348 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 20 `i `uc -> _regVal `uc `i -> 0 `i 349  ]
+[e :U 350 ]
+"159
+[; ;TAD_RFID.c: 159: }
+[e :UE 323 ]
 }
-"277
-[; ;TAD_RFID.c: 277: void process_substates(char *substate, char flag, char next_state) {
-[v _process_substates `(v ~T0 @X0 1 ef3`*uc`uc`uc ]
-{
-[e :U _process_substates ]
-[v _substate `*uc ~T0 @X0 1 r1 ]
-[v _flag `uc ~T0 @X0 1 r2 ]
-[v _next_state `uc ~T0 @X0 1 r3 ]
-[f ]
-"278
-[; ;TAD_RFID.c: 278:     if (flag != 0 && flag != 0xFE) {
-[e $ ! && != -> _flag `i -> 0 `i != -> _flag `i -> 254 `i 383  ]
-{
-"279
-[; ;TAD_RFID.c: 279:         *substate = next_state;
-[e = *U _substate _next_state ]
-"280
-[; ;TAD_RFID.c: 280:     }
-}
-[e :U 383 ]
-"281
-[; ;TAD_RFID.c: 281: }
-[e :UE 382 ]
-}
-"283
-[; ;TAD_RFID.c: 283: void motor_RFID(void) {
+"161
+[; ;TAD_RFID.c: 161: void motor_RFID(void) {
 [v _motor_RFID `(v ~T0 @X0 1 ef ]
 {
 [e :U _motor_RFID ]
 [f ]
-"284
-[; ;TAD_RFID.c: 284:     static char state = 0;
-[v F2822 `uc ~T0 @X0 1 s state ]
-[i F2822
+"162
+[; ;TAD_RFID.c: 162:     static char state = 0;
+[v F2739 `uc ~T0 @X0 1 s state ]
+[i F2739
 -> -> 0 `i `uc
 ]
-"285
-[; ;TAD_RFID.c: 285:     static char substate = 0;
-[v F2823 `uc ~T0 @X0 1 s substate ]
-[i F2823
+"163
+[; ;TAD_RFID.c: 163:     static char substate = 0;
+[v F2740 `uc ~T0 @X0 1 s substate ]
+[i F2740
 -> -> 0 `i `uc
 ]
-"286
-[; ;TAD_RFID.c: 286:     static char irqEn, waitIRq, n;
-[v F2824 `uc ~T0 @X0 1 s irqEn ]
-[v F2825 `uc ~T0 @X0 1 s waitIRq ]
-[v F2826 `uc ~T0 @X0 1 s n ]
-"287
-[; ;TAD_RFID.c: 287:     static unsigned char i;
-[v F2827 `uc ~T0 @X0 1 s i ]
-"288
-[; ;TAD_RFID.c: 288:     static char _status;
-[v F2828 `uc ~T0 @X0 1 s _status ]
-"289
-[; ;TAD_RFID.c: 289:     static unsigned unLen;
-[v F2829 `ui ~T0 @X0 1 s unLen ]
-"290
-[; ;TAD_RFID.c: 290:     static char TagType;
-[v F2830 `uc ~T0 @X0 1 s TagType ]
-"291
-[; ;TAD_RFID.c: 291:     static unsigned char UID[6];
-[v F2831 `uc ~T0 @X0 -> 6 `i s UID ]
-"292
-[; ;TAD_RFID.c: 292:     static unsigned char checksum;
-[v F2832 `uc ~T0 @X0 1 s checksum ]
-"293
-[; ;TAD_RFID.c: 293:     static unsigned char allZero;
-[v F2833 `uc ~T0 @X0 1 s allZero ]
-"294
-[; ;TAD_RFID.c: 294:     static unsigned char tempRegValue;
-[v F2834 `uc ~T0 @X0 1 s tempRegValue ]
-"295
-[; ;TAD_RFID.c: 295:     static unsigned char lastBitsVal;
-[v F2835 `uc ~T0 @X0 1 s lastBitsVal ]
-"296
-[; ;TAD_RFID.c: 296:     static unsigned char fifoLevel;
-[v F2836 `uc ~T0 @X0 1 s fifoLevel ]
-"297
-[; ;TAD_RFID.c: 297:     static unsigned char backBitsCalc;
-[v F2837 `uc ~T0 @X0 1 s backBitsCalc ]
-"300
-[; ;TAD_RFID.c: 300:     static char operation_pending = 0;
-[v F2838 `uc ~T0 @X0 1 s operation_pending ]
-[i F2838
+"164
+[; ;TAD_RFID.c: 164:     static char irqEn, waitIRq, n;
+[v F2741 `uc ~T0 @X0 1 s irqEn ]
+[v F2742 `uc ~T0 @X0 1 s waitIRq ]
+[v F2743 `uc ~T0 @X0 1 s n ]
+"165
+[; ;TAD_RFID.c: 165:     static unsigned char i;
+[v F2744 `uc ~T0 @X0 1 s i ]
+"166
+[; ;TAD_RFID.c: 166:     static char _status;
+[v F2745 `uc ~T0 @X0 1 s _status ]
+"167
+[; ;TAD_RFID.c: 167:     static unsigned unLen;
+[v F2746 `ui ~T0 @X0 1 s unLen ]
+"168
+[; ;TAD_RFID.c: 168:     static char TagType;
+[v F2747 `uc ~T0 @X0 1 s TagType ]
+"169
+[; ;TAD_RFID.c: 169:     static unsigned char UID[6];
+[v F2748 `uc ~T0 @X0 -> 6 `i s UID ]
+"170
+[; ;TAD_RFID.c: 170:     static unsigned char checksum;
+[v F2749 `uc ~T0 @X0 1 s checksum ]
+"171
+[; ;TAD_RFID.c: 171:     static unsigned char allZero;
+[v F2750 `uc ~T0 @X0 1 s allZero ]
+"172
+[; ;TAD_RFID.c: 172:     static unsigned char tempRegValue;
+[v F2751 `uc ~T0 @X0 1 s tempRegValue ]
+"173
+[; ;TAD_RFID.c: 173:     static unsigned char lastBitsVal;
+[v F2752 `uc ~T0 @X0 1 s lastBitsVal ]
+"174
+[; ;TAD_RFID.c: 174:     static unsigned char fifoLevel;
+[v F2753 `uc ~T0 @X0 1 s fifoLevel ]
+"175
+[; ;TAD_RFID.c: 175:     static unsigned char backBitsCalc;
+[v F2754 `uc ~T0 @X0 1 s backBitsCalc ]
+"178
+[; ;TAD_RFID.c: 178:     static char operation_pending = 0;
+[v F2755 `uc ~T0 @X0 1 s operation_pending ]
+[i F2755
 -> -> 0 `i `uc
 ]
-"301
-[; ;TAD_RFID.c: 301:     static unsigned char addr;
-[v F2839 `uc ~T0 @X0 1 s addr ]
-"302
-[; ;TAD_RFID.c: 302:     static unsigned char value;
-[v F2840 `uc ~T0 @X0 1 s value ]
-"303
-[; ;TAD_RFID.c: 303:     unsigned char flag = 0;
+"179
+[; ;TAD_RFID.c: 179:     static unsigned char addr;
+[v F2756 `uc ~T0 @X0 1 s addr ]
+"180
+[; ;TAD_RFID.c: 180:     static unsigned char value;
+[v F2757 `uc ~T0 @X0 1 s value ]
+"181
+[; ;TAD_RFID.c: 181:     unsigned char flag = 0;
 [v _flag `uc ~T0 @X0 1 a ]
 [e = _flag -> -> 0 `i `uc ]
-"306
-[; ;TAD_RFID.c: 306:     if (operation_pending == 1) {
-[e $ ! == -> F2838 `i -> 1 `i 385  ]
+"184
+[; ;TAD_RFID.c: 184:     if (operation_pending == 1) {
+[e $ ! == -> F2755 `i -> 1 `i 352  ]
 {
-"308
-[; ;TAD_RFID.c: 308:         flag = motor_Read(addr);
-[e = _flag -> ( _motor_Read (1 -> F2839 `uc `uc ]
-"309
-[; ;TAD_RFID.c: 309:         if (flag != 0xFE) {
-[e $ ! != -> _flag `i -> 254 `i 386  ]
+"186
+[; ;TAD_RFID.c: 186:         flag = motor_Read(addr);
+[e = _flag -> ( _motor_Read (1 -> F2756 `uc `uc ]
+"187
+[; ;TAD_RFID.c: 187:         if (flag != 0xFE) {
+[e $ ! != -> _flag `i -> 254 `i 353  ]
 {
-"310
-[; ;TAD_RFID.c: 310:             tempRegValue = flag;
-[e = F2834 _flag ]
-"311
-[; ;TAD_RFID.c: 311:             operation_pending = 0;
-[e = F2838 -> -> 0 `i `uc ]
-"312
-[; ;TAD_RFID.c: 312:         } else {
+"188
+[; ;TAD_RFID.c: 188:             tempRegValue = flag;
+[e = F2751 _flag ]
+"189
+[; ;TAD_RFID.c: 189:             operation_pending = 0;
+[e = F2755 -> -> 0 `i `uc ]
+"190
+[; ;TAD_RFID.c: 190:         } else {
+}
+[e $U 354  ]
+[e :U 353 ]
+{
+"191
+[; ;TAD_RFID.c: 191:             return;
+[e $UE 351  ]
+"192
+[; ;TAD_RFID.c: 192:         }
+}
+[e :U 354 ]
+"193
+[; ;TAD_RFID.c: 193:     } else if (operation_pending == 2) {
+}
+[e $U 355  ]
+[e :U 352 ]
+[e $ ! == -> F2755 `i -> 2 `i 356  ]
+{
+"195
+[; ;TAD_RFID.c: 195:         flag = motor_Write(addr, value);
+[e = _flag -> ( _motor_Write (2 , -> F2756 `uc -> F2757 `uc `uc ]
+"196
+[; ;TAD_RFID.c: 196:         if (flag != 0) {
+[e $ ! != -> _flag `i -> 0 `i 357  ]
+{
+"197
+[; ;TAD_RFID.c: 197:             operation_pending = 0;
+[e = F2755 -> -> 0 `i `uc ]
+"198
+[; ;TAD_RFID.c: 198:         } else {
+}
+[e $U 358  ]
+[e :U 357 ]
+{
+"199
+[; ;TAD_RFID.c: 199:             return;
+[e $UE 351  ]
+"200
+[; ;TAD_RFID.c: 200:         }
+}
+[e :U 358 ]
+"201
+[; ;TAD_RFID.c: 201:     } else {
+}
+[e $U 359  ]
+[e :U 356 ]
+{
+"203
+[; ;TAD_RFID.c: 203:         switch(state) {
+[e $U 361  ]
+{
+"205
+[; ;TAD_RFID.c: 205:             case 0:
+[e :U 362 ]
+"206
+[; ;TAD_RFID.c: 206:                 switch(substate) {
+[e $U 364  ]
+{
+"207
+[; ;TAD_RFID.c: 207:                     case 0:
+[e :U 365 ]
+"208
+[; ;TAD_RFID.c: 208:                         addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"209
+[; ;TAD_RFID.c: 209:                         value = 0x07;
+[e = F2757 -> -> 7 `i `uc ]
+"210
+[; ;TAD_RFID.c: 210:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"211
+[; ;TAD_RFID.c: 211:                         substate = 1;
+[e = F2740 -> -> 1 `i `uc ]
+"212
+[; ;TAD_RFID.c: 212:                         break;
+[e $U 363  ]
+"213
+[; ;TAD_RFID.c: 213:                     case 1:
+[e :U 366 ]
+"214
+[; ;TAD_RFID.c: 214:                         TagType = 0x26;
+[e = F2747 -> -> 38 `i `uc ]
+"215
+[; ;TAD_RFID.c: 215:                         irqEn = 0x77;
+[e = F2741 -> -> 119 `i `uc ]
+"216
+[; ;TAD_RFID.c: 216:                         waitIRq = 0x30;
+[e = F2742 -> -> 48 `i `uc ]
+"217
+[; ;TAD_RFID.c: 217:                         addr = 0x02;
+[e = F2756 -> -> 2 `i `uc ]
+"218
+[; ;TAD_RFID.c: 218:                         value = irqEn | 0x80;
+[e = F2757 -> | -> F2741 `i -> 128 `i `uc ]
+"219
+[; ;TAD_RFID.c: 219:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"220
+[; ;TAD_RFID.c: 220:                         substate = 2;
+[e = F2740 -> -> 2 `i `uc ]
+"221
+[; ;TAD_RFID.c: 221:                         break;
+[e $U 363  ]
+"222
+[; ;TAD_RFID.c: 222:                     case 2:
+[e :U 367 ]
+"223
+[; ;TAD_RFID.c: 223:                         addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
+"224
+[; ;TAD_RFID.c: 224:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"225
+[; ;TAD_RFID.c: 225:                         substate = 3;
+[e = F2740 -> -> 3 `i `uc ]
+"226
+[; ;TAD_RFID.c: 226:                         break;
+[e $U 363  ]
+"227
+[; ;TAD_RFID.c: 227:                     case 3:
+[e :U 368 ]
+"228
+[; ;TAD_RFID.c: 228:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 369  ]
+{
+"229
+[; ;TAD_RFID.c: 229:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
+"230
+[; ;TAD_RFID.c: 230:                         } else {
+}
+[e $U 370  ]
+[e :U 369 ]
+{
+"231
+[; ;TAD_RFID.c: 231:                             addr = 0x02;
+[e = F2756 -> -> 2 `i `uc ]
+"232
+[; ;TAD_RFID.c: 232:                             value = tempRegValue & ~0x80;
+[e = F2757 -> & -> F2751 `i ~ -> 128 `i `uc ]
+"233
+[; ;TAD_RFID.c: 233:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"234
+[; ;TAD_RFID.c: 234:                             substate = 4;
+[e = F2740 -> -> 4 `i `uc ]
+"235
+[; ;TAD_RFID.c: 235:                         }
+}
+[e :U 370 ]
+"236
+[; ;TAD_RFID.c: 236:                         break;
+[e $U 363  ]
+"237
+[; ;TAD_RFID.c: 237:                     case 4:
+[e :U 371 ]
+"238
+[; ;TAD_RFID.c: 238:                         addr = 0x0A;
+[e = F2756 -> -> 10 `i `uc ]
+"239
+[; ;TAD_RFID.c: 239:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"240
+[; ;TAD_RFID.c: 240:                         substate = 5;
+[e = F2740 -> -> 5 `i `uc ]
+"241
+[; ;TAD_RFID.c: 241:                         break;
+[e $U 363  ]
+"242
+[; ;TAD_RFID.c: 242:                     case 5:
+[e :U 372 ]
+"243
+[; ;TAD_RFID.c: 243:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 373  ]
+{
+"244
+[; ;TAD_RFID.c: 244:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
+"245
+[; ;TAD_RFID.c: 245:                         } else {
+}
+[e $U 374  ]
+[e :U 373 ]
+{
+"246
+[; ;TAD_RFID.c: 246:                             addr = 0x0A;
+[e = F2756 -> -> 10 `i `uc ]
+"247
+[; ;TAD_RFID.c: 247:                             value = tempRegValue | 0x80;
+[e = F2757 -> | -> F2751 `i -> 128 `i `uc ]
+"248
+[; ;TAD_RFID.c: 248:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"249
+[; ;TAD_RFID.c: 249:                             substate = 6;
+[e = F2740 -> -> 6 `i `uc ]
+"250
+[; ;TAD_RFID.c: 250:                         }
+}
+[e :U 374 ]
+"251
+[; ;TAD_RFID.c: 251:                         break;
+[e $U 363  ]
+"252
+[; ;TAD_RFID.c: 252:                     case 6:
+[e :U 375 ]
+"253
+[; ;TAD_RFID.c: 253:                         addr = 0x01;
+[e = F2756 -> -> 1 `i `uc ]
+"254
+[; ;TAD_RFID.c: 254:                         value = 0x00;
+[e = F2757 -> -> 0 `i `uc ]
+"255
+[; ;TAD_RFID.c: 255:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"256
+[; ;TAD_RFID.c: 256:                         substate = 7;
+[e = F2740 -> -> 7 `i `uc ]
+"257
+[; ;TAD_RFID.c: 257:                         break;
+[e $U 363  ]
+"258
+[; ;TAD_RFID.c: 258:                     case 7:
+[e :U 376 ]
+"259
+[; ;TAD_RFID.c: 259:                         addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
+"260
+[; ;TAD_RFID.c: 260:                         value = TagType;
+[e = F2757 -> F2747 `uc ]
+"261
+[; ;TAD_RFID.c: 261:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"262
+[; ;TAD_RFID.c: 262:                         substate = 8;
+[e = F2740 -> -> 8 `i `uc ]
+"263
+[; ;TAD_RFID.c: 263:                         break;
+[e $U 363  ]
+"264
+[; ;TAD_RFID.c: 264:                     case 8:
+[e :U 377 ]
+"265
+[; ;TAD_RFID.c: 265:                         addr = 0x01;
+[e = F2756 -> -> 1 `i `uc ]
+"266
+[; ;TAD_RFID.c: 266:                         value = 0x0C;
+[e = F2757 -> -> 12 `i `uc ]
+"267
+[; ;TAD_RFID.c: 267:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"268
+[; ;TAD_RFID.c: 268:                         substate = 9;
+[e = F2740 -> -> 9 `i `uc ]
+"269
+[; ;TAD_RFID.c: 269:                         break;
+[e $U 363  ]
+"270
+[; ;TAD_RFID.c: 270:                     case 9:
+[e :U 378 ]
+"271
+[; ;TAD_RFID.c: 271:                         addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"272
+[; ;TAD_RFID.c: 272:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"273
+[; ;TAD_RFID.c: 273:                         substate = 10;
+[e = F2740 -> -> 10 `i `uc ]
+"274
+[; ;TAD_RFID.c: 274:                         break;
+[e $U 363  ]
+"275
+[; ;TAD_RFID.c: 275:                     case 10:
+[e :U 379 ]
+"276
+[; ;TAD_RFID.c: 276:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 380  ]
+{
+"277
+[; ;TAD_RFID.c: 277:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
+"278
+[; ;TAD_RFID.c: 278:                         } else {
+}
+[e $U 381  ]
+[e :U 380 ]
+{
+"279
+[; ;TAD_RFID.c: 279:                             addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"280
+[; ;TAD_RFID.c: 280:                             value = tempRegValue | 0x80;
+[e = F2757 -> | -> F2751 `i -> 128 `i `uc ]
+"281
+[; ;TAD_RFID.c: 281:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"282
+[; ;TAD_RFID.c: 282:                             substate = 11;
+[e = F2740 -> -> 11 `i `uc ]
+"283
+[; ;TAD_RFID.c: 283:                         }
+}
+[e :U 381 ]
+"284
+[; ;TAD_RFID.c: 284:                         break;
+[e $U 363  ]
+"285
+[; ;TAD_RFID.c: 285:                     case 11:
+[e :U 382 ]
+"286
+[; ;TAD_RFID.c: 286:                         i = 0xFF;
+[e = F2744 -> -> 255 `i `uc ]
+"287
+[; ;TAD_RFID.c: 287:                         addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
+"288
+[; ;TAD_RFID.c: 288:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"289
+[; ;TAD_RFID.c: 289:                         substate = 12;
+[e = F2740 -> -> 12 `i `uc ]
+"290
+[; ;TAD_RFID.c: 290:                         break;
+[e $U 363  ]
+"291
+[; ;TAD_RFID.c: 291:                     case 12:
+[e :U 383 ]
+"292
+[; ;TAD_RFID.c: 292:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 384  ]
+{
+"293
+[; ;TAD_RFID.c: 293:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
+"294
+[; ;TAD_RFID.c: 294:                         } else {
+}
+[e $U 385  ]
+[e :U 384 ]
+{
+"295
+[; ;TAD_RFID.c: 295:                             n = tempRegValue;
+[e = F2743 -> F2751 `uc ]
+"296
+[; ;TAD_RFID.c: 296:                             if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+[e $ ! || || != & -> F2743 `i -> 1 `i -> 0 `i != & -> F2743 `i -> F2742 `i -> 0 `i == -> =- F2744 -> -> 1 `i `uc `i -> 0 `i 386  ]
+{
+"297
+[; ;TAD_RFID.c: 297:                                 addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"298
+[; ;TAD_RFID.c: 298:                                 operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"299
+[; ;TAD_RFID.c: 299:                                 substate = 13;
+[e = F2740 -> -> 13 `i `uc ]
+"300
+[; ;TAD_RFID.c: 300:                             } else {
 }
 [e $U 387  ]
 [e :U 386 ]
 {
-"313
-[; ;TAD_RFID.c: 313:             return;
-[e $UE 384  ]
-"314
-[; ;TAD_RFID.c: 314:         }
+"301
+[; ;TAD_RFID.c: 301:                                 addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
+"302
+[; ;TAD_RFID.c: 302:                                 operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"304
+[; ;TAD_RFID.c: 304:                             }
 }
 [e :U 387 ]
-"315
-[; ;TAD_RFID.c: 315:     } else if (operation_pending == 2) {
+"305
+[; ;TAD_RFID.c: 305:                         }
 }
-[e $U 388  ]
 [e :U 385 ]
-[e $ ! == -> F2838 `i -> 2 `i 389  ]
+"306
+[; ;TAD_RFID.c: 306:                         break;
+[e $U 363  ]
+"307
+[; ;TAD_RFID.c: 307:                     case 13:
+[e :U 388 ]
+"308
+[; ;TAD_RFID.c: 308:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 389  ]
 {
-"317
-[; ;TAD_RFID.c: 317:         flag = motor_Write(addr, value);
-[e = _flag -> ( _motor_Write (2 , -> F2839 `uc -> F2840 `uc `uc ]
-"318
-[; ;TAD_RFID.c: 318:         if (flag != 0) {
-[e $ ! != -> _flag `i -> 0 `i 390  ]
-{
-"319
-[; ;TAD_RFID.c: 319:             operation_pending = 0;
-[e = F2838 -> -> 0 `i `uc ]
-"320
-[; ;TAD_RFID.c: 320:         } else {
+"309
+[; ;TAD_RFID.c: 309:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
+"310
+[; ;TAD_RFID.c: 310:                         } else if (tempRegValue != 0x00) {
 }
-[e $U 391  ]
-[e :U 390 ]
+[e $U 390  ]
+[e :U 389 ]
+[e $ ! != -> F2751 `i -> 0 `i 391  ]
 {
-"321
-[; ;TAD_RFID.c: 321:             return;
-[e $UE 384  ]
-"322
-[; ;TAD_RFID.c: 322:         }
-}
-[e :U 391 ]
-"323
-[; ;TAD_RFID.c: 323:     } else {
+"311
+[; ;TAD_RFID.c: 311:                             addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"312
+[; ;TAD_RFID.c: 312:                             value = tempRegValue & ~0x80;
+[e = F2757 -> & -> F2751 `i ~ -> 128 `i `uc ]
+"313
+[; ;TAD_RFID.c: 313:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"314
+[; ;TAD_RFID.c: 314:                             substate = 14;
+[e = F2740 -> -> 14 `i `uc ]
+"315
+[; ;TAD_RFID.c: 315:                         } else {
 }
 [e $U 392  ]
-[e :U 389 ]
+[e :U 391 ]
 {
+"316
+[; ;TAD_RFID.c: 316:                             addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"317
+[; ;TAD_RFID.c: 317:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"319
+[; ;TAD_RFID.c: 319:                         }
+}
+[e :U 392 ]
+[e :U 390 ]
+"320
+[; ;TAD_RFID.c: 320:                         break;
+[e $U 363  ]
+"321
+[; ;TAD_RFID.c: 321:                     case 14:
+[e :U 393 ]
+"322
+[; ;TAD_RFID.c: 322:                         addr = 0x06;
+[e = F2756 -> -> 6 `i `uc ]
+"323
+[; ;TAD_RFID.c: 323:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"324
+[; ;TAD_RFID.c: 324:                         substate = 15;
+[e = F2740 -> -> 15 `i `uc ]
 "325
-[; ;TAD_RFID.c: 325:         switch(state) {
-[e $U 394  ]
-{
+[; ;TAD_RFID.c: 325:                         break;
+[e $U 363  ]
+"326
+[; ;TAD_RFID.c: 326:                     case 15:
+[e :U 394 ]
 "327
-[; ;TAD_RFID.c: 327:             case 0:
-[e :U 395 ]
-"328
-[; ;TAD_RFID.c: 328:                 switch(substate) {
-[e $U 397  ]
+[; ;TAD_RFID.c: 327:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 395  ]
 {
+"328
+[; ;TAD_RFID.c: 328:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
 "329
-[; ;TAD_RFID.c: 329:                     case 0:
-[e :U 398 ]
+[; ;TAD_RFID.c: 329:                         } else if (i != 0 && !(tempRegValue & 0x1B)) {
+}
+[e $U 396  ]
+[e :U 395 ]
+[e $ ! && != -> F2744 `i -> 0 `i ! != & -> F2751 `i -> 27 `i -> 0 `i 397  ]
+{
 "330
-[; ;TAD_RFID.c: 330:                         addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
+[; ;TAD_RFID.c: 330:                             addr = 0x0A;
+[e = F2756 -> -> 10 `i `uc ]
 "331
-[; ;TAD_RFID.c: 331:                         value = 0x07;
-[e = F2840 -> -> 7 `i `uc ]
+[; ;TAD_RFID.c: 331:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
 "332
-[; ;TAD_RFID.c: 332:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 332:                             substate = 16;
+[e = F2740 -> -> 16 `i `uc ]
 "333
-[; ;TAD_RFID.c: 333:                         substate = 1;
-[e = F2823 -> -> 1 `i `uc ]
+[; ;TAD_RFID.c: 333:                         } else {
+}
+[e $U 398  ]
+[e :U 397 ]
+{
 "334
-[; ;TAD_RFID.c: 334:                         break;
-[e $U 396  ]
+[; ;TAD_RFID.c: 334:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "335
-[; ;TAD_RFID.c: 335:                     case 1:
-[e :U 399 ]
+[; ;TAD_RFID.c: 335:                         }
+}
+[e :U 398 ]
+[e :U 396 ]
 "336
-[; ;TAD_RFID.c: 336:                         TagType = 0x26;
-[e = F2830 -> -> 38 `i `uc ]
+[; ;TAD_RFID.c: 336:                         break;
+[e $U 363  ]
 "337
-[; ;TAD_RFID.c: 337:                         irqEn = 0x77;
-[e = F2824 -> -> 119 `i `uc ]
+[; ;TAD_RFID.c: 337:                     case 16:
+[e :U 399 ]
 "338
-[; ;TAD_RFID.c: 338:                         waitIRq = 0x30;
-[e = F2825 -> -> 48 `i `uc ]
+[; ;TAD_RFID.c: 338:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 400  ]
+{
 "339
-[; ;TAD_RFID.c: 339:                         addr = 0x02;
-[e = F2839 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 339:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
 "340
-[; ;TAD_RFID.c: 340:                         value = irqEn | 0x80;
-[e = F2840 -> | -> F2824 `i -> 128 `i `uc ]
-"341
-[; ;TAD_RFID.c: 341:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"342
-[; ;TAD_RFID.c: 342:                         substate = 2;
-[e = F2823 -> -> 2 `i `uc ]
-"343
-[; ;TAD_RFID.c: 343:                         break;
-[e $U 396  ]
-"344
-[; ;TAD_RFID.c: 344:                     case 2:
+[; ;TAD_RFID.c: 340:                         } else {
+}
+[e $U 401  ]
 [e :U 400 ]
+{
+"341
+[; ;TAD_RFID.c: 341:                             fifoLevel = tempRegValue;
+[e = F2753 F2751 ]
+"342
+[; ;TAD_RFID.c: 342:                             addr = 0x0C;
+[e = F2756 -> -> 12 `i `uc ]
+"343
+[; ;TAD_RFID.c: 343:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"344
+[; ;TAD_RFID.c: 344:                             substate = 17;
+[e = F2740 -> -> 17 `i `uc ]
 "345
-[; ;TAD_RFID.c: 345:                         addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
-"346
-[; ;TAD_RFID.c: 346:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"347
-[; ;TAD_RFID.c: 347:                         substate = 3;
-[e = F2823 -> -> 3 `i `uc ]
-"348
-[; ;TAD_RFID.c: 348:                         break;
-[e $U 396  ]
-"349
-[; ;TAD_RFID.c: 349:                     case 3:
+[; ;TAD_RFID.c: 345:                         }
+}
 [e :U 401 ]
+"346
+[; ;TAD_RFID.c: 346:                         break;
+[e $U 363  ]
+"347
+[; ;TAD_RFID.c: 347:                     case 17:
+[e :U 402 ]
+"348
+[; ;TAD_RFID.c: 348:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 403  ]
+{
+"349
+[; ;TAD_RFID.c: 349:                             substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
 "350
-[; ;TAD_RFID.c: 350:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 402  ]
+[; ;TAD_RFID.c: 350:                         } else {
+}
+[e $U 404  ]
+[e :U 403 ]
 {
 "351
-[; ;TAD_RFID.c: 351:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 351:                             lastBitsVal = tempRegValue & 0x07;
+[e = F2752 -> & -> F2751 `i -> 7 `i `uc ]
 "352
-[; ;TAD_RFID.c: 352:                         } else {
-}
-[e $U 403  ]
-[e :U 402 ]
-{
+[; ;TAD_RFID.c: 352:                             backBitsCalc = lastBitsVal ? (fifoLevel - 1) * 8 + lastBitsVal : fifoLevel * 8;
+[e = F2754 -> ? != -> F2752 `i -> 0 `i : + * - -> F2753 `i -> 1 `i -> 8 `i -> F2752 `i * -> F2753 `i -> 8 `i `uc ]
 "353
-[; ;TAD_RFID.c: 353:                             addr = 0x02;
-[e = F2839 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 353:                             if (backBitsCalc == 0x10) {
+[e $ ! == -> F2754 `i -> 16 `i 405  ]
+{
 "354
-[; ;TAD_RFID.c: 354:                             value = tempRegValue & ~0x80;
-[e = F2840 -> & -> F2834 `i ~ -> 128 `i `uc ]
+[; ;TAD_RFID.c: 354:                                 state = 1;
+[e = F2739 -> -> 1 `i `uc ]
 "355
-[; ;TAD_RFID.c: 355:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 355:                                 substate = 0;
+[e = F2740 -> -> 0 `i `uc ]
 "356
-[; ;TAD_RFID.c: 356:                             substate = 4;
-[e = F2823 -> -> 4 `i `uc ]
-"357
-[; ;TAD_RFID.c: 357:                         }
+[; ;TAD_RFID.c: 356:                             } else {
 }
-[e :U 403 ]
+[e $U 406  ]
+[e :U 405 ]
+{
+"357
+[; ;TAD_RFID.c: 357:                                 state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "358
-[; ;TAD_RFID.c: 358:                         break;
-[e $U 396  ]
+[; ;TAD_RFID.c: 358:                             }
+}
+[e :U 406 ]
 "359
-[; ;TAD_RFID.c: 359:                     case 4:
+[; ;TAD_RFID.c: 359:                         }
+}
 [e :U 404 ]
 "360
-[; ;TAD_RFID.c: 360:                         addr = 0x0A;
-[e = F2839 -> -> 10 `i `uc ]
+[; ;TAD_RFID.c: 360:                         break;
+[e $U 363  ]
 "361
-[; ;TAD_RFID.c: 361:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
+[; ;TAD_RFID.c: 361:                 }
+}
+[e $U 363  ]
+[e :U 364 ]
+[e [\ F2740 , $ -> 0 `i 365
+ , $ -> 1 `i 366
+ , $ -> 2 `i 367
+ , $ -> 3 `i 368
+ , $ -> 4 `i 371
+ , $ -> 5 `i 372
+ , $ -> 6 `i 375
+ , $ -> 7 `i 376
+ , $ -> 8 `i 377
+ , $ -> 9 `i 378
+ , $ -> 10 `i 379
+ , $ -> 11 `i 382
+ , $ -> 12 `i 383
+ , $ -> 13 `i 388
+ , $ -> 14 `i 393
+ , $ -> 15 `i 394
+ , $ -> 16 `i 399
+ , $ -> 17 `i 402
+ 363 ]
+[e :U 363 ]
 "362
-[; ;TAD_RFID.c: 362:                         substate = 5;
-[e = F2823 -> -> 5 `i `uc ]
-"363
-[; ;TAD_RFID.c: 363:                         break;
-[e $U 396  ]
+[; ;TAD_RFID.c: 362:                 break;
+[e $U 360  ]
 "364
-[; ;TAD_RFID.c: 364:                     case 5:
-[e :U 405 ]
+[; ;TAD_RFID.c: 364:             case 1:
+[e :U 407 ]
 "365
-[; ;TAD_RFID.c: 365:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 406  ]
+[; ;TAD_RFID.c: 365:                 switch(substate) {
+[e $U 409  ]
 {
 "366
-[; ;TAD_RFID.c: 366:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
-"367
-[; ;TAD_RFID.c: 367:                         } else {
-}
-[e $U 407  ]
-[e :U 406 ]
-{
-"368
-[; ;TAD_RFID.c: 368:                             addr = 0x0A;
-[e = F2839 -> -> 10 `i `uc ]
-"369
-[; ;TAD_RFID.c: 369:                             value = tempRegValue | 0x80;
-[e = F2840 -> | -> F2834 `i -> 128 `i `uc ]
-"370
-[; ;TAD_RFID.c: 370:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"371
-[; ;TAD_RFID.c: 371:                             substate = 6;
-[e = F2823 -> -> 6 `i `uc ]
-"372
-[; ;TAD_RFID.c: 372:                         }
-}
-[e :U 407 ]
-"373
-[; ;TAD_RFID.c: 373:                         break;
-[e $U 396  ]
-"374
-[; ;TAD_RFID.c: 374:                     case 6:
-[e :U 408 ]
-"375
-[; ;TAD_RFID.c: 375:                         addr = 0x01;
-[e = F2839 -> -> 1 `i `uc ]
-"376
-[; ;TAD_RFID.c: 376:                         value = 0x00;
-[e = F2840 -> -> 0 `i `uc ]
-"377
-[; ;TAD_RFID.c: 377:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"378
-[; ;TAD_RFID.c: 378:                         substate = 7;
-[e = F2823 -> -> 7 `i `uc ]
-"379
-[; ;TAD_RFID.c: 379:                         break;
-[e $U 396  ]
-"380
-[; ;TAD_RFID.c: 380:                     case 7:
-[e :U 409 ]
-"381
-[; ;TAD_RFID.c: 381:                         addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"382
-[; ;TAD_RFID.c: 382:                         value = TagType;
-[e = F2840 -> F2830 `uc ]
-"383
-[; ;TAD_RFID.c: 383:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"384
-[; ;TAD_RFID.c: 384:                         substate = 8;
-[e = F2823 -> -> 8 `i `uc ]
-"385
-[; ;TAD_RFID.c: 385:                         break;
-[e $U 396  ]
-"386
-[; ;TAD_RFID.c: 386:                     case 8:
+[; ;TAD_RFID.c: 366:                     case 0:
 [e :U 410 ]
-"387
-[; ;TAD_RFID.c: 387:                         addr = 0x01;
-[e = F2839 -> -> 1 `i `uc ]
-"388
-[; ;TAD_RFID.c: 388:                         value = 0x0C;
-[e = F2840 -> -> 12 `i `uc ]
-"389
-[; ;TAD_RFID.c: 389:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"390
-[; ;TAD_RFID.c: 390:                         substate = 9;
-[e = F2823 -> -> 9 `i `uc ]
-"391
-[; ;TAD_RFID.c: 391:                         break;
-[e $U 396  ]
-"392
-[; ;TAD_RFID.c: 392:                     case 9:
+"367
+[; ;TAD_RFID.c: 367:                         addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"368
+[; ;TAD_RFID.c: 368:                         value = 0x00;
+[e = F2757 -> -> 0 `i `uc ]
+"369
+[; ;TAD_RFID.c: 369:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"370
+[; ;TAD_RFID.c: 370:                         substate = 1;
+[e = F2740 -> -> 1 `i `uc ]
+"371
+[; ;TAD_RFID.c: 371:                         break;
+[e $U 408  ]
+"372
+[; ;TAD_RFID.c: 372:                     case 1:
 [e :U 411 ]
-"393
-[; ;TAD_RFID.c: 393:                         addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"394
-[; ;TAD_RFID.c: 394:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"395
-[; ;TAD_RFID.c: 395:                         substate = 10;
-[e = F2823 -> -> 10 `i `uc ]
-"396
-[; ;TAD_RFID.c: 396:                         break;
-[e $U 396  ]
-"397
-[; ;TAD_RFID.c: 397:                     case 10:
+"373
+[; ;TAD_RFID.c: 373:                         UID[0] = 0x93;
+[e = *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux -> -> 147 `i `uc ]
+"374
+[; ;TAD_RFID.c: 374:                         UID[1] = 0x20;
+[e = *U + &U F2748 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2748 `ui `ux -> -> 32 `i `uc ]
+"375
+[; ;TAD_RFID.c: 375:                         addr = 0x08;
+[e = F2756 -> -> 8 `i `uc ]
+"376
+[; ;TAD_RFID.c: 376:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"377
+[; ;TAD_RFID.c: 377:                         substate = 2;
+[e = F2740 -> -> 2 `i `uc ]
+"378
+[; ;TAD_RFID.c: 378:                         break;
+[e $U 408  ]
+"379
+[; ;TAD_RFID.c: 379:                     case 2:
 [e :U 412 ]
-"398
-[; ;TAD_RFID.c: 398:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 413  ]
+"380
+[; ;TAD_RFID.c: 380:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 413  ]
 {
-"399
-[; ;TAD_RFID.c: 399:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
-"400
-[; ;TAD_RFID.c: 400:                         } else {
+"381
+[; ;TAD_RFID.c: 381:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"382
+[; ;TAD_RFID.c: 382:                         } else {
 }
 [e $U 414  ]
 [e :U 413 ]
 {
-"401
-[; ;TAD_RFID.c: 401:                             addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"402
-[; ;TAD_RFID.c: 402:                             value = tempRegValue | 0x80;
-[e = F2840 -> | -> F2834 `i -> 128 `i `uc ]
-"403
-[; ;TAD_RFID.c: 403:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"404
-[; ;TAD_RFID.c: 404:                             substate = 11;
-[e = F2823 -> -> 11 `i `uc ]
-"405
-[; ;TAD_RFID.c: 405:                         }
+"383
+[; ;TAD_RFID.c: 383:                             addr = 0x08;
+[e = F2756 -> -> 8 `i `uc ]
+"384
+[; ;TAD_RFID.c: 384:                             value = tempRegValue & ~0x08;
+[e = F2757 -> & -> F2751 `i ~ -> 8 `i `uc ]
+"385
+[; ;TAD_RFID.c: 385:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"386
+[; ;TAD_RFID.c: 386:                             substate = 3;
+[e = F2740 -> -> 3 `i `uc ]
+"387
+[; ;TAD_RFID.c: 387:                         }
 }
 [e :U 414 ]
-"406
-[; ;TAD_RFID.c: 406:                         break;
-[e $U 396  ]
-"407
-[; ;TAD_RFID.c: 407:                     case 11:
+"388
+[; ;TAD_RFID.c: 388:                         break;
+[e $U 408  ]
+"389
+[; ;TAD_RFID.c: 389:                     case 3:
 [e :U 415 ]
-"408
-[; ;TAD_RFID.c: 408:                         i = 0xFF;
-[e = F2827 -> -> 255 `i `uc ]
-"409
-[; ;TAD_RFID.c: 409:                         addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
-"410
-[; ;TAD_RFID.c: 410:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"411
-[; ;TAD_RFID.c: 411:                         substate = 12;
-[e = F2823 -> -> 12 `i `uc ]
-"412
-[; ;TAD_RFID.c: 412:                         break;
-[e $U 396  ]
-"413
-[; ;TAD_RFID.c: 413:                     case 12:
+"390
+[; ;TAD_RFID.c: 390:                         irqEn = 0x77;
+[e = F2741 -> -> 119 `i `uc ]
+"391
+[; ;TAD_RFID.c: 391:                         waitIRq = 0x30;
+[e = F2742 -> -> 48 `i `uc ]
+"392
+[; ;TAD_RFID.c: 392:                         addr = 0x02;
+[e = F2756 -> -> 2 `i `uc ]
+"393
+[; ;TAD_RFID.c: 393:                         value = irqEn | 0x80;
+[e = F2757 -> | -> F2741 `i -> 128 `i `uc ]
+"394
+[; ;TAD_RFID.c: 394:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"395
+[; ;TAD_RFID.c: 395:                         substate = 4;
+[e = F2740 -> -> 4 `i `uc ]
+"396
+[; ;TAD_RFID.c: 396:                         break;
+[e $U 408  ]
+"397
+[; ;TAD_RFID.c: 397:                     case 4:
 [e :U 416 ]
-"414
-[; ;TAD_RFID.c: 414:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 417  ]
-{
-"415
-[; ;TAD_RFID.c: 415:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
-"416
-[; ;TAD_RFID.c: 416:                         } else {
-}
-[e $U 418  ]
+"398
+[; ;TAD_RFID.c: 398:                         addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
+"399
+[; ;TAD_RFID.c: 399:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"400
+[; ;TAD_RFID.c: 400:                         substate = 5;
+[e = F2740 -> -> 5 `i `uc ]
+"401
+[; ;TAD_RFID.c: 401:                         break;
+[e $U 408  ]
+"402
+[; ;TAD_RFID.c: 402:                     case 5:
 [e :U 417 ]
+"403
+[; ;TAD_RFID.c: 403:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 418  ]
 {
+"404
+[; ;TAD_RFID.c: 404:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"405
+[; ;TAD_RFID.c: 405:                         } else {
+}
+[e $U 419  ]
+[e :U 418 ]
+{
+"406
+[; ;TAD_RFID.c: 406:                             addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
+"407
+[; ;TAD_RFID.c: 407:                             value = tempRegValue & ~0x80;
+[e = F2757 -> & -> F2751 `i ~ -> 128 `i `uc ]
+"408
+[; ;TAD_RFID.c: 408:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"409
+[; ;TAD_RFID.c: 409:                             substate = 6;
+[e = F2740 -> -> 6 `i `uc ]
+"410
+[; ;TAD_RFID.c: 410:                         }
+}
+[e :U 419 ]
+"411
+[; ;TAD_RFID.c: 411:                         break;
+[e $U 408  ]
+"412
+[; ;TAD_RFID.c: 412:                     case 6:
+[e :U 420 ]
+"413
+[; ;TAD_RFID.c: 413:                         addr = 0x0A;
+[e = F2756 -> -> 10 `i `uc ]
+"414
+[; ;TAD_RFID.c: 414:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"415
+[; ;TAD_RFID.c: 415:                         substate = 7;
+[e = F2740 -> -> 7 `i `uc ]
+"416
+[; ;TAD_RFID.c: 416:                         break;
+[e $U 408  ]
 "417
-[; ;TAD_RFID.c: 417:                             n = tempRegValue;
-[e = F2826 -> F2834 `uc ]
+[; ;TAD_RFID.c: 417:                     case 7:
+[e :U 421 ]
 "418
-[; ;TAD_RFID.c: 418:                             if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-[e $ ! || || != & -> F2826 `i -> 1 `i -> 0 `i != & -> F2826 `i -> F2825 `i -> 0 `i == -> =- F2827 -> -> 1 `i `uc `i -> 0 `i 419  ]
+[; ;TAD_RFID.c: 418:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 422  ]
 {
 "419
-[; ;TAD_RFID.c: 419:                                 addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
+[; ;TAD_RFID.c: 419:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "420
-[; ;TAD_RFID.c: 420:                                 operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"421
-[; ;TAD_RFID.c: 421:                                 substate = 13;
-[e = F2823 -> -> 13 `i `uc ]
-"422
-[; ;TAD_RFID.c: 422:                             } else {
-}
-[e $U 420  ]
-[e :U 419 ]
-{
-"423
-[; ;TAD_RFID.c: 423:                                 addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
-"424
-[; ;TAD_RFID.c: 424:                                 operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"426
-[; ;TAD_RFID.c: 426:                             }
-}
-[e :U 420 ]
-"427
-[; ;TAD_RFID.c: 427:                         }
-}
-[e :U 418 ]
-"428
-[; ;TAD_RFID.c: 428:                         break;
-[e $U 396  ]
-"429
-[; ;TAD_RFID.c: 429:                     case 13:
-[e :U 421 ]
-"430
-[; ;TAD_RFID.c: 430:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 422  ]
-{
-"431
-[; ;TAD_RFID.c: 431:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
-"432
-[; ;TAD_RFID.c: 432:                         } else if (tempRegValue != 0x00) {
+[; ;TAD_RFID.c: 420:                         } else {
 }
 [e $U 423  ]
 [e :U 422 ]
-[e $ ! != -> F2834 `i -> 0 `i 424  ]
 {
-"433
-[; ;TAD_RFID.c: 433:                             addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"434
-[; ;TAD_RFID.c: 434:                             value = tempRegValue & ~0x80;
-[e = F2840 -> & -> F2834 `i ~ -> 128 `i `uc ]
-"435
-[; ;TAD_RFID.c: 435:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"436
-[; ;TAD_RFID.c: 436:                             substate = 14;
-[e = F2823 -> -> 14 `i `uc ]
-"437
-[; ;TAD_RFID.c: 437:                         } else {
+"421
+[; ;TAD_RFID.c: 421:                             addr = 0x0A;
+[e = F2756 -> -> 10 `i `uc ]
+"422
+[; ;TAD_RFID.c: 422:                             value = tempRegValue | 0x80;
+[e = F2757 -> | -> F2751 `i -> 128 `i `uc ]
+"423
+[; ;TAD_RFID.c: 423:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"424
+[; ;TAD_RFID.c: 424:                             substate = 8;
+[e = F2740 -> -> 8 `i `uc ]
+"425
+[; ;TAD_RFID.c: 425:                         }
 }
-[e $U 425  ]
-[e :U 424 ]
-{
-"438
-[; ;TAD_RFID.c: 438:                             addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"439
-[; ;TAD_RFID.c: 439:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"441
-[; ;TAD_RFID.c: 441:                         }
-}
-[e :U 425 ]
 [e :U 423 ]
-"442
-[; ;TAD_RFID.c: 442:                         break;
-[e $U 396  ]
-"443
-[; ;TAD_RFID.c: 443:                     case 14:
+"426
+[; ;TAD_RFID.c: 426:                         break;
+[e $U 408  ]
+"427
+[; ;TAD_RFID.c: 427:                     case 8:
+[e :U 424 ]
+"428
+[; ;TAD_RFID.c: 428:                         addr = 0x01;
+[e = F2756 -> -> 1 `i `uc ]
+"429
+[; ;TAD_RFID.c: 429:                         value = 0x00;
+[e = F2757 -> -> 0 `i `uc ]
+"430
+[; ;TAD_RFID.c: 430:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"431
+[; ;TAD_RFID.c: 431:                         substate = 9;
+[e = F2740 -> -> 9 `i `uc ]
+"432
+[; ;TAD_RFID.c: 432:                         break;
+[e $U 408  ]
+"433
+[; ;TAD_RFID.c: 433:                     case 9:
+[e :U 425 ]
+"434
+[; ;TAD_RFID.c: 434:                         addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
+"435
+[; ;TAD_RFID.c: 435:                         value = UID[0];
+[e = F2757 *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux ]
+"436
+[; ;TAD_RFID.c: 436:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"437
+[; ;TAD_RFID.c: 437:                         substate = 10;
+[e = F2740 -> -> 10 `i `uc ]
+"438
+[; ;TAD_RFID.c: 438:                         break;
+[e $U 408  ]
+"439
+[; ;TAD_RFID.c: 439:                     case 10:
 [e :U 426 ]
+"440
+[; ;TAD_RFID.c: 440:                         addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
+"441
+[; ;TAD_RFID.c: 441:                         value = UID[1];
+[e = F2757 *U + &U F2748 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2748 `ui `ux ]
+"442
+[; ;TAD_RFID.c: 442:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"443
+[; ;TAD_RFID.c: 443:                         substate = 11;
+[e = F2740 -> -> 11 `i `uc ]
 "444
-[; ;TAD_RFID.c: 444:                         addr = 0x06;
-[e = F2839 -> -> 6 `i `uc ]
+[; ;TAD_RFID.c: 444:                         break;
+[e $U 408  ]
 "445
-[; ;TAD_RFID.c: 445:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"446
-[; ;TAD_RFID.c: 446:                         substate = 15;
-[e = F2823 -> -> 15 `i `uc ]
-"447
-[; ;TAD_RFID.c: 447:                         break;
-[e $U 396  ]
-"448
-[; ;TAD_RFID.c: 448:                     case 15:
+[; ;TAD_RFID.c: 445:                     case 11:
 [e :U 427 ]
+"446
+[; ;TAD_RFID.c: 446:                         addr = 0x01;
+[e = F2756 -> -> 1 `i `uc ]
+"447
+[; ;TAD_RFID.c: 447:                         value = 0x0C;
+[e = F2757 -> -> 12 `i `uc ]
+"448
+[; ;TAD_RFID.c: 448:                         operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
 "449
-[; ;TAD_RFID.c: 449:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 428  ]
-{
+[; ;TAD_RFID.c: 449:                         substate = 12;
+[e = F2740 -> -> 12 `i `uc ]
 "450
-[; ;TAD_RFID.c: 450:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 450:                         break;
+[e $U 408  ]
 "451
-[; ;TAD_RFID.c: 451:                         } else if (i != 0 && !(tempRegValue & 0x1B)) {
-}
-[e $U 429  ]
+[; ;TAD_RFID.c: 451:                     case 12:
 [e :U 428 ]
-[e $ ! && != -> F2827 `i -> 0 `i ! != & -> F2834 `i -> 27 `i -> 0 `i 430  ]
-{
 "452
-[; ;TAD_RFID.c: 452:                             addr = 0x0A;
-[e = F2839 -> -> 10 `i `uc ]
+[; ;TAD_RFID.c: 452:                         addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
 "453
-[; ;TAD_RFID.c: 453:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
+[; ;TAD_RFID.c: 453:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
 "454
-[; ;TAD_RFID.c: 454:                             substate = 16;
-[e = F2823 -> -> 16 `i `uc ]
+[; ;TAD_RFID.c: 454:                         substate = 13;
+[e = F2740 -> -> 13 `i `uc ]
 "455
-[; ;TAD_RFID.c: 455:                         } else {
+[; ;TAD_RFID.c: 455:                         break;
+[e $U 408  ]
+"456
+[; ;TAD_RFID.c: 456:                     case 13:
+[e :U 429 ]
+"457
+[; ;TAD_RFID.c: 457:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 430  ]
+{
+"458
+[; ;TAD_RFID.c: 458:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"459
+[; ;TAD_RFID.c: 459:                         } else {
 }
 [e $U 431  ]
 [e :U 430 ]
 {
-"456
-[; ;TAD_RFID.c: 456:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"457
-[; ;TAD_RFID.c: 457:                         }
+"460
+[; ;TAD_RFID.c: 460:                             addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"461
+[; ;TAD_RFID.c: 461:                             value = tempRegValue | 0x80;
+[e = F2757 -> | -> F2751 `i -> 128 `i `uc ]
+"462
+[; ;TAD_RFID.c: 462:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"463
+[; ;TAD_RFID.c: 463:                             substate = 14;
+[e = F2740 -> -> 14 `i `uc ]
+"464
+[; ;TAD_RFID.c: 464:                         }
 }
 [e :U 431 ]
-[e :U 429 ]
-"458
-[; ;TAD_RFID.c: 458:                         break;
-[e $U 396  ]
-"459
-[; ;TAD_RFID.c: 459:                     case 16:
-[e :U 432 ]
-"460
-[; ;TAD_RFID.c: 460:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 433  ]
-{
-"461
-[; ;TAD_RFID.c: 461:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
-"462
-[; ;TAD_RFID.c: 462:                         } else {
-}
-[e $U 434  ]
-[e :U 433 ]
-{
-"463
-[; ;TAD_RFID.c: 463:                             fifoLevel = tempRegValue;
-[e = F2836 F2834 ]
-"464
-[; ;TAD_RFID.c: 464:                             addr = 0x0C;
-[e = F2839 -> -> 12 `i `uc ]
 "465
-[; ;TAD_RFID.c: 465:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
+[; ;TAD_RFID.c: 465:                         break;
+[e $U 408  ]
 "466
-[; ;TAD_RFID.c: 466:                             substate = 17;
-[e = F2823 -> -> 17 `i `uc ]
+[; ;TAD_RFID.c: 466:                     case 14:
+[e :U 432 ]
 "467
-[; ;TAD_RFID.c: 467:                         }
-}
-[e :U 434 ]
+[; ;TAD_RFID.c: 467:                         i = 0xFF;
+[e = F2744 -> -> 255 `i `uc ]
 "468
-[; ;TAD_RFID.c: 468:                         break;
-[e $U 396  ]
+[; ;TAD_RFID.c: 468:                         addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
 "469
-[; ;TAD_RFID.c: 469:                     case 17:
-[e :U 435 ]
+[; ;TAD_RFID.c: 469:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
 "470
-[; ;TAD_RFID.c: 470:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 436  ]
-{
+[; ;TAD_RFID.c: 470:                         substate = 15;
+[e = F2740 -> -> 15 `i `uc ]
 "471
-[; ;TAD_RFID.c: 471:                             substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 471:                         break;
+[e $U 408  ]
 "472
-[; ;TAD_RFID.c: 472:                         } else {
+[; ;TAD_RFID.c: 472:                     case 15:
+[e :U 433 ]
+"473
+[; ;TAD_RFID.c: 473:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 434  ]
+{
+"474
+[; ;TAD_RFID.c: 474:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"475
+[; ;TAD_RFID.c: 475:                         } else {
+}
+[e $U 435  ]
+[e :U 434 ]
+{
+"476
+[; ;TAD_RFID.c: 476:                             n = tempRegValue;
+[e = F2743 -> F2751 `uc ]
+"477
+[; ;TAD_RFID.c: 477:                             if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+[e $ ! || || != & -> F2743 `i -> 1 `i -> 0 `i != & -> F2743 `i -> F2742 `i -> 0 `i == -> =- F2744 -> -> 1 `i `uc `i -> 0 `i 436  ]
+{
+"478
+[; ;TAD_RFID.c: 478:                                 addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"479
+[; ;TAD_RFID.c: 479:                                 operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"480
+[; ;TAD_RFID.c: 480:                                 substate = 16;
+[e = F2740 -> -> 16 `i `uc ]
+"481
+[; ;TAD_RFID.c: 481:                             } else {
 }
 [e $U 437  ]
 [e :U 436 ]
 {
-"473
-[; ;TAD_RFID.c: 473:                             lastBitsVal = tempRegValue & 0x07;
-[e = F2835 -> & -> F2834 `i -> 7 `i `uc ]
-"474
-[; ;TAD_RFID.c: 474:                             backBitsCalc = lastBitsVal ? (fifoLevel - 1) * 8 + lastBitsVal : fifoLevel * 8;
-[e = F2837 -> ? != -> F2835 `i -> 0 `i : + * - -> F2836 `i -> 1 `i -> 8 `i -> F2835 `i * -> F2836 `i -> 8 `i `uc ]
-"475
-[; ;TAD_RFID.c: 475:                             if (backBitsCalc == 0x10) {
-[e $ ! == -> F2837 `i -> 16 `i 438  ]
-{
-"476
-[; ;TAD_RFID.c: 476:                                 state = 1;
-[e = F2822 -> -> 1 `i `uc ]
-"477
-[; ;TAD_RFID.c: 477:                                 substate = 0;
-[e = F2823 -> -> 0 `i `uc ]
-"478
-[; ;TAD_RFID.c: 478:                             } else {
-}
-[e $U 439  ]
-[e :U 438 ]
-{
-"479
-[; ;TAD_RFID.c: 479:                                 state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"480
-[; ;TAD_RFID.c: 480:                             }
-}
-[e :U 439 ]
-"481
-[; ;TAD_RFID.c: 481:                         }
+"482
+[; ;TAD_RFID.c: 482:                                 addr = 0x04;
+[e = F2756 -> -> 4 `i `uc ]
+"483
+[; ;TAD_RFID.c: 483:                                 operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"485
+[; ;TAD_RFID.c: 485:                             }
 }
 [e :U 437 ]
-"482
-[; ;TAD_RFID.c: 482:                         break;
-[e $U 396  ]
-"483
-[; ;TAD_RFID.c: 483:                 }
-}
-[e $U 396  ]
-[e :U 397 ]
-[e [\ F2823 , $ -> 0 `i 398
- , $ -> 1 `i 399
- , $ -> 2 `i 400
- , $ -> 3 `i 401
- , $ -> 4 `i 404
- , $ -> 5 `i 405
- , $ -> 6 `i 408
- , $ -> 7 `i 409
- , $ -> 8 `i 410
- , $ -> 9 `i 411
- , $ -> 10 `i 412
- , $ -> 11 `i 415
- , $ -> 12 `i 416
- , $ -> 13 `i 421
- , $ -> 14 `i 426
- , $ -> 15 `i 427
- , $ -> 16 `i 432
- , $ -> 17 `i 435
- 396 ]
-[e :U 396 ]
-"484
-[; ;TAD_RFID.c: 484:                 break;
-[e $U 393  ]
 "486
-[; ;TAD_RFID.c: 486:             case 1:
-[e :U 440 ]
-"487
-[; ;TAD_RFID.c: 487:                 switch(substate) {
-[e $U 442  ]
-{
-"488
-[; ;TAD_RFID.c: 488:                     case 0:
-[e :U 443 ]
-"489
-[; ;TAD_RFID.c: 489:                         addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"490
-[; ;TAD_RFID.c: 490:                         value = 0x00;
-[e = F2840 -> -> 0 `i `uc ]
-"491
-[; ;TAD_RFID.c: 491:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"492
-[; ;TAD_RFID.c: 492:                         substate = 1;
-[e = F2823 -> -> 1 `i `uc ]
-"493
-[; ;TAD_RFID.c: 493:                         break;
-[e $U 441  ]
-"494
-[; ;TAD_RFID.c: 494:                     case 1:
-[e :U 444 ]
-"495
-[; ;TAD_RFID.c: 495:                         UID[0] = 0x93;
-[e = *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux -> -> 147 `i `uc ]
-"496
-[; ;TAD_RFID.c: 496:                         UID[1] = 0x20;
-[e = *U + &U F2831 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2831 `ui `ux -> -> 32 `i `uc ]
-"497
-[; ;TAD_RFID.c: 497:                         addr = 0x08;
-[e = F2839 -> -> 8 `i `uc ]
-"498
-[; ;TAD_RFID.c: 498:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"499
-[; ;TAD_RFID.c: 499:                         substate = 2;
-[e = F2823 -> -> 2 `i `uc ]
-"500
-[; ;TAD_RFID.c: 500:                         break;
-[e $U 441  ]
-"501
-[; ;TAD_RFID.c: 501:                     case 2:
-[e :U 445 ]
-"502
-[; ;TAD_RFID.c: 502:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 446  ]
-{
-"503
-[; ;TAD_RFID.c: 503:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"504
-[; ;TAD_RFID.c: 504:                         } else {
+[; ;TAD_RFID.c: 486:                         }
 }
-[e $U 447  ]
-[e :U 446 ]
+[e :U 435 ]
+"487
+[; ;TAD_RFID.c: 487:                         break;
+[e $U 408  ]
+"488
+[; ;TAD_RFID.c: 488:                     case 16:
+[e :U 438 ]
+"489
+[; ;TAD_RFID.c: 489:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 439  ]
+{
+"490
+[; ;TAD_RFID.c: 490:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"491
+[; ;TAD_RFID.c: 491:                         } else {
+}
+[e $U 440  ]
+[e :U 439 ]
+{
+"492
+[; ;TAD_RFID.c: 492:                             addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"493
+[; ;TAD_RFID.c: 493:                             value = tempRegValue & ~0x80;
+[e = F2757 -> & -> F2751 `i ~ -> 128 `i `uc ]
+"494
+[; ;TAD_RFID.c: 494:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"495
+[; ;TAD_RFID.c: 495:                             substate = 17;
+[e = F2740 -> -> 17 `i `uc ]
+"496
+[; ;TAD_RFID.c: 496:                         }
+}
+[e :U 440 ]
+"497
+[; ;TAD_RFID.c: 497:                         break;
+[e $U 408  ]
+"498
+[; ;TAD_RFID.c: 498:                     case 17:
+[e :U 441 ]
+"499
+[; ;TAD_RFID.c: 499:                         addr = 0x06;
+[e = F2756 -> -> 6 `i `uc ]
+"500
+[; ;TAD_RFID.c: 500:                         operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"501
+[; ;TAD_RFID.c: 501:                         substate = 18;
+[e = F2740 -> -> 18 `i `uc ]
+"502
+[; ;TAD_RFID.c: 502:                         break;
+[e $U 408  ]
+"503
+[; ;TAD_RFID.c: 503:                     case 18:
+[e :U 442 ]
+"504
+[; ;TAD_RFID.c: 504:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 443  ]
 {
 "505
-[; ;TAD_RFID.c: 505:                             addr = 0x08;
-[e = F2839 -> -> 8 `i `uc ]
+[; ;TAD_RFID.c: 505:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "506
-[; ;TAD_RFID.c: 506:                             value = tempRegValue & ~0x08;
-[e = F2840 -> & -> F2834 `i ~ -> 8 `i `uc ]
-"507
-[; ;TAD_RFID.c: 507:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"508
-[; ;TAD_RFID.c: 508:                             substate = 3;
-[e = F2823 -> -> 3 `i `uc ]
-"509
-[; ;TAD_RFID.c: 509:                         }
+[; ;TAD_RFID.c: 506:                         } else if (i != 0 && !(tempRegValue & 0x1B)) {
 }
-[e :U 447 ]
+[e $U 444  ]
+[e :U 443 ]
+[e $ ! && != -> F2744 `i -> 0 `i ! != & -> F2751 `i -> 27 `i -> 0 `i 445  ]
+{
+"507
+[; ;TAD_RFID.c: 507:                             addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
+"508
+[; ;TAD_RFID.c: 508:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"509
+[; ;TAD_RFID.c: 509:                             substate = 19;
+[e = F2740 -> -> 19 `i `uc ]
 "510
-[; ;TAD_RFID.c: 510:                         break;
-[e $U 441  ]
+[; ;TAD_RFID.c: 510:                         } else {
+}
+[e $U 446  ]
+[e :U 445 ]
+{
 "511
-[; ;TAD_RFID.c: 511:                     case 3:
-[e :U 448 ]
+[; ;TAD_RFID.c: 511:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "512
-[; ;TAD_RFID.c: 512:                         irqEn = 0x77;
-[e = F2824 -> -> 119 `i `uc ]
+[; ;TAD_RFID.c: 512:                         }
+}
+[e :U 446 ]
+[e :U 444 ]
 "513
-[; ;TAD_RFID.c: 513:                         waitIRq = 0x30;
-[e = F2825 -> -> 48 `i `uc ]
+[; ;TAD_RFID.c: 513:                         break;
+[e $U 408  ]
 "514
-[; ;TAD_RFID.c: 514:                         addr = 0x02;
-[e = F2839 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 514:                     case 19:
+[e :U 447 ]
 "515
-[; ;TAD_RFID.c: 515:                         value = irqEn | 0x80;
-[e = F2840 -> | -> F2824 `i -> 128 `i `uc ]
+[; ;TAD_RFID.c: 515:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 448  ]
+{
 "516
-[; ;TAD_RFID.c: 516:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 516:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "517
-[; ;TAD_RFID.c: 517:                         substate = 4;
-[e = F2823 -> -> 4 `i `uc ]
+[; ;TAD_RFID.c: 517:                         } else {
+}
+[e $U 449  ]
+[e :U 448 ]
+{
 "518
-[; ;TAD_RFID.c: 518:                         break;
-[e $U 441  ]
+[; ;TAD_RFID.c: 518:                             UID[0] = tempRegValue;
+[e = *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux F2751 ]
 "519
-[; ;TAD_RFID.c: 519:                     case 4:
-[e :U 449 ]
+[; ;TAD_RFID.c: 519:                             addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
 "520
-[; ;TAD_RFID.c: 520:                         addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
+[; ;TAD_RFID.c: 520:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
 "521
-[; ;TAD_RFID.c: 521:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
+[; ;TAD_RFID.c: 521:                             substate = 20;
+[e = F2740 -> -> 20 `i `uc ]
 "522
-[; ;TAD_RFID.c: 522:                         substate = 5;
-[e = F2823 -> -> 5 `i `uc ]
+[; ;TAD_RFID.c: 522:                         }
+}
+[e :U 449 ]
 "523
 [; ;TAD_RFID.c: 523:                         break;
-[e $U 441  ]
+[e $U 408  ]
 "524
-[; ;TAD_RFID.c: 524:                     case 5:
+[; ;TAD_RFID.c: 524:                     case 20:
 [e :U 450 ]
 "525
 [; ;TAD_RFID.c: 525:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 451  ]
+[e $ ! == -> F2751 `i -> 255 `i 451  ]
 {
 "526
 [; ;TAD_RFID.c: 526:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "527
 [; ;TAD_RFID.c: 527:                         } else {
 }
@@ -2140,656 +2197,248 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 451 ]
 {
 "528
-[; ;TAD_RFID.c: 528:                             addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
+[; ;TAD_RFID.c: 528:                             UID[1] = tempRegValue;
+[e = *U + &U F2748 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2748 `ui `ux F2751 ]
 "529
-[; ;TAD_RFID.c: 529:                             value = tempRegValue & ~0x80;
-[e = F2840 -> & -> F2834 `i ~ -> 128 `i `uc ]
+[; ;TAD_RFID.c: 529:                             addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
 "530
-[; ;TAD_RFID.c: 530:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 530:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
 "531
-[; ;TAD_RFID.c: 531:                             substate = 6;
-[e = F2823 -> -> 6 `i `uc ]
+[; ;TAD_RFID.c: 531:                             substate = 21;
+[e = F2740 -> -> 21 `i `uc ]
 "532
 [; ;TAD_RFID.c: 532:                         }
 }
 [e :U 452 ]
 "533
 [; ;TAD_RFID.c: 533:                         break;
-[e $U 441  ]
+[e $U 408  ]
 "534
-[; ;TAD_RFID.c: 534:                     case 6:
+[; ;TAD_RFID.c: 534:                     case 21:
 [e :U 453 ]
 "535
-[; ;TAD_RFID.c: 535:                         addr = 0x0A;
-[e = F2839 -> -> 10 `i `uc ]
+[; ;TAD_RFID.c: 535:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 454  ]
+{
 "536
-[; ;TAD_RFID.c: 536:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
+[; ;TAD_RFID.c: 536:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
 "537
-[; ;TAD_RFID.c: 537:                         substate = 7;
-[e = F2823 -> -> 7 `i `uc ]
-"538
-[; ;TAD_RFID.c: 538:                         break;
-[e $U 441  ]
-"539
-[; ;TAD_RFID.c: 539:                     case 7:
+[; ;TAD_RFID.c: 537:                         } else {
+}
+[e $U 455  ]
 [e :U 454 ]
+{
+"538
+[; ;TAD_RFID.c: 538:                             UID[2] = tempRegValue;
+[e = *U + &U F2748 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2748 `ui `ux F2751 ]
+"539
+[; ;TAD_RFID.c: 539:                             addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
 "540
-[; ;TAD_RFID.c: 540:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 455  ]
-{
+[; ;TAD_RFID.c: 540:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
 "541
-[; ;TAD_RFID.c: 541:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 541:                             substate = 22;
+[e = F2740 -> -> 22 `i `uc ]
 "542
-[; ;TAD_RFID.c: 542:                         } else {
+[; ;TAD_RFID.c: 542:                         }
 }
-[e $U 456  ]
 [e :U 455 ]
-{
 "543
-[; ;TAD_RFID.c: 543:                             addr = 0x0A;
-[e = F2839 -> -> 10 `i `uc ]
+[; ;TAD_RFID.c: 543:                         break;
+[e $U 408  ]
 "544
-[; ;TAD_RFID.c: 544:                             value = tempRegValue | 0x80;
-[e = F2840 -> | -> F2834 `i -> 128 `i `uc ]
-"545
-[; ;TAD_RFID.c: 545:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"546
-[; ;TAD_RFID.c: 546:                             substate = 8;
-[e = F2823 -> -> 8 `i `uc ]
-"547
-[; ;TAD_RFID.c: 547:                         }
-}
+[; ;TAD_RFID.c: 544:                     case 22:
 [e :U 456 ]
-"548
-[; ;TAD_RFID.c: 548:                         break;
-[e $U 441  ]
-"549
-[; ;TAD_RFID.c: 549:                     case 8:
-[e :U 457 ]
-"550
-[; ;TAD_RFID.c: 550:                         addr = 0x01;
-[e = F2839 -> -> 1 `i `uc ]
-"551
-[; ;TAD_RFID.c: 551:                         value = 0x00;
-[e = F2840 -> -> 0 `i `uc ]
-"552
-[; ;TAD_RFID.c: 552:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"553
-[; ;TAD_RFID.c: 553:                         substate = 9;
-[e = F2823 -> -> 9 `i `uc ]
-"554
-[; ;TAD_RFID.c: 554:                         break;
-[e $U 441  ]
-"555
-[; ;TAD_RFID.c: 555:                     case 9:
-[e :U 458 ]
-"556
-[; ;TAD_RFID.c: 556:                         addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"557
-[; ;TAD_RFID.c: 557:                         value = UID[0];
-[e = F2840 *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux ]
-"558
-[; ;TAD_RFID.c: 558:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"559
-[; ;TAD_RFID.c: 559:                         substate = 10;
-[e = F2823 -> -> 10 `i `uc ]
-"560
-[; ;TAD_RFID.c: 560:                         break;
-[e $U 441  ]
-"561
-[; ;TAD_RFID.c: 561:                     case 10:
-[e :U 459 ]
-"562
-[; ;TAD_RFID.c: 562:                         addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"563
-[; ;TAD_RFID.c: 563:                         value = UID[1];
-[e = F2840 *U + &U F2831 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2831 `ui `ux ]
-"564
-[; ;TAD_RFID.c: 564:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"565
-[; ;TAD_RFID.c: 565:                         substate = 11;
-[e = F2823 -> -> 11 `i `uc ]
-"566
-[; ;TAD_RFID.c: 566:                         break;
-[e $U 441  ]
-"567
-[; ;TAD_RFID.c: 567:                     case 11:
-[e :U 460 ]
-"568
-[; ;TAD_RFID.c: 568:                         addr = 0x01;
-[e = F2839 -> -> 1 `i `uc ]
-"569
-[; ;TAD_RFID.c: 569:                         value = 0x0C;
-[e = F2840 -> -> 12 `i `uc ]
-"570
-[; ;TAD_RFID.c: 570:                         operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"571
-[; ;TAD_RFID.c: 571:                         substate = 12;
-[e = F2823 -> -> 12 `i `uc ]
-"572
-[; ;TAD_RFID.c: 572:                         break;
-[e $U 441  ]
-"573
-[; ;TAD_RFID.c: 573:                     case 12:
-[e :U 461 ]
-"574
-[; ;TAD_RFID.c: 574:                         addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"575
-[; ;TAD_RFID.c: 575:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"576
-[; ;TAD_RFID.c: 576:                         substate = 13;
-[e = F2823 -> -> 13 `i `uc ]
-"577
-[; ;TAD_RFID.c: 577:                         break;
-[e $U 441  ]
-"578
-[; ;TAD_RFID.c: 578:                     case 13:
-[e :U 462 ]
-"579
-[; ;TAD_RFID.c: 579:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 463  ]
+"545
+[; ;TAD_RFID.c: 545:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 457  ]
 {
-"580
-[; ;TAD_RFID.c: 580:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"581
-[; ;TAD_RFID.c: 581:                         } else {
+"546
+[; ;TAD_RFID.c: 546:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"547
+[; ;TAD_RFID.c: 547:                         } else {
+}
+[e $U 458  ]
+[e :U 457 ]
+{
+"548
+[; ;TAD_RFID.c: 548:                             UID[3] = tempRegValue;
+[e = *U + &U F2748 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2748 `ui `ux F2751 ]
+"549
+[; ;TAD_RFID.c: 549:                             addr = 0x09;
+[e = F2756 -> -> 9 `i `uc ]
+"550
+[; ;TAD_RFID.c: 550:                             operation_pending = 1;
+[e = F2755 -> -> 1 `i `uc ]
+"551
+[; ;TAD_RFID.c: 551:                             substate = 23;
+[e = F2740 -> -> 23 `i `uc ]
+"552
+[; ;TAD_RFID.c: 552:                         }
+}
+[e :U 458 ]
+"553
+[; ;TAD_RFID.c: 553:                         break;
+[e $U 408  ]
+"554
+[; ;TAD_RFID.c: 554:                     case 23:
+[e :U 459 ]
+"555
+[; ;TAD_RFID.c: 555:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2751 `i -> 255 `i 460  ]
+{
+"556
+[; ;TAD_RFID.c: 556:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"557
+[; ;TAD_RFID.c: 557:                         } else {
+}
+[e $U 461  ]
+[e :U 460 ]
+{
+"558
+[; ;TAD_RFID.c: 558:                             UID[4] = tempRegValue;
+[e = *U + &U F2748 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2748 `ui `ux F2751 ]
+"559
+[; ;TAD_RFID.c: 559:                             UID[5] = 0;
+[e = *U + &U F2748 * -> -> -> 5 `i `ui `ux -> -> # *U &U F2748 `ui `ux -> -> 0 `i `uc ]
+"560
+[; ;TAD_RFID.c: 560:                             checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
+[e = F2749 -> ^ ^ ^ -> *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> *U + &U F2748 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> *U + &U F2748 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> *U + &U F2748 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i `uc ]
+"561
+[; ;TAD_RFID.c: 561:                             allZero = ((UID[0] | UID[1] | UID[2] | UID[3]) == 0);
+[e = F2750 -> -> == | | | -> *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> *U + &U F2748 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> *U + &U F2748 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> *U + &U F2748 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i -> 0 `i `i `uc ]
+"562
+[; ;TAD_RFID.c: 562:                             substate = 24;
+[e = F2740 -> -> 24 `i `uc ]
+"563
+[; ;TAD_RFID.c: 563:                         }
+}
+[e :U 461 ]
+"564
+[; ;TAD_RFID.c: 564:                         break;
+[e $U 408  ]
+"565
+[; ;TAD_RFID.c: 565:                     case 24:
+[e :U 462 ]
+"566
+[; ;TAD_RFID.c: 566:                         if (checksum != UID[4] || allZero) {
+[e $ ! || != -> F2749 `i -> *U + &U F2748 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i != -> F2750 `i -> 0 `i 463  ]
+{
+"567
+[; ;TAD_RFID.c: 567:                             state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"568
+[; ;TAD_RFID.c: 568:                         } else {
 }
 [e $U 464  ]
 [e :U 463 ]
 {
-"582
-[; ;TAD_RFID.c: 582:                             addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"583
-[; ;TAD_RFID.c: 583:                             value = tempRegValue | 0x80;
-[e = F2840 -> | -> F2834 `i -> 128 `i `uc ]
-"584
-[; ;TAD_RFID.c: 584:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"585
-[; ;TAD_RFID.c: 585:                             substate = 14;
-[e = F2823 -> -> 14 `i `uc ]
-"586
-[; ;TAD_RFID.c: 586:                         }
-}
-[e :U 464 ]
-"587
-[; ;TAD_RFID.c: 587:                         break;
-[e $U 441  ]
-"588
-[; ;TAD_RFID.c: 588:                     case 14:
-[e :U 465 ]
-"589
-[; ;TAD_RFID.c: 589:                         i = 0xFF;
-[e = F2827 -> -> 255 `i `uc ]
-"590
-[; ;TAD_RFID.c: 590:                         addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
-"591
-[; ;TAD_RFID.c: 591:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"592
-[; ;TAD_RFID.c: 592:                         substate = 15;
-[e = F2823 -> -> 15 `i `uc ]
-"593
-[; ;TAD_RFID.c: 593:                         break;
-[e $U 441  ]
-"594
-[; ;TAD_RFID.c: 594:                     case 15:
-[e :U 466 ]
-"595
-[; ;TAD_RFID.c: 595:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 467  ]
-{
-"596
-[; ;TAD_RFID.c: 596:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"597
-[; ;TAD_RFID.c: 597:                         } else {
-}
-[e $U 468  ]
-[e :U 467 ]
-{
-"598
-[; ;TAD_RFID.c: 598:                             n = tempRegValue;
-[e = F2826 -> F2834 `uc ]
-"599
-[; ;TAD_RFID.c: 599:                             if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
-[e $ ! || || != & -> F2826 `i -> 1 `i -> 0 `i != & -> F2826 `i -> F2825 `i -> 0 `i == -> =- F2827 -> -> 1 `i `uc `i -> 0 `i 469  ]
-{
-"600
-[; ;TAD_RFID.c: 600:                                 addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"601
-[; ;TAD_RFID.c: 601:                                 operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"602
-[; ;TAD_RFID.c: 602:                                 substate = 16;
-[e = F2823 -> -> 16 `i `uc ]
-"603
-[; ;TAD_RFID.c: 603:                             } else {
-}
-[e $U 470  ]
-[e :U 469 ]
-{
-"604
-[; ;TAD_RFID.c: 604:                                 addr = 0x04;
-[e = F2839 -> -> 4 `i `uc ]
-"605
-[; ;TAD_RFID.c: 605:                                 operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"607
-[; ;TAD_RFID.c: 607:                             }
-}
-[e :U 470 ]
-"608
-[; ;TAD_RFID.c: 608:                         }
-}
-[e :U 468 ]
-"609
-[; ;TAD_RFID.c: 609:                         break;
-[e $U 441  ]
-"610
-[; ;TAD_RFID.c: 610:                     case 16:
-[e :U 471 ]
-"611
-[; ;TAD_RFID.c: 611:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 472  ]
-{
-"612
-[; ;TAD_RFID.c: 612:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"613
-[; ;TAD_RFID.c: 613:                         } else {
-}
-[e $U 473  ]
-[e :U 472 ]
-{
-"614
-[; ;TAD_RFID.c: 614:                             addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"615
-[; ;TAD_RFID.c: 615:                             value = tempRegValue & ~0x80;
-[e = F2840 -> & -> F2834 `i ~ -> 128 `i `uc ]
-"616
-[; ;TAD_RFID.c: 616:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"617
-[; ;TAD_RFID.c: 617:                             substate = 17;
-[e = F2823 -> -> 17 `i `uc ]
-"618
-[; ;TAD_RFID.c: 618:                         }
-}
-[e :U 473 ]
-"619
-[; ;TAD_RFID.c: 619:                         break;
-[e $U 441  ]
-"620
-[; ;TAD_RFID.c: 620:                     case 17:
-[e :U 474 ]
-"621
-[; ;TAD_RFID.c: 621:                         addr = 0x06;
-[e = F2839 -> -> 6 `i `uc ]
-"622
-[; ;TAD_RFID.c: 622:                         operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"623
-[; ;TAD_RFID.c: 623:                         substate = 18;
-[e = F2823 -> -> 18 `i `uc ]
-"624
-[; ;TAD_RFID.c: 624:                         break;
-[e $U 441  ]
-"625
-[; ;TAD_RFID.c: 625:                     case 18:
-[e :U 475 ]
-"626
-[; ;TAD_RFID.c: 626:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 476  ]
-{
-"627
-[; ;TAD_RFID.c: 627:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"628
-[; ;TAD_RFID.c: 628:                         } else if (i != 0 && !(tempRegValue & 0x1B)) {
-}
-[e $U 477  ]
-[e :U 476 ]
-[e $ ! && != -> F2827 `i -> 0 `i ! != & -> F2834 `i -> 27 `i -> 0 `i 478  ]
-{
-"629
-[; ;TAD_RFID.c: 629:                             addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"630
-[; ;TAD_RFID.c: 630:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"631
-[; ;TAD_RFID.c: 631:                             substate = 19;
-[e = F2823 -> -> 19 `i `uc ]
-"632
-[; ;TAD_RFID.c: 632:                         } else {
-}
-[e $U 479  ]
-[e :U 478 ]
-{
-"633
-[; ;TAD_RFID.c: 633:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"634
-[; ;TAD_RFID.c: 634:                         }
-}
-[e :U 479 ]
-[e :U 477 ]
-"635
-[; ;TAD_RFID.c: 635:                         break;
-[e $U 441  ]
-"636
-[; ;TAD_RFID.c: 636:                     case 19:
-[e :U 480 ]
-"637
-[; ;TAD_RFID.c: 637:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 481  ]
-{
-"638
-[; ;TAD_RFID.c: 638:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"639
-[; ;TAD_RFID.c: 639:                         } else {
-}
-[e $U 482  ]
-[e :U 481 ]
-{
-"640
-[; ;TAD_RFID.c: 640:                             UID[0] = tempRegValue;
-[e = *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux F2834 ]
-"641
-[; ;TAD_RFID.c: 641:                             addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"642
-[; ;TAD_RFID.c: 642:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"643
-[; ;TAD_RFID.c: 643:                             substate = 20;
-[e = F2823 -> -> 20 `i `uc ]
-"644
-[; ;TAD_RFID.c: 644:                         }
-}
-[e :U 482 ]
-"645
-[; ;TAD_RFID.c: 645:                         break;
-[e $U 441  ]
-"646
-[; ;TAD_RFID.c: 646:                     case 20:
-[e :U 483 ]
-"647
-[; ;TAD_RFID.c: 647:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 484  ]
-{
-"648
-[; ;TAD_RFID.c: 648:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"649
-[; ;TAD_RFID.c: 649:                         } else {
-}
-[e $U 485  ]
-[e :U 484 ]
-{
-"650
-[; ;TAD_RFID.c: 650:                             UID[1] = tempRegValue;
-[e = *U + &U F2831 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2831 `ui `ux F2834 ]
-"651
-[; ;TAD_RFID.c: 651:                             addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"652
-[; ;TAD_RFID.c: 652:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"653
-[; ;TAD_RFID.c: 653:                             substate = 21;
-[e = F2823 -> -> 21 `i `uc ]
-"654
-[; ;TAD_RFID.c: 654:                         }
-}
-[e :U 485 ]
-"655
-[; ;TAD_RFID.c: 655:                         break;
-[e $U 441  ]
-"656
-[; ;TAD_RFID.c: 656:                     case 21:
-[e :U 486 ]
-"657
-[; ;TAD_RFID.c: 657:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 487  ]
-{
-"658
-[; ;TAD_RFID.c: 658:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"659
-[; ;TAD_RFID.c: 659:                         } else {
-}
-[e $U 488  ]
-[e :U 487 ]
-{
-"660
-[; ;TAD_RFID.c: 660:                             UID[2] = tempRegValue;
-[e = *U + &U F2831 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2831 `ui `ux F2834 ]
-"661
-[; ;TAD_RFID.c: 661:                             addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"662
-[; ;TAD_RFID.c: 662:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"663
-[; ;TAD_RFID.c: 663:                             substate = 22;
-[e = F2823 -> -> 22 `i `uc ]
-"664
-[; ;TAD_RFID.c: 664:                         }
-}
-[e :U 488 ]
-"665
-[; ;TAD_RFID.c: 665:                         break;
-[e $U 441  ]
-"666
-[; ;TAD_RFID.c: 666:                     case 22:
-[e :U 489 ]
-"667
-[; ;TAD_RFID.c: 667:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 490  ]
-{
-"668
-[; ;TAD_RFID.c: 668:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"669
-[; ;TAD_RFID.c: 669:                         } else {
-}
-[e $U 491  ]
-[e :U 490 ]
-{
-"670
-[; ;TAD_RFID.c: 670:                             UID[3] = tempRegValue;
-[e = *U + &U F2831 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2831 `ui `ux F2834 ]
-"671
-[; ;TAD_RFID.c: 671:                             addr = 0x09;
-[e = F2839 -> -> 9 `i `uc ]
-"672
-[; ;TAD_RFID.c: 672:                             operation_pending = 1;
-[e = F2838 -> -> 1 `i `uc ]
-"673
-[; ;TAD_RFID.c: 673:                             substate = 23;
-[e = F2823 -> -> 23 `i `uc ]
-"674
-[; ;TAD_RFID.c: 674:                         }
-}
-[e :U 491 ]
-"675
-[; ;TAD_RFID.c: 675:                         break;
-[e $U 441  ]
-"676
-[; ;TAD_RFID.c: 676:                     case 23:
-[e :U 492 ]
-"677
-[; ;TAD_RFID.c: 677:                         if (tempRegValue == 0xFF) {
-[e $ ! == -> F2834 `i -> 255 `i 493  ]
-{
-"678
-[; ;TAD_RFID.c: 678:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"679
-[; ;TAD_RFID.c: 679:                         } else {
-}
-[e $U 494  ]
-[e :U 493 ]
-{
-"680
-[; ;TAD_RFID.c: 680:                             UID[4] = tempRegValue;
-[e = *U + &U F2831 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2831 `ui `ux F2834 ]
-"681
-[; ;TAD_RFID.c: 681:                             UID[5] = 0;
-[e = *U + &U F2831 * -> -> -> 5 `i `ui `ux -> -> # *U &U F2831 `ui `ux -> -> 0 `i `uc ]
-"682
-[; ;TAD_RFID.c: 682:                             checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
-[e = F2832 -> ^ ^ ^ -> *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> *U + &U F2831 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> *U + &U F2831 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> *U + &U F2831 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i `uc ]
-"683
-[; ;TAD_RFID.c: 683:                             allZero = ((UID[0] | UID[1] | UID[2] | UID[3]) == 0);
-[e = F2833 -> -> == | | | -> *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> *U + &U F2831 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> *U + &U F2831 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> *U + &U F2831 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i -> 0 `i `i `uc ]
-"684
-[; ;TAD_RFID.c: 684:                             substate = 24;
-[e = F2823 -> -> 24 `i `uc ]
-"685
-[; ;TAD_RFID.c: 685:                         }
-}
-[e :U 494 ]
-"686
-[; ;TAD_RFID.c: 686:                         break;
-[e $U 441  ]
-"687
-[; ;TAD_RFID.c: 687:                     case 24:
-[e :U 495 ]
-"688
-[; ;TAD_RFID.c: 688:                         if (checksum != UID[4] || allZero) {
-[e $ ! || != -> F2832 `i -> *U + &U F2831 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i != -> F2833 `i -> 0 `i 496  ]
-{
-"689
-[; ;TAD_RFID.c: 689:                             state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"690
-[; ;TAD_RFID.c: 690:                         } else {
-}
-[e $U 497  ]
-[e :U 496 ]
-{
-"691
-[; ;TAD_RFID.c: 691:                             char differentUID = 1;
+"569
+[; ;TAD_RFID.c: 569:                             char differentUID = 1;
 [v _differentUID `uc ~T0 @X0 1 a ]
 [e = _differentUID -> -> 1 `i `uc ]
-"692
-[; ;TAD_RFID.c: 692:                             unsigned char currentUser[5];
+"570
+[; ;TAD_RFID.c: 570:                             unsigned char currentUser[5];
 [v _currentUser `uc ~T0 @X0 -> 5 `i a ]
-"693
-[; ;TAD_RFID.c: 693:                             getActualUID(currentUser);
+"571
+[; ;TAD_RFID.c: 571:                             getActualUID(currentUser);
 [e ( _getActualUID (1 &U _currentUser ]
-"695
-[; ;TAD_RFID.c: 695:                             if(currentUser[0] != UID[0]) {
-[e $ ! != -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux `i 498  ]
+"573
+[; ;TAD_RFID.c: 573:                             if(currentUser[0] != UID[0]) {
+[e $ ! != -> *U + &U _currentUser * -> -> -> 0 `i `ui `ux -> -> # *U &U _currentUser `ui `ux `i -> *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux `i 465  ]
 {
-"696
-[; ;TAD_RFID.c: 696:                                 setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
-[e ( _setCurrentUser (4 , , , , -> *U + &U F2831 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2831 `ui `ux `uc -> *U + &U F2831 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2831 `ui `ux `uc -> *U + &U F2831 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2831 `ui `ux `uc -> *U + &U F2831 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2831 `ui `ux `uc -> *U + &U F2831 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2831 `ui `ux `uc ]
-"697
-[; ;TAD_RFID.c: 697:                             }
+"574
+[; ;TAD_RFID.c: 574:                                 setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]);
+[e ( _setCurrentUser (4 , , , , -> *U + &U F2748 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2748 `ui `ux `uc -> *U + &U F2748 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2748 `ui `ux `uc -> *U + &U F2748 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2748 `ui `ux `uc -> *U + &U F2748 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2748 `ui `ux `uc -> *U + &U F2748 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2748 `ui `ux `uc ]
+"575
+[; ;TAD_RFID.c: 575:                             }
 }
-[e :U 498 ]
-"698
-[; ;TAD_RFID.c: 698:                             addr = 0x0D;
-[e = F2839 -> -> 13 `i `uc ]
-"699
-[; ;TAD_RFID.c: 699:                             value = 0x00;
-[e = F2840 -> -> 0 `i `uc ]
-"700
-[; ;TAD_RFID.c: 700:                             operation_pending = 2;
-[e = F2838 -> -> 2 `i `uc ]
-"701
-[; ;TAD_RFID.c: 701:                             substate = 25;
-[e = F2823 -> -> 25 `i `uc ]
-"702
-[; ;TAD_RFID.c: 702:                         }
+[e :U 465 ]
+"576
+[; ;TAD_RFID.c: 576:                             addr = 0x0D;
+[e = F2756 -> -> 13 `i `uc ]
+"577
+[; ;TAD_RFID.c: 577:                             value = 0x00;
+[e = F2757 -> -> 0 `i `uc ]
+"578
+[; ;TAD_RFID.c: 578:                             operation_pending = 2;
+[e = F2755 -> -> 2 `i `uc ]
+"579
+[; ;TAD_RFID.c: 579:                             substate = 25;
+[e = F2740 -> -> 25 `i `uc ]
+"580
+[; ;TAD_RFID.c: 580:                         }
 }
-[e :U 497 ]
-"703
-[; ;TAD_RFID.c: 703:                         break;
-[e $U 441  ]
-"704
-[; ;TAD_RFID.c: 704:                     case 25:
-[e :U 499 ]
-"705
-[; ;TAD_RFID.c: 705:                         state = substate = 0;
-[e = F2822 = F2823 -> -> 0 `i `uc ]
-"706
-[; ;TAD_RFID.c: 706:                         break;
-[e $U 441  ]
-"707
-[; ;TAD_RFID.c: 707:                 }
+[e :U 464 ]
+"581
+[; ;TAD_RFID.c: 581:                         break;
+[e $U 408  ]
+"582
+[; ;TAD_RFID.c: 582:                     case 25:
+[e :U 466 ]
+"583
+[; ;TAD_RFID.c: 583:                         state = substate = 0;
+[e = F2739 = F2740 -> -> 0 `i `uc ]
+"584
+[; ;TAD_RFID.c: 584:                         break;
+[e $U 408  ]
+"585
+[; ;TAD_RFID.c: 585:                 }
 }
-[e $U 441  ]
-[e :U 442 ]
-[e [\ F2823 , $ -> 0 `i 443
- , $ -> 1 `i 444
- , $ -> 2 `i 445
- , $ -> 3 `i 448
- , $ -> 4 `i 449
- , $ -> 5 `i 450
- , $ -> 6 `i 453
- , $ -> 7 `i 454
- , $ -> 8 `i 457
- , $ -> 9 `i 458
- , $ -> 10 `i 459
- , $ -> 11 `i 460
- , $ -> 12 `i 461
- , $ -> 13 `i 462
- , $ -> 14 `i 465
- , $ -> 15 `i 466
- , $ -> 16 `i 471
- , $ -> 17 `i 474
- , $ -> 18 `i 475
- , $ -> 19 `i 480
- , $ -> 20 `i 483
- , $ -> 21 `i 486
- , $ -> 22 `i 489
- , $ -> 23 `i 492
- , $ -> 24 `i 495
- , $ -> 25 `i 499
- 441 ]
-[e :U 441 ]
-"708
-[; ;TAD_RFID.c: 708:                 break;
-[e $U 393  ]
-"709
-[; ;TAD_RFID.c: 709:         }
+[e $U 408  ]
+[e :U 409 ]
+[e [\ F2740 , $ -> 0 `i 410
+ , $ -> 1 `i 411
+ , $ -> 2 `i 412
+ , $ -> 3 `i 415
+ , $ -> 4 `i 416
+ , $ -> 5 `i 417
+ , $ -> 6 `i 420
+ , $ -> 7 `i 421
+ , $ -> 8 `i 424
+ , $ -> 9 `i 425
+ , $ -> 10 `i 426
+ , $ -> 11 `i 427
+ , $ -> 12 `i 428
+ , $ -> 13 `i 429
+ , $ -> 14 `i 432
+ , $ -> 15 `i 433
+ , $ -> 16 `i 438
+ , $ -> 17 `i 441
+ , $ -> 18 `i 442
+ , $ -> 19 `i 447
+ , $ -> 20 `i 450
+ , $ -> 21 `i 453
+ , $ -> 22 `i 456
+ , $ -> 23 `i 459
+ , $ -> 24 `i 462
+ , $ -> 25 `i 466
+ 408 ]
+[e :U 408 ]
+"586
+[; ;TAD_RFID.c: 586:                 break;
+[e $U 360  ]
+"587
+[; ;TAD_RFID.c: 587:         }
 }
-[e $U 393  ]
-[e :U 394 ]
-[e [\ F2822 , $ -> 0 `i 395
- , $ -> 1 `i 440
- 393 ]
-[e :U 393 ]
-"710
-[; ;TAD_RFID.c: 710:     }
+[e $U 360  ]
+[e :U 361 ]
+[e [\ F2739 , $ -> 0 `i 362
+ , $ -> 1 `i 407
+ 360 ]
+[e :U 360 ]
+"588
+[; ;TAD_RFID.c: 588:     }
 }
-[e :U 392 ]
-[e :U 388 ]
-"711
-[; ;TAD_RFID.c: 711: }
-[e :UE 384 ]
+[e :U 359 ]
+[e :U 355 ]
+"589
+[; ;TAD_RFID.c: 589: }
+[e :UE 351 ]
 }

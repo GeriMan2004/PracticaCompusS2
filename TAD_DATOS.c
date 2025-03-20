@@ -22,7 +22,7 @@ unsigned char configurations[MAX_USERS][LEDS] = {
 static unsigned char currentUser[5] = {0};
 static unsigned char new_configuration = 0;
 static unsigned char new_user = 0;
-static int index = 0;
+static unsigned char index = 0;
 static unsigned char currentTime[4] = "0000";
 
 // Función optimizada para inicialización
@@ -30,7 +30,6 @@ void initData(void) {
     for(char i = 0; i < 5; i++) currentUser[i] = 0;
 }
 
-// Función optimizada para obtener UID actual
 void getActualUID(unsigned char* UID) {
     if(!UID) return;
     
@@ -88,21 +87,6 @@ void saveHourToData(unsigned char hour[4]) {
     for(char i = 0; i < 4; i++) currentTime[i] = hour[i];
 }
 
-// Función optimizada para establecer usuario actual
-void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
-    currentUser[0] = UID0;
-    currentUser[1] = UID1;
-    currentUser[2] = UID2;
-    currentUser[3] = UID3;
-    currentUser[4] = UID4;
-    new_user = 1;
-    
-    Terminal_SendString("Targeta detectada!\r\n\t");
-    printfUID(currentUser);
-    Terminal_SendString("\t");
-    printLedConfig(configurations[index]);
-}
-
 // Función optimizada para verificar UID de usuario
 char checkUserUID(void) {
     // Verificación rápida del primer byte
@@ -122,6 +106,18 @@ char checkUserUID(void) {
     return 0;
 }
 
+// Función optimizada para establecer usuario actual
+void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
+    currentUser[0] = UID0;
+    currentUser[1] = UID1;
+    currentUser[2] = UID2;
+    currentUser[3] = UID3;
+    currentUser[4] = UID4;
+    new_user = 1;
+    index = checkUserUID();
+    printfUID(currentUser);
+}
+
 // Motor de datos optimizado
 void motor_datos(void) {
     static char state = 0;
@@ -132,7 +128,6 @@ void motor_datos(void) {
         case 0:
             if(new_configuration || new_user) {
                 new_configuration = new_user = 0;
-                index = checkUserUID();
                 state = 1;
             }
             break;

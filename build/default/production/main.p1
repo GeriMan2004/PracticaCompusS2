@@ -31,8 +31,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8 ./TAD_TECLADO.h
 [; ;./TAD_TECLADO.h: 8: void initTeclado(void);
 [v _initTeclado `(v ~T0 @X0 0 ef ]
-"156 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 156: void initRFID(void);
+"122 ./TAD_RFID.h
+[; ;./TAD_RFID.h: 122: void initRFID(void);
 [v _initRFID `(v ~T0 @X0 0 ef ]
 "6 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 6: void Terminal_Init(void);
@@ -55,12 +55,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 16: void motorTerminal(void);
 [v _motorTerminal `(v ~T0 @X0 0 ef ]
-"153 ./TAD_RFID.h
-[; ;./TAD_RFID.h: 153: void motor_RFID(void);
+"121 ./TAD_RFID.h
+[; ;./TAD_RFID.h: 121: void motor_RFID(void);
 [v _motor_RFID `(v ~T0 @X0 0 ef ]
-"16 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 16: void motor_datos(void);
-[v _motor_datos `(v ~T0 @X0 0 ef ]
+"13 ./TAD_LEDS.h
+[; ;./TAD_LEDS.h: 13: void motor_LEDs(void);
+[v _motor_LEDs `(v ~T0 @X0 0 ef ]
 "1440 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1440:     struct {
 [s S55 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -560,12 +560,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _RSI_Timer0 ..  ]
 [e :U 303 ]
 "33
-[; ;main.c: 33: 
+[; ;main.c: 33:   motor_LEDs();
 [e :UE 302 ]
 }
 [v $root$_LowRSI `(v ~T0 @X0 0 e ]
 "34
-[; ;main.c: 34:         motor_datos();
+[; ;main.c: 34: 
 [v _LowRSI `(v ~T42 @X0 1 ef ]
 {
 [e :U _LowRSI ]
@@ -618,8 +618,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _motorTerminal ..  ]
 "56
 [e ( _motor_RFID ..  ]
-"58
-[e ( _motor_datos ..  ]
+"57
+[e ( _motor_LEDs ..  ]
 "59
 [e =^ . . _LATEbits 0 2 -> -> 1 `i `Vuc ]
 "60

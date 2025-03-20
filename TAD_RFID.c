@@ -10,137 +10,19 @@
 #include <xc.h>
 #include "TAD_RFID.h"
 #include "TAD_DATOS.h"
-#include "TAD_TERMINAL.h"
 
 #define NUM_US 8 // Reducido de 16 a 8 para delay más corto
 
 // Variables globales para controlar los estados de las funciones motor
-char state_read = 0;
-char state_write = 0;
+static char state_read = 0;
+static char state_write = 0;
 
 //-------------- Private functions: --------------
-void InitPortDirections () {
-    DIR_MFRC522_SO  = 1; 
-    DIR_MFRC522_SI  = 0; 
-    DIR_MFRC522_SCK = 0; 
-    DIR_MFRC522_CS  = 0; 
-    DIR_MFRC522_RST = 0;
-}
 
 // Optimización: función delay_us más compacta
 void delay_us (char howMany) {
     char x = howMany * NUM_US;
     while(x--) Nop();
-}
-
-// Macro para reducir código repetitivo en los bucles de bits
-#define PROC_BIT(val, bit_op) do { \
-    MFRC522_SI = ((val & 0x80) ? 1 : 0); \
-    MFRC522_SCK = 1; \
-    bit_op; \
-    delay_us(5); \
-    MFRC522_SCK = 0; \
-    delay_us(5); \
-} while(0)
-
-unsigned char MFRC522_Rd (unsigned char Address) {
-    unsigned char i, ucAddr = ((Address<<1) & 0x7E) | 0x80;
-    unsigned char ucResult = 0;
-
-    MFRC522_SCK = 0;
-    MFRC522_CS = 0; 
-
-    // Optimización: uso de macro para reducir código repetido
-    for (i = 8; i > 0; i--) {
-        PROC_BIT(ucAddr, ucAddr <<= 1);
-    }
-
-    for (i = 8; i > 0; i--) {
-        MFRC522_SCK = 1;
-        delay_us(5);
-        ucResult <<= 1;   
-        ucResult|= MFRC522_SO;
-        MFRC522_SCK = 0;
-        delay_us(5);
-    }
-
-    MFRC522_CS = 1;
-    MFRC522_SCK = 1;
-    return ucResult;
-}
-
-void MFRC522_Wr (unsigned char Address, unsigned char value) {
-    unsigned char i, ucAddr = ((Address << 1) & 0x7E);
-    
-    MFRC522_SCK = 0;
-    MFRC522_CS = 0;
-    
-    // Optimización: uso de macro para reducir código repetido
-    for (i = 8; i > 0; i--) {
-        PROC_BIT(ucAddr, ucAddr <<= 1);
-    }
-
-    for (i = 8; i > 0; i--) {
-        PROC_BIT(value, value <<= 1);
-    }
-
-    MFRC522_CS = 1;
-    MFRC522_SCK = 1;
-}
-
-// Funciones combinadas para ahorrar espacio
-void MFRC522_Bit_Mask(char addr, char mask, char op) {
-    char temp = MFRC522_Rd(addr);
-    MFRC522_Wr(addr, op ? (temp | mask) : (temp & ~mask));
-}
-
-// Reemplaza MFRC522_Clear_Bit y MFRC522_Set_Bit con llamadas a MFRC522_Bit_Mask
-#define MFRC522_Clear_Bit(addr, mask) MFRC522_Bit_Mask(addr, mask, 0)
-#define MFRC522_Set_Bit(addr, mask) MFRC522_Bit_Mask(addr, mask, 1)
-
-void resetMotorStates() {
-    state_read = state_write = 0;
-    MFRC522_CS = MFRC522_SCK = 1;
-}
-
-void MFRC522_Reset () { 
-    resetMotorStates();
-    
-    MFRC522_RST = 1;
-    delay_us(1);
-    MFRC522_RST = 0;
-    delay_us(1);
-    MFRC522_RST = 1;
-    delay_us(1);
-    MFRC522_Wr(COMMANDREG, PCD_RESETPHASE);
-    delay_us(1);
-}
-
-// Optimización: combinamos funciones similares
-void MFRC522_AntennaControl(char on) {
-    if(on) 
-        MFRC522_Set_Bit(TXCONTROLREG, 0x03);
-    else
-        MFRC522_Clear_Bit(TXCONTROLREG, 0x03);
-}
-
-// Redefinición como macros
-#define MFRC522_AntennaOn() MFRC522_AntennaControl(1)
-#define MFRC522_AntennaOff() MFRC522_AntennaControl(0)
-
-void MFRC522_Init() {                 
-    MFRC522_CS = 1; 
-    MFRC522_RST = 1;
-
-    MFRC522_Reset();       
-    MFRC522_Wr(TMODEREG, 0x8D);
-    MFRC522_Wr(TPRESCALERREG, 0x3E);
-    MFRC522_Wr(TRELOADREGL, 30);
-    MFRC522_Wr(TRELOADREGH, 0); 
-    MFRC522_Wr(TXAUTOREG, 0x40);
-    MFRC522_Wr(MODEREG, 0x3D);
-    
-    MFRC522_AntennaOn();
 }
 
 // Consolidate repetitive bit manipulation into a function
@@ -240,10 +122,14 @@ char motor_Read(char addr) {
 //-------------- Public functions: --------------
 void initRFID() {
     // Set up port directions
-    InitPortDirections();
-    
+    DIR_MFRC522_SO  = 1; 
+    DIR_MFRC522_SI  = 0; 
+    DIR_MFRC522_SCK = 0; 
+    DIR_MFRC522_CS  = 0; 
+    DIR_MFRC522_RST = 0;
     // Hardware reset sequence:
-    resetMotorStates();        // Resets state and sets MFRC522_CS & MFRC522_SCK high
+    state_read = state_write = 0;
+    MFRC522_CS = MFRC522_SCK = 1;     // Resets state and sets MFRC522_CS & MFRC522_SCK high
     MFRC522_RST = 1;
     delay_us(1);
     MFRC522_RST = 0;
@@ -270,14 +156,6 @@ void initRFID() {
     } while (regVal == 0xFE); // wait until a valid value is returned
     regVal |= 0x03;
     while (!motor_Write(TXCONTROLREG, regVal)) { }
-}
-
-
-// Función optimizada para procesar múltiples casos
-void process_substates(char *substate, char flag, char next_state) {
-    if (flag != 0 && flag != 0xFE) {
-        *substate = next_state;
-    }
 }
 
 void motor_RFID(void) {

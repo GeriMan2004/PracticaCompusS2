@@ -4786,29 +4786,9 @@ unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
 # 11 "TAD_RFID.c" 2
 # 1 "./TAD_RFID.h" 1
-# 137 "./TAD_RFID.h"
-unsigned char MFRC522_Rd(unsigned char Address);
-void MFRC522_Wr(unsigned char Address, unsigned char value);
-void MFRC522_Clear_Bit(char addr, char mask);
-void MFRC522_Set_Bit(char addr, char mask);
-void MFRC522_Reset();
-void MFRC522_AntennaOn();
-void MFRC522_AntennaOff();
-void MFRC522_Init();
-char MFRC522_ToCard(char command, char *sendData, char sendLen, char *backData, unsigned *backLen);
-char MFRC522_Request(char reqMode, char *TagType);
-void MFRC522_CRC(char *dataIn, char length, char *dataOut);
-unsigned MFRC522_SelectTag(char *serNum);
-void MFRC522_Halt();
-char MFRC522_AntiColl(unsigned char *serNum);
-char MFRC522_isCard(char *TagType);
-char MFRC522_ReadCardSerial(unsigned char *str);
+# 121 "./TAD_RFID.h"
 void motor_RFID(void);
-
-
 void initRFID(void);
-
-void ReadRFID_NoCooperatiu(void);
 # 12 "TAD_RFID.c" 2
 # 1 "./TAD_DATOS.h" 1
 
@@ -4828,149 +4808,19 @@ void newConfiguration(void);
 void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 # 13 "TAD_RFID.c" 2
-# 1 "./TAD_TERMINAL.h" 1
 
 
 
 
-
-void Terminal_Init(void);
-int Terminal_TXAvailable(void);
-char Terminal_RXAvailable(void);
-void Terminal_SendChar(char c);
-char Terminal_ReceiveChar(void);
-void Terminal_SendString(const char *str);
-void printfUID(unsigned char *currentUser);
-void printLedConfig(unsigned char *leds);
-void showMenu(void);
-void hashtag_pressed3s(void);
-void motorTerminal(void);
+static char state_read = 0;
+static char state_write = 0;
 
 
-char motor_SendChar(char c);
-char motor_SendString(void);
-void motor_StartSendString(const char* str);
-# 14 "TAD_RFID.c" 2
-
-
-
-
-char state_read = 0;
-char state_write = 0;
-
-
-void InitPortDirections () {
-    TRISCbits.TRISC0 = 1;
-    TRISCbits.TRISC1 = 0;
-    TRISCbits.TRISC2 = 0;
-    TRISCbits.TRISC3 = 0;
-    TRISCbits.TRISC4 = 0;
-}
 
 
 void delay_us (char howMany) {
     char x = howMany * 8;
     while(x--) __nop();
-}
-# 46 "TAD_RFID.c"
-unsigned char MFRC522_Rd (unsigned char Address) {
-    unsigned char i, ucAddr = ((Address<<1) & 0x7E) | 0x80;
-    unsigned char ucResult = 0;
-
-    LATCbits.LATC2 = 0;
-    LATCbits.LATC3 = 0;
-
-
-    for (i = 8; i > 0; i--) {
-        do { LATCbits.LATC1 = ((ucAddr & 0x80) ? 1 : 0); LATCbits.LATC2 = 1; ucAddr <<= 1; delay_us(5); LATCbits.LATC2 = 0; delay_us(5); } while(0);
-    }
-
-    for (i = 8; i > 0; i--) {
-        LATCbits.LATC2 = 1;
-        delay_us(5);
-        ucResult <<= 1;
-        ucResult|= PORTCbits.RC0;
-        LATCbits.LATC2 = 0;
-        delay_us(5);
-    }
-
-    LATCbits.LATC3 = 1;
-    LATCbits.LATC2 = 1;
-    return ucResult;
-}
-
-void MFRC522_Wr (unsigned char Address, unsigned char value) {
-    unsigned char i, ucAddr = ((Address << 1) & 0x7E);
-
-    LATCbits.LATC2 = 0;
-    LATCbits.LATC3 = 0;
-
-
-    for (i = 8; i > 0; i--) {
-        do { LATCbits.LATC1 = ((ucAddr & 0x80) ? 1 : 0); LATCbits.LATC2 = 1; ucAddr <<= 1; delay_us(5); LATCbits.LATC2 = 0; delay_us(5); } while(0);
-    }
-
-    for (i = 8; i > 0; i--) {
-        do { LATCbits.LATC1 = ((value & 0x80) ? 1 : 0); LATCbits.LATC2 = 1; value <<= 1; delay_us(5); LATCbits.LATC2 = 0; delay_us(5); } while(0);
-    }
-
-    LATCbits.LATC3 = 1;
-    LATCbits.LATC2 = 1;
-}
-
-
-void MFRC522_Bit_Mask(char addr, char mask, char op) {
-    char temp = MFRC522_Rd(addr);
-    MFRC522_Wr(addr, op ? (temp | mask) : (temp & ~mask));
-}
-
-
-
-
-
-void resetMotorStates() {
-    state_read = state_write = 0;
-    LATCbits.LATC3 = LATCbits.LATC2 = 1;
-}
-
-void MFRC522_Reset () {
-    resetMotorStates();
-
-    LATCbits.LATC4 = 1;
-    delay_us(1);
-    LATCbits.LATC4 = 0;
-    delay_us(1);
-    LATCbits.LATC4 = 1;
-    delay_us(1);
-    MFRC522_Wr(0x01, 0x0F);
-    delay_us(1);
-}
-
-
-void MFRC522_AntennaControl(char on) {
-    if(on)
-        MFRC522_Bit_Mask(0x14, 0x03, 1);
-    else
-        MFRC522_Bit_Mask(0x14, 0x03, 0);
-}
-
-
-
-
-
-void MFRC522_Init() {
-    LATCbits.LATC3 = 1;
-    LATCbits.LATC4 = 1;
-
-    MFRC522_Reset();
-    MFRC522_Wr(0x2A, 0x8D);
-    MFRC522_Wr(0x2B, 0x3E);
-    MFRC522_Wr(0x2D, 30);
-    MFRC522_Wr(0x2C, 0);
-    MFRC522_Wr(0x15, 0x40);
-    MFRC522_Wr(0x11, 0x3D);
-
-    MFRC522_AntennaControl(1);
 }
 
 
@@ -5070,10 +4920,14 @@ char motor_Read(char addr) {
 
 void initRFID() {
 
-    InitPortDirections();
+    TRISCbits.TRISC0 = 1;
+    TRISCbits.TRISC1 = 0;
+    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC3 = 0;
+    TRISCbits.TRISC4 = 0;
 
-
-    resetMotorStates();
+    state_read = state_write = 0;
+    LATCbits.LATC3 = LATCbits.LATC2 = 1;
     LATCbits.LATC4 = 1;
     delay_us(1);
     LATCbits.LATC4 = 0;
@@ -5100,14 +4954,6 @@ void initRFID() {
     } while (regVal == 0xFE);
     regVal |= 0x03;
     while (!motor_Write(0x14, regVal)) { }
-}
-
-
-
-void process_substates(char *substate, char flag, char next_state) {
-    if (flag != 0 && flag != 0xFE) {
-        *substate = next_state;
-    }
 }
 
 void motor_RFID(void) {

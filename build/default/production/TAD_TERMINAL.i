@@ -4830,7 +4830,7 @@ void motor_datos(void);
 static const char* str_ptr = ((void*)0);
 static char state_str = 0;
 static char hashtag_pressed = 0;
-
+static char sending_string = 0;
 
 void Terminal_Init(void){
  TXSTA = 0x24;
@@ -4890,15 +4890,46 @@ void hashtag_pressed3s(void) { hashtag_pressed = 1; }
 
 
 void printfUID(unsigned char *currentUser) {
- static const char hex[] = "0123456789ABCDEF";
- Terminal_SendString("UID: ");
- for (int i = 0; i < 5; i++) {
-  Terminal_SendChar(hex[currentUser[i] >> 4]);
-  Terminal_SendChar(hex[currentUser[i] & 0x0F]);
-  if (i < 4) Terminal_SendString("-");
- }
- Terminal_SendString("\r\n");
+
+    static const char hex[] = "0123456789ABCDEF";
+
+    static char buffer[20];
+    char *ptr = buffer;
+
+
+    *ptr++ = 'U';
+    *ptr++ = 'I';
+    *ptr++ = 'D';
+    *ptr++ = ':';
+    *ptr++ = ' ';
+
+
+    char i;
+    for(i = 0; i < 5; i++) {
+        if (currentUser == 0 || *currentUser == 0) {
+
+            *ptr++ = '0';
+            *ptr++ = '0';
+        } else {
+
+            unsigned char val = currentUser[i];
+            *ptr++ = hex[val >> 4];
+            *ptr++ = hex[val & 0x0F];
+        }
+
+        if(i < 4) *ptr++ = '-';
+    }
+
+
+    *ptr++ = '\r';
+    *ptr++ = '\n';
+    *ptr = '\0';
+
+
+    motor_StartSendString(buffer);
+    sending_string = 1;
 }
+
 
 
 void printLedConfig(unsigned char *leds) {
@@ -4916,7 +4947,6 @@ void printLedConfig(unsigned char *leds) {
 
 void motorTerminal(void) {
  static char state = 0;
- static char sending_string = 0;
  static unsigned char hour[4] = "0000";
  static char index = 0;
 

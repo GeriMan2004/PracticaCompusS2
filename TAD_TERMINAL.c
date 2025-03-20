@@ -6,7 +6,7 @@
 static const char* str_ptr = NULL;
 static char state_str = 0;
 static char hashtag_pressed = 0;
-
+static char sending_string = 0;
 // Inicializar para Serial 9615 baud rate
 void Terminal_Init(void){
 	TXSTA = 0x24;
@@ -66,15 +66,46 @@ void hashtag_pressed3s(void) { hashtag_pressed = 1; }
 
 // Función optimizada para imprimir UID
 void printfUID(unsigned char *currentUser) {
-	static const char hex[] = "0123456789ABCDEF";
-	Terminal_SendString("UID: ");
-	for (int i = 0; i < 5; i++) {
-		Terminal_SendChar(hex[currentUser[i] >> 4]);
-		Terminal_SendChar(hex[currentUser[i] & 0x0F]);
-		if (i < 4) Terminal_SendString("-");
-	}
-	Terminal_SendString("\r\n");
+    // Tabla de conversión hexadecimal
+    static const char hex[] = "0123456789ABCDEF";
+    // Usamos buffer en RAM
+    static char buffer[20];
+    char *ptr = buffer;
+    
+    // Formato más eficiente "UID: "
+    *ptr++ = 'U';
+    *ptr++ = 'I';
+    *ptr++ = 'D';
+    *ptr++ = ':';
+    *ptr++ = ' ';
+    
+    // Optimización del bucle usando char en lugar de int
+    char i;
+    for(i = 0; i < 5; i++) {
+        if (currentUser == 0 || *currentUser == 0) {
+            // Manejo para puntero nulo o valor nulo
+            *ptr++ = '0';
+            *ptr++ = '0';
+        } else {
+            // Conversión hexadecimal más robusta
+            unsigned char val = currentUser[i];
+            *ptr++ = hex[val >> 4];   // Primer nibble
+            *ptr++ = hex[val & 0x0F]; // Segundo nibble
+        }
+        
+        if(i < 4) *ptr++ = '-';
+    }
+    
+    // Finalización de cadena
+    *ptr++ = '\r';
+    *ptr++ = '\n';
+    *ptr = '\0';
+    
+    // Envío de cadena optimizado
+    motor_StartSendString(buffer);
+    sending_string = 1;
 }
+
 
 // Función optimizada para imprimir configuración de LEDs
 void printLedConfig(unsigned char *leds) {
@@ -92,7 +123,6 @@ void printLedConfig(unsigned char *leds) {
 // Motor de terminal optimizado
 void motorTerminal(void) {
 	static char state = 0;
-	static char sending_string = 0;
 	static unsigned char hour[4] = "0000";
 	static char index = 0;
 

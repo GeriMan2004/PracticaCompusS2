@@ -54,8 +54,8 @@ void main(void){
 		motorTeclado();  // Run keyboard state machine
     	motorTerminal(); // Run terminal state machine
 	    motor_RFID();  // Run RFID state machine
-		//motor_LEDs();  // Run LEDs state machine
-        motor_datos();
+		motor_LEDs();  // Run LEDs state machine
+        //motor_datos();
 		LATEbits.LATE2 ^= 1;
 	}				
 }

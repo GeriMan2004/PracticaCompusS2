@@ -4875,14 +4875,13 @@ unsigned char configurations[4][6] = {
 static unsigned char currentUser[5] = {0};
 static unsigned char new_configuration = 0;
 static unsigned char new_user = 0;
-static int index = 0;
+static unsigned char index = 0;
 static unsigned char currentTime[4] = "0000";
 
 
 void initData(void) {
     for(char i = 0; i < 5; i++) currentUser[i] = 0;
 }
-
 
 void getActualUID(unsigned char* UID) {
     if(!UID) return;
@@ -4942,21 +4941,6 @@ void saveHourToData(unsigned char hour[4]) {
 }
 
 
-void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
-    currentUser[0] = UID0;
-    currentUser[1] = UID1;
-    currentUser[2] = UID2;
-    currentUser[3] = UID3;
-    currentUser[4] = UID4;
-    new_user = 1;
-
-    Terminal_SendString("Targeta detectada!\r\n\t");
-    printfUID(currentUser);
-    Terminal_SendString("\t");
-    printLedConfig(configurations[index]);
-}
-
-
 char checkUserUID(void) {
 
     if(!currentUser[0]) return 0;
@@ -4976,6 +4960,18 @@ char checkUserUID(void) {
 }
 
 
+void setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
+    currentUser[0] = UID0;
+    currentUser[1] = UID1;
+    currentUser[2] = UID2;
+    currentUser[3] = UID3;
+    currentUser[4] = UID4;
+    new_user = 1;
+    index = checkUserUID();
+    printfUID(currentUser);
+}
+
+
 void motor_datos(void) {
     static char state = 0;
     static char pointer = 0;
@@ -4985,7 +4981,6 @@ void motor_datos(void) {
         case 0:
             if(new_configuration || new_user) {
                 new_configuration = new_user = 0;
-                index = checkUserUID();
                 state = 1;
             }
             break;
