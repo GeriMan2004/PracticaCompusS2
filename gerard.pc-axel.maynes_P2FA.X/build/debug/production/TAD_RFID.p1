@@ -1,0 +1,2615 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"8 C:\Program Files\Microchip\xc8\v3.00\pic\include/builtins.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+"1216 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1216:     struct {
+[s S49 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S49 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
+"1226
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1226:     struct {
+[s S50 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S50 . LC0 LC1 LC2 LC3 LC4 LC5 LC6 LC7 ]
+"1215
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1215: typedef union {
+[u S48 `S49 1 `S50 1 ]
+[n S48 . . . ]
+"1237
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1237: extern volatile LATCbits_t LATCbits __attribute__((address(0xF8B)));
+[v _LATCbits `VS48 ~T0 @X0 0 e@3979 ]
+"467
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 467:     struct {
+[s S21 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S21 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"477
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 477:     struct {
+[s S22 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S22 . T1OSO T1OSI CCP1 SCK SDI SDO TX RX ]
+"487
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 487:     struct {
+[s S23 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S23 . T13CKI CCP2 P1A SCL SDA . CK DT ]
+"497
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 497:     struct {
+[s S24 :1 `uc 1 ]
+[n S24 . T1CKI ]
+"500
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 500:     struct {
+[s S25 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S25 . . PA2 PA1 ]
+"466
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 466: typedef union {
+[u S20 `S21 1 `S22 1 `S23 1 `S24 1 `S25 1 ]
+[n S20 . . . . . . ]
+"506
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 506: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
+[v _PORTCbits `VS20 ~T0 @X0 0 e@3970 ]
+"1941
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1941:     struct {
+[s S70 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S70 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"1951
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1951:     struct {
+[s S71 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S71 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"1940
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1940: typedef union {
+[u S69 `S70 1 `S71 1 ]
+[n S69 . . . ]
+"1962
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1962: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
+[v _TRISCbits `VS69 ~T0 @X0 0 e@3988 ]
+"23 ./TAD_TIMER.h
+[; ;./TAD_TIMER.h: 23: unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
+[v _TI_NewTimer `(uc ~T0 @X0 0 ef1`*uc ]
+"27
+[; ;./TAD_TIMER.h: 27: void TI_ResetTics (unsigned char TimerHandle);
+[v _TI_ResetTics `(v ~T0 @X0 0 ef1`uc ]
+"31
+[; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);
+[v _TI_GetTics `(ul ~T0 @X0 0 ef1`uc ]
+"11 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 11: void getActualUID(unsigned char* UID, unsigned char userIndex);
+[v _getActualUID `(v ~T0 @X0 0 ef2`*uc`uc ]
+"19
+[; ;./TAD_DATOS.h: 19: unsigned char getCurrentUserIndex(void);
+[v _getCurrentUserIndex `(uc ~T0 @X0 0 ef ]
+"10
+[; ;./TAD_DATOS.h: 10: void setIndex(unsigned char index);
+[v _setIndex `(v ~T0 @X0 0 ef1`uc ]
+"15
+[; ;./TAD_DATOS.h: 15: char motor_setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
+[v _motor_setCurrentUser `(uc ~T0 @X0 0 ef5`uc`uc`uc`uc`uc ]
+"52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
+[; <" PORTA equ 0F80h ;# ">
+"284
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 284: __asm("PORTB equ 0F81h");
+[; <" PORTB equ 0F81h ;# ">
+"463
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 463: __asm("PORTC equ 0F82h");
+[; <" PORTC equ 0F82h ;# ">
+"643
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 643: __asm("PORTD equ 0F83h");
+[; <" PORTD equ 0F83h ;# ">
+"785
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 785: __asm("PORTE equ 0F84h");
+[; <" PORTE equ 0F84h ;# ">
+"988
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 988: __asm("LATA equ 0F89h");
+[; <" LATA equ 0F89h ;# ">
+"1100
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1100: __asm("LATB equ 0F8Ah");
+[; <" LATB equ 0F8Ah ;# ">
+"1212
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1212: __asm("LATC equ 0F8Bh");
+[; <" LATC equ 0F8Bh ;# ">
+"1324
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1324: __asm("LATD equ 0F8Ch");
+[; <" LATD equ 0F8Ch ;# ">
+"1436
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1436: __asm("LATE equ 0F8Dh");
+[; <" LATE equ 0F8Dh ;# ">
+"1488
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1488: __asm("TRISA equ 0F92h");
+[; <" TRISA equ 0F92h ;# ">
+"1493
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1493: __asm("DDRA equ 0F92h");
+[; <" DDRA equ 0F92h ;# ">
+"1710
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1710: __asm("TRISB equ 0F93h");
+[; <" TRISB equ 0F93h ;# ">
+"1715
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1715: __asm("DDRB equ 0F93h");
+[; <" DDRB equ 0F93h ;# ">
+"1932
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1932: __asm("TRISC equ 0F94h");
+[; <" TRISC equ 0F94h ;# ">
+"1937
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1937: __asm("DDRC equ 0F94h");
+[; <" DDRC equ 0F94h ;# ">
+"2154
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2154: __asm("TRISD equ 0F95h");
+[; <" TRISD equ 0F95h ;# ">
+"2159
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2159: __asm("DDRD equ 0F95h");
+[; <" DDRD equ 0F95h ;# ">
+"2376
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2376: __asm("TRISE equ 0F96h");
+[; <" TRISE equ 0F96h ;# ">
+"2381
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2381: __asm("DDRE equ 0F96h");
+[; <" DDRE equ 0F96h ;# ">
+"2540
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2540: __asm("OSCTUNE equ 0F9Bh");
+[; <" OSCTUNE equ 0F9Bh ;# ">
+"2605
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2605: __asm("PIE1 equ 0F9Dh");
+[; <" PIE1 equ 0F9Dh ;# ">
+"2682
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2682: __asm("PIR1 equ 0F9Eh");
+[; <" PIR1 equ 0F9Eh ;# ">
+"2759
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2759: __asm("IPR1 equ 0F9Fh");
+[; <" IPR1 equ 0F9Fh ;# ">
+"2836
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2836: __asm("PIE2 equ 0FA0h");
+[; <" PIE2 equ 0FA0h ;# ">
+"2902
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2902: __asm("PIR2 equ 0FA1h");
+[; <" PIR2 equ 0FA1h ;# ">
+"2968
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 2968: __asm("IPR2 equ 0FA2h");
+[; <" IPR2 equ 0FA2h ;# ">
+"3034
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3034: __asm("EECON1 equ 0FA6h");
+[; <" EECON1 equ 0FA6h ;# ">
+"3100
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3100: __asm("EECON2 equ 0FA7h");
+[; <" EECON2 equ 0FA7h ;# ">
+"3107
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3107: __asm("EEDATA equ 0FA8h");
+[; <" EEDATA equ 0FA8h ;# ">
+"3114
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3114: __asm("EEADR equ 0FA9h");
+[; <" EEADR equ 0FA9h ;# ">
+"3121
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3121: __asm("RCSTA equ 0FABh");
+[; <" RCSTA equ 0FABh ;# ">
+"3126
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3126: __asm("RCSTA1 equ 0FABh");
+[; <" RCSTA1 equ 0FABh ;# ">
+"3331
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3331: __asm("TXSTA equ 0FACh");
+[; <" TXSTA equ 0FACh ;# ">
+"3336
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3336: __asm("TXSTA1 equ 0FACh");
+[; <" TXSTA1 equ 0FACh ;# ">
+"3587
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3587: __asm("TXREG equ 0FADh");
+[; <" TXREG equ 0FADh ;# ">
+"3592
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3592: __asm("TXREG1 equ 0FADh");
+[; <" TXREG1 equ 0FADh ;# ">
+"3599
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3599: __asm("RCREG equ 0FAEh");
+[; <" RCREG equ 0FAEh ;# ">
+"3604
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3604: __asm("RCREG1 equ 0FAEh");
+[; <" RCREG1 equ 0FAEh ;# ">
+"3611
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3611: __asm("SPBRG equ 0FAFh");
+[; <" SPBRG equ 0FAFh ;# ">
+"3616
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3616: __asm("SPBRG1 equ 0FAFh");
+[; <" SPBRG1 equ 0FAFh ;# ">
+"3623
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3623: __asm("SPBRGH equ 0FB0h");
+[; <" SPBRGH equ 0FB0h ;# ">
+"3630
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3630: __asm("T3CON equ 0FB1h");
+[; <" T3CON equ 0FB1h ;# ">
+"3742
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3742: __asm("TMR3 equ 0FB2h");
+[; <" TMR3 equ 0FB2h ;# ">
+"3749
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3749: __asm("TMR3L equ 0FB2h");
+[; <" TMR3L equ 0FB2h ;# ">
+"3756
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3756: __asm("TMR3H equ 0FB3h");
+[; <" TMR3H equ 0FB3h ;# ">
+"3763
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3763: __asm("CMCON equ 0FB4h");
+[; <" CMCON equ 0FB4h ;# ">
+"3853
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3853: __asm("CVRCON equ 0FB5h");
+[; <" CVRCON equ 0FB5h ;# ">
+"3932
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3932: __asm("ECCP1AS equ 0FB6h");
+[; <" ECCP1AS equ 0FB6h ;# ">
+"4014
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4014: __asm("ECCP1DEL equ 0FB7h");
+[; <" ECCP1DEL equ 0FB7h ;# ">
+"4019
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4019: __asm("PWM1CON equ 0FB7h");
+[; <" PWM1CON equ 0FB7h ;# ">
+"4152
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4152: __asm("BAUDCON equ 0FB8h");
+[; <" BAUDCON equ 0FB8h ;# ">
+"4157
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4157: __asm("BAUDCTL equ 0FB8h");
+[; <" BAUDCTL equ 0FB8h ;# ">
+"4332
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4332: __asm("CCP2CON equ 0FBAh");
+[; <" CCP2CON equ 0FBAh ;# ">
+"4411
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4411: __asm("CCPR2 equ 0FBBh");
+[; <" CCPR2 equ 0FBBh ;# ">
+"4418
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4418: __asm("CCPR2L equ 0FBBh");
+[; <" CCPR2L equ 0FBBh ;# ">
+"4425
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4425: __asm("CCPR2H equ 0FBCh");
+[; <" CCPR2H equ 0FBCh ;# ">
+"4432
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4432: __asm("CCP1CON equ 0FBDh");
+[; <" CCP1CON equ 0FBDh ;# ">
+"4437
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4437: __asm("ECCP1CON equ 0FBDh");
+[; <" ECCP1CON equ 0FBDh ;# ">
+"4624
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4624: __asm("CCPR1 equ 0FBEh");
+[; <" CCPR1 equ 0FBEh ;# ">
+"4631
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4631: __asm("CCPR1L equ 0FBEh");
+[; <" CCPR1L equ 0FBEh ;# ">
+"4638
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4638: __asm("CCPR1H equ 0FBFh");
+[; <" CCPR1H equ 0FBFh ;# ">
+"4645
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4645: __asm("ADCON2 equ 0FC0h");
+[; <" ADCON2 equ 0FC0h ;# ">
+"4716
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4716: __asm("ADCON1 equ 0FC1h");
+[; <" ADCON1 equ 0FC1h ;# ">
+"4801
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4801: __asm("ADCON0 equ 0FC2h");
+[; <" ADCON0 equ 0FC2h ;# ">
+"4920
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4920: __asm("ADRES equ 0FC3h");
+[; <" ADRES equ 0FC3h ;# ">
+"4927
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4927: __asm("ADRESL equ 0FC3h");
+[; <" ADRESL equ 0FC3h ;# ">
+"4934
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4934: __asm("ADRESH equ 0FC4h");
+[; <" ADRESH equ 0FC4h ;# ">
+"4941
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 4941: __asm("SSPCON2 equ 0FC5h");
+[; <" SSPCON2 equ 0FC5h ;# ">
+"5036
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5036: __asm("SSPCON1 equ 0FC6h");
+[; <" SSPCON1 equ 0FC6h ;# ">
+"5106
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5106: __asm("SSPSTAT equ 0FC7h");
+[; <" SSPSTAT equ 0FC7h ;# ">
+"5327
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5327: __asm("SSPADD equ 0FC8h");
+[; <" SSPADD equ 0FC8h ;# ">
+"5334
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5334: __asm("SSPBUF equ 0FC9h");
+[; <" SSPBUF equ 0FC9h ;# ">
+"5341
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5341: __asm("T2CON equ 0FCAh");
+[; <" T2CON equ 0FCAh ;# ">
+"5439
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5439: __asm("PR2 equ 0FCBh");
+[; <" PR2 equ 0FCBh ;# ">
+"5444
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5444: __asm("MEMCON equ 0FCBh");
+[; <" MEMCON equ 0FCBh ;# ">
+"5549
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5549: __asm("TMR2 equ 0FCCh");
+[; <" TMR2 equ 0FCCh ;# ">
+"5556
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5556: __asm("T1CON equ 0FCDh");
+[; <" T1CON equ 0FCDh ;# ">
+"5659
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5659: __asm("TMR1 equ 0FCEh");
+[; <" TMR1 equ 0FCEh ;# ">
+"5666
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5666: __asm("TMR1L equ 0FCEh");
+[; <" TMR1L equ 0FCEh ;# ">
+"5673
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5673: __asm("TMR1H equ 0FCFh");
+[; <" TMR1H equ 0FCFh ;# ">
+"5680
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5680: __asm("RCON equ 0FD0h");
+[; <" RCON equ 0FD0h ;# ">
+"5814
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5814: __asm("WDTCON equ 0FD1h");
+[; <" WDTCON equ 0FD1h ;# ">
+"5842
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5842: __asm("HLVDCON equ 0FD2h");
+[; <" HLVDCON equ 0FD2h ;# ">
+"5847
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 5847: __asm("LVDCON equ 0FD2h");
+[; <" LVDCON equ 0FD2h ;# ">
+"6100
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6100: __asm("OSCCON equ 0FD3h");
+[; <" OSCCON equ 0FD3h ;# ">
+"6183
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6183: __asm("T0CON equ 0FD5h");
+[; <" T0CON equ 0FD5h ;# ">
+"6260
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6260: __asm("TMR0 equ 0FD6h");
+[; <" TMR0 equ 0FD6h ;# ">
+"6267
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6267: __asm("TMR0L equ 0FD6h");
+[; <" TMR0L equ 0FD6h ;# ">
+"6274
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6274: __asm("TMR0H equ 0FD7h");
+[; <" TMR0H equ 0FD7h ;# ">
+"6281
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6281: __asm("STATUS equ 0FD8h");
+[; <" STATUS equ 0FD8h ;# ">
+"6352
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6352: __asm("FSR2 equ 0FD9h");
+[; <" FSR2 equ 0FD9h ;# ">
+"6359
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6359: __asm("FSR2L equ 0FD9h");
+[; <" FSR2L equ 0FD9h ;# ">
+"6366
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6366: __asm("FSR2H equ 0FDAh");
+[; <" FSR2H equ 0FDAh ;# ">
+"6373
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6373: __asm("PLUSW2 equ 0FDBh");
+[; <" PLUSW2 equ 0FDBh ;# ">
+"6380
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6380: __asm("PREINC2 equ 0FDCh");
+[; <" PREINC2 equ 0FDCh ;# ">
+"6387
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6387: __asm("POSTDEC2 equ 0FDDh");
+[; <" POSTDEC2 equ 0FDDh ;# ">
+"6394
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6394: __asm("POSTINC2 equ 0FDEh");
+[; <" POSTINC2 equ 0FDEh ;# ">
+"6401
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6401: __asm("INDF2 equ 0FDFh");
+[; <" INDF2 equ 0FDFh ;# ">
+"6408
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6408: __asm("BSR equ 0FE0h");
+[; <" BSR equ 0FE0h ;# ">
+"6415
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6415: __asm("FSR1 equ 0FE1h");
+[; <" FSR1 equ 0FE1h ;# ">
+"6422
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6422: __asm("FSR1L equ 0FE1h");
+[; <" FSR1L equ 0FE1h ;# ">
+"6429
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6429: __asm("FSR1H equ 0FE2h");
+[; <" FSR1H equ 0FE2h ;# ">
+"6436
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6436: __asm("PLUSW1 equ 0FE3h");
+[; <" PLUSW1 equ 0FE3h ;# ">
+"6443
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6443: __asm("PREINC1 equ 0FE4h");
+[; <" PREINC1 equ 0FE4h ;# ">
+"6450
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6450: __asm("POSTDEC1 equ 0FE5h");
+[; <" POSTDEC1 equ 0FE5h ;# ">
+"6457
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6457: __asm("POSTINC1 equ 0FE6h");
+[; <" POSTINC1 equ 0FE6h ;# ">
+"6464
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6464: __asm("INDF1 equ 0FE7h");
+[; <" INDF1 equ 0FE7h ;# ">
+"6471
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6471: __asm("WREG equ 0FE8h");
+[; <" WREG equ 0FE8h ;# ">
+"6483
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6483: __asm("FSR0 equ 0FE9h");
+[; <" FSR0 equ 0FE9h ;# ">
+"6490
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6490: __asm("FSR0L equ 0FE9h");
+[; <" FSR0L equ 0FE9h ;# ">
+"6497
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6497: __asm("FSR0H equ 0FEAh");
+[; <" FSR0H equ 0FEAh ;# ">
+"6504
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6504: __asm("PLUSW0 equ 0FEBh");
+[; <" PLUSW0 equ 0FEBh ;# ">
+"6511
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6511: __asm("PREINC0 equ 0FECh");
+[; <" PREINC0 equ 0FECh ;# ">
+"6518
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6518: __asm("POSTDEC0 equ 0FEDh");
+[; <" POSTDEC0 equ 0FEDh ;# ">
+"6525
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6525: __asm("POSTINC0 equ 0FEEh");
+[; <" POSTINC0 equ 0FEEh ;# ">
+"6532
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6532: __asm("INDF0 equ 0FEFh");
+[; <" INDF0 equ 0FEFh ;# ">
+"6539
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6539: __asm("INTCON3 equ 0FF0h");
+[; <" INTCON3 equ 0FF0h ;# ">
+"6631
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6631: __asm("INTCON2 equ 0FF1h");
+[; <" INTCON2 equ 0FF1h ;# ">
+"6701
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6701: __asm("INTCON equ 0FF2h");
+[; <" INTCON equ 0FF2h ;# ">
+"6818
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6818: __asm("PROD equ 0FF3h");
+[; <" PROD equ 0FF3h ;# ">
+"6825
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6825: __asm("PRODL equ 0FF3h");
+[; <" PRODL equ 0FF3h ;# ">
+"6832
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6832: __asm("PRODH equ 0FF4h");
+[; <" PRODH equ 0FF4h ;# ">
+"6839
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6839: __asm("TABLAT equ 0FF5h");
+[; <" TABLAT equ 0FF5h ;# ">
+"6848
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6848: __asm("TBLPTR equ 0FF6h");
+[; <" TBLPTR equ 0FF6h ;# ">
+"6855
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6855: __asm("TBLPTRL equ 0FF6h");
+[; <" TBLPTRL equ 0FF6h ;# ">
+"6862
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6862: __asm("TBLPTRH equ 0FF7h");
+[; <" TBLPTRH equ 0FF7h ;# ">
+"6869
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6869: __asm("TBLPTRU equ 0FF8h");
+[; <" TBLPTRU equ 0FF8h ;# ">
+"6878
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6878: __asm("PCLAT equ 0FF9h");
+[; <" PCLAT equ 0FF9h ;# ">
+"6885
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6885: __asm("PC equ 0FF9h");
+[; <" PC equ 0FF9h ;# ">
+"6892
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6892: __asm("PCL equ 0FF9h");
+[; <" PCL equ 0FF9h ;# ">
+"6899
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6899: __asm("PCLATH equ 0FFAh");
+[; <" PCLATH equ 0FFAh ;# ">
+"6906
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6906: __asm("PCLATU equ 0FFBh");
+[; <" PCLATU equ 0FFBh ;# ">
+"6913
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6913: __asm("STKPTR equ 0FFCh");
+[; <" STKPTR equ 0FFCh ;# ">
+"6987
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6987: __asm("TOS equ 0FFDh");
+[; <" TOS equ 0FFDh ;# ">
+"6994
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 6994: __asm("TOSL equ 0FFDh");
+[; <" TOSL equ 0FFDh ;# ">
+"7001
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7001: __asm("TOSH equ 0FFEh");
+[; <" TOSH equ 0FFEh ;# ">
+"7008
+[; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
+[; <" TOSU equ 0FFFh ;# ">
+"19 TAD_RFID.c
+[; ;TAD_RFID.c: 19: static char state_read = 0;
+[v _state_read `uc ~T0 @X0 1 s ]
+[i _state_read
+-> -> 0 `i `uc
+]
+"20
+[; ;TAD_RFID.c: 20: static char state_write = 0;
+[v _state_write `uc ~T0 @X0 1 s ]
+[i _state_write
+-> -> 0 `i `uc
+]
+"21
+[; ;TAD_RFID.c: 21: static unsigned char card_timer;
+[v _card_timer `uc ~T0 @X0 1 s ]
+"26
+[; ;TAD_RFID.c: 26: void delay_us (char howMany) {
+[v _delay_us `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _delay_us ]
+[v _howMany `uc ~T0 @X0 1 r1 ]
+[f ]
+"27
+[; ;TAD_RFID.c: 27:     char x = howMany * 8;
+[v _x `uc ~T0 @X0 1 a ]
+[e = _x -> * -> _howMany `i -> 8 `i `uc ]
+"28
+[; ;TAD_RFID.c: 28:     while(x--) __nop();
+[e $U 303  ]
+[e :U 304 ]
+[e ( ___nop ..  ]
+[e :U 303 ]
+[e $ != -> -- _x -> -> 1 `i `uc `i -> 0 `i 304  ]
+[e :U 305 ]
+"29
+[; ;TAD_RFID.c: 29: }
+[e :UE 302 ]
+}
+"32
+[; ;TAD_RFID.c: 32: void processBit(unsigned char *val, char *bit_count, char *state, char next_state) {
+[v _processBit `(v ~T0 @X0 1 ef4`*uc`*uc`*uc`uc ]
+{
+[e :U _processBit ]
+[v _val `*uc ~T0 @X0 1 r1 ]
+[v _bit_count `*uc ~T0 @X0 1 r2 ]
+[v _state `*uc ~T0 @X0 1 r3 ]
+[v _next_state `uc ~T0 @X0 1 r4 ]
+[f ]
+"33
+[; ;TAD_RFID.c: 33:     LATCbits.LATC1 = ((*val & 0x80) != 0);
+[e = . . _LATCbits 0 1 -> -> != & -> *U _val `i -> 128 `i -> 0 `i `i `uc ]
+"34
+[; ;TAD_RFID.c: 34:     LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"35
+[; ;TAD_RFID.c: 35:     *val <<= 1;
+[e =<< *U _val -> -> 1 `i `uc ]
+"36
+[; ;TAD_RFID.c: 36:     delay_us(5);
+[e ( _delay_us (1 -> -> 5 `i `uc ]
+"37
+[; ;TAD_RFID.c: 37:     LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"38
+[; ;TAD_RFID.c: 38:     delay_us(5);
+[e ( _delay_us (1 -> -> 5 `i `uc ]
+"39
+[; ;TAD_RFID.c: 39:     if (++(*bit_count) == 8) {
+[e $ ! == -> =+ *U _bit_count -> -> 1 `i `uc `i -> 8 `i 307  ]
+{
+"40
+[; ;TAD_RFID.c: 40:         *bit_count = 0;
+[e = *U _bit_count -> -> 0 `i `uc ]
+"41
+[; ;TAD_RFID.c: 41:         *state = next_state;
+[e = *U _state _next_state ]
+"42
+[; ;TAD_RFID.c: 42:     }
+}
+[e :U 307 ]
+"43
+[; ;TAD_RFID.c: 43: }
+[e :UE 306 ]
+}
+"46
+[; ;TAD_RFID.c: 46: char motor_Write(char addr, char value) {
+[v _motor_Write `(uc ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _motor_Write ]
+[v _addr `uc ~T0 @X0 1 r1 ]
+[v _value `uc ~T0 @X0 1 r2 ]
+[f ]
+"47
+[; ;TAD_RFID.c: 47:     static char bit_count = 0;
+[v F2743 `uc ~T0 @X0 1 s bit_count ]
+[i F2743
+-> -> 0 `i `uc
+]
+"48
+[; ;TAD_RFID.c: 48:     static unsigned char ucAddr;
+[v F2744 `uc ~T0 @X0 1 s ucAddr ]
+"49
+[; ;TAD_RFID.c: 49:     static unsigned char ucValue;
+[v F2745 `uc ~T0 @X0 1 s ucValue ]
+"51
+[; ;TAD_RFID.c: 51:     switch (state_write) {
+[e $U 310  ]
+{
+"52
+[; ;TAD_RFID.c: 52:         case 0:
+[e :U 311 ]
+"53
+[; ;TAD_RFID.c: 53:             LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"54
+[; ;TAD_RFID.c: 54:             LATCbits.LATC3 = 0;
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+"55
+[; ;TAD_RFID.c: 55:             ucAddr = ((addr << 1) & 0x7E);
+[e = F2744 -> & << -> _addr `i -> 1 `i -> 126 `i `uc ]
+"56
+[; ;TAD_RFID.c: 56:             ucValue = value;
+[e = F2745 -> _value `uc ]
+"57
+[; ;TAD_RFID.c: 57:             bit_count = 0;
+[e = F2743 -> -> 0 `i `uc ]
+"58
+[; ;TAD_RFID.c: 58:             state_write = 1;
+[e = _state_write -> -> 1 `i `uc ]
+"59
+[; ;TAD_RFID.c: 59:             break;
+[e $U 309  ]
+"61
+[; ;TAD_RFID.c: 61:         case 1:
+[e :U 312 ]
+"62
+[; ;TAD_RFID.c: 62:             processBit(&ucAddr, &bit_count, &state_write, 2);
+[e ( _processBit (4 , , , &U F2744 &U F2743 &U _state_write -> -> 2 `i `uc ]
+"63
+[; ;TAD_RFID.c: 63:             break;
+[e $U 309  ]
+"65
+[; ;TAD_RFID.c: 65:         case 2:
+[e :U 313 ]
+"66
+[; ;TAD_RFID.c: 66:             processBit(&ucValue, &bit_count, &state_write, 0);
+[e ( _processBit (4 , , , &U F2745 &U F2743 &U _state_write -> -> 0 `i `uc ]
+"67
+[; ;TAD_RFID.c: 67:             if (state_write == 0) {
+[e $ ! == -> _state_write `i -> 0 `i 314  ]
+{
+"68
+[; ;TAD_RFID.c: 68:                 LATCbits.LATC3 = 1;
+[e = . . _LATCbits 0 3 -> -> 1 `i `uc ]
+"69
+[; ;TAD_RFID.c: 69:                 LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"70
+[; ;TAD_RFID.c: 70:                 return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 308  ]
+"71
+[; ;TAD_RFID.c: 71:             }
+}
+[e :U 314 ]
+"72
+[; ;TAD_RFID.c: 72:             break;
+[e $U 309  ]
+"73
+[; ;TAD_RFID.c: 73:     }
+}
+[e $U 309  ]
+[e :U 310 ]
+[e [\ _state_write , $ -> 0 `i 311
+ , $ -> 1 `i 312
+ , $ -> 2 `i 313
+ 309 ]
+[e :U 309 ]
+"74
+[; ;TAD_RFID.c: 74:     return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 308  ]
+"75
+[; ;TAD_RFID.c: 75: }
+[e :UE 308 ]
+}
+"78
+[; ;TAD_RFID.c: 78: char motor_Read(char addr) {
+[v _motor_Read `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _motor_Read ]
+[v _addr `uc ~T0 @X0 1 r1 ]
+[f ]
+"79
+[; ;TAD_RFID.c: 79:     static char bit_count = 0;
+[v F2748 `uc ~T0 @X0 1 s bit_count ]
+[i F2748
+-> -> 0 `i `uc
+]
+"80
+[; ;TAD_RFID.c: 80:     static unsigned char ucAddr;
+[v F2749 `uc ~T0 @X0 1 s ucAddr ]
+"81
+[; ;TAD_RFID.c: 81:     static unsigned char ucResult;
+[v F2750 `uc ~T0 @X0 1 s ucResult ]
+"82
+[; ;TAD_RFID.c: 82:     static unsigned int timeout_counter = 0;
+[v F2751 `ui ~T0 @X0 1 s timeout_counter ]
+[i F2751
+-> -> 0 `i `ui
+]
+"83
+[; ;TAD_RFID.c: 83:     static unsigned int MAX_TIMEOUT = 1000;
+[v F2752 `ui ~T0 @X0 1 s MAX_TIMEOUT ]
+[i F2752
+-> -> 1000 `i `ui
+]
+"85
+[; ;TAD_RFID.c: 85:     if (++timeout_counter > MAX_TIMEOUT) {
+[e $ ! > =+ F2751 -> -> 1 `i `ui F2752 316  ]
+{
+"86
+[; ;TAD_RFID.c: 86:         LATCbits.LATC3 = LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"87
+[; ;TAD_RFID.c: 87:         state_read = 0;
+[e = _state_read -> -> 0 `i `uc ]
+"88
+[; ;TAD_RFID.c: 88:         timeout_counter = 0;
+[e = F2751 -> -> 0 `i `ui ]
+"89
+[; ;TAD_RFID.c: 89:         return 0xFF;
+[e ) -> -> 255 `i `uc ]
+[e $UE 315  ]
+"90
+[; ;TAD_RFID.c: 90:     }
+}
+[e :U 316 ]
+"92
+[; ;TAD_RFID.c: 92:     switch(state_read) {
+[e $U 318  ]
+{
+"93
+[; ;TAD_RFID.c: 93:         case 0:
+[e :U 319 ]
+"94
+[; ;TAD_RFID.c: 94:             timeout_counter = 0;
+[e = F2751 -> -> 0 `i `ui ]
+"95
+[; ;TAD_RFID.c: 95:             LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"96
+[; ;TAD_RFID.c: 96:             LATCbits.LATC3 = 0;
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
+"97
+[; ;TAD_RFID.c: 97:             ucAddr = ((addr<<1) & 0x7E) | 0x80;
+[e = F2749 -> | & << -> _addr `i -> 1 `i -> 126 `i -> 128 `i `uc ]
+"98
+[; ;TAD_RFID.c: 98:             ucResult = 0;
+[e = F2750 -> -> 0 `i `uc ]
+"99
+[; ;TAD_RFID.c: 99:             bit_count = 0;
+[e = F2748 -> -> 0 `i `uc ]
+"100
+[; ;TAD_RFID.c: 100:             state_read = 1;
+[e = _state_read -> -> 1 `i `uc ]
+"101
+[; ;TAD_RFID.c: 101:             return 0xFE;
+[e ) -> -> 254 `i `uc ]
+[e $UE 315  ]
+"103
+[; ;TAD_RFID.c: 103:         case 1:
+[e :U 320 ]
+"104
+[; ;TAD_RFID.c: 104:             processBit(&ucAddr, &bit_count, &state_read, 2);
+[e ( _processBit (4 , , , &U F2749 &U F2748 &U _state_read -> -> 2 `i `uc ]
+"105
+[; ;TAD_RFID.c: 105:             return 0xFE;
+[e ) -> -> 254 `i `uc ]
+[e $UE 315  ]
+"107
+[; ;TAD_RFID.c: 107:         case 2:
+[e :U 321 ]
+"108
+[; ;TAD_RFID.c: 108:             LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"109
+[; ;TAD_RFID.c: 109:             delay_us(5);
+[e ( _delay_us (1 -> -> 5 `i `uc ]
+"110
+[; ;TAD_RFID.c: 110:             ucResult = (unsigned char)((ucResult << 1) | PORTCbits.RC0);
+[e = F2750 -> | << -> F2750 `i -> 1 `i -> . . _PORTCbits 0 0 `i `uc ]
+"111
+[; ;TAD_RFID.c: 111:             LATCbits.LATC2 = 0;
+[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+"112
+[; ;TAD_RFID.c: 112:             delay_us(5);
+[e ( _delay_us (1 -> -> 5 `i `uc ]
+"114
+[; ;TAD_RFID.c: 114:             if (++bit_count >= 8) {
+[e $ ! >= -> =+ F2748 -> -> 1 `i `uc `i -> 8 `i 322  ]
+{
+"115
+[; ;TAD_RFID.c: 115:                 LATCbits.LATC3 = LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"116
+[; ;TAD_RFID.c: 116:                 state_read = 0;
+[e = _state_read -> -> 0 `i `uc ]
+"117
+[; ;TAD_RFID.c: 117:                 timeout_counter = 0;
+[e = F2751 -> -> 0 `i `ui ]
+"118
+[; ;TAD_RFID.c: 118:                 return (ucResult == 0xFE || ucResult == 0xFF) ? 0xFD : ucResult;
+[e ) -> ? || == -> F2750 `i -> 254 `i == -> F2750 `i -> 255 `i : -> 253 `i -> F2750 `i `uc ]
+[e $UE 315  ]
+"119
+[; ;TAD_RFID.c: 119:             }
+}
+[e :U 322 ]
+"120
+[; ;TAD_RFID.c: 120:             return 0xFE;
+[e ) -> -> 254 `i `uc ]
+[e $UE 315  ]
+"121
+[; ;TAD_RFID.c: 121:     }
+}
+[e $U 317  ]
+[e :U 318 ]
+[e [\ _state_read , $ -> 0 `i 319
+ , $ -> 1 `i 320
+ , $ -> 2 `i 321
+ 317 ]
+[e :U 317 ]
+"122
+[; ;TAD_RFID.c: 122:     return 0xFE;
+[e ) -> -> 254 `i `uc ]
+[e $UE 315  ]
+"123
+[; ;TAD_RFID.c: 123: }
+[e :UE 315 ]
+}
+"126
+[; ;TAD_RFID.c: 126: void initRFID() {
+[v _initRFID `(v ~T0 @X0 1 ef ]
+{
+[e :U _initRFID ]
+[f ]
+"128
+[; ;TAD_RFID.c: 128:     TRISCbits.TRISC0 = 1;
+[e = . . _TRISCbits 0 0 -> -> 1 `i `uc ]
+"129
+[; ;TAD_RFID.c: 129:     TRISCbits.TRISC1 = 0;
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
+"130
+[; ;TAD_RFID.c: 130:     TRISCbits.TRISC2 = 0;
+[e = . . _TRISCbits 0 2 -> -> 0 `i `uc ]
+"131
+[; ;TAD_RFID.c: 131:     TRISCbits.TRISC3 = 0;
+[e = . . _TRISCbits 0 3 -> -> 0 `i `uc ]
+"132
+[; ;TAD_RFID.c: 132:     TRISCbits.TRISC4 = 0;
+[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
+"134
+[; ;TAD_RFID.c: 134:     state_read = state_write = 0;
+[e = _state_read = _state_write -> -> 0 `i `uc ]
+"135
+[; ;TAD_RFID.c: 135:     LATCbits.LATC3 = LATCbits.LATC2 = 1;
+[e = . . _LATCbits 0 3 = . . _LATCbits 0 2 -> -> 1 `i `uc ]
+"136
+[; ;TAD_RFID.c: 136:     LATCbits.LATC4 = 1;
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+"137
+[; ;TAD_RFID.c: 137:     delay_us(1);
+[e ( _delay_us (1 -> -> 1 `i `uc ]
+"138
+[; ;TAD_RFID.c: 138:     LATCbits.LATC4 = 0;
+[e = . . _LATCbits 0 4 -> -> 0 `i `uc ]
+"139
+[; ;TAD_RFID.c: 139:     delay_us(1);
+[e ( _delay_us (1 -> -> 1 `i `uc ]
+"140
+[; ;TAD_RFID.c: 140:     LATCbits.LATC4 = 1;
+[e = . . _LATCbits 0 4 -> -> 1 `i `uc ]
+"141
+[; ;TAD_RFID.c: 141:     delay_us(1);
+[e ( _delay_us (1 -> -> 1 `i `uc ]
+"144
+[; ;TAD_RFID.c: 144:     while (!motor_Write(0x01, 0x0F)) { }
+[e $U 324  ]
+[e :U 325 ]
+{
+}
+[e :U 324 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 1 `i `uc -> -> 15 `i `uc `i -> 0 `i 325  ]
+[e :U 326 ]
+"145
+[; ;TAD_RFID.c: 145:     delay_us(1);
+[e ( _delay_us (1 -> -> 1 `i `uc ]
+"148
+[; ;TAD_RFID.c: 148:     while (!motor_Write(0x2A, 0x8D)) { }
+[e $U 327  ]
+[e :U 328 ]
+{
+}
+[e :U 327 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 42 `i `uc -> -> 141 `i `uc `i -> 0 `i 328  ]
+[e :U 329 ]
+"149
+[; ;TAD_RFID.c: 149:     while (!motor_Write(0x2B, 0x3E)) { }
+[e $U 330  ]
+[e :U 331 ]
+{
+}
+[e :U 330 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 43 `i `uc -> -> 62 `i `uc `i -> 0 `i 331  ]
+[e :U 332 ]
+"150
+[; ;TAD_RFID.c: 150:     while (!motor_Write(0x2D, 30)) { }
+[e $U 333  ]
+[e :U 334 ]
+{
+}
+[e :U 333 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 45 `i `uc -> -> 30 `i `uc `i -> 0 `i 334  ]
+[e :U 335 ]
+"151
+[; ;TAD_RFID.c: 151:     while (!motor_Write(0x2C, 0)) { }
+[e $U 336  ]
+[e :U 337 ]
+{
+}
+[e :U 336 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 44 `i `uc -> -> 0 `i `uc `i -> 0 `i 337  ]
+[e :U 338 ]
+"152
+[; ;TAD_RFID.c: 152:     while (!motor_Write(0x15, 0x40)) { }
+[e $U 339  ]
+[e :U 340 ]
+{
+}
+[e :U 339 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 21 `i `uc -> -> 64 `i `uc `i -> 0 `i 340  ]
+[e :U 341 ]
+"153
+[; ;TAD_RFID.c: 153:     while (!motor_Write(0x11, 0x3D)) { }
+[e $U 342  ]
+[e :U 343 ]
+{
+}
+[e :U 342 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 17 `i `uc -> -> 61 `i `uc `i -> 0 `i 343  ]
+[e :U 344 ]
+"156
+[; ;TAD_RFID.c: 156:     unsigned char regVal;
+[v _regVal `uc ~T0 @X0 1 a ]
+"157
+[; ;TAD_RFID.c: 157:     do {
+[e :U 347 ]
+{
+"158
+[; ;TAD_RFID.c: 158:         regVal = motor_Read(0x14);
+[e = _regVal -> ( _motor_Read (1 -> -> 20 `i `uc `uc ]
+"159
+[; ;TAD_RFID.c: 159:     } while (regVal == 0xFE);
+}
+[e $ == -> _regVal `i -> 254 `i 347  ]
+[e :U 346 ]
+"160
+[; ;TAD_RFID.c: 160:     regVal |= 0x03;
+[e =| _regVal -> -> 3 `i `uc ]
+"161
+[; ;TAD_RFID.c: 161:     while (!motor_Write(0x14, regVal)) { }
+[e $U 348  ]
+[e :U 349 ]
+{
+}
+[e :U 348 ]
+[e $ ! != -> ( _motor_Write (2 , -> -> 20 `i `uc -> _regVal `uc `i -> 0 `i 349  ]
+[e :U 350 ]
+"164
+[; ;TAD_RFID.c: 164:     TI_NewTimer(&card_timer);
+[e ( _TI_NewTimer (1 &U _card_timer ]
+"165
+[; ;TAD_RFID.c: 165:     TI_ResetTics(card_timer);
+[e ( _TI_ResetTics (1 _card_timer ]
+"166
+[; ;TAD_RFID.c: 166: }
+[e :UE 323 ]
+}
+"168
+[; ;TAD_RFID.c: 168: void motor_RFID(void) {
+[v _motor_RFID `(v ~T0 @X0 1 ef ]
+{
+[e :U _motor_RFID ]
+[f ]
+"169
+[; ;TAD_RFID.c: 169:     static char state = 0;
+[v F2756 `uc ~T0 @X0 1 s state ]
+[i F2756
+-> -> 0 `i `uc
+]
+"170
+[; ;TAD_RFID.c: 170:     static char substate = 0;
+[v F2757 `uc ~T0 @X0 1 s substate ]
+[i F2757
+-> -> 0 `i `uc
+]
+"171
+[; ;TAD_RFID.c: 171:     static char irqEn, waitIRq, n;
+[v F2758 `uc ~T0 @X0 1 s irqEn ]
+[v F2759 `uc ~T0 @X0 1 s waitIRq ]
+[v F2760 `uc ~T0 @X0 1 s n ]
+"172
+[; ;TAD_RFID.c: 172:     static unsigned char i;
+[v F2761 `uc ~T0 @X0 1 s i ]
+"173
+[; ;TAD_RFID.c: 173:     static char _status;
+[v F2762 `uc ~T0 @X0 1 s _status ]
+"174
+[; ;TAD_RFID.c: 174:     static unsigned unLen;
+[v F2763 `ui ~T0 @X0 1 s unLen ]
+"175
+[; ;TAD_RFID.c: 175:     static char TagType;
+[v F2764 `uc ~T0 @X0 1 s TagType ]
+"176
+[; ;TAD_RFID.c: 176:     static unsigned char UID[6];
+[v F2765 `uc ~T0 @X0 -> 6 `i s UID ]
+"177
+[; ;TAD_RFID.c: 177:     static unsigned char checksum;
+[v F2766 `uc ~T0 @X0 1 s checksum ]
+"178
+[; ;TAD_RFID.c: 178:     static unsigned char allZero;
+[v F2767 `uc ~T0 @X0 1 s allZero ]
+"179
+[; ;TAD_RFID.c: 179:     static unsigned char tempRegValue;
+[v F2768 `uc ~T0 @X0 1 s tempRegValue ]
+"180
+[; ;TAD_RFID.c: 180:     static unsigned char lastBitsVal;
+[v F2769 `uc ~T0 @X0 1 s lastBitsVal ]
+"181
+[; ;TAD_RFID.c: 181:     static unsigned char fifoLevel;
+[v F2770 `uc ~T0 @X0 1 s fifoLevel ]
+"182
+[; ;TAD_RFID.c: 182:     static unsigned char backBitsCalc;
+[v F2771 `uc ~T0 @X0 1 s backBitsCalc ]
+"183
+[; ;TAD_RFID.c: 183:     static unsigned char currentUser[5];
+[v F2772 `uc ~T0 @X0 -> 5 `i s currentUser ]
+"184
+[; ;TAD_RFID.c: 184:     static unsigned char cardRemoved = 0;
+[v F2773 `uc ~T0 @X0 1 s cardRemoved ]
+[i F2773
+-> -> 0 `i `uc
+]
+"185
+[; ;TAD_RFID.c: 185:     static unsigned char card_timer;
+[v F2774 `uc ~T0 @X0 1 s card_timer ]
+"186
+[; ;TAD_RFID.c: 186:     static unsigned char last_state = 0;
+[v F2775 `uc ~T0 @X0 1 s last_state ]
+[i F2775
+-> -> 0 `i `uc
+]
+"189
+[; ;TAD_RFID.c: 189:     static char operation_pending = 0;
+[v F2776 `uc ~T0 @X0 1 s operation_pending ]
+[i F2776
+-> -> 0 `i `uc
+]
+"190
+[; ;TAD_RFID.c: 190:     static unsigned char addr;
+[v F2777 `uc ~T0 @X0 1 s addr ]
+"191
+[; ;TAD_RFID.c: 191:     static unsigned char value;
+[v F2778 `uc ~T0 @X0 1 s value ]
+"192
+[; ;TAD_RFID.c: 192:     unsigned char flag = 0;
+[v _flag `uc ~T0 @X0 1 a ]
+[e = _flag -> -> 0 `i `uc ]
+"195
+[; ;TAD_RFID.c: 195:     if (operation_pending == 1) {
+[e $ ! == -> F2776 `i -> 1 `i 352  ]
+{
+"197
+[; ;TAD_RFID.c: 197:         flag = motor_Read(addr);
+[e = _flag -> ( _motor_Read (1 -> F2777 `uc `uc ]
+"198
+[; ;TAD_RFID.c: 198:         if (flag != 0xFE) {
+[e $ ! != -> _flag `i -> 254 `i 353  ]
+{
+"199
+[; ;TAD_RFID.c: 199:             tempRegValue = flag;
+[e = F2768 _flag ]
+"200
+[; ;TAD_RFID.c: 200:             operation_pending = 0;
+[e = F2776 -> -> 0 `i `uc ]
+"201
+[; ;TAD_RFID.c: 201:         } else {
+}
+[e $U 354  ]
+[e :U 353 ]
+{
+"202
+[; ;TAD_RFID.c: 202:             return;
+[e $UE 351  ]
+"203
+[; ;TAD_RFID.c: 203:         }
+}
+[e :U 354 ]
+"204
+[; ;TAD_RFID.c: 204:     } else if (operation_pending == 2) {
+}
+[e $U 355  ]
+[e :U 352 ]
+[e $ ! == -> F2776 `i -> 2 `i 356  ]
+{
+"206
+[; ;TAD_RFID.c: 206:         flag = motor_Write(addr, value);
+[e = _flag -> ( _motor_Write (2 , -> F2777 `uc -> F2778 `uc `uc ]
+"207
+[; ;TAD_RFID.c: 207:         if (flag != 0) {
+[e $ ! != -> _flag `i -> 0 `i 357  ]
+{
+"208
+[; ;TAD_RFID.c: 208:             operation_pending = 0;
+[e = F2776 -> -> 0 `i `uc ]
+"209
+[; ;TAD_RFID.c: 209:         } else {
+}
+[e $U 358  ]
+[e :U 357 ]
+{
+"210
+[; ;TAD_RFID.c: 210:             return;
+[e $UE 351  ]
+"211
+[; ;TAD_RFID.c: 211:         }
+}
+[e :U 358 ]
+"212
+[; ;TAD_RFID.c: 212:     } else {
+}
+[e $U 359  ]
+[e :U 356 ]
+{
+"214
+[; ;TAD_RFID.c: 214:         if (state != last_state) {
+[e $ ! != -> F2756 `i -> F2775 `i 360  ]
+{
+"215
+[; ;TAD_RFID.c: 215:             last_state = state;
+[e = F2775 -> F2756 `uc ]
+"218
+[; ;TAD_RFID.c: 218:             if (state == 1) {
+[e $ ! == -> F2756 `i -> 1 `i 361  ]
+{
+"219
+[; ;TAD_RFID.c: 219:                 TI_ResetTics(card_timer);
+[e ( _TI_ResetTics (1 F2774 ]
+"220
+[; ;TAD_RFID.c: 220:             }
+}
+[e :U 361 ]
+"221
+[; ;TAD_RFID.c: 221:         }
+}
+[e :U 360 ]
+"225
+[; ;TAD_RFID.c: 225:         if (state == 0 && TI_GetTics(card_timer) > 500) {
+[e $ ! && == -> F2756 `i -> 0 `i > ( _TI_GetTics (1 F2774 -> -> -> 500 `i `l `ul 362  ]
+{
+"226
+[; ;TAD_RFID.c: 226:             cardRemoved = 1;
+[e = F2773 -> -> 1 `i `uc ]
+"227
+[; ;TAD_RFID.c: 227:             TI_ResetTics(card_timer);
+[e ( _TI_ResetTics (1 F2774 ]
+"228
+[; ;TAD_RFID.c: 228:         }
+}
+[e :U 362 ]
+"230
+[; ;TAD_RFID.c: 230:         switch(state) {
+[e $U 364  ]
+{
+"232
+[; ;TAD_RFID.c: 232:             case 0:
+[e :U 365 ]
+"233
+[; ;TAD_RFID.c: 233:                 switch(substate) {
+[e $U 367  ]
+{
+"234
+[; ;TAD_RFID.c: 234:                     case 0:
+[e :U 368 ]
+"235
+[; ;TAD_RFID.c: 235:                         addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"236
+[; ;TAD_RFID.c: 236:                         value = 0x07;
+[e = F2778 -> -> 7 `i `uc ]
+"237
+[; ;TAD_RFID.c: 237:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"238
+[; ;TAD_RFID.c: 238:                         substate = 1;
+[e = F2757 -> -> 1 `i `uc ]
+"239
+[; ;TAD_RFID.c: 239:                         break;
+[e $U 366  ]
+"240
+[; ;TAD_RFID.c: 240:                     case 1:
+[e :U 369 ]
+"241
+[; ;TAD_RFID.c: 241:                         TagType = 0x26;
+[e = F2764 -> -> 38 `i `uc ]
+"242
+[; ;TAD_RFID.c: 242:                         irqEn = 0x77;
+[e = F2758 -> -> 119 `i `uc ]
+"243
+[; ;TAD_RFID.c: 243:                         waitIRq = 0x30;
+[e = F2759 -> -> 48 `i `uc ]
+"244
+[; ;TAD_RFID.c: 244:                         addr = 0x02;
+[e = F2777 -> -> 2 `i `uc ]
+"245
+[; ;TAD_RFID.c: 245:                         value = irqEn | 0x80;
+[e = F2778 -> | -> F2758 `i -> 128 `i `uc ]
+"246
+[; ;TAD_RFID.c: 246:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"247
+[; ;TAD_RFID.c: 247:                         substate = 2;
+[e = F2757 -> -> 2 `i `uc ]
+"248
+[; ;TAD_RFID.c: 248:                         break;
+[e $U 366  ]
+"249
+[; ;TAD_RFID.c: 249:                     case 2:
+[e :U 370 ]
+"250
+[; ;TAD_RFID.c: 250:                         addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"251
+[; ;TAD_RFID.c: 251:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"252
+[; ;TAD_RFID.c: 252:                         substate = 3;
+[e = F2757 -> -> 3 `i `uc ]
+"253
+[; ;TAD_RFID.c: 253:                         break;
+[e $U 366  ]
+"254
+[; ;TAD_RFID.c: 254:                     case 3:
+[e :U 371 ]
+"255
+[; ;TAD_RFID.c: 255:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 372  ]
+{
+"256
+[; ;TAD_RFID.c: 256:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"257
+[; ;TAD_RFID.c: 257:                         } else {
+}
+[e $U 373  ]
+[e :U 372 ]
+{
+"258
+[; ;TAD_RFID.c: 258:                             addr = 0x02;
+[e = F2777 -> -> 2 `i `uc ]
+"259
+[; ;TAD_RFID.c: 259:                             value = tempRegValue & ~0x80;
+[e = F2778 -> & -> F2768 `i ~ -> 128 `i `uc ]
+"260
+[; ;TAD_RFID.c: 260:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"261
+[; ;TAD_RFID.c: 261:                             substate = 4;
+[e = F2757 -> -> 4 `i `uc ]
+"262
+[; ;TAD_RFID.c: 262:                         }
+}
+[e :U 373 ]
+"263
+[; ;TAD_RFID.c: 263:                         break;
+[e $U 366  ]
+"264
+[; ;TAD_RFID.c: 264:                     case 4:
+[e :U 374 ]
+"265
+[; ;TAD_RFID.c: 265:                         addr = 0x0A;
+[e = F2777 -> -> 10 `i `uc ]
+"266
+[; ;TAD_RFID.c: 266:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"267
+[; ;TAD_RFID.c: 267:                         substate = 5;
+[e = F2757 -> -> 5 `i `uc ]
+"268
+[; ;TAD_RFID.c: 268:                         break;
+[e $U 366  ]
+"269
+[; ;TAD_RFID.c: 269:                     case 5:
+[e :U 375 ]
+"270
+[; ;TAD_RFID.c: 270:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 376  ]
+{
+"271
+[; ;TAD_RFID.c: 271:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"272
+[; ;TAD_RFID.c: 272:                         } else {
+}
+[e $U 377  ]
+[e :U 376 ]
+{
+"273
+[; ;TAD_RFID.c: 273:                             addr = 0x0A;
+[e = F2777 -> -> 10 `i `uc ]
+"274
+[; ;TAD_RFID.c: 274:                             value = tempRegValue | 0x80;
+[e = F2778 -> | -> F2768 `i -> 128 `i `uc ]
+"275
+[; ;TAD_RFID.c: 275:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"276
+[; ;TAD_RFID.c: 276:                             substate = 6;
+[e = F2757 -> -> 6 `i `uc ]
+"277
+[; ;TAD_RFID.c: 277:                         }
+}
+[e :U 377 ]
+"278
+[; ;TAD_RFID.c: 278:                         break;
+[e $U 366  ]
+"279
+[; ;TAD_RFID.c: 279:                     case 6:
+[e :U 378 ]
+"280
+[; ;TAD_RFID.c: 280:                         addr = 0x01;
+[e = F2777 -> -> 1 `i `uc ]
+"281
+[; ;TAD_RFID.c: 281:                         value = 0x00;
+[e = F2778 -> -> 0 `i `uc ]
+"282
+[; ;TAD_RFID.c: 282:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"283
+[; ;TAD_RFID.c: 283:                         substate = 7;
+[e = F2757 -> -> 7 `i `uc ]
+"284
+[; ;TAD_RFID.c: 284:                         break;
+[e $U 366  ]
+"285
+[; ;TAD_RFID.c: 285:                     case 7:
+[e :U 379 ]
+"286
+[; ;TAD_RFID.c: 286:                         addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"287
+[; ;TAD_RFID.c: 287:                         value = TagType;
+[e = F2778 -> F2764 `uc ]
+"288
+[; ;TAD_RFID.c: 288:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"289
+[; ;TAD_RFID.c: 289:                         substate = 8;
+[e = F2757 -> -> 8 `i `uc ]
+"290
+[; ;TAD_RFID.c: 290:                         break;
+[e $U 366  ]
+"291
+[; ;TAD_RFID.c: 291:                     case 8:
+[e :U 380 ]
+"292
+[; ;TAD_RFID.c: 292:                         addr = 0x01;
+[e = F2777 -> -> 1 `i `uc ]
+"293
+[; ;TAD_RFID.c: 293:                         value = 0x0C;
+[e = F2778 -> -> 12 `i `uc ]
+"294
+[; ;TAD_RFID.c: 294:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"295
+[; ;TAD_RFID.c: 295:                         substate = 9;
+[e = F2757 -> -> 9 `i `uc ]
+"296
+[; ;TAD_RFID.c: 296:                         break;
+[e $U 366  ]
+"297
+[; ;TAD_RFID.c: 297:                     case 9:
+[e :U 381 ]
+"298
+[; ;TAD_RFID.c: 298:                         addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"299
+[; ;TAD_RFID.c: 299:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"300
+[; ;TAD_RFID.c: 300:                         substate = 10;
+[e = F2757 -> -> 10 `i `uc ]
+"301
+[; ;TAD_RFID.c: 301:                         break;
+[e $U 366  ]
+"302
+[; ;TAD_RFID.c: 302:                     case 10:
+[e :U 382 ]
+"303
+[; ;TAD_RFID.c: 303:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 383  ]
+{
+"304
+[; ;TAD_RFID.c: 304:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"305
+[; ;TAD_RFID.c: 305:                         } else {
+}
+[e $U 384  ]
+[e :U 383 ]
+{
+"306
+[; ;TAD_RFID.c: 306:                             addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"307
+[; ;TAD_RFID.c: 307:                             value = tempRegValue | 0x80;
+[e = F2778 -> | -> F2768 `i -> 128 `i `uc ]
+"308
+[; ;TAD_RFID.c: 308:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"309
+[; ;TAD_RFID.c: 309:                             substate = 11;
+[e = F2757 -> -> 11 `i `uc ]
+"310
+[; ;TAD_RFID.c: 310:                         }
+}
+[e :U 384 ]
+"311
+[; ;TAD_RFID.c: 311:                         break;
+[e $U 366  ]
+"312
+[; ;TAD_RFID.c: 312:                     case 11:
+[e :U 385 ]
+"313
+[; ;TAD_RFID.c: 313:                         i = 0xFF;
+[e = F2761 -> -> 255 `i `uc ]
+"314
+[; ;TAD_RFID.c: 314:                         addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"315
+[; ;TAD_RFID.c: 315:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"316
+[; ;TAD_RFID.c: 316:                         substate = 12;
+[e = F2757 -> -> 12 `i `uc ]
+"317
+[; ;TAD_RFID.c: 317:                         break;
+[e $U 366  ]
+"318
+[; ;TAD_RFID.c: 318:                     case 12:
+[e :U 386 ]
+"319
+[; ;TAD_RFID.c: 319:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 387  ]
+{
+"320
+[; ;TAD_RFID.c: 320:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"321
+[; ;TAD_RFID.c: 321:                         } else {
+}
+[e $U 388  ]
+[e :U 387 ]
+{
+"322
+[; ;TAD_RFID.c: 322:                             n = tempRegValue;
+[e = F2760 -> F2768 `uc ]
+"323
+[; ;TAD_RFID.c: 323:                             if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+[e $ ! || || != & -> F2760 `i -> 1 `i -> 0 `i != & -> F2760 `i -> F2759 `i -> 0 `i == -> =- F2761 -> -> 1 `i `uc `i -> 0 `i 389  ]
+{
+"324
+[; ;TAD_RFID.c: 324:                                 addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"325
+[; ;TAD_RFID.c: 325:                                 operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"326
+[; ;TAD_RFID.c: 326:                                 substate = 13;
+[e = F2757 -> -> 13 `i `uc ]
+"327
+[; ;TAD_RFID.c: 327:                             } else {
+}
+[e $U 390  ]
+[e :U 389 ]
+{
+"328
+[; ;TAD_RFID.c: 328:                                 addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"329
+[; ;TAD_RFID.c: 329:                                 operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"330
+[; ;TAD_RFID.c: 330:                             }
+}
+[e :U 390 ]
+"331
+[; ;TAD_RFID.c: 331:                         }
+}
+[e :U 388 ]
+"332
+[; ;TAD_RFID.c: 332:                         break;
+[e $U 366  ]
+"333
+[; ;TAD_RFID.c: 333:                     case 13:
+[e :U 391 ]
+"334
+[; ;TAD_RFID.c: 334:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 392  ]
+{
+"335
+[; ;TAD_RFID.c: 335:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"336
+[; ;TAD_RFID.c: 336:                         } else if (tempRegValue != 0x00) {
+}
+[e $U 393  ]
+[e :U 392 ]
+[e $ ! != -> F2768 `i -> 0 `i 394  ]
+{
+"337
+[; ;TAD_RFID.c: 337:                             addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"338
+[; ;TAD_RFID.c: 338:                             value = tempRegValue & ~0x80;
+[e = F2778 -> & -> F2768 `i ~ -> 128 `i `uc ]
+"339
+[; ;TAD_RFID.c: 339:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"340
+[; ;TAD_RFID.c: 340:                             substate = 14;
+[e = F2757 -> -> 14 `i `uc ]
+"341
+[; ;TAD_RFID.c: 341:                         } else {
+}
+[e $U 395  ]
+[e :U 394 ]
+{
+"342
+[; ;TAD_RFID.c: 342:                             addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"343
+[; ;TAD_RFID.c: 343:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"345
+[; ;TAD_RFID.c: 345:                         }
+}
+[e :U 395 ]
+[e :U 393 ]
+"346
+[; ;TAD_RFID.c: 346:                         break;
+[e $U 366  ]
+"347
+[; ;TAD_RFID.c: 347:                     case 14:
+[e :U 396 ]
+"348
+[; ;TAD_RFID.c: 348:                         addr = 0x06;
+[e = F2777 -> -> 6 `i `uc ]
+"349
+[; ;TAD_RFID.c: 349:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"350
+[; ;TAD_RFID.c: 350:                         substate = 15;
+[e = F2757 -> -> 15 `i `uc ]
+"351
+[; ;TAD_RFID.c: 351:                         break;
+[e $U 366  ]
+"352
+[; ;TAD_RFID.c: 352:                     case 15:
+[e :U 397 ]
+"353
+[; ;TAD_RFID.c: 353:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 398  ]
+{
+"354
+[; ;TAD_RFID.c: 354:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"355
+[; ;TAD_RFID.c: 355:                         } else if (i != 0 && !(tempRegValue & 0x1B)) {
+}
+[e $U 399  ]
+[e :U 398 ]
+[e $ ! && != -> F2761 `i -> 0 `i ! != & -> F2768 `i -> 27 `i -> 0 `i 400  ]
+{
+"356
+[; ;TAD_RFID.c: 356:                             addr = 0x0A;
+[e = F2777 -> -> 10 `i `uc ]
+"357
+[; ;TAD_RFID.c: 357:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"358
+[; ;TAD_RFID.c: 358:                             substate = 16;
+[e = F2757 -> -> 16 `i `uc ]
+"359
+[; ;TAD_RFID.c: 359:                         } else {
+}
+[e $U 401  ]
+[e :U 400 ]
+{
+"361
+[; ;TAD_RFID.c: 361:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"362
+[; ;TAD_RFID.c: 362:                         }
+}
+[e :U 401 ]
+[e :U 399 ]
+"363
+[; ;TAD_RFID.c: 363:                         break;
+[e $U 366  ]
+"364
+[; ;TAD_RFID.c: 364:                     case 16:
+[e :U 402 ]
+"365
+[; ;TAD_RFID.c: 365:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 403  ]
+{
+"366
+[; ;TAD_RFID.c: 366:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"367
+[; ;TAD_RFID.c: 367:                         } else {
+}
+[e $U 404  ]
+[e :U 403 ]
+{
+"368
+[; ;TAD_RFID.c: 368:                             fifoLevel = tempRegValue;
+[e = F2770 F2768 ]
+"369
+[; ;TAD_RFID.c: 369:                             addr = 0x0C;
+[e = F2777 -> -> 12 `i `uc ]
+"370
+[; ;TAD_RFID.c: 370:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"371
+[; ;TAD_RFID.c: 371:                             substate = 17;
+[e = F2757 -> -> 17 `i `uc ]
+"372
+[; ;TAD_RFID.c: 372:                         }
+}
+[e :U 404 ]
+"373
+[; ;TAD_RFID.c: 373:                         break;
+[e $U 366  ]
+"374
+[; ;TAD_RFID.c: 374:                     case 17:
+[e :U 405 ]
+"375
+[; ;TAD_RFID.c: 375:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 406  ]
+{
+"376
+[; ;TAD_RFID.c: 376:                             substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"377
+[; ;TAD_RFID.c: 377:                         } else {
+}
+[e $U 407  ]
+[e :U 406 ]
+{
+"378
+[; ;TAD_RFID.c: 378:                             lastBitsVal = tempRegValue & 0x07;
+[e = F2769 -> & -> F2768 `i -> 7 `i `uc ]
+"379
+[; ;TAD_RFID.c: 379:                             backBitsCalc = lastBitsVal ? (fifoLevel - 1) * 8 + lastBitsVal : fifoLevel * 8;
+[e = F2771 -> ? != -> F2769 `i -> 0 `i : + * - -> F2770 `i -> 1 `i -> 8 `i -> F2769 `i * -> F2770 `i -> 8 `i `uc ]
+"380
+[; ;TAD_RFID.c: 380:                             if (backBitsCalc == 0x10) {
+[e $ ! == -> F2771 `i -> 16 `i 408  ]
+{
+"381
+[; ;TAD_RFID.c: 381:                                 state = 1;
+[e = F2756 -> -> 1 `i `uc ]
+"382
+[; ;TAD_RFID.c: 382:                                 substate = 0;
+[e = F2757 -> -> 0 `i `uc ]
+"383
+[; ;TAD_RFID.c: 383:                             } else {
+}
+[e $U 409  ]
+[e :U 408 ]
+{
+"384
+[; ;TAD_RFID.c: 384:                                 state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"385
+[; ;TAD_RFID.c: 385:                             }
+}
+[e :U 409 ]
+"386
+[; ;TAD_RFID.c: 386:                         }
+}
+[e :U 407 ]
+"387
+[; ;TAD_RFID.c: 387:                         break;
+[e $U 366  ]
+"388
+[; ;TAD_RFID.c: 388:                 }
+}
+[e $U 366  ]
+[e :U 367 ]
+[e [\ F2757 , $ -> 0 `i 368
+ , $ -> 1 `i 369
+ , $ -> 2 `i 370
+ , $ -> 3 `i 371
+ , $ -> 4 `i 374
+ , $ -> 5 `i 375
+ , $ -> 6 `i 378
+ , $ -> 7 `i 379
+ , $ -> 8 `i 380
+ , $ -> 9 `i 381
+ , $ -> 10 `i 382
+ , $ -> 11 `i 385
+ , $ -> 12 `i 386
+ , $ -> 13 `i 391
+ , $ -> 14 `i 396
+ , $ -> 15 `i 397
+ , $ -> 16 `i 402
+ , $ -> 17 `i 405
+ 366 ]
+[e :U 366 ]
+"389
+[; ;TAD_RFID.c: 389:                 break;
+[e $U 363  ]
+"391
+[; ;TAD_RFID.c: 391:             case 1:
+[e :U 410 ]
+"392
+[; ;TAD_RFID.c: 392:                 switch(substate) {
+[e $U 412  ]
+{
+"393
+[; ;TAD_RFID.c: 393:                     case 0:
+[e :U 413 ]
+"394
+[; ;TAD_RFID.c: 394:                         addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"395
+[; ;TAD_RFID.c: 395:                         value = 0x00;
+[e = F2778 -> -> 0 `i `uc ]
+"396
+[; ;TAD_RFID.c: 396:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"397
+[; ;TAD_RFID.c: 397:                         substate = 1;
+[e = F2757 -> -> 1 `i `uc ]
+"398
+[; ;TAD_RFID.c: 398:                         break;
+[e $U 411  ]
+"399
+[; ;TAD_RFID.c: 399:                     case 1:
+[e :U 414 ]
+"400
+[; ;TAD_RFID.c: 400:                         UID[0] = 0x93;
+[e = *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux -> -> 147 `i `uc ]
+"401
+[; ;TAD_RFID.c: 401:                         UID[1] = 0x20;
+[e = *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux -> -> 32 `i `uc ]
+"402
+[; ;TAD_RFID.c: 402:                         addr = 0x08;
+[e = F2777 -> -> 8 `i `uc ]
+"403
+[; ;TAD_RFID.c: 403:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"404
+[; ;TAD_RFID.c: 404:                         substate = 2;
+[e = F2757 -> -> 2 `i `uc ]
+"405
+[; ;TAD_RFID.c: 405:                         break;
+[e $U 411  ]
+"406
+[; ;TAD_RFID.c: 406:                     case 2:
+[e :U 415 ]
+"407
+[; ;TAD_RFID.c: 407:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 416  ]
+{
+"408
+[; ;TAD_RFID.c: 408:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"409
+[; ;TAD_RFID.c: 409:                         } else {
+}
+[e $U 417  ]
+[e :U 416 ]
+{
+"410
+[; ;TAD_RFID.c: 410:                             addr = 0x08;
+[e = F2777 -> -> 8 `i `uc ]
+"411
+[; ;TAD_RFID.c: 411:                             value = tempRegValue & ~0x08;
+[e = F2778 -> & -> F2768 `i ~ -> 8 `i `uc ]
+"412
+[; ;TAD_RFID.c: 412:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"413
+[; ;TAD_RFID.c: 413:                             substate = 3;
+[e = F2757 -> -> 3 `i `uc ]
+"414
+[; ;TAD_RFID.c: 414:                         }
+}
+[e :U 417 ]
+"415
+[; ;TAD_RFID.c: 415:                         break;
+[e $U 411  ]
+"416
+[; ;TAD_RFID.c: 416:                     case 3:
+[e :U 418 ]
+"417
+[; ;TAD_RFID.c: 417:                         irqEn = 0x77;
+[e = F2758 -> -> 119 `i `uc ]
+"418
+[; ;TAD_RFID.c: 418:                         waitIRq = 0x30;
+[e = F2759 -> -> 48 `i `uc ]
+"419
+[; ;TAD_RFID.c: 419:                         addr = 0x02;
+[e = F2777 -> -> 2 `i `uc ]
+"420
+[; ;TAD_RFID.c: 420:                         value = irqEn | 0x80;
+[e = F2778 -> | -> F2758 `i -> 128 `i `uc ]
+"421
+[; ;TAD_RFID.c: 421:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"422
+[; ;TAD_RFID.c: 422:                         substate = 4;
+[e = F2757 -> -> 4 `i `uc ]
+"423
+[; ;TAD_RFID.c: 423:                         break;
+[e $U 411  ]
+"424
+[; ;TAD_RFID.c: 424:                     case 4:
+[e :U 419 ]
+"425
+[; ;TAD_RFID.c: 425:                         addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"426
+[; ;TAD_RFID.c: 426:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"427
+[; ;TAD_RFID.c: 427:                         substate = 5;
+[e = F2757 -> -> 5 `i `uc ]
+"428
+[; ;TAD_RFID.c: 428:                         break;
+[e $U 411  ]
+"429
+[; ;TAD_RFID.c: 429:                     case 5:
+[e :U 420 ]
+"430
+[; ;TAD_RFID.c: 430:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 421  ]
+{
+"431
+[; ;TAD_RFID.c: 431:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"432
+[; ;TAD_RFID.c: 432:                         } else {
+}
+[e $U 422  ]
+[e :U 421 ]
+{
+"433
+[; ;TAD_RFID.c: 433:                             addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"434
+[; ;TAD_RFID.c: 434:                             value = tempRegValue & ~0x80;
+[e = F2778 -> & -> F2768 `i ~ -> 128 `i `uc ]
+"435
+[; ;TAD_RFID.c: 435:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"436
+[; ;TAD_RFID.c: 436:                             substate = 6;
+[e = F2757 -> -> 6 `i `uc ]
+"437
+[; ;TAD_RFID.c: 437:                         }
+}
+[e :U 422 ]
+"438
+[; ;TAD_RFID.c: 438:                         break;
+[e $U 411  ]
+"439
+[; ;TAD_RFID.c: 439:                     case 6:
+[e :U 423 ]
+"440
+[; ;TAD_RFID.c: 440:                         addr = 0x0A;
+[e = F2777 -> -> 10 `i `uc ]
+"441
+[; ;TAD_RFID.c: 441:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"442
+[; ;TAD_RFID.c: 442:                         substate = 7;
+[e = F2757 -> -> 7 `i `uc ]
+"443
+[; ;TAD_RFID.c: 443:                         break;
+[e $U 411  ]
+"444
+[; ;TAD_RFID.c: 444:                     case 7:
+[e :U 424 ]
+"445
+[; ;TAD_RFID.c: 445:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 425  ]
+{
+"446
+[; ;TAD_RFID.c: 446:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"447
+[; ;TAD_RFID.c: 447:                         } else {
+}
+[e $U 426  ]
+[e :U 425 ]
+{
+"448
+[; ;TAD_RFID.c: 448:                             addr = 0x0A;
+[e = F2777 -> -> 10 `i `uc ]
+"449
+[; ;TAD_RFID.c: 449:                             value = tempRegValue | 0x80;
+[e = F2778 -> | -> F2768 `i -> 128 `i `uc ]
+"450
+[; ;TAD_RFID.c: 450:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"451
+[; ;TAD_RFID.c: 451:                             substate = 8;
+[e = F2757 -> -> 8 `i `uc ]
+"452
+[; ;TAD_RFID.c: 452:                         }
+}
+[e :U 426 ]
+"453
+[; ;TAD_RFID.c: 453:                         break;
+[e $U 411  ]
+"454
+[; ;TAD_RFID.c: 454:                     case 8:
+[e :U 427 ]
+"455
+[; ;TAD_RFID.c: 455:                         addr = 0x01;
+[e = F2777 -> -> 1 `i `uc ]
+"456
+[; ;TAD_RFID.c: 456:                         value = 0x00;
+[e = F2778 -> -> 0 `i `uc ]
+"457
+[; ;TAD_RFID.c: 457:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"458
+[; ;TAD_RFID.c: 458:                         substate = 9;
+[e = F2757 -> -> 9 `i `uc ]
+"459
+[; ;TAD_RFID.c: 459:                         break;
+[e $U 411  ]
+"460
+[; ;TAD_RFID.c: 460:                     case 9:
+[e :U 428 ]
+"461
+[; ;TAD_RFID.c: 461:                         addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"462
+[; ;TAD_RFID.c: 462:                         value = UID[0];
+[e = F2778 *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux ]
+"463
+[; ;TAD_RFID.c: 463:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"464
+[; ;TAD_RFID.c: 464:                         substate = 10;
+[e = F2757 -> -> 10 `i `uc ]
+"465
+[; ;TAD_RFID.c: 465:                         break;
+[e $U 411  ]
+"466
+[; ;TAD_RFID.c: 466:                     case 10:
+[e :U 429 ]
+"467
+[; ;TAD_RFID.c: 467:                         addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"468
+[; ;TAD_RFID.c: 468:                         value = UID[1];
+[e = F2778 *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux ]
+"469
+[; ;TAD_RFID.c: 469:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"470
+[; ;TAD_RFID.c: 470:                         substate = 11;
+[e = F2757 -> -> 11 `i `uc ]
+"471
+[; ;TAD_RFID.c: 471:                         break;
+[e $U 411  ]
+"472
+[; ;TAD_RFID.c: 472:                     case 11:
+[e :U 430 ]
+"473
+[; ;TAD_RFID.c: 473:                         addr = 0x01;
+[e = F2777 -> -> 1 `i `uc ]
+"474
+[; ;TAD_RFID.c: 474:                         value = 0x0C;
+[e = F2778 -> -> 12 `i `uc ]
+"475
+[; ;TAD_RFID.c: 475:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"476
+[; ;TAD_RFID.c: 476:                         substate = 12;
+[e = F2757 -> -> 12 `i `uc ]
+"477
+[; ;TAD_RFID.c: 477:                         break;
+[e $U 411  ]
+"478
+[; ;TAD_RFID.c: 478:                     case 12:
+[e :U 431 ]
+"479
+[; ;TAD_RFID.c: 479:                         addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"480
+[; ;TAD_RFID.c: 480:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"481
+[; ;TAD_RFID.c: 481:                         substate = 13;
+[e = F2757 -> -> 13 `i `uc ]
+"482
+[; ;TAD_RFID.c: 482:                         break;
+[e $U 411  ]
+"483
+[; ;TAD_RFID.c: 483:                     case 13:
+[e :U 432 ]
+"484
+[; ;TAD_RFID.c: 484:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 433  ]
+{
+"485
+[; ;TAD_RFID.c: 485:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"486
+[; ;TAD_RFID.c: 486:                         } else {
+}
+[e $U 434  ]
+[e :U 433 ]
+{
+"487
+[; ;TAD_RFID.c: 487:                             addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"488
+[; ;TAD_RFID.c: 488:                             value = tempRegValue | 0x80;
+[e = F2778 -> | -> F2768 `i -> 128 `i `uc ]
+"489
+[; ;TAD_RFID.c: 489:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"490
+[; ;TAD_RFID.c: 490:                             substate = 14;
+[e = F2757 -> -> 14 `i `uc ]
+"491
+[; ;TAD_RFID.c: 491:                         }
+}
+[e :U 434 ]
+"492
+[; ;TAD_RFID.c: 492:                         break;
+[e $U 411  ]
+"493
+[; ;TAD_RFID.c: 493:                     case 14:
+[e :U 435 ]
+"494
+[; ;TAD_RFID.c: 494:                         i = 0xFF;
+[e = F2761 -> -> 255 `i `uc ]
+"495
+[; ;TAD_RFID.c: 495:                         addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"496
+[; ;TAD_RFID.c: 496:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"497
+[; ;TAD_RFID.c: 497:                         substate = 15;
+[e = F2757 -> -> 15 `i `uc ]
+"498
+[; ;TAD_RFID.c: 498:                         break;
+[e $U 411  ]
+"499
+[; ;TAD_RFID.c: 499:                     case 15:
+[e :U 436 ]
+"500
+[; ;TAD_RFID.c: 500:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 437  ]
+{
+"501
+[; ;TAD_RFID.c: 501:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"502
+[; ;TAD_RFID.c: 502:                         } else {
+}
+[e $U 438  ]
+[e :U 437 ]
+{
+"503
+[; ;TAD_RFID.c: 503:                             n = tempRegValue;
+[e = F2760 -> F2768 `uc ]
+"504
+[; ;TAD_RFID.c: 504:                             if ((n & 0x01) || (n & waitIRq) || (--i == 0)) {
+[e $ ! || || != & -> F2760 `i -> 1 `i -> 0 `i != & -> F2760 `i -> F2759 `i -> 0 `i == -> =- F2761 -> -> 1 `i `uc `i -> 0 `i 439  ]
+{
+"505
+[; ;TAD_RFID.c: 505:                                 addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"506
+[; ;TAD_RFID.c: 506:                                 operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"507
+[; ;TAD_RFID.c: 507:                                 substate = 16;
+[e = F2757 -> -> 16 `i `uc ]
+"508
+[; ;TAD_RFID.c: 508:                             } else {
+}
+[e $U 440  ]
+[e :U 439 ]
+{
+"509
+[; ;TAD_RFID.c: 509:                                 addr = 0x04;
+[e = F2777 -> -> 4 `i `uc ]
+"510
+[; ;TAD_RFID.c: 510:                                 operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"512
+[; ;TAD_RFID.c: 512:                             }
+}
+[e :U 440 ]
+"513
+[; ;TAD_RFID.c: 513:                         }
+}
+[e :U 438 ]
+"514
+[; ;TAD_RFID.c: 514:                         break;
+[e $U 411  ]
+"515
+[; ;TAD_RFID.c: 515:                     case 16:
+[e :U 441 ]
+"516
+[; ;TAD_RFID.c: 516:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 442  ]
+{
+"517
+[; ;TAD_RFID.c: 517:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"518
+[; ;TAD_RFID.c: 518:                         } else {
+}
+[e $U 443  ]
+[e :U 442 ]
+{
+"519
+[; ;TAD_RFID.c: 519:                             addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"520
+[; ;TAD_RFID.c: 520:                             value = tempRegValue & ~0x80;
+[e = F2778 -> & -> F2768 `i ~ -> 128 `i `uc ]
+"521
+[; ;TAD_RFID.c: 521:                             operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"522
+[; ;TAD_RFID.c: 522:                             substate = 17;
+[e = F2757 -> -> 17 `i `uc ]
+"523
+[; ;TAD_RFID.c: 523:                         }
+}
+[e :U 443 ]
+"524
+[; ;TAD_RFID.c: 524:                         break;
+[e $U 411  ]
+"525
+[; ;TAD_RFID.c: 525:                     case 17:
+[e :U 444 ]
+"526
+[; ;TAD_RFID.c: 526:                         addr = 0x06;
+[e = F2777 -> -> 6 `i `uc ]
+"527
+[; ;TAD_RFID.c: 527:                         operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"528
+[; ;TAD_RFID.c: 528:                         substate = 18;
+[e = F2757 -> -> 18 `i `uc ]
+"529
+[; ;TAD_RFID.c: 529:                         break;
+[e $U 411  ]
+"530
+[; ;TAD_RFID.c: 530:                     case 18:
+[e :U 445 ]
+"531
+[; ;TAD_RFID.c: 531:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 446  ]
+{
+"532
+[; ;TAD_RFID.c: 532:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"533
+[; ;TAD_RFID.c: 533:                         } else if (i != 0 && !(tempRegValue & 0x1B)) {
+}
+[e $U 447  ]
+[e :U 446 ]
+[e $ ! && != -> F2761 `i -> 0 `i ! != & -> F2768 `i -> 27 `i -> 0 `i 448  ]
+{
+"534
+[; ;TAD_RFID.c: 534:                             addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"535
+[; ;TAD_RFID.c: 535:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"536
+[; ;TAD_RFID.c: 536:                             substate = 19;
+[e = F2757 -> -> 19 `i `uc ]
+"537
+[; ;TAD_RFID.c: 537:                         } else {
+}
+[e $U 449  ]
+[e :U 448 ]
+{
+"538
+[; ;TAD_RFID.c: 538:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"539
+[; ;TAD_RFID.c: 539:                         }
+}
+[e :U 449 ]
+[e :U 447 ]
+"540
+[; ;TAD_RFID.c: 540:                         break;
+[e $U 411  ]
+"541
+[; ;TAD_RFID.c: 541:                     case 19:
+[e :U 450 ]
+"542
+[; ;TAD_RFID.c: 542:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 451  ]
+{
+"543
+[; ;TAD_RFID.c: 543:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"544
+[; ;TAD_RFID.c: 544:                         } else {
+}
+[e $U 452  ]
+[e :U 451 ]
+{
+"545
+[; ;TAD_RFID.c: 545:                             UID[0] = tempRegValue;
+[e = *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux F2768 ]
+"546
+[; ;TAD_RFID.c: 546:                             addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"547
+[; ;TAD_RFID.c: 547:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"548
+[; ;TAD_RFID.c: 548:                             substate = 20;
+[e = F2757 -> -> 20 `i `uc ]
+"549
+[; ;TAD_RFID.c: 549:                         }
+}
+[e :U 452 ]
+"550
+[; ;TAD_RFID.c: 550:                         break;
+[e $U 411  ]
+"551
+[; ;TAD_RFID.c: 551:                     case 20:
+[e :U 453 ]
+"552
+[; ;TAD_RFID.c: 552:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 454  ]
+{
+"553
+[; ;TAD_RFID.c: 553:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"554
+[; ;TAD_RFID.c: 554:                         } else {
+}
+[e $U 455  ]
+[e :U 454 ]
+{
+"555
+[; ;TAD_RFID.c: 555:                             UID[1] = tempRegValue;
+[e = *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux F2768 ]
+"556
+[; ;TAD_RFID.c: 556:                             addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"557
+[; ;TAD_RFID.c: 557:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"558
+[; ;TAD_RFID.c: 558:                             substate = 21;
+[e = F2757 -> -> 21 `i `uc ]
+"559
+[; ;TAD_RFID.c: 559:                         }
+}
+[e :U 455 ]
+"560
+[; ;TAD_RFID.c: 560:                         break;
+[e $U 411  ]
+"561
+[; ;TAD_RFID.c: 561:                     case 21:
+[e :U 456 ]
+"562
+[; ;TAD_RFID.c: 562:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 457  ]
+{
+"563
+[; ;TAD_RFID.c: 563:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"564
+[; ;TAD_RFID.c: 564:                         } else {
+}
+[e $U 458  ]
+[e :U 457 ]
+{
+"565
+[; ;TAD_RFID.c: 565:                             UID[2] = tempRegValue;
+[e = *U + &U F2765 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2765 `ui `ux F2768 ]
+"566
+[; ;TAD_RFID.c: 566:                             addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"567
+[; ;TAD_RFID.c: 567:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"568
+[; ;TAD_RFID.c: 568:                             substate = 22;
+[e = F2757 -> -> 22 `i `uc ]
+"569
+[; ;TAD_RFID.c: 569:                         }
+}
+[e :U 458 ]
+"570
+[; ;TAD_RFID.c: 570:                         break;
+[e $U 411  ]
+"571
+[; ;TAD_RFID.c: 571:                     case 22:
+[e :U 459 ]
+"572
+[; ;TAD_RFID.c: 572:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 460  ]
+{
+"573
+[; ;TAD_RFID.c: 573:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"574
+[; ;TAD_RFID.c: 574:                         } else {
+}
+[e $U 461  ]
+[e :U 460 ]
+{
+"575
+[; ;TAD_RFID.c: 575:                             UID[3] = tempRegValue;
+[e = *U + &U F2765 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2765 `ui `ux F2768 ]
+"576
+[; ;TAD_RFID.c: 576:                             addr = 0x09;
+[e = F2777 -> -> 9 `i `uc ]
+"577
+[; ;TAD_RFID.c: 577:                             operation_pending = 1;
+[e = F2776 -> -> 1 `i `uc ]
+"578
+[; ;TAD_RFID.c: 578:                             substate = 23;
+[e = F2757 -> -> 23 `i `uc ]
+"579
+[; ;TAD_RFID.c: 579:                         }
+}
+[e :U 461 ]
+"580
+[; ;TAD_RFID.c: 580:                         break;
+[e $U 411  ]
+"581
+[; ;TAD_RFID.c: 581:                     case 23:
+[e :U 462 ]
+"582
+[; ;TAD_RFID.c: 582:                         if (tempRegValue == 0xFF) {
+[e $ ! == -> F2768 `i -> 255 `i 463  ]
+{
+"583
+[; ;TAD_RFID.c: 583:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"584
+[; ;TAD_RFID.c: 584:                         } else {
+}
+[e $U 464  ]
+[e :U 463 ]
+{
+"585
+[; ;TAD_RFID.c: 585:                             UID[4] = tempRegValue;
+[e = *U + &U F2765 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2765 `ui `ux F2768 ]
+"586
+[; ;TAD_RFID.c: 586:                             UID[5] = 0;
+[e = *U + &U F2765 * -> -> -> 5 `i `ui `ux -> -> # *U &U F2765 `ui `ux -> -> 0 `i `uc ]
+"587
+[; ;TAD_RFID.c: 587:                             checksum = UID[0] ^ UID[1] ^ UID[2] ^ UID[3];
+[e = F2766 -> ^ ^ ^ -> *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> *U + &U F2765 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> *U + &U F2765 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i `uc ]
+"588
+[; ;TAD_RFID.c: 588:                             allZero = ((UID[0] | UID[1] | UID[2] | UID[3]) == 0);
+[e = F2767 -> -> == | | | -> *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> *U + &U F2765 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> *U + &U F2765 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i -> 0 `i `i `uc ]
+"589
+[; ;TAD_RFID.c: 589:                             substate = 24;
+[e = F2757 -> -> 24 `i `uc ]
+"590
+[; ;TAD_RFID.c: 590:                         }
+}
+[e :U 464 ]
+"591
+[; ;TAD_RFID.c: 591:                         break;
+[e $U 411  ]
+"592
+[; ;TAD_RFID.c: 592:                     case 24:
+[e :U 465 ]
+"593
+[; ;TAD_RFID.c: 593:                         if (checksum != UID[4] || allZero) {
+[e $ ! || != -> F2766 `i -> *U + &U F2765 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i != -> F2767 `i -> 0 `i 466  ]
+{
+"594
+[; ;TAD_RFID.c: 594:                             state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"595
+[; ;TAD_RFID.c: 595:                         } else {
+}
+[e $U 467  ]
+[e :U 466 ]
+{
+"597
+[; ;TAD_RFID.c: 597:                             substate = 25;
+[e = F2757 -> -> 25 `i `uc ]
+"598
+[; ;TAD_RFID.c: 598:                         }
+}
+[e :U 467 ]
+"599
+[; ;TAD_RFID.c: 599:                         break;
+[e $U 411  ]
+"601
+[; ;TAD_RFID.c: 601:                     case 25:
+[e :U 468 ]
+"603
+[; ;TAD_RFID.c: 603:                         getActualUID(currentUser, 0xFF);
+[e ( _getActualUID (2 , &U F2772 -> -> 255 `i `uc ]
+"604
+[; ;TAD_RFID.c: 604:                         if (getCurrentUserIndex() != 4) {
+[e $ ! != -> ( _getCurrentUserIndex ..  `i -> 4 `i 469  ]
+{
+"605
+[; ;TAD_RFID.c: 605:                             substate = 26;
+[e = F2757 -> -> 26 `i `uc ]
+"606
+[; ;TAD_RFID.c: 606:                         } else if (cardRemoved == 1) {
+}
+[e $U 470  ]
+[e :U 469 ]
+[e $ ! == -> F2773 `i -> 1 `i 471  ]
+{
+"607
+[; ;TAD_RFID.c: 607:                             substate = 27;
+[e = F2757 -> -> 27 `i `uc ]
+"608
+[; ;TAD_RFID.c: 608:                         } else {
+}
+[e $U 472  ]
+[e :U 471 ]
+{
+"609
+[; ;TAD_RFID.c: 609:                             substate = 28;
+[e = F2757 -> -> 28 `i `uc ]
+"610
+[; ;TAD_RFID.c: 610:                         }
+}
+[e :U 472 ]
+[e :U 470 ]
+"612
+[; ;TAD_RFID.c: 612:                         break;
+[e $U 411  ]
+"614
+[; ;TAD_RFID.c: 614:                     case 26:
+[e :U 473 ]
+"616
+[; ;TAD_RFID.c: 616:                         if(currentUser[0] == UID[0] && currentUser[1] == UID[1] &&
+[e $ ! && && && && == -> *U + &U F2772 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2772 `ui `ux `i -> *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i == -> *U + &U F2772 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2772 `ui `ux `i -> *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i == -> *U + &U F2772 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2772 `ui `ux `i -> *U + &U F2765 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i == -> *U + &U F2772 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2772 `ui `ux `i -> *U + &U F2765 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i == -> *U + &U F2772 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2772 `ui `ux `i -> *U + &U F2765 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2765 `ui `ux `i 474  ]
+"618
+[; ;TAD_RFID.c: 618:                            currentUser[4] == UID[4]) {
+{
+"619
+[; ;TAD_RFID.c: 619:                             if (cardRemoved == 1) {
+[e $ ! == -> F2773 `i -> 1 `i 475  ]
+{
+"621
+[; ;TAD_RFID.c: 621:                                 setIndex(4);
+[e ( _setIndex (1 -> -> 4 `i `uc ]
+"622
+[; ;TAD_RFID.c: 622:                                 substate = 28;
+[e = F2757 -> -> 28 `i `uc ]
+"623
+[; ;TAD_RFID.c: 623:                                 cardRemoved = 0;
+[e = F2773 -> -> 0 `i `uc ]
+"624
+[; ;TAD_RFID.c: 624:                             } else {
+}
+[e $U 476  ]
+[e :U 475 ]
+{
+"626
+[; ;TAD_RFID.c: 626:                                 substate = 28;
+[e = F2757 -> -> 28 `i `uc ]
+"627
+[; ;TAD_RFID.c: 627:                             }
+}
+[e :U 476 ]
+"628
+[; ;TAD_RFID.c: 628:                         } else {
+}
+[e $U 477  ]
+[e :U 474 ]
+{
+"630
+[; ;TAD_RFID.c: 630:                             substate = 27;
+[e = F2757 -> -> 27 `i `uc ]
+"631
+[; ;TAD_RFID.c: 631:                         }
+}
+[e :U 477 ]
+"632
+[; ;TAD_RFID.c: 632:                         break;
+[e $U 411  ]
+"634
+[; ;TAD_RFID.c: 634:                     case 27:
+[e :U 478 ]
+"636
+[; ;TAD_RFID.c: 636:                         if(motor_setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]) == 1) {
+[e $ ! == -> ( _motor_setCurrentUser (4 , , , , -> *U + &U F2765 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2765 `ui `ux `uc -> *U + &U F2765 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2765 `ui `ux `uc -> *U + &U F2765 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2765 `ui `ux `uc -> *U + &U F2765 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2765 `ui `ux `uc -> *U + &U F2765 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2765 `ui `ux `uc `i -> 1 `i 479  ]
+{
+"637
+[; ;TAD_RFID.c: 637:                             substate = 28;
+[e = F2757 -> -> 28 `i `uc ]
+"638
+[; ;TAD_RFID.c: 638:                             cardRemoved = 0;
+[e = F2773 -> -> 0 `i `uc ]
+"639
+[; ;TAD_RFID.c: 639:                         }
+}
+[e :U 479 ]
+"640
+[; ;TAD_RFID.c: 640:                         break;
+[e $U 411  ]
+"642
+[; ;TAD_RFID.c: 642:                     case 28:
+[e :U 480 ]
+"644
+[; ;TAD_RFID.c: 644:                         addr = 0x0D;
+[e = F2777 -> -> 13 `i `uc ]
+"645
+[; ;TAD_RFID.c: 645:                         value = 0x00;
+[e = F2778 -> -> 0 `i `uc ]
+"646
+[; ;TAD_RFID.c: 646:                         operation_pending = 2;
+[e = F2776 -> -> 2 `i `uc ]
+"647
+[; ;TAD_RFID.c: 647:                         state = substate = 0;
+[e = F2756 = F2757 -> -> 0 `i `uc ]
+"648
+[; ;TAD_RFID.c: 648:                         break;
+[e $U 411  ]
+"649
+[; ;TAD_RFID.c: 649:                 }
+}
+[e $U 411  ]
+[e :U 412 ]
+[e [\ F2757 , $ -> 0 `i 413
+ , $ -> 1 `i 414
+ , $ -> 2 `i 415
+ , $ -> 3 `i 418
+ , $ -> 4 `i 419
+ , $ -> 5 `i 420
+ , $ -> 6 `i 423
+ , $ -> 7 `i 424
+ , $ -> 8 `i 427
+ , $ -> 9 `i 428
+ , $ -> 10 `i 429
+ , $ -> 11 `i 430
+ , $ -> 12 `i 431
+ , $ -> 13 `i 432
+ , $ -> 14 `i 435
+ , $ -> 15 `i 436
+ , $ -> 16 `i 441
+ , $ -> 17 `i 444
+ , $ -> 18 `i 445
+ , $ -> 19 `i 450
+ , $ -> 20 `i 453
+ , $ -> 21 `i 456
+ , $ -> 22 `i 459
+ , $ -> 23 `i 462
+ , $ -> 24 `i 465
+ , $ -> 25 `i 468
+ , $ -> 26 `i 473
+ , $ -> 27 `i 478
+ , $ -> 28 `i 480
+ 411 ]
+[e :U 411 ]
+"650
+[; ;TAD_RFID.c: 650:                 break;
+[e $U 363  ]
+"651
+[; ;TAD_RFID.c: 651:         }
+}
+[e $U 363  ]
+[e :U 364 ]
+[e [\ F2756 , $ -> 0 `i 365
+ , $ -> 1 `i 410
+ 363 ]
+[e :U 363 ]
+"652
+[; ;TAD_RFID.c: 652:     }
+}
+[e :U 359 ]
+[e :U 355 ]
+"653
+[; ;TAD_RFID.c: 653: }
+[e :UE 351 ]
+}
