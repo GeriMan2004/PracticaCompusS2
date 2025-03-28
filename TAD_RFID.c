@@ -639,7 +639,7 @@ void motor_RFID(void) {
                         break;
                         
                     case 28:
-                        // Preparar para la siguiente lectura
+                        // Preparar para la siguiente lectura yow
                         addr = BITFRAMINGREG;
                         value = 0x00;
                         operation_pending = 2;
