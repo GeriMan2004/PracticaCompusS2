@@ -4,13 +4,13 @@
 #include "TAD_DATOS.h"
 #include "TAD_TIMER.h"
 
-// Bits para control de columnas (corresponden a los pines físicos)
+// Bits para control de columnas (corresponden a los pines fï¿½sicos)
 #define COL1 (1<<5)
 #define COL2 (1<<6)
 #define COL3 (1<<4)
 
 // Variables globales compactas
-static unsigned char Filas, Columnas, timer, tecla, state;
+static unsigned char Filas, Columnas, timer_teclado, tecla, state;
 
 // Mapeo de teclado compacto - usando constante para ahorrar memoria de programa
 static const char keymap[] = {
@@ -23,12 +23,12 @@ static const char keymap[] = {
 // Tabla de valores de columna para secuencia de escaneo
 static unsigned char colValues[] = {COL1, COL2, COL3};
 
-// Función optimizada para leer filas
+// Funciï¿½n optimizada para leer filas
 #define ReadFilas() (PORTD & 0x0F)
 
-// Inicialización del teclado
+// Inicializaciï¿½n del teclado
 void initTeclado(void) {
-    // Configuración de puertos directamente
+    // Configuraciï¿½n de puertos directamente
     TRISD = 0x0F;  // Bits 0-3 como entradas (filas), 4-7 como salidas (columnas)
     LATD = 0x00;   // Inicializar salidas a 0
     
@@ -36,10 +36,10 @@ void initTeclado(void) {
     Filas = Columnas = tecla = state = 0;
     
     // Crear timer para rebotes
-    TI_NewTimer(&timer);
+    TI_NewTimer(&timer_teclado);
 }
 
-// La función writeColumnas simplificada usando índice
+// La funcin writeColumnas simplificada usandondice
 void writeColumnas(void) {
     if (Columnas < 3) {
         LATD = colValues[Columnas];
@@ -48,7 +48,7 @@ void writeColumnas(void) {
     }
 }
 
-// Función optimizada GetTecla que evita switch múltiples
+// Funciï¿½n optimizada GetTecla que evita switch mï¿½ltiples
 unsigned char GetTecla(void) {
     unsigned char fila = 0, columna = 0;
     
@@ -61,22 +61,22 @@ unsigned char GetTecla(void) {
         default: return 0xFF;
     }
     
-    // Mapear columna según valor actual de Columnas
+    // Mapear columna segï¿½n valor actual de Columnas
     columna = Columnas;
     
     // Devolver valor del keymap usando acceso directo al array unidimensional
     return keymap[fila * 3 + columna];
 }
 
-// Motor de teclado optimizado con menos código repetido
+// Motor de teclado optimizado con menos cï¿½digo repetido
 void motorTeclado(void) {
-    // Lectura común de filas para todos los estados
+    // Lectura comï¿½n de filas para todos los estados
     Filas = ReadFilas();
     
     switch(state) {
         case 0:
             if (Filas) {
-                TI_ResetTics(timer);
+                TI_ResetTics(timer_teclado);
                 state = 3;
             } else {
                 Columnas = 0; // Primera columna
@@ -87,7 +87,7 @@ void motorTeclado(void) {
             
         case 1:
             if (Filas) {
-                TI_ResetTics(timer);
+                TI_ResetTics(timer_teclado);
                 state = 3;
             } else {
                 Columnas = 1; // Segunda columna
@@ -98,7 +98,7 @@ void motorTeclado(void) {
             
         case 2:
             if (Filas) {
-                TI_ResetTics(timer);
+                TI_ResetTics(timer_teclado);
                 state = 3;
             } else {
                 Columnas = 2; // Tercera columna
@@ -113,12 +113,12 @@ void motorTeclado(void) {
                 Columnas = 2; // Volver a columna 3
                 writeColumnas();
                 state = 0;
-            } else if (TI_GetTics(timer) > REBOTE) {
+            } else if (TI_GetTics(timer_teclado) > REBOTE) {
                 if (tecla != 0x0B) {
                     setLed(tecla);
                     state = 5;
                 } else {
-                    TI_ResetTics(timer);
+                    TI_ResetTics(timer_teclado);
                     state = 4;
                 }
             }
@@ -127,9 +127,12 @@ void motorTeclado(void) {
         case 4:
             if (!Filas) {
                 state = 0;
-            } else if (TI_GetTics(timer) > HASHTAG_TIME) {
                 hashtag_pressed3s();
+            } else if (TI_GetTics(timer_teclado) > HASHTAG_TIME) {
                 state = 5;
+                resetData();
+                motor_StartSendString("S'han resetejat les dades");
+                setStartSendString();
             }
             break;
             

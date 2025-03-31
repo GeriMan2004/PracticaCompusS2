@@ -4819,6 +4819,7 @@ void motorTerminal(void);
 char motor_SendChar(char c);
 char motor_SendString(void);
 void motor_StartSendString(const char* str);
+void setStartSendString(void);
 # 4 "TAD_TECLADO.c" 2
 # 1 "./TAD_DATOS.h" 1
 
@@ -4829,6 +4830,7 @@ void motor_StartSendString(const char* str);
 
 
 void initData(void);
+void resetData(void);
 void setLed(unsigned char tecla);
 void setIndex(unsigned char index);
 void getActualUID(unsigned char* UID, unsigned char userIndex);
@@ -4867,7 +4869,7 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 
 
 
-static unsigned char Filas, Columnas, timer, tecla, state;
+static unsigned char Filas, Columnas, timer_teclado, tecla, state;
 
 
 static const char keymap[] = {
@@ -4893,7 +4895,7 @@ void initTeclado(void) {
     Filas = Columnas = tecla = state = 0;
 
 
-    TI_NewTimer(&timer);
+    TI_NewTimer(&timer_teclado);
 }
 
 
@@ -4933,7 +4935,7 @@ void motorTeclado(void) {
     switch(state) {
         case 0:
             if (Filas) {
-                TI_ResetTics(timer);
+                TI_ResetTics(timer_teclado);
                 state = 3;
             } else {
                 Columnas = 0;
@@ -4944,7 +4946,7 @@ void motorTeclado(void) {
 
         case 1:
             if (Filas) {
-                TI_ResetTics(timer);
+                TI_ResetTics(timer_teclado);
                 state = 3;
             } else {
                 Columnas = 1;
@@ -4955,7 +4957,7 @@ void motorTeclado(void) {
 
         case 2:
             if (Filas) {
-                TI_ResetTics(timer);
+                TI_ResetTics(timer_teclado);
                 state = 3;
             } else {
                 Columnas = 2;
@@ -4970,12 +4972,12 @@ void motorTeclado(void) {
                 Columnas = 2;
                 writeColumnas();
                 state = 0;
-            } else if (TI_GetTics(timer) > 4) {
+            } else if (TI_GetTics(timer_teclado) > 4) {
                 if (tecla != 0x0B) {
                     setLed(tecla);
                     state = 5;
                 } else {
-                    TI_ResetTics(timer);
+                    TI_ResetTics(timer_teclado);
                     state = 4;
                 }
             }
@@ -4984,9 +4986,12 @@ void motorTeclado(void) {
         case 4:
             if (!Filas) {
                 state = 0;
-            } else if (TI_GetTics(timer) > 1500) {
                 hashtag_pressed3s();
+            } else if (TI_GetTics(timer_teclado) > 1500) {
                 state = 5;
+                resetData();
+                motor_StartSendString("S'han resetejat les dades");
+                setStartSendString();
             }
             break;
 

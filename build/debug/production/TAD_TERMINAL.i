@@ -4806,6 +4806,7 @@ void motorTerminal(void);
 char motor_SendChar(char c);
 char motor_SendString(void);
 void motor_StartSendString(const char* str);
+void setStartSendString(void);
 # 3 "TAD_TERMINAL.c" 2
 # 1 "./TAD_DATOS.h" 1
 
@@ -4816,6 +4817,7 @@ void motor_StartSendString(const char* str);
 
 
 void initData(void);
+void resetData(void);
 void setLed(unsigned char tecla);
 void setIndex(unsigned char index);
 void getActualUID(unsigned char* UID, unsigned char userIndex);
@@ -4834,7 +4836,6 @@ static const char* str_ptr = ((void*)0);
 static char state_str = 0;
 static char hashtag_pressed = 0;
 static char sending_string = 0;
-
 void Terminal_Init(void){
  TXSTA = 0x24;
  RCSTA = 0x90;
@@ -4853,13 +4854,6 @@ void Terminal_SendChar(char c) {
  while (!Terminal_TXAvailable());
  TXREG = c;
 }
-
-void Terminal_SendString(const char *str) {
- while (*str) {
-  Terminal_SendChar(*str++);
- }
-}
-
 
 char motor_SendChar(char c) {
  if (!Terminal_TXAvailable()) return 0;
@@ -4971,6 +4965,9 @@ void printfUID(unsigned char *currentUser, char userIndex, const char* extraStri
     sending_string = 1;
 }
 
+void setStartSendString(void) {
+ sending_string = 1;
+}
 
 
 void motorTerminal(void) {

@@ -11,8 +11,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "986 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 986: extern volatile unsigned char LATA __attribute__((address(0xF89)));
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
-"12 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 12: void getActualLeds(unsigned char* leds, unsigned char userIndex);
+"13 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 13: void getActualLeds(unsigned char* leds, unsigned char userIndex);
 [v _getActualLeds `(v ~T0 @X0 0 ef2`*uc`uc ]
 "31 ./TAD_TIMER.h
 [; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);
@@ -469,8 +469,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "18
 [; ;TAD_LEDS.c: 18:     static unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
-[v F2740 `uc ~T0 @X0 -> 6 `i s ledBits ]
-[i F2740
+[v F2741 `uc ~T0 @X0 -> 6 `i s ledBits ]
+[i F2741
 :U ..
 -> -> 1 `i `uc
 -> -> 2 `i `uc
@@ -489,14 +489,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _estado `i -> 0 `i 305  ]
 "23
 [; ;TAD_LEDS.c: 23:             LATA |= ledBits[ledActual];
-[e =| _LATA -> *U + &U F2740 * -> _ledActual `ux -> -> # *U &U F2740 `ui `ux `Vuc ]
+[e =| _LATA -> *U + &U F2741 * -> _ledActual `ux -> -> # *U &U F2741 `ui `ux `Vuc ]
 [e $U 306  ]
 "24
 [; ;TAD_LEDS.c: 24:         else
 [e :U 305 ]
 "25
 [; ;TAD_LEDS.c: 25:             LATA &= ~ledBits[ledActual];
-[e =& _LATA -> ~ -> *U + &U F2740 * -> _ledActual `ux -> -> # *U &U F2740 `ui `ux `i `Vuc ]
+[e =& _LATA -> ~ -> *U + &U F2741 * -> _ledActual `ux -> -> # *U &U F2741 `ui `ux `i `Vuc ]
 [e :U 306 ]
 "26
 [; ;TAD_LEDS.c: 26:     }
@@ -530,8 +530,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _getActualLeds (2 , &U _ActualLeds -> -> 20 `i `uc ]
 "42
 [; ;TAD_LEDS.c: 42:     static unsigned long lastTics = 0;
-[v F2742 `ul ~T0 @X0 1 s lastTics ]
-[i F2742
+[v F2743 `ul ~T0 @X0 1 s lastTics ]
+[i F2743
 -> -> -> 0 `i `l `ul
 ]
 "43
@@ -540,12 +540,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _currentTics ( _TI_GetTics (1 _timer ]
 "46
 [; ;TAD_LEDS.c: 46:     if (currentTics == lastTics) return;
-[e $ ! == _currentTics F2742 310  ]
+[e $ ! == _currentTics F2743 310  ]
 [e $UE 309  ]
 [e :U 310 ]
 "47
 [; ;TAD_LEDS.c: 47:     lastTics = currentTics;
-[e = F2742 _currentTics ]
+[e = F2743 _currentTics ]
 "50
 [; ;TAD_LEDS.c: 50:     if (currentTics >= 10) {
 [e $ ! >= _currentTics -> -> -> 10 `i `l `ul 311  ]

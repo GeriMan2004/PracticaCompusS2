@@ -6,6 +6,7 @@
 #define LEDS 6
 
 void initData(void);
+void resetData(void);
 void setLed(unsigned char tecla);
 void setIndex(unsigned char index);
 void getActualUID(unsigned char* UID, unsigned char userIndex);

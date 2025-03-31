@@ -1,10 +1,10 @@
 #ifndef TAD_TECLADO_H
 #define TAD_TECLADO_H
 
-#define REBOTE 4          // Tiempo de rebote (4 tics × 5ms = 20ms)
-#define HASHTAG_TIME 1500 // Tiempo para detectar pulsación larga de hashtag
+#define REBOTE 4          // Tiempo de rebote (4 tics * 2ms = 8ms)
+#define HASHTAG_TIME 1500 // Tiempo para detectar pulsaciÃ³n larga de hashtag (1500 tics * 2ms = 3s)
 
-// Prototipos de función
+// Prototipos de funciÃ³n
 void initTeclado(void);
 void motorTeclado(void);
 void writeColumnas(void);

@@ -10,10 +10,11 @@
 #include <xc.h>
 #include "TAD_RFID.h"
 #include "TAD_DATOS.h"
+#include "TAD_TERMINAL.h"
 #include "TAD_TIMER.h"  // Añadir inclusión del TAD_TIMER
 
 #define NUM_US 8 // Reducido de 16 a 8 para delay más corto
-#define CARD_TIMEOUT 500 // 500 tics = 1 segundo (con tics de 2ms)
+#define CARD_TIMEOUT 200 // 200 tics = 0.4 segundo
 
 // Variables globales para controlar los estados de las funciones motor
 static char state_read = 0;
@@ -182,7 +183,6 @@ void motor_RFID(void) {
     static unsigned char backBitsCalc;
     static unsigned char currentUser[5];
     static unsigned char cardRemoved = 0;
-    static unsigned char card_timer;
     static unsigned char last_state = 0;
     
     // Variables para control de operaciones
@@ -616,7 +616,8 @@ void motor_RFID(void) {
                            currentUser[2] == UID[2] && currentUser[3] == UID[3] && 
                            currentUser[4] == UID[4]) {
                             if (cardRemoved == 1) {
-                                // Es el mismo usuario, establecer index a 4 (usuario salió)
+                                motor_StartSendString("\r\nL'usuari ha sortit de la sala\r\n");
+                                setStartSendString();
                                 setIndex(4);
                                 substate = 28;
                                 cardRemoved = 0;

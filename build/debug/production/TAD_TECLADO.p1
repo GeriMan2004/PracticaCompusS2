@@ -17,12 +17,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31
 [; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);
 [v _TI_GetTics `(ul ~T0 @X0 0 ef1`uc ]
-"9 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 9: void setLed(unsigned char tecla);
+"10 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 10: void setLed(unsigned char tecla);
 [v _setLed `(v ~T0 @X0 0 ef1`uc ]
 "15 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 15: void hashtag_pressed3s(void);
 [v _hashtag_pressed3s `(v ~T0 @X0 0 ef ]
+"9 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 9: void resetData(void);
+[v _resetData `(v ~T0 @X0 0 ef ]
+"21 ./TAD_TERMINAL.h
+[; ;./TAD_TERMINAL.h: 21: void motor_StartSendString(const char* str);
+[v _motor_StartSendString `(v ~T0 @X0 0 ef1`*Cuc ]
+"22
+[; ;./TAD_TERMINAL.h: 22: void setStartSendString(void);
+[v _setStartSendString `(v ~T0 @X0 0 ef ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -438,10 +447,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 7008: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "13 TAD_TECLADO.c
-[; ;TAD_TECLADO.c: 13: static unsigned char Filas, Columnas, timer, tecla, state;
+[; ;TAD_TECLADO.c: 13: static unsigned char Filas, Columnas, timer_teclado, tecla, state;
 [v _Filas `uc ~T0 @X0 1 s ]
 [v _Columnas `uc ~T0 @X0 1 s ]
-[v _timer `uc ~T0 @X0 1 s ]
+[v _timer_teclado `uc ~T0 @X0 1 s ]
 [v _tecla `uc ~T0 @X0 1 s ]
 [v _state `uc ~T0 @X0 1 s ]
 "16
@@ -489,8 +498,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TECLADO.c: 36:     Filas = Columnas = tecla = state = 0;
 [e = _Filas = _Columnas = _tecla = _state -> -> 0 `i `uc ]
 "39
-[; ;TAD_TECLADO.c: 39:     TI_NewTimer(&timer);
-[e ( _TI_NewTimer (1 &U _timer ]
+[; ;TAD_TECLADO.c: 39:     TI_NewTimer(&timer_teclado);
+[e ( _TI_NewTimer (1 &U _timer_teclado ]
 "40
 [; ;TAD_TECLADO.c: 40: }
 [e :UE 302 ]
@@ -609,8 +618,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _Filas `i -> 0 `i 318  ]
 {
 "79
-[; ;TAD_TECLADO.c: 79:                 TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
+[; ;TAD_TECLADO.c: 79:                 TI_ResetTics(timer_teclado);
+[e ( _TI_ResetTics (1 _timer_teclado ]
 "80
 [; ;TAD_TECLADO.c: 80:                 state = 3;
 [e = _state -> -> 3 `i `uc ]
@@ -644,8 +653,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _Filas `i -> 0 `i 321  ]
 {
 "90
-[; ;TAD_TECLADO.c: 90:                 TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
+[; ;TAD_TECLADO.c: 90:                 TI_ResetTics(timer_teclado);
+[e ( _TI_ResetTics (1 _timer_teclado ]
 "91
 [; ;TAD_TECLADO.c: 91:                 state = 3;
 [e = _state -> -> 3 `i `uc ]
@@ -679,8 +688,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> _Filas `i -> 0 `i 324  ]
 {
 "101
-[; ;TAD_TECLADO.c: 101:                 TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
+[; ;TAD_TECLADO.c: 101:                 TI_ResetTics(timer_teclado);
+[e ( _TI_ResetTics (1 _timer_teclado ]
 "102
 [; ;TAD_TECLADO.c: 102:                 state = 3;
 [e = _state -> -> 3 `i `uc ]
@@ -726,11 +735,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TECLADO.c: 115:                 state = 0;
 [e = _state -> -> 0 `i `uc ]
 "116
-[; ;TAD_TECLADO.c: 116:             } else if (TI_GetTics(timer) > 4) {
+[; ;TAD_TECLADO.c: 116:             } else if (TI_GetTics(timer_teclado) > 4) {
 }
 [e $U 328  ]
 [e :U 327 ]
-[e $ ! > ( _TI_GetTics (1 _timer -> -> -> 4 `i `l `ul 329  ]
+[e $ ! > ( _TI_GetTics (1 _timer_teclado -> -> -> 4 `i `l `ul 329  ]
 {
 "117
 [; ;TAD_TECLADO.c: 117:                 if (tecla != 0x0B) {
@@ -749,8 +758,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 330 ]
 {
 "121
-[; ;TAD_TECLADO.c: 121:                     TI_ResetTics(timer);
-[e ( _TI_ResetTics (1 _timer ]
+[; ;TAD_TECLADO.c: 121:                     TI_ResetTics(timer_teclado);
+[e ( _TI_ResetTics (1 _timer_teclado ]
 "122
 [; ;TAD_TECLADO.c: 122:                     state = 4;
 [e = _state -> -> 4 `i `uc ]
@@ -777,51 +786,60 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TECLADO.c: 129:                 state = 0;
 [e = _state -> -> 0 `i `uc ]
 "130
-[; ;TAD_TECLADO.c: 130:             } else if (TI_GetTics(timer) > 1500) {
+[; ;TAD_TECLADO.c: 130:                 hashtag_pressed3s();
+[e ( _hashtag_pressed3s ..  ]
+"131
+[; ;TAD_TECLADO.c: 131:             } else if (TI_GetTics(timer_teclado) > 1500) {
 }
 [e $U 334  ]
 [e :U 333 ]
-[e $ ! > ( _TI_GetTics (1 _timer -> -> -> 1500 `i `l `ul 335  ]
+[e $ ! > ( _TI_GetTics (1 _timer_teclado -> -> -> 1500 `i `l `ul 335  ]
 {
-"131
-[; ;TAD_TECLADO.c: 131:                 hashtag_pressed3s();
-[e ( _hashtag_pressed3s ..  ]
 "132
 [; ;TAD_TECLADO.c: 132:                 state = 5;
 [e = _state -> -> 5 `i `uc ]
 "133
-[; ;TAD_TECLADO.c: 133:             }
+[; ;TAD_TECLADO.c: 133:                 resetData();
+[e ( _resetData ..  ]
+"134
+[; ;TAD_TECLADO.c: 134:                 motor_StartSendString("S'han resetejat les dades");
+[e ( _motor_StartSendString (1 :s 1C ]
+"135
+[; ;TAD_TECLADO.c: 135:                 setStartSendString();
+[e ( _setStartSendString ..  ]
+"136
+[; ;TAD_TECLADO.c: 136:             }
 }
 [e :U 335 ]
 [e :U 334 ]
-"134
-[; ;TAD_TECLADO.c: 134:             break;
-[e $U 315  ]
-"136
-[; ;TAD_TECLADO.c: 136:         case 5:
-[e :U 336 ]
 "137
-[; ;TAD_TECLADO.c: 137:             if (!Filas) {
+[; ;TAD_TECLADO.c: 137:             break;
+[e $U 315  ]
+"139
+[; ;TAD_TECLADO.c: 139:         case 5:
+[e :U 336 ]
+"140
+[; ;TAD_TECLADO.c: 140:             if (!Filas) {
 [e $ ! ! != -> _Filas `i -> 0 `i 337  ]
 {
-"138
-[; ;TAD_TECLADO.c: 138:                 state = 0;
-[e = _state -> -> 0 `i `uc ]
-"139
-[; ;TAD_TECLADO.c: 139:                 Columnas = 2;
-[e = _Columnas -> -> 2 `i `uc ]
-"140
-[; ;TAD_TECLADO.c: 140:                 writeColumnas();
-[e ( _writeColumnas ..  ]
 "141
-[; ;TAD_TECLADO.c: 141:             }
+[; ;TAD_TECLADO.c: 141:                 state = 0;
+[e = _state -> -> 0 `i `uc ]
+"142
+[; ;TAD_TECLADO.c: 142:                 Columnas = 2;
+[e = _Columnas -> -> 2 `i `uc ]
+"143
+[; ;TAD_TECLADO.c: 143:                 writeColumnas();
+[e ( _writeColumnas ..  ]
+"144
+[; ;TAD_TECLADO.c: 144:             }
 }
 [e :U 337 ]
-"142
-[; ;TAD_TECLADO.c: 142:             break;
+"145
+[; ;TAD_TECLADO.c: 145:             break;
 [e $U 315  ]
-"143
-[; ;TAD_TECLADO.c: 143:     }
+"146
+[; ;TAD_TECLADO.c: 146:     }
 }
 [e $U 315  ]
 [e :U 316 ]
@@ -833,7 +851,8 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 5 `i 336
  315 ]
 [e :U 315 ]
-"144
-[; ;TAD_TECLADO.c: 144: }
+"147
+[; ;TAD_TECLADO.c: 147: }
 [e :UE 314 ]
 }
+[a 1C 83 39 104 97 110 32 114 101 115 101 116 101 106 97 116 32 108 101 115 32 100 97 100 101 115 0 ]

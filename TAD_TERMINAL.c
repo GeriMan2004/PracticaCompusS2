@@ -136,6 +136,9 @@ void printfUID(unsigned char *currentUser, char userIndex, const char* extraStri
     sending_string = 1;
 }
 
+void setStartSendString(void) {
+	sending_string = 1;
+}
 
 // Motor de terminal optimizado
 void motorTerminal(void) {

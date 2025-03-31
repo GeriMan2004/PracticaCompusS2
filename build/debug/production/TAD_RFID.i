@@ -4799,6 +4799,7 @@ void initRFID(void);
 
 
 void initData(void);
+void resetData(void);
 void setLed(unsigned char tecla);
 void setIndex(unsigned char index);
 void getActualUID(unsigned char* UID, unsigned char userIndex);
@@ -4811,6 +4812,30 @@ void saveHourToData(unsigned char hour[4]);
 void motor_datos(void);
 unsigned char getCurrentUserIndex(void);
 # 13 "TAD_RFID.c" 2
+# 1 "./TAD_TERMINAL.h" 1
+
+
+
+
+
+void Terminal_Init(void);
+int Terminal_TXAvailable(void);
+char Terminal_RXAvailable(void);
+void Terminal_SendChar(char c);
+char Terminal_ReceiveChar(void);
+void Terminal_SendString(const char *str);
+void printfUID(unsigned char *currentUser, char userIndex, const char* extraString);
+void printLedConfig(unsigned char *leds);
+void showMenu(void);
+void hashtag_pressed3s(void);
+void motorTerminal(void);
+
+
+char motor_SendChar(char c);
+char motor_SendString(void);
+void motor_StartSendString(const char* str);
+void setStartSendString(void);
+# 14 "TAD_RFID.c" 2
 # 1 "./TAD_TIMER.h" 1
 # 16 "./TAD_TIMER.h"
 void RSI_Timer0(void);
@@ -4829,7 +4854,7 @@ void TI_ResetTics (unsigned char TimerHandle);
 
 
 unsigned long TI_GetTics (unsigned char TimerHandle);
-# 14 "TAD_RFID.c" 2
+# 15 "TAD_RFID.c" 2
 
 
 
@@ -5001,7 +5026,6 @@ void motor_RFID(void) {
     static unsigned char backBitsCalc;
     static unsigned char currentUser[5];
     static unsigned char cardRemoved = 0;
-    static unsigned char card_timer;
     static unsigned char last_state = 0;
 
 
@@ -5041,7 +5065,7 @@ void motor_RFID(void) {
 
 
 
-        if (state == 0 && TI_GetTics(card_timer) > 500) {
+        if (state == 0 && TI_GetTics(card_timer) > 200) {
             cardRemoved = 1;
             TI_ResetTics(card_timer);
         }
@@ -5412,7 +5436,6 @@ void motor_RFID(void) {
                         if (checksum != UID[4] || allZero) {
                             state = substate = 0;
                         } else {
-
                             substate = 25;
                         }
                         break;
@@ -5436,7 +5459,8 @@ void motor_RFID(void) {
                            currentUser[2] == UID[2] && currentUser[3] == UID[3] &&
                            currentUser[4] == UID[4]) {
                             if (cardRemoved == 1) {
-
+                                motor_StartSendString("\r\nL'usuari ha sortit de la sala\r\n");
+                                setStartSendString();
                                 setIndex(4);
                                 substate = 28;
                                 cardRemoved = 0;

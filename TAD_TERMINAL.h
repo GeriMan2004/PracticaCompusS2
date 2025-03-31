@@ -19,5 +19,6 @@ void motorTerminal(void);
 char motor_SendChar(char c);
 char motor_SendString(void);
 void motor_StartSendString(const char* str);
+void setStartSendString(void);
 
 #endif

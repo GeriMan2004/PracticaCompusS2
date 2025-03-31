@@ -38,22 +38,24 @@
 "24 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
 [v _initData initData `(v  1 e 1 0 ]
 "37
+[v _resetData resetData `(v  1 e 1 0 ]
+"45
 [v _getActualUID getActualUID `(v  1 e 1 0 ]
-"57
+"65
 [v _getActualLeds getActualLeds `(v  1 e 1 0 ]
-"77
+"85
 [v _saveHourToData saveHourToData `(v  1 e 1 0 ]
-"82
+"90
 [v _setIndex setIndex `(v  1 e 1 0 ]
-"87
+"95
 [v _motor_setCurrentUser motor_setCurrentUser `(uc  1 e 1 0 ]
-"146
+"154
 [v _motor_datos motor_datos `(v  1 e 1 0 ]
-"192
+"200
 [v _setLEDIntensity setLEDIntensity `(v  1 e 1 0 ]
-"199
+"207
 [v _setLed setLed `(v  1 e 1 0 ]
-"214
+"227
 [v _getCurrentUserIndex getCurrentUserIndex `(uc  1 e 1 0 ]
 "68 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DISPLAY.c
 [v _LcInit LcInit `(v  1 e 1 0 ]
@@ -81,17 +83,17 @@
 [v _controlLED controlLED `(v  1 e 1 0 ]
 "37
 [v _motor_LEDs motor_LEDs `(v  1 e 1 0 ]
-"26 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
+"27 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
 [v _delay_us delay_us `(v  1 e 1 0 ]
-"32
+"33
 [v _processBit processBit `(v  1 e 1 0 ]
-"46
+"47
 [v _motor_Write motor_Write `(uc  1 e 1 0 ]
-"78
+"79
 [v _motor_Read motor_Read `(uc  1 e 1 0 ]
-"126
+"127
 [v _initRFID initRFID `(v  1 e 1 0 ]
-"168
+"169
 [v _motor_RFID motor_RFID `(v  1 e 1 0 ]
 "30 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TECLADO.c
 [v _initTeclado initTeclado `(v  1 e 1 0 ]
@@ -101,27 +103,29 @@
 [v _GetTecla GetTecla `(uc  1 e 1 0 ]
 "72
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
-"11 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+"10 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
-"20
+"19
 [v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
-"21
+"20
 [v _Terminal_RXAvailable Terminal_RXAvailable `(uc  1 e 1 0 ]
-"22
+"21
 [v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
-"25
+"24
 [v _Terminal_SendChar Terminal_SendChar `(v  1 e 1 0 ]
-"37
+"29
 [v _motor_SendChar motor_SendChar `(uc  1 e 1 0 ]
-"44
+"36
 [v _motor_SendString motor_SendString `(uc  1 e 1 0 ]
-"58
+"50
 [v _motor_StartSendString motor_StartSendString `(v  1 e 1 0 ]
-"65
+"57
 [v _hashtag_pressed3s hashtag_pressed3s `(v  1 e 1 0 ]
-"68
+"60
 [v _printfUID printfUID `(v  1 e 1 0 ]
-"149
+"139
+[v _setStartSendString setStartSendString `(v  1 e 1 0 ]
+"144
 [v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 "25 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TIMER.c
 [v _RSI_Timer0 RSI_Timer0 `(v  1 e 1 0 ]
@@ -284,7 +288,7 @@
 ]
 [u S166 . 1 `S152 1 . 1 0 `S161 1 . 1 0 ]
 [v _TRISEbits TRISEbits `VES166  1 e 1 @3990 ]
-[s S761 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[s S777 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -294,12 +298,12 @@
 `uc 1 PSPIF 1 0 :1:7 
 ]
 "2702
-[s S770 . 1 `uc 1 . 1 0 :4:0 
+[s S786 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 ]
-[u S774 . 1 `S761 1 . 1 0 `S770 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES774  1 e 1 @3998 ]
+[u S790 . 1 `S777 1 . 1 0 `S786 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES790  1 e 1 @3998 ]
 "3119
 [v _RCSTA RCSTA `VEuc  1 e 1 @4011 ]
 "3329
@@ -371,16 +375,16 @@
 [v _ActualLeds ActualLeds `[6]uc  1 s 6 ActualLeds ]
 "7
 [v _timer timer `uc  1 s 1 timer ]
-"19 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
+"20 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
 [v _state_read state_read `uc  1 s 1 state_read ]
-"20
-[v _state_write state_write `uc  1 s 1 state_write ]
 "21
+[v _state_write state_write `uc  1 s 1 state_write ]
+"22
 [v _card_timer card_timer `uc  1 s 1 card_timer ]
 "13 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TECLADO.c
 [v _Filas Filas `uc  1 s 1 Filas ]
 [v _Columnas Columnas `uc  1 s 1 Columnas ]
-[v _timer@TAD_TECLADO$F744 timer `uc  1 s 1 timer ]
+[v _timer_teclado timer_teclado `uc  1 s 1 timer_teclado ]
 [v _tecla tecla `uc  1 s 1 tecla ]
 [v _state state `uc  1 s 1 state ]
 "16
@@ -395,9 +399,9 @@
 [v _hashtag_pressed hashtag_pressed `uc  1 s 1 hashtag_pressed ]
 "9
 [v _sending_string sending_string `uc  1 s 1 sending_string ]
-[s S926 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
+[s S943 Timer 5 `ul 1 TicsInicials 4 0 `uc 1 Busy 1 4 ]
 "21 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TIMER.c
-[v _Timers Timers `[4]S926  1 s 20 Timers ]
+[v _Timers Timers `[4]S943  1 s 20 Timers ]
 "23
 [v _Tics Tics `VEul  1 s 4 Tics ]
 "39 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\main.c
@@ -405,18 +409,18 @@
 {
 "61
 } 0
-"146 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
+"154 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
 [v _motor_datos motor_datos `(v  1 e 1 0 ]
 {
-"167
+"175
 [v motor_datos@i i `uc  1 a 1 33 ]
-"147
+"155
 [v motor_datos@state state `uc  1 s 1 state ]
-"148
+"156
 [v motor_datos@pointer pointer `uc  1 s 1 pointer ]
-"149
+"157
 [v motor_datos@lastChar lastChar `uc  1 s 1 lastChar ]
-"189
+"197
 } 0
 "154 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DISPLAY.c
 [v _LcPutChar LcPutChar `(v  1 e 1 0 ]
@@ -447,40 +451,40 @@
 [v CantaData@Data Data `uc  1 p 1 3 ]
 "252
 } 0
-"168 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
+"169 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
 [v _motor_RFID motor_RFID `(v  1 e 1 0 ]
 {
 "192
 [v motor_RFID@flag flag `uc  1 a 1 32 ]
-"169
-[v motor_RFID@state state `uc  1 s 1 state ]
 "170
-[v motor_RFID@substate substate `uc  1 s 1 substate ]
+[v motor_RFID@state state `uc  1 s 1 state ]
 "171
+[v motor_RFID@substate substate `uc  1 s 1 substate ]
+"172
 [v motor_RFID@irqEn irqEn `uc  1 s 1 irqEn ]
 [v motor_RFID@waitIRq waitIRq `uc  1 s 1 waitIRq ]
 [v motor_RFID@n n `uc  1 s 1 n ]
-"172
+"173
 [v motor_RFID@i i `uc  1 s 1 i ]
-"175
-[v motor_RFID@TagType TagType `uc  1 s 1 TagType ]
 "176
-[v motor_RFID@UID UID `[6]uc  1 s 6 UID ]
+[v motor_RFID@TagType TagType `uc  1 s 1 TagType ]
 "177
-[v motor_RFID@checksum checksum `uc  1 s 1 checksum ]
+[v motor_RFID@UID UID `[6]uc  1 s 6 UID ]
 "178
-[v motor_RFID@allZero allZero `uc  1 s 1 allZero ]
+[v motor_RFID@checksum checksum `uc  1 s 1 checksum ]
 "179
-[v motor_RFID@tempRegValue tempRegValue `uc  1 s 1 tempRegValue ]
+[v motor_RFID@allZero allZero `uc  1 s 1 allZero ]
 "180
-[v motor_RFID@lastBitsVal lastBitsVal `uc  1 s 1 lastBitsVal ]
+[v motor_RFID@tempRegValue tempRegValue `uc  1 s 1 tempRegValue ]
 "181
-[v motor_RFID@fifoLevel fifoLevel `uc  1 s 1 fifoLevel ]
+[v motor_RFID@lastBitsVal lastBitsVal `uc  1 s 1 lastBitsVal ]
 "182
-[v motor_RFID@backBitsCalc backBitsCalc `uc  1 s 1 backBitsCalc ]
+[v motor_RFID@fifoLevel fifoLevel `uc  1 s 1 fifoLevel ]
 "183
-[v motor_RFID@currentUser currentUser `[5]uc  1 s 5 currentUser ]
+[v motor_RFID@backBitsCalc backBitsCalc `uc  1 s 1 backBitsCalc ]
 "184
+[v motor_RFID@currentUser currentUser `[5]uc  1 s 5 currentUser ]
+"185
 [v motor_RFID@cardRemoved cardRemoved `uc  1 s 1 cardRemoved ]
 "186
 [v motor_RFID@last_state last_state `uc  1 s 1 last_state ]
@@ -492,15 +496,15 @@
 [v motor_RFID@value value `uc  1 s 1 value ]
 "653
 } 0
-"82 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
+"90 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
 [v _setIndex setIndex `(v  1 e 1 0 ]
 {
 [v setIndex@indexActual indexActual `uc  1 p 1 wreg ]
 [v setIndex@indexActual indexActual `uc  1 p 1 wreg ]
 [v setIndex@indexActual indexActual `uc  1 p 1 1 ]
-"84
+"92
 } 0
-"87
+"95
 [v _motor_setCurrentUser motor_setCurrentUser `(uc  1 e 1 0 ]
 {
 [v motor_setCurrentUser@UID0 UID0 `uc  1 p 1 wreg ]
@@ -509,11 +513,11 @@
 [v motor_setCurrentUser@UID2 UID2 `uc  1 p 1 24 ]
 [v motor_setCurrentUser@UID3 UID3 `uc  1 p 1 25 ]
 [v motor_setCurrentUser@UID4 UID4 `uc  1 p 1 26 ]
-"88
+"96
 [v motor_setCurrentUser@state_setCurrentUser state_setCurrentUser `uc  1 s 1 state_setCurrentUser ]
-"87
+"95
 [v motor_setCurrentUser@UID0 UID0 `uc  1 p 1 27 ]
-"143
+"151
 } 0
 "37 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_LEDS.c
 [v _motor_LEDs motor_LEDs `(v  1 e 1 0 ]
@@ -540,149 +544,131 @@
 [v controlLED@ledActual ledActual `uc  1 p 1 4 ]
 "31
 } 0
-"149 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+"144 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
 [v _motorTerminal motorTerminal `(v  1 e 1 0 ]
 {
-"208
+"203
 [v motorTerminal@currentUserIndex currentUserIndex `uc  1 a 1 24 ]
-"193
+"188
 [v motorTerminal@opcion opcion `uc  1 a 1 23 ]
-"150
+"145
 [v motorTerminal@state state `uc  1 s 1 state ]
-"151
+"146
 [v motorTerminal@hour hour `[4]uc  1 s 4 hour ]
-"152
+"147
 [v motorTerminal@index index `uc  1 s 1 index ]
-"154
+"149
 [v motorTerminal@currentUser currentUser `[5]uc  1 s 5 currentUser ]
-"155
+"150
 [v motorTerminal@userNumber userNumber `uc  1 s 1 userNumber ]
-"277
+"272
 } 0
-"77 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
+"85 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
 [v _saveHourToData saveHourToData `(v  1 e 1 0 ]
 {
-"79
+"87
 [v saveHourToData@i i `uc  1 a 1 2 ]
-"77
+"85
 [v saveHourToData@hour hour `*.30uc  1 p 1 1 ]
-"80
+"88
 } 0
-"68 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+"60 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
 [v _printfUID printfUID `(v  1 e 1 0 ]
 {
-"108
+"100
 [v printfUID@val val `uc  1 a 1 19 ]
-"117
+"109
 [v printfUID@leds leds `[6]uc  1 a 6 13 ]
-"73
+"65
 [v printfUID@ptr ptr `*.39uc  1 a 2 21 ]
-"106
+"98
 [v printfUID@i i `uc  1 a 1 20 ]
-"68
+"60
 [v printfUID@currentUser currentUser `*.30uc  1 p 1 7 ]
 [v printfUID@userIndex userIndex `uc  1 p 1 8 ]
 [v printfUID@extraString extraString `*.32Cuc  1 p 2 9 ]
-"70
+"62
 [v printfUID@hex hex `C[17]uc  1 s 17 hex ]
-"72
+"64
 [v printfUID@buffer buffer `[80]uc  1 s 80 buffer ]
-"145
+"137
 } 0
-"58
-[v _motor_StartSendString motor_StartSendString `(v  1 e 1 0 ]
-{
-[v motor_StartSendString@str str `*.35Cuc  1 p 2 5 ]
-"63
-} 0
-"44
-[v _motor_SendString motor_SendString `(uc  1 e 1 0 ]
-{
-"56
-} 0
-"37
-[v _motor_SendChar motor_SendChar `(uc  1 e 1 0 ]
-{
-[v motor_SendChar@c c `uc  1 p 1 wreg ]
-[v motor_SendChar@c c `uc  1 p 1 wreg ]
-[v motor_SendChar@c c `uc  1 p 1 4 ]
-"41
-} 0
-"57 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
+"65 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
 [v _getActualLeds getActualLeds `(v  1 e 1 0 ]
 {
-"66
-[v getActualLeds@i_895 i `uc  1 a 1 4 ]
-"61
+"74
+[v getActualLeds@i_912 i `uc  1 a 1 4 ]
+"69
 [v getActualLeds@i i `uc  1 a 1 3 ]
-"57
+"65
 [v getActualLeds@leds leds `*.30uc  1 p 1 1 ]
 [v getActualLeds@userIndex userIndex `uc  1 p 1 2 ]
-"70
+"78
 } 0
-"214
+"227
 [v _getCurrentUserIndex getCurrentUserIndex `(uc  1 e 1 0 ]
 {
-"216
+"229
 } 0
-"37
+"45
 [v _getActualUID getActualUID `(v  1 e 1 0 ]
 {
-"45
-[v getActualUID@i_889 i `uc  1 a 1 3 ]
-"41
+"53
+[v getActualUID@i_906 i `uc  1 a 1 3 ]
+"49
 [v getActualUID@i i `uc  1 a 1 4 ]
-"50
-[v getActualUID@i_890 i `uc  1 a 1 5 ]
-"37
+"58
+[v getActualUID@i_907 i `uc  1 a 1 5 ]
+"45
 [v getActualUID@UID UID `*.30uc  1 p 1 1 ]
 [v getActualUID@userIndex userIndex `uc  1 p 1 2 ]
-"54
+"62
 } 0
-"25 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+"24 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
 [v _Terminal_SendChar Terminal_SendChar `(v  1 e 1 0 ]
 {
 [v Terminal_SendChar@c c `uc  1 p 1 wreg ]
 [v Terminal_SendChar@c c `uc  1 p 1 wreg ]
 [v Terminal_SendChar@c c `uc  1 p 1 4 ]
-"28
+"27
 } 0
-"20
-[v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
-{
-} 0
-"22
+"21
 [v _Terminal_ReceiveChar Terminal_ReceiveChar `(uc  1 e 1 0 ]
 {
 } 0
-"21
+"20
 [v _Terminal_RXAvailable Terminal_RXAvailable `(uc  1 e 1 0 ]
 {
 } 0
 "72 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TECLADO.c
 [v _motorTeclado motorTeclado `(v  1 e 1 0 ]
 {
-"144
+"147
 } 0
 "43
 [v _writeColumnas writeColumnas `(v  1 e 1 0 ]
 {
 "49
 } 0
-"199 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
+"139 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+[v _setStartSendString setStartSendString `(v  1 e 1 0 ]
+{
+"141
+} 0
+"207 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_DATOS.c
 [v _setLed setLed `(v  1 e 1 0 ]
 {
 [v setLed@tecla tecla `uc  1 p 1 wreg ]
 [v setLed@tecla tecla `uc  1 p 1 wreg ]
-"200
+"208
 [v setLed@modeLED modeLED `uc  1 s 1 modeLED ]
-"201
+"209
 [v setLed@ledIndex ledIndex `uc  1 s 1 ledIndex ]
-"203
+"212
 [v setLed@tecla tecla `uc  1 p 1 4 ]
-"211
+"224
 } 0
-"192
+"200
 [v _setLEDIntensity setLEDIntensity `(v  1 e 1 0 ]
 {
 [v setLEDIntensity@userIndex userIndex `uc  1 p 1 wreg ]
@@ -690,9 +676,41 @@
 [v setLEDIntensity@ledIndex ledIndex `uc  1 p 1 1 ]
 [v setLEDIntensity@intensity intensity `uc  1 p 1 2 ]
 [v setLEDIntensity@userIndex userIndex `uc  1 p 1 3 ]
-"196
+"204
 } 0
-"65 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+"37
+[v _resetData resetData `(v  1 e 1 0 ]
+{
+"39
+[v resetData@j j `uc  1 a 1 2 ]
+"38
+[v resetData@i i `uc  1 a 1 1 ]
+"43
+} 0
+"50 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+[v _motor_StartSendString motor_StartSendString `(v  1 e 1 0 ]
+{
+[v motor_StartSendString@str str `*.35Cuc  1 p 2 5 ]
+"55
+} 0
+"36
+[v _motor_SendString motor_SendString `(uc  1 e 1 0 ]
+{
+"48
+} 0
+"29
+[v _motor_SendChar motor_SendChar `(uc  1 e 1 0 ]
+{
+[v motor_SendChar@c c `uc  1 p 1 wreg ]
+[v motor_SendChar@c c `uc  1 p 1 wreg ]
+[v motor_SendChar@c c `uc  1 p 1 4 ]
+"33
+} 0
+"19
+[v _Terminal_TXAvailable Terminal_TXAvailable `(i  1 e 2 0 ]
+{
+} 0
+"57
 [v _hashtag_pressed3s hashtag_pressed3s `(v  1 e 1 0 ]
 {
 } 0
@@ -709,65 +727,65 @@
 {
 "40
 } 0
-"126 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
+"127 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_RFID.c
 [v _initRFID initRFID `(v  1 e 1 0 ]
 {
-"156
+"157
 [v initRFID@regVal regVal `uc  1 a 1 12 ]
-"166
+"167
 } 0
-"46
+"47
 [v _motor_Write motor_Write `(uc  1 e 1 0 ]
 {
 [v motor_Write@addr addr `uc  1 p 1 wreg ]
 [v motor_Write@addr addr `uc  1 p 1 wreg ]
 [v motor_Write@value value `uc  1 p 1 8 ]
-"47
-[v motor_Write@bit_count bit_count `uc  1 s 1 bit_count ]
 "48
-[v motor_Write@ucAddr ucAddr `uc  1 s 1 ucAddr ]
+[v motor_Write@bit_count bit_count `uc  1 s 1 bit_count ]
 "49
+[v motor_Write@ucAddr ucAddr `uc  1 s 1 ucAddr ]
+"50
 [v motor_Write@ucValue ucValue `uc  1 s 1 ucValue ]
-"46
+"47
 [v motor_Write@addr addr `uc  1 p 1 9 ]
-"75
+"76
 } 0
-"78
+"79
 [v _motor_Read motor_Read `(uc  1 e 1 0 ]
 {
 [v motor_Read@addr addr `uc  1 p 1 wreg ]
 [v motor_Read@addr addr `uc  1 p 1 wreg ]
-"79
-[v motor_Read@bit_count bit_count `uc  1 s 1 bit_count ]
 "80
-[v motor_Read@ucAddr ucAddr `uc  1 s 1 ucAddr ]
+[v motor_Read@bit_count bit_count `uc  1 s 1 bit_count ]
 "81
-[v motor_Read@ucResult ucResult `uc  1 s 1 ucResult ]
+[v motor_Read@ucAddr ucAddr `uc  1 s 1 ucAddr ]
 "82
+[v motor_Read@ucResult ucResult `uc  1 s 1 ucResult ]
+"83
 [v motor_Read@timeout_counter timeout_counter `ui  1 s 2 timeout_counter ]
-"85
+"86
 [v motor_Read@addr addr `uc  1 p 1 9 ]
-"123
+"124
 } 0
-"32
+"33
 [v _processBit processBit `(v  1 e 1 0 ]
 {
 [v processBit@val val `*.30uc  1 p 1 3 ]
 [v processBit@bit_count bit_count `*.30uc  1 p 1 4 ]
 [v processBit@state state `*.30uc  1 p 1 5 ]
 [v processBit@next_state next_state `uc  1 p 1 6 ]
-"43
+"44
 } 0
-"26
+"27
 [v _delay_us delay_us `(v  1 e 1 0 ]
 {
 [v delay_us@howMany howMany `uc  1 p 1 wreg ]
-"27
+"28
 [v delay_us@x x `uc  1 a 1 2 ]
-"26
+"27
 [v delay_us@howMany howMany `uc  1 p 1 wreg ]
 [v delay_us@howMany howMany `uc  1 p 1 1 ]
-"29
+"30
 } 0
 "63 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\main.c
 [v _initPorts initPorts `(v  1 e 1 0 ]
@@ -785,17 +803,17 @@
 "27
 [v initData@j j `uc  1 a 1 2 ]
 "31
-[v initData@i_884 i `uc  1 a 1 3 ]
+[v initData@i_898 i `uc  1 a 1 3 ]
 "26
-[v initData@i_882 i `uc  1 a 1 4 ]
+[v initData@i_896 i `uc  1 a 1 4 ]
 "25
 [v initData@i i `uc  1 a 1 1 ]
 "35
 } 0
-"11 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
+"10 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TERMINAL.c
 [v _Terminal_Init Terminal_Init `(v  1 e 1 0 ]
 {
-"17
+"16
 } 0
 "32 C:\Users\gerar\MPLABXProjects\gerard.pc-axel.maynes_P2FA.X\TAD_TIMER.c
 [v _TI_Init TI_Init `(v  1 e 1 0 ]

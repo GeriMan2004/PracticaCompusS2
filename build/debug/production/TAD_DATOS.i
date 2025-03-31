@@ -4793,6 +4793,7 @@ unsigned char __t3rd16on(void);
 
 
 void initData(void);
+void resetData(void);
 void setLed(unsigned char tecla);
 void setIndex(unsigned char index);
 void getActualUID(unsigned char* UID, unsigned char userIndex);
@@ -4857,6 +4858,7 @@ void motorTerminal(void);
 char motor_SendChar(char c);
 char motor_SendString(void);
 void motor_StartSendString(const char* str);
+void setStartSendString(void);
 # 5 "TAD_DATOS.c" 2
 
 
@@ -4888,6 +4890,14 @@ void initData(void) {
         configurations[4][i] = 0;
     }
     index = 4;
+}
+
+void resetData(void) {
+    for (unsigned char i = 0; i < 4; i++) {
+        for (unsigned char j = 0; j < 6; j++) {
+            configurations[i][j] = 0;
+        }
+    }
 }
 
 void getActualUID(unsigned char* UID, unsigned char userIndex) {
@@ -5056,12 +5066,17 @@ void setLed(unsigned char tecla) {
     static char modeLED = 0;
     static char ledIndex = 0;
 
+
+    if (index == 4) return;
+
     if(!modeLED) {
         ledIndex = tecla - 1;
         modeLED = 1;
     } else {
-        setLEDIntensity(index, ledIndex, tecla);
-        new_configuration = 1;
+        if (index < 4) {
+            setLEDIntensity(index, ledIndex, tecla);
+            new_configuration = 1;
+        }
         modeLED = 0;
     }
 }

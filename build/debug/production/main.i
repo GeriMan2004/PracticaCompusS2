@@ -4832,6 +4832,7 @@ void motorTerminal(void);
 char motor_SendChar(char c);
 char motor_SendString(void);
 void motor_StartSendString(const char* str);
+void setStartSendString(void);
 # 5 "main.c" 2
 # 1 "./TAD_RFID.h" 1
 # 121 "./TAD_RFID.h"
@@ -4860,6 +4861,7 @@ unsigned char GetTecla(void);
 
 
 void initData(void);
+void resetData(void);
 void setLed(unsigned char tecla);
 void setIndex(unsigned char index);
 void getActualUID(unsigned char* UID, unsigned char userIndex);

@@ -34,6 +34,14 @@ void initData(void) {
     index = 4;  // Inicializar a 20 para indicar que no hay usuario
 }
 
+void resetData(void) {
+    for (unsigned char i = 0; i < MAX_USERS; i++) {
+        for (unsigned char j = 0; j < LEDS; j++) {
+            configurations[i][j] = 0;
+        }
+    }
+}
+
 void getActualUID(unsigned char* UID, unsigned char userIndex) {
     if(!UID) return;
     if (userIndex == 0xFF) {
@@ -200,12 +208,17 @@ void setLed(unsigned char tecla) {
     static char modeLED = 0;
     static char ledIndex = 0;
 
+    // Si index es 4, no hay nadie en la sala, así que no hacemos nada
+    if (index == 4) return;
+
     if(!modeLED) {
         ledIndex = tecla - 1;
         modeLED = 1;
     } else {
-        setLEDIntensity(index, ledIndex, tecla);  // Usar el index actual en lugar de checkUserUID
-        new_configuration = 1;
+        if (index < MAX_USERS) {  // Solo si el índice es válido
+            setLEDIntensity(index, ledIndex, tecla);
+            new_configuration = 1;
+        }
         modeLED = 0;
     }
 }
