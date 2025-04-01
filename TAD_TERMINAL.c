@@ -116,7 +116,11 @@ void printfUID(unsigned char *currentUser, char userIndex, const char* extraStri
         *ptr++ = '0' + i;
         *ptr++ = ':';
         *ptr++ = ' ';
-        *ptr++ = hex[leds[i] & 0x0F];  // Valor hexadecimal
+		if (leds[i] < 10) {
+			*ptr++ = '0' + leds[i];
+		} else {
+			*ptr++ = 'A';
+		}
         
         // Añadir separador si no es el último LED
         if(i < 5) {
@@ -201,7 +205,7 @@ void motorTerminal(void) {
 		case 20: // Mostrar UID
 			if (!sending_string) {
 				unsigned char currentUserIndex = getCurrentUserIndex();
-				if (currentUserIndex != 4) {
+				if (currentUserIndex != MAX_USERS) {
 					getActualUID(currentUser, currentUserIndex);
 					printfUID(currentUser, currentUserIndex, "Usuari ");
 					state = 25;
@@ -240,14 +244,14 @@ void motorTerminal(void) {
 					// Avanzar al siguiente usuario
 					userNumber++;
 				} else {
-					motor_StartSendString("\r\n"); // Añadir línea en blanco al final
+					motor_StartSendString("\r\n");
 					sending_string = 1;
-					state = 0; // Volver al menú principal cuando acabemos
+					state = 0;
 				}
 			}
 			break;
 		
-		case 40: // Cambiar hora
+		case 40:
 			if (!sending_string) {
 				motor_StartSendString("Introduce la hora actual(HHMM): ");
 				sending_string = 1;
@@ -256,7 +260,7 @@ void motorTerminal(void) {
 			}
 		break;
 		
-		case 2: // Procesar entrada de hora
+		case 2:
 			if(Terminal_RXAvailable()) {
 				hour[index] = Terminal_ReceiveChar();
 				Terminal_SendChar(hour[index]);

@@ -3,7 +3,6 @@
 
 #include <xc.h>
 
-#define MAX_USERS 4
 #define LEDS 6      
 #define PWM_TIME 10 // 20 ms, 10 tics of the 2ms timer interruption
 

@@ -600,7 +600,7 @@ void motor_RFID(void) {
                     case 25:
                         // Actualizamos el usuario actual y posteriormente comprobamos que este sea o no el mismo
                         getActualUID(currentUser, 0xFF);
-                        if (getCurrentUserIndex() != 4) {
+                        if (getCurrentUserIndex() != MAX_USERS) {
                             substate = 26;
                         } else if (cardRemoved == 1) { // en caso de que la tarjeta no haya sido retirada respecto a la ultima vez que se insertó, no actuamos
                             substate = 27;
@@ -618,7 +618,7 @@ void motor_RFID(void) {
                             if (cardRemoved == 1) {
                                 motor_StartSendString("\r\nL'usuari ha sortit de la sala\r\n");
                                 setStartSendString();
-                                setIndex(4);
+                                setIndex(MAX_USERS);
                                 newConfiguration();
                                 substate = 28;
                                 cardRemoved = 0;

@@ -252,9 +252,22 @@ void CantaData(char Data) {
 }
 
 void WaitForBusy(void) { char Busy;
-	Espera(Timer, 2);
+	SetD4_D7Entrada();
+	RSDown();
+	RWUp();
+	TI_ResetTics(Timer);
+	do {
+		EnableUp();EnableUp(); //Making sure the 500ns of the pulse time
+		Busy = GetBusyFlag();
+		EnableDown();
+		EnableDown();
+		EnableUp();EnableUp();
+		// The lower part of the address counter, it is not interesting for us. 
+		EnableDown();
+		EnableDown();
+		if (TI_GetTics(Timer)) break; // More than one ms means that the LCD has gone mad.
+	} while(Busy);
 }
-
 void EscriuPrimeraOrdre(char ordre) {
 	// Write the first as if there are 8 bits.
 	SetD4_D7Sortida();  RSDown(); RWDown();

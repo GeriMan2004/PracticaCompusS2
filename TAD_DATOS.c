@@ -5,7 +5,7 @@
 #include "TAD_TIMER.h"
 
 // Datos de usuarios y configuraciones
-unsigned char userUIDs[MAX_USERS][UID_SIZE] = {
+unsigned char userUIDs[MAX_USERS + 1][UID_SIZE] = {
     {0x65, 0xDC, 0xF9, 0x03, 0x43},
     {0xDC, 0x0D, 0xF9, 0x03, 0x2B},
     {0xDF, 0x8B, 0xDF, 0xC4, 0x4F},
@@ -18,10 +18,9 @@ unsigned char configurations[MAX_USERS + 1][LEDS];
 static unsigned char currentUser[5] = {0};
 static unsigned char new_configuration = 0;
 static unsigned char new_user = 0;
-static unsigned char index = 4;  // Inicializar a 20 para indicar que no hay usuario
+static unsigned char index = MAX_USERS;  // Inicializar a 20 para indicar que no hay usuario
 static unsigned char currentTime[4] = "0000";
-static unsigned char timer = 0;
-
+static unsigned char timer;
 // Función optimizada para inicialización
 void initData(void) {
     for(char i = 0; i < 5; i++) currentUser[i] = 0;
@@ -33,7 +32,7 @@ void initData(void) {
     for(char i = 0; i < LEDS; i++) {
         configurations[MAX_USERS][i] = 0;
     }
-    index = 4;  // Inicializar a 20 para indicar que no hay usuario
+    index = MAX_USERS;  // Inicializar a 20 para indicar que no hay usuario
     TI_NewTimer(&timer);
     new_configuration = 1;
 }
@@ -44,7 +43,6 @@ void resetData(void) {
             configurations[i][j] = 0;
         }
     }
-    new_configuration = 1;
 }
 
 void getActualUID(unsigned char* UID, unsigned char userIndex) {
@@ -143,7 +141,7 @@ char motor_setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4)
             state_setCurrentUser = 5;
             break;
         case 5:
-            index = 4;  // Si no coincide con ningún usuario conocido
+            index = MAX_USERS;  // Si no coincide con ningún usuario conocido
             state_setCurrentUser = 6;
             break;
         case 6:
@@ -161,6 +159,7 @@ void motor_datos(void) {
     static char pointer = 0;
     static unsigned char lastChar;
     static char i = 0; // Para las iteraciones
+    char c; // Moved variable declaration here for case 13
     // Si el tiempo transcurrido es mayor que el tiempo de espera (1 minuto), actualiza la hora sumandole 1 minuto a esta y resetea el timer para volver a contar 1 minuto
     if (TI_GetTics(timer) > MINUTE_DELAY) {
         new_configuration = 1;
@@ -191,14 +190,8 @@ void motor_datos(void) {
         case 0:
             if(new_configuration || new_user) {
                 new_configuration = new_user = 0;
-                state = 1;
+                state = 2;
             }
-            break;
-
-        // Limpia la pantalla LCD
-        case 1:
-            //LcClear();
-            state = 2;
             break;
 
         // Posiciona el cursor en la primera líneaF
@@ -211,7 +204,7 @@ void motor_datos(void) {
         case 3:
             lastChar = currentUser[4];
             // Para números (0x03, 0x43)
-            if(index != 4) {
+            if(index != MAX_USERS) {
                 if((lastChar & 0x0F) < 10) {
                     LcPutChar('0' + (lastChar & 0x0F));
                 } 
@@ -273,29 +266,29 @@ void motor_datos(void) {
             }
             break;
 
-        // Muestra número de LED
         case 11:
             LcPutChar('1' + pointer);
             state = 12;
             break;
 
-        // Muestra guión
         case 12:
             LcPutChar('-');
             state = 13;
             break;
 
-        // Muestra valor del LED
         case 13:
-            LcPutChar('0' + configurations[index][pointer]);
+            c = '0' + configurations[index][pointer];
+            if(c > '9') {
+                c = 'A';
+            }
+            LcPutChar(c);
             state = 14;
             break;
 
-        // Pone espacio después del LED
         case 14:
             LcPutChar(' ');
             pointer++;
-            state = 10; // Volver a verificar para el siguiente LED
+            state = 10;
             break;
     }
 }
@@ -312,17 +305,15 @@ void setLed(unsigned char tecla) {
     static char modeLED = 0;
     static char ledIndex = 0;
 
-    // Si index es 4, no hay nadie en la sala, así que no hacemos nada
-    if (index == 4) return;
+    // Si index es MAX_USERS, no hay nadie en la sala, así que no hacemos nada
+    if (index == MAX_USERS) return;
 
     if(!modeLED) {
         ledIndex = tecla - 1;
         modeLED = 1;
     } else {
-        if (index < MAX_USERS) {  // Solo si el índice es válido
-            setLEDIntensity(index, ledIndex, tecla);
-            new_configuration = 1;
-        }
+        setLEDIntensity(index, ledIndex, tecla);
+        new_configuration = 1;
         modeLED = 0;
     }
 }

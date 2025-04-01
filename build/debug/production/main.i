@@ -4785,7 +4785,14 @@ unsigned char __t3rd16on(void);
 # 34 "C:\\Program Files\\Microchip\\xc8\\v3.00\\pic\\include/xc.h" 2 3
 # 2 "main.c" 2
 # 1 "./TAD_LEDS.h" 1
-# 10 "./TAD_LEDS.h"
+
+
+
+
+
+
+
+
 void initLeds(void);
 void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity);
 void updateLEDs(void);
@@ -4884,26 +4891,12 @@ void LcInit(char rows, char columns);
 
 
 
-void LcClear(void);
-
-
-
-void LcCursorOn(void);
-
-
-
-void LcCursorOff(void);
-
-
-
 void LcGotoXY(char Column, char Row);
 
 
 
 
 void LcPutChar(char c);
-# 100 "./TAD_DISPLAY.h"
-void LcPutString(char *s);
 # 9 "main.c" 2
 
 #pragma config OSC = HSPLL

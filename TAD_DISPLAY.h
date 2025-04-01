@@ -52,7 +52,7 @@
 #define SetD5(On)				(LATBbits.LATB5 = (On))
 #define SetD6(On)				(LATEbits.LATE1 = (On))
 #define SetD7(On)				(LATEbits.LATE0 = (On))
-#define GetBusyFlag()           (PORTBbits.RB7)
+#define GetBusyFlag()           (PORTEbits.RE0)
 #define RSUp()					(LATBbits.LATB3 = 1)
 #define RSDown()				(LATBbits.LATB3 = 0)
 #define RWUp()					(LATBbits.LATB2 = 1)
@@ -69,18 +69,6 @@ void LcInit(char rows, char columns);
 // Post: This routine can last up to 100ms
 // Post: The display remains cleared, the cursor turned off and at the position 0, 0.
 
-void LcClear(void);
-// Post: Clears the display and sets the cursor to its previous state. 
-// Post: The next order can last up to 1.6ms. 
-
-void LcCursorOn(void);
-// Post: Turn on the cursor
-// Post: The next order can last up to 40us. 
-
-void LcCursorOff(void);
-// Post: Turns off the cursor
-// Post: The next order can last up to 40us. 
-
 void LcGotoXY(char Column, char Row);
 // Pre : Column between 0 and 39, row between 0 and 3. 
 // Post: Sets the cursor to those coordinates. 
@@ -96,10 +84,5 @@ void LcPutChar(char c);
 // The one row LCDs returns to 0 when a column gets to 39. 
 // The row is never increased. 
 	// The char is written
-
-void LcPutString(char *s);
-// Post: Paints the string from the actual cursor position. 
-// The coordinate criteria is the same as the LcPutChar. 
-// Post: Can last up to 40us per char of a routine output.
 
 #endif	/* TAD_DISPLAY_H */

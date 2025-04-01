@@ -4946,7 +4946,11 @@ void printfUID(unsigned char *currentUser, char userIndex, const char* extraStri
         *ptr++ = '0' + i;
         *ptr++ = ':';
         *ptr++ = ' ';
-        *ptr++ = hex[leds[i] & 0x0F];
+  if (leds[i] < 10) {
+   *ptr++ = '0' + leds[i];
+  } else {
+   *ptr++ = 'A';
+  }
 
 
         if(i < 5) {

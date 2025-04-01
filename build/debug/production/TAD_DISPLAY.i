@@ -4813,26 +4813,12 @@ void LcInit(char rows, char columns);
 
 
 
-void LcClear(void);
-
-
-
-void LcCursorOn(void);
-
-
-
-void LcCursorOff(void);
-
-
-
 void LcGotoXY(char Column, char Row);
 
 
 
 
 void LcPutChar(char c);
-# 100 "./TAD_DISPLAY.h"
-void LcPutString(char *s);
 # 23 "TAD_DISPLAY.c" 2
 # 44 "TAD_DISPLAY.c"
 static unsigned char Rows, Columns;
@@ -5022,9 +5008,22 @@ void CantaData(char Data) {
 }
 
 void WaitForBusy(void) { char Busy;
- Espera(Timer, 2);
-}
+ (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 1);
+ (LATBbits.LATB3 = 0);
+ (LATBbits.LATB2 = 1);
+ TI_ResetTics(Timer);
+ do {
+  (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
+  Busy = (PORTEbits.RE0);
+  (LATBbits.LATB1 = 0);
+  (LATBbits.LATB1 = 0);
+  (LATBbits.LATB1 = 1);(LATBbits.LATB1 = 1);
 
+  (LATBbits.LATB1 = 0);
+  (LATBbits.LATB1 = 0);
+  if (TI_GetTics(Timer)) break;
+ } while(Busy);
+}
 void EscriuPrimeraOrdre(char ordre) {
 
  (TRISBbits.TRISB4 = TRISBbits.TRISB5 = TRISEbits.TRISE1 = TRISEbits.TRISE0 = 0); (LATBbits.LATB3 = 0); (LATBbits.LATB2 = 0);

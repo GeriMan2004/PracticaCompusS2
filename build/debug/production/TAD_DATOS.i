@@ -4816,26 +4816,12 @@ void LcInit(char rows, char columns);
 
 
 
-void LcClear(void);
-
-
-
-void LcCursorOn(void);
-
-
-
-void LcCursorOff(void);
-
-
-
 void LcGotoXY(char Column, char Row);
 
 
 
 
 void LcPutChar(char c);
-# 100 "./TAD_DISPLAY.h"
-void LcPutString(char *s);
 # 4 "TAD_DATOS.c" 2
 # 1 "./TAD_TERMINAL.h" 1
 
@@ -4882,7 +4868,7 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 # 6 "TAD_DATOS.c" 2
 
 
-unsigned char userUIDs[4][5] = {
+unsigned char userUIDs[4 + 1][5] = {
     {0x65, 0xDC, 0xF9, 0x03, 0x43},
     {0xDC, 0x0D, 0xF9, 0x03, 0x2B},
     {0xDF, 0x8B, 0xDF, 0xC4, 0x4F},
@@ -4897,8 +4883,7 @@ static unsigned char new_configuration = 0;
 static unsigned char new_user = 0;
 static unsigned char index = 4;
 static unsigned char currentTime[4] = "0000";
-static unsigned char timer = 0;
-
+static unsigned char timer;
 
 void initData(void) {
     for(char i = 0; i < 5; i++) currentUser[i] = 0;
@@ -4921,7 +4906,6 @@ void resetData(void) {
             configurations[i][j] = 0;
         }
     }
-    new_configuration = 1;
 }
 
 void getActualUID(unsigned char* UID, unsigned char userIndex) {
@@ -5068,14 +5052,8 @@ void motor_datos(void) {
         case 0:
             if(new_configuration || new_user) {
                 new_configuration = new_user = 0;
-                state = 1;
+                state = 2;
             }
-            break;
-
-
-        case 1:
-
-            state = 2;
             break;
 
 
@@ -5164,7 +5142,11 @@ void motor_datos(void) {
 
 
         case 13:
-            LcPutChar('0' + configurations[index][pointer]);
+            char c = '0' + configurations[index][pointer];
+            if(c > '9') {
+                c = 'A';
+            }
+            LcPutChar(c);
             state = 14;
             break;
 
@@ -5196,10 +5178,8 @@ void setLed(unsigned char tecla) {
         ledIndex = tecla - 1;
         modeLED = 1;
     } else {
-        if (index < 4) {
-            setLEDIntensity(index, ledIndex, tecla);
-            new_configuration = 1;
-        }
+        setLEDIntensity(index, ledIndex, tecla);
+        new_configuration = 1;
         modeLED = 0;
     }
 }

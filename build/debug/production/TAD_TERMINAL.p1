@@ -868,78 +868,95 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TERMINAL.c: 118:         *ptr++ = ' ';
 [e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 32 `ui `uc ]
 "119
-[; ;TAD_TERMINAL.c: 119:         *ptr++ = hex[leds[i] & 0x0F];
-[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x *U + &U F2763 * -> -> & -> *U + &U _leds * -> _i `ux -> -> # *U &U _leds `ui `ux `i -> 15 `i `ui `ux -> -> # *U &U F2763 `ui `ux ]
-"122
-[; ;TAD_TERMINAL.c: 122:         if(i < 5) {
-[e $ ! < -> _i `i -> 5 `i 336  ]
+[; ;TAD_TERMINAL.c: 119:   if (leds[i] < 10) {
+[e $ ! < -> *U + &U _leds * -> _i `ux -> -> # *U &U _leds `ui `ux `i -> 10 `i 336  ]
 {
-"123
-[; ;TAD_TERMINAL.c: 123:             *ptr++ = ' ';
-[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 32 `ui `uc ]
-"124
-[; ;TAD_TERMINAL.c: 124:             *ptr++ = '-';
-[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 45 `ui `uc ]
-"125
-[; ;TAD_TERMINAL.c: 125:             *ptr++ = ' ';
-[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 32 `ui `uc ]
-"126
-[; ;TAD_TERMINAL.c: 126:         }
+"120
+[; ;TAD_TERMINAL.c: 120:    *ptr++ = '0' + leds[i];
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> + -> 48 `ui -> *U + &U _leds * -> _i `ux -> -> # *U &U _leds `ui `ux `ui `uc ]
+"121
+[; ;TAD_TERMINAL.c: 121:   } else {
 }
+[e $U 337  ]
 [e :U 336 ]
+{
+"122
+[; ;TAD_TERMINAL.c: 122:    *ptr++ = 'A';
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 65 `ui `uc ]
+"123
+[; ;TAD_TERMINAL.c: 123:   }
+}
+[e :U 337 ]
+"126
+[; ;TAD_TERMINAL.c: 126:         if(i < 5) {
+[e $ ! < -> _i `i -> 5 `i 338  ]
+{
 "127
-[; ;TAD_TERMINAL.c: 127:     }
+[; ;TAD_TERMINAL.c: 127:             *ptr++ = ' ';
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 32 `ui `uc ]
+"128
+[; ;TAD_TERMINAL.c: 128:             *ptr++ = '-';
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 45 `ui `uc ]
+"129
+[; ;TAD_TERMINAL.c: 129:             *ptr++ = ' ';
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 32 `ui `uc ]
+"130
+[; ;TAD_TERMINAL.c: 130:         }
+}
+[e :U 338 ]
+"131
+[; ;TAD_TERMINAL.c: 131:     }
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 6 `i 333  ]
 [e :U 334 ]
 }
-"130
-[; ;TAD_TERMINAL.c: 130:     *ptr++ = '\r';
+"134
+[; ;TAD_TERMINAL.c: 134:     *ptr++ = '\r';
 [e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 13 `ui `uc ]
-"131
-[; ;TAD_TERMINAL.c: 131:     *ptr++ = '\n';
-[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 10 `ui `uc ]
-"132
-[; ;TAD_TERMINAL.c: 132:     *ptr = '\0';
-[e = *U _ptr -> -> 0 `ui `uc ]
 "135
-[; ;TAD_TERMINAL.c: 135:     motor_StartSendString(buffer);
-[e ( _motor_StartSendString (1 -> &U F2764 `*Cuc ]
+[; ;TAD_TERMINAL.c: 135:     *ptr++ = '\n';
+[e = *U ++ _ptr * -> -> 1 `i `x -> -> # *U _ptr `i `x -> -> 10 `ui `uc ]
 "136
-[; ;TAD_TERMINAL.c: 136:     sending_string = 1;
+[; ;TAD_TERMINAL.c: 136:     *ptr = '\0';
+[e = *U _ptr -> -> 0 `ui `uc ]
+"139
+[; ;TAD_TERMINAL.c: 139:     motor_StartSendString(buffer);
+[e ( _motor_StartSendString (1 -> &U F2764 `*Cuc ]
+"140
+[; ;TAD_TERMINAL.c: 140:     sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"137
-[; ;TAD_TERMINAL.c: 137: }
+"141
+[; ;TAD_TERMINAL.c: 141: }
 [e :UE 322 ]
 }
-"139
-[; ;TAD_TERMINAL.c: 139: void setStartSendString(void) {
+"143
+[; ;TAD_TERMINAL.c: 143: void setStartSendString(void) {
 [v _setStartSendString `(v ~T0 @X0 1 ef ]
 {
 [e :U _setStartSendString ]
 [f ]
-"140
-[; ;TAD_TERMINAL.c: 140:  sending_string = 1;
-[e = _sending_string -> -> 1 `i `uc ]
-"141
-[; ;TAD_TERMINAL.c: 141: }
-[e :UE 337 ]
-}
 "144
-[; ;TAD_TERMINAL.c: 144: void motorTerminal(void) {
+[; ;TAD_TERMINAL.c: 144:  sending_string = 1;
+[e = _sending_string -> -> 1 `i `uc ]
+"145
+[; ;TAD_TERMINAL.c: 145: }
+[e :UE 339 ]
+}
+"148
+[; ;TAD_TERMINAL.c: 148: void motorTerminal(void) {
 [v _motorTerminal `(v ~T0 @X0 1 ef ]
 {
 [e :U _motorTerminal ]
 [f ]
-"145
-[; ;TAD_TERMINAL.c: 145:  static char state = 0;
+"149
+[; ;TAD_TERMINAL.c: 149:  static char state = 0;
 [v F2771 `uc ~T0 @X0 1 s state ]
 [i F2771
 -> -> 0 `i `uc
 ]
-"146
-[; ;TAD_TERMINAL.c: 146:  static unsigned char hour[4] = "0000";
+"150
+[; ;TAD_TERMINAL.c: 150:  static unsigned char hour[4] = "0000";
 [v F2772 `uc ~T0 @X0 -> 4 `i s hour ]
 [i F2772
 :U ..
@@ -949,412 +966,412 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> 48 `c
 ..
 ]
-"147
-[; ;TAD_TERMINAL.c: 147:  static char index = 0;
+"151
+[; ;TAD_TERMINAL.c: 151:  static char index = 0;
 [v F2773 `uc ~T0 @X0 1 s index ]
 [i F2773
 -> -> 0 `i `uc
 ]
-"148
-[; ;TAD_TERMINAL.c: 148:  static unsigned char leds[6];
+"152
+[; ;TAD_TERMINAL.c: 152:  static unsigned char leds[6];
 [v F2774 `uc ~T0 @X0 -> 6 `i s leds ]
-"149
-[; ;TAD_TERMINAL.c: 149:  static unsigned char currentUser[5];
+"153
+[; ;TAD_TERMINAL.c: 153:  static unsigned char currentUser[5];
 [v F2775 `uc ~T0 @X0 -> 5 `i s currentUser ]
-"150
-[; ;TAD_TERMINAL.c: 150:  static char userNumber = 0;
+"154
+[; ;TAD_TERMINAL.c: 154:  static char userNumber = 0;
 [v F2776 `uc ~T0 @X0 1 s userNumber ]
 [i F2776
 -> -> 0 `i `uc
 ]
-"152
-[; ;TAD_TERMINAL.c: 152:  if (sending_string) {
-[e $ ! != -> _sending_string `i -> 0 `i 339  ]
-{
-"153
-[; ;TAD_TERMINAL.c: 153:   if (motor_SendString() == 1) {
-[e $ ! == -> ( _motor_SendString ..  `i -> 1 `i 340  ]
-{
-"154
-[; ;TAD_TERMINAL.c: 154:    sending_string = 0;
-[e = _sending_string -> -> 0 `i `uc ]
-"155
-[; ;TAD_TERMINAL.c: 155:   } else {
-}
-[e $U 341  ]
-[e :U 340 ]
-{
 "156
-[; ;TAD_TERMINAL.c: 156:    return;
-[e $UE 338  ]
+[; ;TAD_TERMINAL.c: 156:  if (sending_string) {
+[e $ ! != -> _sending_string `i -> 0 `i 341  ]
+{
 "157
-[; ;TAD_TERMINAL.c: 157:   }
+[; ;TAD_TERMINAL.c: 157:   if (motor_SendString() == 1) {
+[e $ ! == -> ( _motor_SendString ..  `i -> 1 `i 342  ]
+{
+"158
+[; ;TAD_TERMINAL.c: 158:    sending_string = 0;
+[e = _sending_string -> -> 0 `i `uc ]
+"159
+[; ;TAD_TERMINAL.c: 159:   } else {
+}
+[e $U 343  ]
+[e :U 342 ]
+{
+"160
+[; ;TAD_TERMINAL.c: 160:    return;
+[e $UE 340  ]
+"161
+[; ;TAD_TERMINAL.c: 161:   }
+}
+[e :U 343 ]
+"162
+[; ;TAD_TERMINAL.c: 162:  }
 }
 [e :U 341 ]
-"158
-[; ;TAD_TERMINAL.c: 158:  }
-}
-[e :U 339 ]
-"160
-[; ;TAD_TERMINAL.c: 160:  switch(state) {
-[e $U 343  ]
-{
-"161
-[; ;TAD_TERMINAL.c: 161:   case 0:
-[e :U 344 ]
-"162
-[; ;TAD_TERMINAL.c: 162:    if (Terminal_RXAvailable() && Terminal_ReceiveChar() == 0x1B || hashtag_pressed) {
-[e $ ! || && != -> ( _Terminal_RXAvailable ..  `i -> 0 `i == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i != -> _hashtag_pressed `i -> 0 `i 345  ]
-{
-"163
-[; ;TAD_TERMINAL.c: 163:     motor_StartSendString("---------------\r\n");
-[e ( _motor_StartSendString (1 :s 2C ]
 "164
-[; ;TAD_TERMINAL.c: 164:     sending_string = 1;
-[e = _sending_string -> -> 1 `i `uc ]
-"165
-[; ;TAD_TERMINAL.c: 165:     state = 10;
-[e = F2771 -> -> 10 `i `uc ]
-"166
-[; ;TAD_TERMINAL.c: 166:     hashtag_pressed = 0;
-[e = _hashtag_pressed -> -> 0 `i `uc ]
-"167
-[; ;TAD_TERMINAL.c: 167:    }
-}
-[e :U 345 ]
-"168
-[; ;TAD_TERMINAL.c: 168:   break;
-[e $U 342  ]
-"170
-[; ;TAD_TERMINAL.c: 170:   case 10:
-[e :U 346 ]
-"171
-[; ;TAD_TERMINAL.c: 171:    if (!sending_string) {
-[e $ ! ! != -> _sending_string `i -> 0 `i 347  ]
+[; ;TAD_TERMINAL.c: 164:  switch(state) {
+[e $U 345  ]
 {
-"172
-[; ;TAD_TERMINAL.c: 172:     motor_StartSendString("Menú principal\r\n---------------\r\nTria una opció:\r\n");
-[e ( _motor_StartSendString (1 :s 3C ]
-"173
-[; ;TAD_TERMINAL.c: 173:     sending_string = 1;
+"165
+[; ;TAD_TERMINAL.c: 165:   case 0:
+[e :U 346 ]
+"166
+[; ;TAD_TERMINAL.c: 166:    if (Terminal_RXAvailable() && Terminal_ReceiveChar() == 0x1B || hashtag_pressed) {
+[e $ ! || && != -> ( _Terminal_RXAvailable ..  `i -> 0 `i == -> ( _Terminal_ReceiveChar ..  `i -> 27 `i != -> _hashtag_pressed `i -> 0 `i 347  ]
+{
+"167
+[; ;TAD_TERMINAL.c: 167:     motor_StartSendString("---------------\r\n");
+[e ( _motor_StartSendString (1 :s 2C ]
+"168
+[; ;TAD_TERMINAL.c: 168:     sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"174
-[; ;TAD_TERMINAL.c: 174:     state = 13;
-[e = F2771 -> -> 13 `i `uc ]
-"175
-[; ;TAD_TERMINAL.c: 175:    }
+"169
+[; ;TAD_TERMINAL.c: 169:     state = 10;
+[e = F2771 -> -> 10 `i `uc ]
+"170
+[; ;TAD_TERMINAL.c: 170:     hashtag_pressed = 0;
+[e = _hashtag_pressed -> -> 0 `i `uc ]
+"171
+[; ;TAD_TERMINAL.c: 171:    }
 }
 [e :U 347 ]
-"176
-[; ;TAD_TERMINAL.c: 176:   break;
-[e $U 342  ]
-"178
-[; ;TAD_TERMINAL.c: 178:   case 13:
+"172
+[; ;TAD_TERMINAL.c: 172:   break;
+[e $U 344  ]
+"174
+[; ;TAD_TERMINAL.c: 174:   case 10:
 [e :U 348 ]
-"179
-[; ;TAD_TERMINAL.c: 179:    if (!sending_string) {
+"175
+[; ;TAD_TERMINAL.c: 175:    if (!sending_string) {
 [e $ ! ! != -> _sending_string `i -> 0 `i 349  ]
 {
-"180
-[; ;TAD_TERMINAL.c: 180:     motor_StartSendString("\t1. Qui hi ha a la sala?\r\n\t2. Mostrar configuracions\r\n\t3. Modificar hora del sistema\r\nOpció: ");
-[e ( _motor_StartSendString (1 :s 4C ]
-"181
-[; ;TAD_TERMINAL.c: 181:     sending_string = 1;
+"176
+[; ;TAD_TERMINAL.c: 176:     motor_StartSendString("Menú principal\r\n---------------\r\nTria una opció:\r\n");
+[e ( _motor_StartSendString (1 :s 3C ]
+"177
+[; ;TAD_TERMINAL.c: 177:     sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"182
-[; ;TAD_TERMINAL.c: 182:     state = 1;
-[e = F2771 -> -> 1 `i `uc ]
-"183
-[; ;TAD_TERMINAL.c: 183:    }
+"178
+[; ;TAD_TERMINAL.c: 178:     state = 13;
+[e = F2771 -> -> 13 `i `uc ]
+"179
+[; ;TAD_TERMINAL.c: 179:    }
 }
 [e :U 349 ]
-"184
-[; ;TAD_TERMINAL.c: 184:   break;
-[e $U 342  ]
-"186
-[; ;TAD_TERMINAL.c: 186:   case 1:
+"180
+[; ;TAD_TERMINAL.c: 180:   break;
+[e $U 344  ]
+"182
+[; ;TAD_TERMINAL.c: 182:   case 13:
 [e :U 350 ]
-"187
-[; ;TAD_TERMINAL.c: 187:    if(Terminal_RXAvailable()) {
-[e $ ! != -> ( _Terminal_RXAvailable ..  `i -> 0 `i 351  ]
+"183
+[; ;TAD_TERMINAL.c: 183:    if (!sending_string) {
+[e $ ! ! != -> _sending_string `i -> 0 `i 351  ]
 {
+"184
+[; ;TAD_TERMINAL.c: 184:     motor_StartSendString("\t1. Qui hi ha a la sala?\r\n\t2. Mostrar configuracions\r\n\t3. Modificar hora del sistema\r\nOpció: ");
+[e ( _motor_StartSendString (1 :s 4C ]
+"185
+[; ;TAD_TERMINAL.c: 185:     sending_string = 1;
+[e = _sending_string -> -> 1 `i `uc ]
+"186
+[; ;TAD_TERMINAL.c: 186:     state = 1;
+[e = F2771 -> -> 1 `i `uc ]
+"187
+[; ;TAD_TERMINAL.c: 187:    }
+}
+[e :U 351 ]
 "188
-[; ;TAD_TERMINAL.c: 188:     char opcion = Terminal_ReceiveChar();
+[; ;TAD_TERMINAL.c: 188:   break;
+[e $U 344  ]
+"190
+[; ;TAD_TERMINAL.c: 190:   case 1:
+[e :U 352 ]
+"191
+[; ;TAD_TERMINAL.c: 191:    if(Terminal_RXAvailable()) {
+[e $ ! != -> ( _Terminal_RXAvailable ..  `i -> 0 `i 353  ]
+{
+"192
+[; ;TAD_TERMINAL.c: 192:     char opcion = Terminal_ReceiveChar();
 [v _opcion `uc ~T0 @X0 1 a ]
 [e = _opcion ( _Terminal_ReceiveChar ..  ]
-"189
-[; ;TAD_TERMINAL.c: 189:     if (opcion >= '1' && opcion <= '3') {
-[e $ ! && >= -> _opcion `ui -> 49 `ui <= -> _opcion `ui -> 51 `ui 352  ]
-{
-"190
-[; ;TAD_TERMINAL.c: 190:      motor_StartSendString("\r\n");
-[e ( _motor_StartSendString (1 :s 5C ]
-"191
-[; ;TAD_TERMINAL.c: 191:      sending_string = 1;
-[e = _sending_string -> -> 1 `i `uc ]
-"192
-[; ;TAD_TERMINAL.c: 192:      state = (opcion - '1') * 10 + 20;
-[e = F2771 -> + * - -> _opcion `ui -> 49 `ui -> -> 10 `i `ui -> -> 20 `i `ui `uc ]
 "193
-[; ;TAD_TERMINAL.c: 193:     } else {
-}
-[e $U 353  ]
-[e :U 352 ]
+[; ;TAD_TERMINAL.c: 193:     if (opcion >= '1' && opcion <= '3') {
+[e $ ! && >= -> _opcion `ui -> 49 `ui <= -> _opcion `ui -> 51 `ui 354  ]
 {
 "194
-[; ;TAD_TERMINAL.c: 194:      motor_StartSendString("ERROR. Valor introduit erroni.\r\n");
-[e ( _motor_StartSendString (1 :s 6C ]
+[; ;TAD_TERMINAL.c: 194:      motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 5C ]
 "195
 [; ;TAD_TERMINAL.c: 195:      sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
 "196
-[; ;TAD_TERMINAL.c: 196:      state = 0;
-[e = F2771 -> -> 0 `i `uc ]
+[; ;TAD_TERMINAL.c: 196:      state = (opcion - '1') * 10 + 20;
+[e = F2771 -> + * - -> _opcion `ui -> 49 `ui -> -> 10 `i `ui -> -> 20 `i `ui `uc ]
 "197
-[; ;TAD_TERMINAL.c: 197:     }
+[; ;TAD_TERMINAL.c: 197:     } else {
+}
+[e $U 355  ]
+[e :U 354 ]
+{
+"198
+[; ;TAD_TERMINAL.c: 198:      motor_StartSendString("ERROR. Valor introduit erroni.\r\n");
+[e ( _motor_StartSendString (1 :s 6C ]
+"199
+[; ;TAD_TERMINAL.c: 199:      sending_string = 1;
+[e = _sending_string -> -> 1 `i `uc ]
+"200
+[; ;TAD_TERMINAL.c: 200:      state = 0;
+[e = F2771 -> -> 0 `i `uc ]
+"201
+[; ;TAD_TERMINAL.c: 201:     }
+}
+[e :U 355 ]
+"202
+[; ;TAD_TERMINAL.c: 202:    }
 }
 [e :U 353 ]
-"198
-[; ;TAD_TERMINAL.c: 198:    }
-}
-[e :U 351 ]
-"199
-[; ;TAD_TERMINAL.c: 199:   break;
-[e $U 342  ]
-"201
-[; ;TAD_TERMINAL.c: 201:   case 20:
-[e :U 354 ]
-"202
-[; ;TAD_TERMINAL.c: 202:    if (!sending_string) {
-[e $ ! ! != -> _sending_string `i -> 0 `i 355  ]
-{
 "203
-[; ;TAD_TERMINAL.c: 203:     unsigned char currentUserIndex = getCurrentUserIndex();
+[; ;TAD_TERMINAL.c: 203:   break;
+[e $U 344  ]
+"205
+[; ;TAD_TERMINAL.c: 205:   case 20:
+[e :U 356 ]
+"206
+[; ;TAD_TERMINAL.c: 206:    if (!sending_string) {
+[e $ ! ! != -> _sending_string `i -> 0 `i 357  ]
+{
+"207
+[; ;TAD_TERMINAL.c: 207:     unsigned char currentUserIndex = getCurrentUserIndex();
 [v _currentUserIndex `uc ~T0 @X0 1 a ]
 [e = _currentUserIndex ( _getCurrentUserIndex ..  ]
-"204
-[; ;TAD_TERMINAL.c: 204:     if (currentUserIndex != 4) {
-[e $ ! != -> _currentUserIndex `i -> 4 `i 356  ]
-{
-"205
-[; ;TAD_TERMINAL.c: 205:      getActualUID(currentUser, currentUserIndex);
-[e ( _getActualUID (2 , &U F2775 _currentUserIndex ]
-"206
-[; ;TAD_TERMINAL.c: 206:      printfUID(currentUser, currentUserIndex, "Usuari ");
-[e ( _printfUID (3 , , &U F2775 -> _currentUserIndex `uc :s 7C ]
-"207
-[; ;TAD_TERMINAL.c: 207:      state = 25;
-[e = F2771 -> -> 25 `i `uc ]
 "208
-[; ;TAD_TERMINAL.c: 208:     } else {
-}
-[e $U 357  ]
-[e :U 356 ]
+[; ;TAD_TERMINAL.c: 208:     if (currentUserIndex != 4) {
+[e $ ! != -> _currentUserIndex `i -> 4 `i 358  ]
 {
 "209
-[; ;TAD_TERMINAL.c: 209:      motor_StartSendString("No hi ha cap usuari a la sala.\r\n");
-[e ( _motor_StartSendString (1 :s 8C ]
+[; ;TAD_TERMINAL.c: 209:      getActualUID(currentUser, currentUserIndex);
+[e ( _getActualUID (2 , &U F2775 _currentUserIndex ]
 "210
-[; ;TAD_TERMINAL.c: 210:      sending_string = 1;
-[e = _sending_string -> -> 1 `i `uc ]
+[; ;TAD_TERMINAL.c: 210:      printfUID(currentUser, currentUserIndex, "Usuari ");
+[e ( _printfUID (3 , , &U F2775 -> _currentUserIndex `uc :s 7C ]
 "211
 [; ;TAD_TERMINAL.c: 211:      state = 25;
 [e = F2771 -> -> 25 `i `uc ]
 "212
-[; ;TAD_TERMINAL.c: 212:     }
+[; ;TAD_TERMINAL.c: 212:     } else {
 }
-[e :U 357 ]
-"213
-[; ;TAD_TERMINAL.c: 213:    }
-}
-[e :U 355 ]
-"214
-[; ;TAD_TERMINAL.c: 214:    break;
-[e $U 342  ]
-"216
-[; ;TAD_TERMINAL.c: 216:   case 25:
+[e $U 359  ]
 [e :U 358 ]
-"217
-[; ;TAD_TERMINAL.c: 217:    if (!sending_string) {
-[e $ ! ! != -> _sending_string `i -> 0 `i 359  ]
 {
-"218
-[; ;TAD_TERMINAL.c: 218:     motor_StartSendString("\r\n");
-[e ( _motor_StartSendString (1 :s 9C ]
-"219
-[; ;TAD_TERMINAL.c: 219:     sending_string = 1;
+"213
+[; ;TAD_TERMINAL.c: 213:      motor_StartSendString("No hi ha cap usuari a la sala.\r\n");
+[e ( _motor_StartSendString (1 :s 8C ]
+"214
+[; ;TAD_TERMINAL.c: 214:      sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"220
-[; ;TAD_TERMINAL.c: 220:     state = 0;
-[e = F2771 -> -> 0 `i `uc ]
-"221
-[; ;TAD_TERMINAL.c: 221:    }
+"215
+[; ;TAD_TERMINAL.c: 215:      state = 25;
+[e = F2771 -> -> 25 `i `uc ]
+"216
+[; ;TAD_TERMINAL.c: 216:     }
 }
 [e :U 359 ]
-"222
-[; ;TAD_TERMINAL.c: 222:   break;
-[e $U 342  ]
-"224
-[; ;TAD_TERMINAL.c: 224:   case 30:
+"217
+[; ;TAD_TERMINAL.c: 217:    }
+}
+[e :U 357 ]
+"218
+[; ;TAD_TERMINAL.c: 218:    break;
+[e $U 344  ]
+"220
+[; ;TAD_TERMINAL.c: 220:   case 25:
 [e :U 360 ]
-"225
-[; ;TAD_TERMINAL.c: 225:    if (!sending_string) {
+"221
+[; ;TAD_TERMINAL.c: 221:    if (!sending_string) {
 [e $ ! ! != -> _sending_string `i -> 0 `i 361  ]
 {
-"226
-[; ;TAD_TERMINAL.c: 226:     motor_StartSendString("Configuracions:\r\n");
-[e ( _motor_StartSendString (1 :s 10C ]
-"227
-[; ;TAD_TERMINAL.c: 227:     sending_string = 1;
+"222
+[; ;TAD_TERMINAL.c: 222:     motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 9C ]
+"223
+[; ;TAD_TERMINAL.c: 223:     sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"228
-[; ;TAD_TERMINAL.c: 228:     userNumber = 0;
-[e = F2776 -> -> 0 `i `uc ]
-"229
-[; ;TAD_TERMINAL.c: 229:     state = 32;
-[e = F2771 -> -> 32 `i `uc ]
-"230
-[; ;TAD_TERMINAL.c: 230:    }
+"224
+[; ;TAD_TERMINAL.c: 224:     state = 0;
+[e = F2771 -> -> 0 `i `uc ]
+"225
+[; ;TAD_TERMINAL.c: 225:    }
 }
 [e :U 361 ]
-"231
-[; ;TAD_TERMINAL.c: 231:    break;
-[e $U 342  ]
-"233
-[; ;TAD_TERMINAL.c: 233:   case 32:
+"226
+[; ;TAD_TERMINAL.c: 226:   break;
+[e $U 344  ]
+"228
+[; ;TAD_TERMINAL.c: 228:   case 30:
 [e :U 362 ]
-"234
-[; ;TAD_TERMINAL.c: 234:    if (!sending_string) {
+"229
+[; ;TAD_TERMINAL.c: 229:    if (!sending_string) {
 [e $ ! ! != -> _sending_string `i -> 0 `i 363  ]
 {
-"235
-[; ;TAD_TERMINAL.c: 235:     if (userNumber < 4) {
-[e $ ! < -> F2776 `i -> 4 `i 364  ]
-{
-"237
-[; ;TAD_TERMINAL.c: 237:      getActualUID(currentUser, userNumber);
-[e ( _getActualUID (2 , &U F2775 -> F2776 `uc ]
-"239
-[; ;TAD_TERMINAL.c: 239:      printfUID(currentUser, userNumber, "Usuari ");
-[e ( _printfUID (3 , , &U F2775 F2776 :s 11C ]
-"241
-[; ;TAD_TERMINAL.c: 241:      userNumber++;
-[e ++ F2776 -> -> 1 `i `uc ]
-"242
-[; ;TAD_TERMINAL.c: 242:     } else {
-}
-[e $U 365  ]
-[e :U 364 ]
-{
-"243
-[; ;TAD_TERMINAL.c: 243:      motor_StartSendString("\r\n");
-[e ( _motor_StartSendString (1 :s 12C ]
-"244
-[; ;TAD_TERMINAL.c: 244:      sending_string = 1;
+"230
+[; ;TAD_TERMINAL.c: 230:     motor_StartSendString("Configuracions:\r\n");
+[e ( _motor_StartSendString (1 :s 10C ]
+"231
+[; ;TAD_TERMINAL.c: 231:     sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"245
-[; ;TAD_TERMINAL.c: 245:      state = 0;
-[e = F2771 -> -> 0 `i `uc ]
-"246
-[; ;TAD_TERMINAL.c: 246:     }
-}
-[e :U 365 ]
-"247
-[; ;TAD_TERMINAL.c: 247:    }
+"232
+[; ;TAD_TERMINAL.c: 232:     userNumber = 0;
+[e = F2776 -> -> 0 `i `uc ]
+"233
+[; ;TAD_TERMINAL.c: 233:     state = 32;
+[e = F2771 -> -> 32 `i `uc ]
+"234
+[; ;TAD_TERMINAL.c: 234:    }
 }
 [e :U 363 ]
-"248
-[; ;TAD_TERMINAL.c: 248:    break;
-[e $U 342  ]
-"250
-[; ;TAD_TERMINAL.c: 250:   case 40:
-[e :U 366 ]
-"251
-[; ;TAD_TERMINAL.c: 251:    if (!sending_string) {
-[e $ ! ! != -> _sending_string `i -> 0 `i 367  ]
+"235
+[; ;TAD_TERMINAL.c: 235:    break;
+[e $U 344  ]
+"237
+[; ;TAD_TERMINAL.c: 237:   case 32:
+[e :U 364 ]
+"238
+[; ;TAD_TERMINAL.c: 238:    if (!sending_string) {
+[e $ ! ! != -> _sending_string `i -> 0 `i 365  ]
 {
-"252
-[; ;TAD_TERMINAL.c: 252:     motor_StartSendString("Introduce la hora actual(HHMM): ");
-[e ( _motor_StartSendString (1 :s 13C ]
-"253
-[; ;TAD_TERMINAL.c: 253:     sending_string = 1;
+"239
+[; ;TAD_TERMINAL.c: 239:     if (userNumber < 4) {
+[e $ ! < -> F2776 `i -> 4 `i 366  ]
+{
+"241
+[; ;TAD_TERMINAL.c: 241:      getActualUID(currentUser, userNumber);
+[e ( _getActualUID (2 , &U F2775 -> F2776 `uc ]
+"243
+[; ;TAD_TERMINAL.c: 243:      printfUID(currentUser, userNumber, "Usuari ");
+[e ( _printfUID (3 , , &U F2775 F2776 :s 11C ]
+"245
+[; ;TAD_TERMINAL.c: 245:      userNumber++;
+[e ++ F2776 -> -> 1 `i `uc ]
+"246
+[; ;TAD_TERMINAL.c: 246:     } else {
+}
+[e $U 367  ]
+[e :U 366 ]
+{
+"247
+[; ;TAD_TERMINAL.c: 247:      motor_StartSendString("\r\n");
+[e ( _motor_StartSendString (1 :s 12C ]
+"248
+[; ;TAD_TERMINAL.c: 248:      sending_string = 1;
 [e = _sending_string -> -> 1 `i `uc ]
-"254
-[; ;TAD_TERMINAL.c: 254:     state = 2;
-[e = F2771 -> -> 2 `i `uc ]
-"255
-[; ;TAD_TERMINAL.c: 255:     index = 0;
-[e = F2773 -> -> 0 `i `uc ]
-"256
-[; ;TAD_TERMINAL.c: 256:    }
+"249
+[; ;TAD_TERMINAL.c: 249:      state = 0;
+[e = F2771 -> -> 0 `i `uc ]
+"250
+[; ;TAD_TERMINAL.c: 250:     }
 }
 [e :U 367 ]
-"257
-[; ;TAD_TERMINAL.c: 257:   break;
-[e $U 342  ]
-"259
-[; ;TAD_TERMINAL.c: 259:   case 2:
-[e :U 368 ]
-"260
-[; ;TAD_TERMINAL.c: 260:    if(Terminal_RXAvailable()) {
-[e $ ! != -> ( _Terminal_RXAvailable ..  `i -> 0 `i 369  ]
-{
-"261
-[; ;TAD_TERMINAL.c: 261:     hour[index] = Terminal_ReceiveChar();
-[e = *U + &U F2772 * -> F2773 `ux -> -> # *U &U F2772 `ui `ux -> ( _Terminal_ReceiveChar ..  `uc ]
-"262
-[; ;TAD_TERMINAL.c: 262:     Terminal_SendChar(hour[index]);
-[e ( _Terminal_SendChar (1 -> *U + &U F2772 * -> F2773 `ux -> -> # *U &U F2772 `ui `ux `uc ]
-"263
-[; ;TAD_TERMINAL.c: 263:     if(++index == 4) {
-[e $ ! == -> =+ F2773 -> -> 1 `i `uc `i -> 4 `i 370  ]
-{
-"264
-[; ;TAD_TERMINAL.c: 264:      saveHourToData(hour);
-[e ( _saveHourToData (1 &U F2772 ]
-"265
-[; ;TAD_TERMINAL.c: 265:      motor_StartSendString("\r\nHora introduida correctament\r\n");
-[e ( _motor_StartSendString (1 :s 14C ]
-"266
-[; ;TAD_TERMINAL.c: 266:      newConfiguration();
-[e ( _newConfiguration ..  ]
-"267
-[; ;TAD_TERMINAL.c: 267:      sending_string = 1;
-[e = _sending_string -> -> 1 `i `uc ]
-"268
-[; ;TAD_TERMINAL.c: 268:      state = 0;
-[e = F2771 -> -> 0 `i `uc ]
-"269
-[; ;TAD_TERMINAL.c: 269:     }
+"251
+[; ;TAD_TERMINAL.c: 251:    }
 }
-[e :U 370 ]
-"270
-[; ;TAD_TERMINAL.c: 270:    }
+[e :U 365 ]
+"252
+[; ;TAD_TERMINAL.c: 252:    break;
+[e $U 344  ]
+"254
+[; ;TAD_TERMINAL.c: 254:   case 40:
+[e :U 368 ]
+"255
+[; ;TAD_TERMINAL.c: 255:    if (!sending_string) {
+[e $ ! ! != -> _sending_string `i -> 0 `i 369  ]
+{
+"256
+[; ;TAD_TERMINAL.c: 256:     motor_StartSendString("Introduce la hora actual(HHMM): ");
+[e ( _motor_StartSendString (1 :s 13C ]
+"257
+[; ;TAD_TERMINAL.c: 257:     sending_string = 1;
+[e = _sending_string -> -> 1 `i `uc ]
+"258
+[; ;TAD_TERMINAL.c: 258:     state = 2;
+[e = F2771 -> -> 2 `i `uc ]
+"259
+[; ;TAD_TERMINAL.c: 259:     index = 0;
+[e = F2773 -> -> 0 `i `uc ]
+"260
+[; ;TAD_TERMINAL.c: 260:    }
 }
 [e :U 369 ]
+"261
+[; ;TAD_TERMINAL.c: 261:   break;
+[e $U 344  ]
+"263
+[; ;TAD_TERMINAL.c: 263:   case 2:
+[e :U 370 ]
+"264
+[; ;TAD_TERMINAL.c: 264:    if(Terminal_RXAvailable()) {
+[e $ ! != -> ( _Terminal_RXAvailable ..  `i -> 0 `i 371  ]
+{
+"265
+[; ;TAD_TERMINAL.c: 265:     hour[index] = Terminal_ReceiveChar();
+[e = *U + &U F2772 * -> F2773 `ux -> -> # *U &U F2772 `ui `ux -> ( _Terminal_ReceiveChar ..  `uc ]
+"266
+[; ;TAD_TERMINAL.c: 266:     Terminal_SendChar(hour[index]);
+[e ( _Terminal_SendChar (1 -> *U + &U F2772 * -> F2773 `ux -> -> # *U &U F2772 `ui `ux `uc ]
+"267
+[; ;TAD_TERMINAL.c: 267:     if(++index == 4) {
+[e $ ! == -> =+ F2773 -> -> 1 `i `uc `i -> 4 `i 372  ]
+{
+"268
+[; ;TAD_TERMINAL.c: 268:      saveHourToData(hour);
+[e ( _saveHourToData (1 &U F2772 ]
+"269
+[; ;TAD_TERMINAL.c: 269:      motor_StartSendString("\r\nHora introduida correctament\r\n");
+[e ( _motor_StartSendString (1 :s 14C ]
+"270
+[; ;TAD_TERMINAL.c: 270:      newConfiguration();
+[e ( _newConfiguration ..  ]
 "271
-[; ;TAD_TERMINAL.c: 271:   break;
-[e $U 342  ]
+[; ;TAD_TERMINAL.c: 271:      sending_string = 1;
+[e = _sending_string -> -> 1 `i `uc ]
 "272
-[; ;TAD_TERMINAL.c: 272:  }
-}
-[e $U 342  ]
-[e :U 343 ]
-[e [\ F2771 , $ -> 0 `i 344
- , $ -> 10 `i 346
- , $ -> 13 `i 348
- , $ -> 1 `i 350
- , $ -> 20 `i 354
- , $ -> 25 `i 358
- , $ -> 30 `i 360
- , $ -> 32 `i 362
- , $ -> 40 `i 366
- , $ -> 2 `i 368
- 342 ]
-[e :U 342 ]
+[; ;TAD_TERMINAL.c: 272:      state = 0;
+[e = F2771 -> -> 0 `i `uc ]
 "273
-[; ;TAD_TERMINAL.c: 273: }
-[e :UE 338 ]
+[; ;TAD_TERMINAL.c: 273:     }
+}
+[e :U 372 ]
+"274
+[; ;TAD_TERMINAL.c: 274:    }
+}
+[e :U 371 ]
+"275
+[; ;TAD_TERMINAL.c: 275:   break;
+[e $U 344  ]
+"276
+[; ;TAD_TERMINAL.c: 276:  }
+}
+[e $U 344  ]
+[e :U 345 ]
+[e [\ F2771 , $ -> 0 `i 346
+ , $ -> 10 `i 348
+ , $ -> 13 `i 350
+ , $ -> 1 `i 352
+ , $ -> 20 `i 356
+ , $ -> 25 `i 360
+ , $ -> 30 `i 362
+ , $ -> 32 `i 364
+ , $ -> 40 `i 368
+ , $ -> 2 `i 370
+ 344 ]
+[e :U 344 ]
+"277
+[; ;TAD_TERMINAL.c: 277: }
+[e :UE 340 ]
 }
 [a 7C 85 115 117 97 114 105 32 0 ]
 [a 11C 85 115 117 97 114 105 32 0 ]
