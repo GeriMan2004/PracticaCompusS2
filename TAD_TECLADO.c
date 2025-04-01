@@ -131,7 +131,7 @@ void motorTeclado(void) {
             } else if (TI_GetTics(timer_teclado) > HASHTAG_TIME) {
                 state = 5;
                 resetData();
-                motor_StartSendString("S'han resetejat les dades");
+                motor_StartSendString("\r\nS'han resetejat les dades\r\n");
                 setStartSendString();
             }
             break;

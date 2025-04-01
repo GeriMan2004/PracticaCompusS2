@@ -4,6 +4,7 @@
 #define UID_SIZE 5
 #define MAX_USERS 4
 #define LEDS 6
+#define MINUTE_DELAY 30000
 
 void initData(void);
 void resetData(void);

@@ -4821,7 +4821,7 @@ unsigned long TI_GetTics (unsigned char TimerHandle);
 struct Timer {
  unsigned long TicsInicials;
  unsigned char Busy;
-} static Timers[4];
+} static Timers[5];
 
 static volatile unsigned long Tics=0;
 
@@ -4833,7 +4833,7 @@ void RSI_Timer0 () {
 }
 
 void TI_Init () {
- for (unsigned char counter=0; counter<4; counter++) {
+ for (unsigned char counter=0; counter<5; counter++) {
   Timers[counter].Busy=0;
  }
  T0CON=0x82;
@@ -4846,7 +4846,7 @@ void TI_Init () {
 unsigned char TI_NewTimer(unsigned char *TimerHandle) {
  unsigned char Comptador=0;
  while (Timers[Comptador].Busy==1) {
-  if (++Comptador == 4) return (0);
+  if (++Comptador == 5) return (0);
  }
  Timers[Comptador].Busy=1;
  *TimerHandle=Comptador;

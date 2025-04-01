@@ -4792,6 +4792,7 @@ unsigned char __t3rd16on(void);
 
 
 
+
 void initData(void);
 void resetData(void);
 void setLed(unsigned char tecla);
@@ -4860,6 +4861,25 @@ char motor_SendString(void);
 void motor_StartSendString(const char* str);
 void setStartSendString(void);
 # 5 "TAD_DATOS.c" 2
+# 1 "./TAD_TIMER.h" 1
+# 16 "./TAD_TIMER.h"
+void RSI_Timer0(void);
+
+
+
+void TI_Init (void);
+
+
+unsigned char TI_NewTimer(unsigned char *TimerHandle) ;
+
+
+
+void TI_ResetTics (unsigned char TimerHandle);
+
+
+
+unsigned long TI_GetTics (unsigned char TimerHandle);
+# 6 "TAD_DATOS.c" 2
 
 
 unsigned char userUIDs[4][5] = {
@@ -4877,6 +4897,7 @@ static unsigned char new_configuration = 0;
 static unsigned char new_user = 0;
 static unsigned char index = 4;
 static unsigned char currentTime[4] = "0000";
+static unsigned char timer = 0;
 
 
 void initData(void) {
@@ -4890,6 +4911,8 @@ void initData(void) {
         configurations[4][i] = 0;
     }
     index = 4;
+    TI_NewTimer(&timer);
+    new_configuration = 1;
 }
 
 void resetData(void) {
@@ -4898,6 +4921,7 @@ void resetData(void) {
             configurations[i][j] = 0;
         }
     }
+    new_configuration = 1;
 }
 
 void getActualUID(unsigned char* UID, unsigned char userIndex) {
@@ -5013,8 +5037,34 @@ void motor_datos(void) {
     static char state = 0;
     static char pointer = 0;
     static unsigned char lastChar;
+    static char i = 0;
 
+    if (TI_GetTics(timer) > 30000) {
+        new_configuration = 1;
+        if (currentTime[3] == '9') {
+            currentTime[3] = '0';
+            if (currentTime[2] == '5') {
+                currentTime[2] = '0';
+                if (currentTime[1] == '9') {
+                    currentTime[1] = '0';
+                    if (currentTime[0] == '2') {
+                        currentTime[0] = '0';
+                    } else {
+                        currentTime[0]++;
+                    }
+                } else {
+                    currentTime[1]++;
+                }
+            } else {
+                currentTime[2]++;
+            }
+        } else {
+            currentTime[3]++;
+        }
+        TI_ResetTics(timer);
+    }
     switch(state) {
+
         case 0:
             if(new_configuration || new_user) {
                 new_configuration = new_user = 0;
@@ -5022,34 +5072,107 @@ void motor_datos(void) {
             }
             break;
 
+
         case 1:
-            lastChar = currentUser[4];
-            LcPutChar((lastChar < 10) ? ('0' + lastChar) : ('A' + (lastChar - 10)));
-            LcPutChar(' ');
+
             state = 2;
             break;
 
+
         case 2:
-            for(char i = 0; i < 4; i++) {
-                LcPutChar(currentTime[i]);
-                if(i == 1) LcPutChar(':');
-            }
-            LcPutChar(' ');
-            pointer = 0;
+            LcGotoXY(0, 0);
             state = 3;
             break;
 
+
         case 3:
-            if(pointer < 6) {
-                LcPutChar('1' + pointer);
-                LcPutChar('-');
-                LcPutChar('0' + configurations[index][pointer]);
-                LcPutChar(' ');
-                pointer++;
+            lastChar = currentUser[4];
+
+            if(index != 4) {
+                if((lastChar & 0x0F) < 10) {
+                    LcPutChar('0' + (lastChar & 0x0F));
+                }
+
+                else {
+                    LcPutChar('A' + (lastChar & 0x0F) - 10);
+                }
             } else {
+                LcPutChar(' ');
+            }
+            state = 4;
+            break;
+
+
+        case 4:
+            LcPutChar(' ');
+            state = 5;
+            i = 0;
+            break;
+
+
+        case 5:
+            if(i < 4) {
+                LcPutChar(currentTime[i]);
+                i++;
+                state = 6;
+            } else {
+
+                state = 9;
+            }
+            break;
+
+
+        case 6:
+            if(i == 2) {
+                LcPutChar(':');
+            }
+            state = 5;
+            break;
+
+
+        case 9:
+            LcPutChar(' ');
+            pointer = 0;
+            state = 10;
+            break;
+
+
+        case 10:
+            if(pointer < 6) {
+                if(pointer == 2) {
+                    LcGotoXY(0, 1);
+                }
+                state = 11;
+            } else {
+
                 pointer = 0;
                 state = 0;
             }
+            break;
+
+
+        case 11:
+            LcPutChar('1' + pointer);
+            state = 12;
+            break;
+
+
+        case 12:
+            LcPutChar('-');
+            state = 13;
+            break;
+
+
+        case 13:
+            LcPutChar('0' + configurations[index][pointer]);
+            state = 14;
+            break;
+
+
+        case 14:
+            LcPutChar(' ');
+            pointer++;
+            state = 10;
             break;
     }
 }

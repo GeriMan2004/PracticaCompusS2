@@ -4829,6 +4829,7 @@ void setStartSendString(void);
 
 
 
+
 void initData(void);
 void resetData(void);
 void setLed(unsigned char tecla);
@@ -4990,7 +4991,7 @@ void motorTeclado(void) {
             } else if (TI_GetTics(timer_teclado) > 1500) {
                 state = 5;
                 resetData();
-                motor_StartSendString("S'han resetejat les dades");
+                motor_StartSendString("\r\nS'han resetejat les dades\r\n");
                 setStartSendString();
             }
             break;

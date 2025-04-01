@@ -46,8 +46,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65 ./TAD_DISPLAY.h
 [; ;./TAD_DISPLAY.h: 65: void LcInit(char rows, char columns);
 [v _LcInit `(v ~T0 @X0 0 ef2`uc`uc ]
-"8 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 8: void initData(void);
+"9 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 9: void initData(void);
 [v _initData `(v ~T0 @X0 0 ef ]
 "9 ./TAD_TECLADO.h
 [; ;./TAD_TECLADO.h: 9: void motorTeclado(void);
@@ -61,8 +61,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./TAD_LEDS.h
 [; ;./TAD_LEDS.h: 13: void motor_LEDs(void);
 [v _motor_LEDs `(v ~T0 @X0 0 ef ]
-"19 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 19: void motor_datos(void);
+"20 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 20: void motor_datos(void);
 [v _motor_datos `(v ~T0 @X0 0 ef ]
 "1440 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 1440:     struct {

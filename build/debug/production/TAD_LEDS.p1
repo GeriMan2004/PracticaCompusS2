@@ -11,8 +11,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "986 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 986: extern volatile unsigned char LATA __attribute__((address(0xF89)));
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
-"13 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 13: void getActualLeds(unsigned char* leds, unsigned char userIndex);
+"14 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 14: void getActualLeds(unsigned char* leds, unsigned char userIndex);
 [v _getActualLeds `(v ~T0 @X0 0 ef2`*uc`uc ]
 "31 ./TAD_TIMER.h
 [; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);

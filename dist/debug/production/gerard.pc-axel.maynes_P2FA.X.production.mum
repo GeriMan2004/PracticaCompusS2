@@ -1,7 +1,7 @@
 
 18F4321 Memory Summary:
-    Program space        used  1D5Eh (  7518) of  2000h bytes   ( 91.8%)
-    Data space           used   131h (   305) of   200h bytes   ( 59.6%)
+    Program space        used  1E8Ah (  7818) of  2000h bytes   ( 95.4%)
+    Data space           used   137h (   311) of   200h bytes   ( 60.7%)
     Configuration bits   used     7h (     7) of     7h words   (100.0%)
     EEPROM space         used     0h (     0) of   100h bytes   (  0.0%)
     ID Location space    used     8h (     8) of     8h bytes   (100.0%)

@@ -32,18 +32,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3585
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 3585: extern volatile unsigned char TXREG __attribute__((address(0xFAD)));
 [v _TXREG `Vuc ~T0 @X0 0 e@4013 ]
-"13 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 13: void getActualLeds(unsigned char* leds, unsigned char userIndex);
+"14 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 14: void getActualLeds(unsigned char* leds, unsigned char userIndex);
 [v _getActualLeds `(v ~T0 @X0 0 ef2`*uc`uc ]
-"20
-[; ;./TAD_DATOS.h: 20: unsigned char getCurrentUserIndex(void);
+"21
+[; ;./TAD_DATOS.h: 21: unsigned char getCurrentUserIndex(void);
 [v _getCurrentUserIndex `(uc ~T0 @X0 0 ef ]
-"12
-[; ;./TAD_DATOS.h: 12: void getActualUID(unsigned char* UID, unsigned char userIndex);
+"13
+[; ;./TAD_DATOS.h: 13: void getActualUID(unsigned char* UID, unsigned char userIndex);
 [v _getActualUID `(v ~T0 @X0 0 ef2`*uc`uc ]
-"18
-[; ;./TAD_DATOS.h: 18: void saveHourToData(unsigned char hour[4]);
+"19
+[; ;./TAD_DATOS.h: 19: void saveHourToData(unsigned char hour[4]);
 [v _saveHourToData `(v ~T0 @X0 0 ef1`*uc ]
+"18
+[; ;./TAD_DATOS.h: 18: void newConfiguration(void);
+[v _newConfiguration `(v ~T0 @X0 0 ef ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -1313,24 +1316,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_TERMINAL.c: 265:      motor_StartSendString("\r\nHora introduida correctament\r\n");
 [e ( _motor_StartSendString (1 :s 14C ]
 "266
-[; ;TAD_TERMINAL.c: 266:      sending_string = 1;
-[e = _sending_string -> -> 1 `i `uc ]
+[; ;TAD_TERMINAL.c: 266:      newConfiguration();
+[e ( _newConfiguration ..  ]
 "267
-[; ;TAD_TERMINAL.c: 267:      state = 0;
-[e = F2771 -> -> 0 `i `uc ]
+[; ;TAD_TERMINAL.c: 267:      sending_string = 1;
+[e = _sending_string -> -> 1 `i `uc ]
 "268
-[; ;TAD_TERMINAL.c: 268:     }
+[; ;TAD_TERMINAL.c: 268:      state = 0;
+[e = F2771 -> -> 0 `i `uc ]
+"269
+[; ;TAD_TERMINAL.c: 269:     }
 }
 [e :U 370 ]
-"269
-[; ;TAD_TERMINAL.c: 269:    }
+"270
+[; ;TAD_TERMINAL.c: 270:    }
 }
 [e :U 369 ]
-"270
-[; ;TAD_TERMINAL.c: 270:   break;
-[e $U 342  ]
 "271
-[; ;TAD_TERMINAL.c: 271:  }
+[; ;TAD_TERMINAL.c: 271:   break;
+[e $U 342  ]
+"272
+[; ;TAD_TERMINAL.c: 272:  }
 }
 [e $U 342  ]
 [e :U 343 ]
@@ -1346,8 +1352,8 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 2 `i 368
  342 ]
 [e :U 342 ]
-"272
-[; ;TAD_TERMINAL.c: 272: }
+"273
+[; ;TAD_TERMINAL.c: 273: }
 [e :UE 338 ]
 }
 [a 7C 85 115 117 97 114 105 32 0 ]

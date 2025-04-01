@@ -4816,6 +4816,7 @@ void setStartSendString(void);
 
 
 
+
 void initData(void);
 void resetData(void);
 void setLed(unsigned char tecla);
@@ -5092,6 +5093,7 @@ void motorTerminal(void) {
     if(++index == 4) {
      saveHourToData(hour);
      motor_StartSendString("\r\nHora introduida correctament\r\n");
+     newConfiguration();
      sending_string = 1;
      state = 0;
     }

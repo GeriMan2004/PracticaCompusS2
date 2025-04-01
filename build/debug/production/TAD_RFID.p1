@@ -68,11 +68,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "31
 [; ;./TAD_TIMER.h: 31: unsigned long TI_GetTics (unsigned char TimerHandle);
 [v _TI_GetTics `(ul ~T0 @X0 0 ef1`uc ]
-"12 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 12: void getActualUID(unsigned char* UID, unsigned char userIndex);
+"13 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 13: void getActualUID(unsigned char* UID, unsigned char userIndex);
 [v _getActualUID `(v ~T0 @X0 0 ef2`*uc`uc ]
-"20
-[; ;./TAD_DATOS.h: 20: unsigned char getCurrentUserIndex(void);
+"21
+[; ;./TAD_DATOS.h: 21: unsigned char getCurrentUserIndex(void);
 [v _getCurrentUserIndex `(uc ~T0 @X0 0 ef ]
 "21 ./TAD_TERMINAL.h
 [; ;./TAD_TERMINAL.h: 21: void motor_StartSendString(const char* str);
@@ -80,11 +80,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;./TAD_TERMINAL.h: 22: void setStartSendString(void);
 [v _setStartSendString `(v ~T0 @X0 0 ef ]
-"11 ./TAD_DATOS.h
-[; ;./TAD_DATOS.h: 11: void setIndex(unsigned char index);
+"12 ./TAD_DATOS.h
+[; ;./TAD_DATOS.h: 12: void setIndex(unsigned char index);
 [v _setIndex `(v ~T0 @X0 0 ef1`uc ]
-"16
-[; ;./TAD_DATOS.h: 16: char motor_setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
+"18
+[; ;./TAD_DATOS.h: 18: void newConfiguration(void);
+[v _newConfiguration `(v ~T0 @X0 0 ef ]
+"17
+[; ;./TAD_DATOS.h: 17: char motor_setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4);
 [v _motor_setCurrentUser `(uc ~T0 @X0 0 ef5`uc`uc`uc`uc`uc ]
 "52 C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h
 [; ;C:\Program Files\Microchip\xc8\v3.00\pic\include\proc/pic18f4321.h: 52: __asm("PORTA equ 0F80h");
@@ -2493,80 +2496,83 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;TAD_RFID.c: 621:                                 setIndex(4);
 [e ( _setIndex (1 -> -> 4 `i `uc ]
 "622
-[; ;TAD_RFID.c: 622:                                 substate = 28;
-[e = F2781 -> -> 28 `i `uc ]
+[; ;TAD_RFID.c: 622:                                 newConfiguration();
+[e ( _newConfiguration ..  ]
 "623
-[; ;TAD_RFID.c: 623:                                 cardRemoved = 0;
-[e = F2797 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 623:                                 substate = 28;
+[e = F2781 -> -> 28 `i `uc ]
 "624
-[; ;TAD_RFID.c: 624:                             } else {
+[; ;TAD_RFID.c: 624:                                 cardRemoved = 0;
+[e = F2797 -> -> 0 `i `uc ]
+"625
+[; ;TAD_RFID.c: 625:                             } else {
 }
 [e $U 476  ]
 [e :U 475 ]
 {
-"626
-[; ;TAD_RFID.c: 626:                                 substate = 28;
-[e = F2781 -> -> 28 `i `uc ]
 "627
-[; ;TAD_RFID.c: 627:                             }
+[; ;TAD_RFID.c: 627:                                 substate = 28;
+[e = F2781 -> -> 28 `i `uc ]
+"628
+[; ;TAD_RFID.c: 628:                             }
 }
 [e :U 476 ]
-"628
-[; ;TAD_RFID.c: 628:                         } else {
+"629
+[; ;TAD_RFID.c: 629:                         } else {
 }
 [e $U 477  ]
 [e :U 474 ]
 {
-"630
-[; ;TAD_RFID.c: 630:                             substate = 27;
-[e = F2781 -> -> 27 `i `uc ]
 "631
-[; ;TAD_RFID.c: 631:                         }
+[; ;TAD_RFID.c: 631:                             substate = 27;
+[e = F2781 -> -> 27 `i `uc ]
+"632
+[; ;TAD_RFID.c: 632:                         }
 }
 [e :U 477 ]
-"632
-[; ;TAD_RFID.c: 632:                         break;
+"633
+[; ;TAD_RFID.c: 633:                         break;
 [e $U 411  ]
-"634
-[; ;TAD_RFID.c: 634:                     case 27:
+"635
+[; ;TAD_RFID.c: 635:                     case 27:
 [e :U 478 ]
-"636
-[; ;TAD_RFID.c: 636:                         if(motor_setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]) == 1) {
+"637
+[; ;TAD_RFID.c: 637:                         if(motor_setCurrentUser(UID[0], UID[1], UID[2], UID[3], UID[4]) == 1) {
 [e $ ! == -> ( _motor_setCurrentUser (4 , , , , -> *U + &U F2789 * -> -> -> 0 `i `ui `ux -> -> # *U &U F2789 `ui `ux `uc -> *U + &U F2789 * -> -> -> 1 `i `ui `ux -> -> # *U &U F2789 `ui `ux `uc -> *U + &U F2789 * -> -> -> 2 `i `ui `ux -> -> # *U &U F2789 `ui `ux `uc -> *U + &U F2789 * -> -> -> 3 `i `ui `ux -> -> # *U &U F2789 `ui `ux `uc -> *U + &U F2789 * -> -> -> 4 `i `ui `ux -> -> # *U &U F2789 `ui `ux `uc `i -> 1 `i 479  ]
 {
-"637
-[; ;TAD_RFID.c: 637:                             substate = 28;
-[e = F2781 -> -> 28 `i `uc ]
 "638
-[; ;TAD_RFID.c: 638:                             cardRemoved = 0;
-[e = F2797 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 638:                             substate = 28;
+[e = F2781 -> -> 28 `i `uc ]
 "639
-[; ;TAD_RFID.c: 639:                         }
+[; ;TAD_RFID.c: 639:                             cardRemoved = 0;
+[e = F2797 -> -> 0 `i `uc ]
+"640
+[; ;TAD_RFID.c: 640:                         }
 }
 [e :U 479 ]
-"640
-[; ;TAD_RFID.c: 640:                         break;
+"641
+[; ;TAD_RFID.c: 641:                         break;
 [e $U 411  ]
-"642
-[; ;TAD_RFID.c: 642:                     case 28:
+"643
+[; ;TAD_RFID.c: 643:                     case 28:
 [e :U 480 ]
-"644
-[; ;TAD_RFID.c: 644:                         addr = 0x0D;
-[e = F2800 -> -> 13 `i `uc ]
 "645
-[; ;TAD_RFID.c: 645:                         value = 0x00;
-[e = F2801 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 645:                         addr = 0x0D;
+[e = F2800 -> -> 13 `i `uc ]
 "646
-[; ;TAD_RFID.c: 646:                         operation_pending = 2;
-[e = F2799 -> -> 2 `i `uc ]
+[; ;TAD_RFID.c: 646:                         value = 0x00;
+[e = F2801 -> -> 0 `i `uc ]
 "647
-[; ;TAD_RFID.c: 647:                         state = substate = 0;
-[e = F2780 = F2781 -> -> 0 `i `uc ]
+[; ;TAD_RFID.c: 647:                         operation_pending = 2;
+[e = F2799 -> -> 2 `i `uc ]
 "648
-[; ;TAD_RFID.c: 648:                         break;
-[e $U 411  ]
+[; ;TAD_RFID.c: 648:                         state = substate = 0;
+[e = F2780 = F2781 -> -> 0 `i `uc ]
 "649
-[; ;TAD_RFID.c: 649:                 }
+[; ;TAD_RFID.c: 649:                         break;
+[e $U 411  ]
+"650
+[; ;TAD_RFID.c: 650:                 }
 }
 [e $U 411  ]
 [e :U 412 ]
@@ -2601,11 +2607,11 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 28 `i 480
  411 ]
 [e :U 411 ]
-"650
-[; ;TAD_RFID.c: 650:                 break;
-[e $U 363  ]
 "651
-[; ;TAD_RFID.c: 651:         }
+[; ;TAD_RFID.c: 651:                 break;
+[e $U 363  ]
+"652
+[; ;TAD_RFID.c: 652:         }
 }
 [e $U 363  ]
 [e :U 364 ]
@@ -2613,13 +2619,13 @@ Version 4.0 HI-TECH Software Intermediate Code
  , $ -> 1 `i 410
  363 ]
 [e :U 363 ]
-"652
-[; ;TAD_RFID.c: 652:     }
+"653
+[; ;TAD_RFID.c: 653:     }
 }
 [e :U 359 ]
 [e :U 355 ]
-"653
-[; ;TAD_RFID.c: 653: }
+"654
+[; ;TAD_RFID.c: 654: }
 [e :UE 351 ]
 }
 [a 1C 13 10 76 39 117 115 117 97 114 105 32 104 97 32 115 111 114 116 105 116 32 100 101 32 108 97 32 115 97 108 97 13 10 0 ]

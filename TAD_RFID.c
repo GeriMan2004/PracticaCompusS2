@@ -619,6 +619,7 @@ void motor_RFID(void) {
                                 motor_StartSendString("\r\nL'usuari ha sortit de la sala\r\n");
                                 setStartSendString();
                                 setIndex(4);
+                                newConfiguration();
                                 substate = 28;
                                 cardRemoved = 0;
                             } else {
