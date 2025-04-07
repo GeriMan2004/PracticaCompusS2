@@ -50,7 +50,7 @@ char motor_Write(char addr, char value) {
     static unsigned char ucValue;
 
     switch (state_write) {
-        case 0: // Initialization phase
+        case 0: // Inicialización
             MFRC522_SCK = 0;
             MFRC522_CS = 0;
             ucAddr = ((addr << 1) & 0x7E);
@@ -59,11 +59,11 @@ char motor_Write(char addr, char value) {
             state_write = 1;
             break;
 
-        case 1: // Send address bits
+        case 1: // Envío de bits de dirección
             processBit(&ucAddr, &bit_count, &state_write, 2);
             break;
 
-        case 2: // Send value bits
+        case 2: // Envío de bits de valor
             processBit(&ucValue, &bit_count, &state_write, 0);
             if (state_write == 0) {
                 MFRC522_CS = 1;
@@ -83,6 +83,9 @@ char motor_Read(char addr) {
     static unsigned int timeout_counter = 0;
     static unsigned int MAX_TIMEOUT = 1000;
 
+    // Por culpa de la cooperatividad extrema que hicimos, algunas veces el motor_Read tardaba demasiado en recolectar los datos, por lo que añadimos un timeout
+    // de esta forma en caso de que la orden de pedir datos tarde demasiado en comparación con la orden de recibir datos, devolveremos un 0xFF que significa que
+    // se ha producido un error y volvemos a intentar el motor_Read de nuevo para recolectar correctamente los datos, esto lo descubrimos gracias a la ayuda de un becario
     if (++timeout_counter > MAX_TIMEOUT) {
         MFRC522_CS = MFRC522_SCK = 1;
         state_read = 0;
@@ -91,7 +94,7 @@ char motor_Read(char addr) {
     }
 
     switch(state_read) {
-        case 0: // Initialization
+        case 0: // Inicialización
             timeout_counter = 0;
             MFRC522_SCK = 0;
             MFRC522_CS = 0;
@@ -101,11 +104,11 @@ char motor_Read(char addr) {
             state_read = 1;
             return 0xFE;
             
-        case 1: // Send address bits
+        case 1: // Envío de bits de dirección
             processBit(&ucAddr, &bit_count, &state_read, 2);
             return 0xFE;
             
-        case 2: // Receive data bits
+        case 2: // Recepción de bits de datos
             MFRC522_SCK = 1;
             delay_us(5);
             ucResult = (unsigned char)((ucResult << 1) | MFRC522_SO);

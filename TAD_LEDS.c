@@ -7,7 +7,7 @@ static unsigned char ActualLeds[6];
 static unsigned char timer;
 
 void initLeds(void) {
-    TRISA = 0x00; 
+    TRISB = 0x00; 
     TRISE = 0x00;
     TI_NewTimer(&timer);
 }
@@ -20,13 +20,13 @@ void controlLED(unsigned char ledActual, char estado) {
     if (ledActual < 6) {
         // Asigna estado a un LED espec�fico
         if (estado)
-            LATA |= ledBits[ledActual];
+            LATB |= ledBits[ledActual];
         else
-            LATA &= ~ledBits[ledActual];
+            LATÇB &= ~ledBits[ledActual];
     }
     else if (ledActual == 0xFF) {
         // Asigna estado a todos los LEDs
-        LATA = estado ? 0x3F : 0x00;
+        LATB = estado ? 0x3F : 0x00;
     }
 }
 
