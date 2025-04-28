@@ -8,7 +8,6 @@
 
 void initLeds(void);
 void setLEDIntensity(unsigned char userIndex, unsigned char ledIndex, unsigned char intensity);
-void updateLEDs(void);
 void motor_LEDs(void);
 
 #endif 

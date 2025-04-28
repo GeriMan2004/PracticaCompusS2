@@ -4,7 +4,7 @@
 #include "TAD_TERMINAL.h"
 #include "TAD_TIMER.h"
 
-// Datos de usuarios y configuraciones
+// Datos de usuarios y configuraciones, en caso de querer ampliar, se tendria que ampliar este array de usuarios (además tambien se tendria que modificar unos ifs en los que hardcodeados se ponen estos IDs)
 unsigned char userUIDs[MAX_USERS + 1][UID_SIZE] = {
     {0x65, 0xDC, 0xF9, 0x03, 0x43},
     {0xDC, 0x0D, 0xF9, 0x03, 0x2B},
@@ -14,29 +14,31 @@ unsigned char userUIDs[MAX_USERS + 1][UID_SIZE] = {
 
 unsigned char configurations[MAX_USERS + 1][LEDS];
 
-// Variables de estado
+// Variables utilizadas globalmente pora el flujo de estados
 static unsigned char currentUser[5] = {0};
 static unsigned char new_configuration = 0;
 static unsigned char new_user = 0;
-static unsigned char index = MAX_USERS;  // Inicializar a 20 para indicar que no hay usuario
-static unsigned char currentTime[4] = "0000";
+static unsigned char index = MAX_USERS;  // El indice nos indica que usuario esta en la sala (en caso de qeu sea MAX_USERS significará que no hay usuario en la sala)
+static unsigned char currentTime[4] = "0000"; // Variable para guardar la hora (cada minuto se incrementará)
 static unsigned char timer;
-// Función optimizada para inicialización
+
+// Fucnión para iniciar el TAD y sus variables
 void initData(void) {
     for(char i = 0; i < 5; i++) currentUser[i] = 0;
     for(char i = 0; i < MAX_USERS; i++) {
         for(char j = 0; j < LEDS; j++) {
-            configurations[i][j] = i;
+            configurations[i][j] = 0;  //seteamos todas las configuraciones a 0 como se indica en los requerimientos de la práctica
         }
     }
     for(char i = 0; i < LEDS; i++) {
         configurations[MAX_USERS][i] = 0;
     }
-    index = MAX_USERS;  // Inicializar a 20 para indicar que no hay usuario
+    index = MAX_USERS;
     TI_NewTimer(&timer);
     new_configuration = 1;
 }
 
+// Cuando se mantengan mas de 3 segundos el botón de "hashtag" se resetearán las configuraciones guardas previemente
 void resetData(void) {
     for (unsigned char i = 0; i < MAX_USERS; i++) {
         for (unsigned char j = 0; j < LEDS; j++) {
@@ -85,6 +87,7 @@ void newConfiguration(void) {
     new_configuration = 1;
 }
 
+
 void saveHourToData(unsigned char hour[4]) {
     if(!hour) return;
     for(char i = 0; i < 4; i++) currentTime[i] = hour[i];
@@ -94,7 +97,8 @@ void setIndex(unsigned char indexActual) {
     index = indexActual;
 }
 
-// Este motor se encarga de establecer el usuario actual y de comprobar cual indice corresponde al usuario actual y establecerlo
+// Este motor se encarga de establecer el usuario actual y de comprobar cual indice corresponde al usuario actual y establecerlo, de forma cooperativa
+// Devolverá 1 en cuanto haya terminado todas las operaciones, entonces en el motor principal, podremos seguir con el flujo de estados
 char motor_setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4) {
     static char state_setCurrentUser = 0;
 
@@ -108,7 +112,7 @@ char motor_setCurrentUser(char UID0, char UID1, char UID2, char UID3, char UID4)
             new_user = 1;
             state_setCurrentUser = 1;
             break;
-        case 1:
+        case 1: // Para cooperativizar mas el código, hemos decidido que en cada iteración del motor, probaremos si el ID coincide con uno de los IDs establecidos previamente
             // Actualizar el índice directamente sin usar checkUserUID
             if (UID0 == 0x65 && UID1 == 0xDC && UID2 == 0xF9 && UID3 == 0x03 && UID4 == 0x43) {
                 index = 0;
@@ -184,6 +188,7 @@ void motor_datos(void) {
             currentTime[3]++;
         }
         TI_ResetTics(timer);
+        return; // Cuando entre en este if, tendrá que hacer muchas operaciones, asi que para cooperativizar el código lo máximo posible, hemos decido no seguir con las operaciones en el motor durante una iteración
     }
     switch(state) {
         // Estado inicial - verifica si hay que actualizar la pantalla

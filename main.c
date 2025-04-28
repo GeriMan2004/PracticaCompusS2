@@ -37,6 +37,11 @@ extern void __interrupt (low_priority) LowRSI (void){
 
 
 void main(void){
+	// Enable interrupts
+	INTCONbits.GIE = 1;    // Global Interrupt Enable
+	INTCONbits.PEIE = 0;   // Peripheral Interrupt Enable
+
+	// Initialize modules
 	TI_Init();        // Initialize Timer system
 	initTeclado();    // Initialize Keyboard
 	initRFID();       // Initialize RFID
@@ -46,16 +51,12 @@ void main(void){
 	LcInit(2, 16);    // Initialize LCD
 	initData();       // Initialize Datos
 	
-
-	// Enable interrupts
-	INTCONbits.GIE = 1;    // Global Interrupt Enable
-	INTCONbits.PEIE = 0;   // Peripheral Interrupt Enable
 	while(1){
 		motorTeclado();  // Run keyboard state machine
     	motorTerminal(); // Run terminal state machine
-	    motor_RFID();  // Run RFID state machine
-		motor_LEDs();  // Run LEDs state machine
-        motor_datos();
+	    motor_RFID();    // Run RFID state machine
+		motor_LEDs();    // Run LEDs state machine
+        motor_datos();   // Run Datos state machine
 		LATEbits.LATE2 ^= 1;
 	}				
 }
@@ -63,12 +64,4 @@ void main(void){
 void initPorts(void){
 	ADCON1 = 0x0F;  // Set all pins as digital
 	TRISEbits.TRISE2 = 0;
-}
-
-
-// Implement the ProcessKey function that was referenced in TAD_TECLADO
-void ProcessKey(unsigned char key) {
-	// Add your key processing logic here
-	// For example, you could:
-	LATC = key;  // Display the key value on PORTC (for testing)
 }

@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "tad_rfid.h": "c"
+        "tad_rfid.h": "c",
+        "tad_display.h": "c"
     }
 }

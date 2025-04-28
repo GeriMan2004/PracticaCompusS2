@@ -1,20 +1,21 @@
 /*
  * File:   TRFID.c
  * Author: jnavarro & ester.vidana
- *
- * 
+ * Used by: gerard.pc & axel.maynes
+ * How:  We inspired on non cooperative code given by the subject and we implemented it cooperative
  * Inspired by: https://simplesoftmx.blogspot.com/2014/11/libreria-para-usar-lector-rfid-rc522.html
  */
 
+// PARA MEJOR COMPRENSIÓN, VISITA NUESTRA MEMORIA DE LA PRÁCTICA
 
 #include <xc.h>
 #include "TAD_RFID.h"
 #include "TAD_DATOS.h"
 #include "TAD_TERMINAL.h"
-#include "TAD_TIMER.h"  // Añadir inclusión del TAD_TIMER
+#include "TAD_TIMER.h"
 
-#define NUM_US 8 // Reducido de 16 a 8 para delay más corto
-#define CARD_TIMEOUT 200 // 200 tics = 0.4 segundo
+#define NUM_US 8 
+#define CARD_TIMEOUT 200 
 
 // Variables globales para controlar los estados de las funciones motor
 static char state_read = 0;
@@ -43,7 +44,7 @@ void processBit(unsigned char *val, char *bit_count, char *state, char next_stat
     }
 }
 
-// Use the new function in motor_Write
+// Como vimos que las funciones read y write del codigo no cooperativo eran demsiado tardadas para ser usadas en el codigo, hicimos que estas se pudieran hacer paso a paso con estos motores
 char motor_Write(char addr, char value) {
     static char bit_count = 0;
     static unsigned char ucAddr;
@@ -59,11 +60,11 @@ char motor_Write(char addr, char value) {
             state_write = 1;
             break;
 
-        case 1: // Envío de bits de dirección
+        case 1: // Envío de bits de dirección (primer For)
             processBit(&ucAddr, &bit_count, &state_write, 2);
             break;
 
-        case 2: // Envío de bits de valor
+        case 2: // Envío de bits de valor (segundo for)
             processBit(&ucValue, &bit_count, &state_write, 0);
             if (state_write == 0) {
                 MFRC522_CS = 1;
@@ -104,11 +105,11 @@ char motor_Read(char addr) {
             state_read = 1;
             return 0xFE;
             
-        case 1: // Envío de bits de dirección
+        case 1:
             processBit(&ucAddr, &bit_count, &state_read, 2);
             return 0xFE;
             
-        case 2: // Recepción de bits de datos
+        case 2:
             MFRC522_SCK = 1;
             delay_us(5);
             ucResult = (unsigned char)((ucResult << 1) | MFRC522_SO);
@@ -144,11 +145,8 @@ void initRFID() {
     MFRC522_RST = 1;
     delay_us(1);
     
-    // Issue reset command: Write PCD_RESETPHASE to COMMANDREG
+    // Para no ocupar program memory de mas, utilzamos las funciones motr de read y write en vez del read o write originales.
     while (!motor_Write(COMMANDREG, PCD_RESETPHASE)) { }
-    delay_us(1);
-    
-    // Configure the timer and modulation registers
     while (!motor_Write(TMODEREG, 0x8D)) { }
     while (!motor_Write(TPRESCALERREG, 0x3E)) { }
     while (!motor_Write(TRELOADREGL, 30)) { }
@@ -156,11 +154,10 @@ void initRFID() {
     while (!motor_Write(TXAUTOREG, 0x40)) { }
     while (!motor_Write(MODEREG, 0x3D)) { }
     
-    // Turn on the antenna by setting bits 0x03 in TXCONTROLREG:
     unsigned char regVal;
     do {
         regVal = motor_Read(TXCONTROLREG);
-    } while (regVal == 0xFE); // wait until a valid value is returned
+    } while (regVal == 0xFE);
     regVal |= 0x03;
     while (!motor_Write(TXCONTROLREG, regVal)) { }
     
@@ -169,6 +166,8 @@ void initRFID() {
     TI_ResetTics(card_timer);
 }
 
+
+// ESTA MUCHO MEJOR EXPLICADO EN LA MEMORIA DE LA PRÁCTICA
 void motor_RFID(void) {
     static char state = 0;
     static char substate = 0;
@@ -189,7 +188,7 @@ void motor_RFID(void) {
     static unsigned char last_state = 0;
     
     // Variables para control de operaciones
-    static char operation_pending = 0;  // 0: ninguna, 1: lectura, 2: escritura
+    static char operation_pending = 0;  // 0: ninguna    1: lectura     2: escritura
     static unsigned char addr;         // Dirección para leer o escribir
     static unsigned char value;        // Valor para escribir
     unsigned char flag = 0;

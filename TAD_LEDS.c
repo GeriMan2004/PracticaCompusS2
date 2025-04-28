@@ -7,32 +7,28 @@ static unsigned char ActualLeds[6];
 static unsigned char timer;
 
 void initLeds(void) {
-    TRISB = 0x00; 
+    TRISA = 0x00; 
     TRISE = 0x00;
     TI_NewTimer(&timer);
 }
 
-// Funci�n combinada para manipular LEDs (ahorra c�digo)
+// Función combinada para manipular LEDs (ahorra código)
 void controlLED(unsigned char ledActual, char estado) {
     // Tabla de bits para cada LED
     static unsigned char ledBits[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20};
     
     if (ledActual < 6) {
-        // Asigna estado a un LED espec�fico
+        // Asigna estado a un LED específico
         if (estado)
-            LATB |= ledBits[ledActual];
+            LATA |= ledBits[ledActual];
         else
-            LATÇB &= ~ledBits[ledActual];
+            LATA &= ~ledBits[ledActual];
     }
     else if (ledActual == 0xFF) {
         // Asigna estado a todos los LEDs
-        LATB = estado ? 0x3F : 0x00;
+        LATA = estado ? 0x3F : 0x00;
     }
 }
-
-// Macros para mantener compatibilidad con c�digo existente
-#define setLedActual(led) controlLED(led, 1)
-#define unsetLedActual(led) controlLED(led, 0)
 
 void motor_LEDs(void) {    
     // Get the current LED intensities
@@ -62,7 +58,8 @@ void motor_LEDs(void) {
     // Check each LED's PWM duty cycle - recorremos con contador para ahorrar memoria
     char i;
     for (i = 0; i < LEDS; i++) {
-        if (ActualLeds[i] < 0xA && currentTics >= ActualLeds[i])
+        if (ActualLeds[i] < 0xA && currentTics >= ActualLeds[i]) {
             controlLED(i, 0);  // Turn LED off if its duty cycle is complete
+        }
     }
 }

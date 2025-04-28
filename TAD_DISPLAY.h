@@ -52,7 +52,7 @@
 #define SetD5(On)				(LATBbits.LATB5 = (On))
 #define SetD6(On)				(LATEbits.LATE1 = (On))
 #define SetD7(On)				(LATEbits.LATE0 = (On))
-#define GetBusyFlag()           (PORTEbits.RE0Z)
+#define GetBusyFlag()           (PORTEbits.RE0)
 #define RSUp()					(LATBbits.LATB3 = 1)
 #define RSDown()				(LATBbits.LATB3 = 0)
 #define RWUp()					(LATBbits.LATB2 = 1)
